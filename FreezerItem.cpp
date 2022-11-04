@@ -10,6 +10,7 @@ FreezerItem::FreezerItem(string unit_Type, string unitMeasure_Type, string item_
     dateThreshold = date_Threshold;
     datePurchased = date_Purchased;
     expirationDate = expiration_Date;
+    //Todo
 }
 FreezerItem::~FreezerItem(){
    
