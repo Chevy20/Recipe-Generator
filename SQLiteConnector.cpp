@@ -2,10 +2,12 @@
 #include <iostream>
 using namespace std;
 SQLiteConnector::SQLiteConnector(){
-    dbName = "FreshRecipies.db";
+    dbName = "FreshRecipes.db";
 }
+SQLiteConnector::~SQLiteConnector(){
 
-void t_dbConnector::connectDB(){
+}
+void SQLiteConnector::connectDB(){
     int command = sqlite3_open(dbName.c_str(), &db);
      //code from sqllites docs for error checkking 
     if (command){
@@ -17,7 +19,7 @@ void t_dbConnector::connectDB(){
     else{
        
         char* error;
-        string sql_stmt= "create table if not exists stock_tbl (itemName varchar(255), unitQuantity INTEGER, unitMeasureType varchar(255), datePurchased varchar(255), expirationDate varchar(255), unitType varchar(255), quantityThreshold INTEGER, dateThreshold INTEGER);";
+        string sql_stmt= "create table if not exists stock_tbl (itemName varchar(255), unitQuantity INTEGER, unitMeasureType varchar(255), datePurchased varchar(255), expirationDate varchar(255), unitType varchar(255), quantityThreshold INTEGER, dateThreshold INTEGER, PRIMARY KEY (itemName)) ;";
         command = sqlite3_exec(db,sql_stmt.c_str(), NULL,NULL,&error);
         
         // if the table could not be created, notify user and close database
@@ -30,7 +32,7 @@ void t_dbConnector::connectDB(){
     }
 }
 
-void t_dbConnector::dropTable(){
+void SQLiteConnector::dropTable(){
     char* error;
     string sql_stmt = "DROP TABLE IF EXISTS stock_tbl";
     int command = sqlite3_exec(db, sql_stmt.c_str(),NULL, NULL, &error);
@@ -40,7 +42,7 @@ void t_dbConnector::dropTable(){
     delete error;       // delete the pointer to for the error
 
 }
-void t_dbConnector::dropTableandRebuild(){
+void SQLiteConnector::dropTableandRebuild(){
     char* error;
     string sql_stmt = "DROP TABLE IF EXISTS stock_tbl";
     int command = sqlite3_exec(db, sql_stmt.c_str(),NULL, NULL, &error);
@@ -48,7 +50,7 @@ void t_dbConnector::dropTableandRebuild(){
             cout << "Could not drop the stock_tbl: " << error << endl;
     }
 
-    sql_stmt= "create table if not exists stock_tbl (itemName varchar(255), unitQuantity INTEGER, unitMeasureType varchar(255), datePurchased varchar(255), expirationDate varchar(255), unitType varchar(255), quantityThreshold INTEGER, dateThreshold INTEGER);";
+    sql_stmt= "create table if not exists stock_tbl (itemName varchar(255), unitQuantity INTEGER, unitMeasureType varchar(255), datePurchased varchar(255), expirationDate varchar(255), unitType varchar(255), quantityThreshold INTEGER, dateThreshold INTEGER, PRIMARY KEY (itemName)) ;";
     command = sqlite3_exec(db,sql_stmt.c_str(), NULL,NULL,&error);
     
     // if the table could not be created, notify user and close database
@@ -61,10 +63,13 @@ void t_dbConnector::dropTableandRebuild(){
     delete error; 
 
 }
-void t_dbConnector::disconnectDB(){
+void SQLiteConnector::disconnectDB(){
     if(sqlite3_close(db) == SQLITE_OK){
         cout<<"Database closed successfully"<<endl;
     }
     else
         cout<<"Could not close databse"<<endl;
+}
+sqlite3* SQLiteConnector::getDbHandle(){
+    return db;
 }
