@@ -23,6 +23,4 @@ class StockTable : public t_dbTableStrategy{
 
 };
 
-
-
 #endif
