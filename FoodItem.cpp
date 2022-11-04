@@ -1,7 +1,7 @@
-#include "FreezerItem.h"
+#include "FoodItem.h"
 
 using namespace std;
-FreezerItem::FreezerItem(string unit_Type, string unitMeasure_Type, string item_name, int unit_quantity, int quantity_Threshold, char* date_Purchased, char* expiration_Date, int date_Threshold){
+FoodItem::FoodItem(string unit_Type, string unitMeasure_Type, string item_name, int unit_quantity, int quantity_Threshold, char* date_Purchased, char* expiration_Date, int date_Threshold){
     unitType = unit_Type;
     unitMeasureType = unitMeasure_Type;
     itemName = item_name;
@@ -10,14 +10,12 @@ FreezerItem::FreezerItem(string unit_Type, string unitMeasure_Type, string item_
     dateThreshold = date_Threshold;
     datePurchased = date_Purchased;
     expirationDate = expiration_Date;
-    //Todo
+    
 }
-FreezerItem::~FreezerItem(){
+FoodItem::~FoodItem(){
    
 
 }
-
-
 string FoodItem::getType(){
     return unitType;
 }
