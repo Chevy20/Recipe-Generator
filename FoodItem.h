@@ -4,6 +4,7 @@
 
 class FoodItem{
     public:
+        FoodItem(); //default
         FoodItem(std::string item_name, int unit_quantity, std::string unitMeasure_Type ,std::string date_Purchased, std::string expiration_Date, std::string unit_Type,   int quantity_Threshold,  int date_Threshold);
         ~FoodItem();
         
