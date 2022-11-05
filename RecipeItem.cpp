@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Recipeitem.h"
+#include "RecipeItem.h"
 
 using namespace std;
 RecipeItem::RecipeItem()
