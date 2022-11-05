@@ -1,4 +1,6 @@
-abstract class View {
+#include <Model.h>
+
+class View {
     
     private:
         Model model;
@@ -7,4 +9,4 @@ abstract class View {
         View(const Model &model) {
             this->model = model;
         }
-}
+};
