@@ -20,7 +20,7 @@ class Recipe{
         std::vector<RecipeItem> getIngredients();
         std::map<std::string, int> getNutrition();
         void updateStock();
-        void changeProportions();
+        void changeProportions(float newYield);
         void swapIngredient();
         int adjustIngredientAmount(FoodItem item, int quantity);
 };

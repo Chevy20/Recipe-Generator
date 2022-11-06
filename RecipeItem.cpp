@@ -6,7 +6,7 @@ RecipeItem::RecipeItem()
 {
     //default
 }
-RecipeItem::RecipeItem(FoodItem fitem, int num, string unit)
+RecipeItem::RecipeItem(FoodItem fitem, float num, string unit)
 {
     item = fitem;
     itemQty = num;
@@ -32,7 +32,7 @@ void RecipeItem::setItem(FoodItem fitem)
 {
     item = fitem;
 }
-void RecipeItem::setQuantity(int num)
+void RecipeItem::setQuantity(float num)
 {
     itemQty = num;
 }

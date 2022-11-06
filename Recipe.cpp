@@ -33,9 +33,20 @@ void Recipe::updateStock()
 {
 
 }
-void Recipe::changeProportions()
+/*
+ * Function: changeProportions 
+ * Description: updates all RecipeItems to create the quantity given
+ * Parameters: float newYield : the new yield of teh recipe after all chnages made
+ * Return: nothing
+ */
+void Recipe::changeProportions(float newYield)
 {
-
+    float change = newYield / recipeYeild;
+    for(RecipeItem food : recipeIngredients){
+        float quantity = food.getQuantity();
+        quantity = ((quantity + 0.5/2) / 0.5) * 0.5;
+        food.setQuantity(quantity * change);
+    }
 }
 void Recipe::swapIngredient()
 {

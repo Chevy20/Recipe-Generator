@@ -6,18 +6,18 @@ class RecipeItem
 {
     private:
         FoodItem item;
-        int itemQty;
+        float itemQty;
         std::string itemMeasureUnit;
 
     public:
         RecipeItem();
-        RecipeItem(FoodItem fitem, int num, std::string unit);
+        RecipeItem(FoodItem fitem, float num, std::string unit);
         ~RecipeItem();
         FoodItem getItem();
         int getQuantity();
         std::string getItemMeasureUnit();
         void setItem(FoodItem fitem);
-        void setQuantity(int qty);
+        void setQuantity(float qty);
         void setItemMeasureUnit(std::string unit);
         
 };
