@@ -11,7 +11,7 @@ class Recipe{
         std::string recipeProperties;
         std::vector<RecipeItem> recipeIngredients;
         std::map<std::string, int> recipeNutrition;
-        float recipeYeild;
+        float recipeYield;
     public:
         Recipe();
         Recipe(std::string rname, std::vector<RecipeItem> ingredients, std::map<std::string, int> nutri);
@@ -21,7 +21,7 @@ class Recipe{
         std::map<std::string, int> getNutrition();
         void updateStock();
         void changeProportions(float newYield);
-        void swapIngredient();
+        void swapIngredient(FoodItem nItem, RecipeItem rItem);
         int adjustIngredientAmount(FoodItem item, int quantity);
 };
 
