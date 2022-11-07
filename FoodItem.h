@@ -15,6 +15,7 @@ class FoodItem{
         int   getDateThreshold();  // minimum number of days allowed between current date and expiration date to trigger expiration warning
         void incrementQty (int amount);
         void decrementQty (int amount );
+        int getQuantity();
 
     private:
         std::string unitType;

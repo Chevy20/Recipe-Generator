@@ -41,6 +41,9 @@ int FoodItem::getDateThreshold(){
     return dateThreshold;
 }
 
+int FoodItem::getQuantity(){
+    return unitQuantity;
+}
 void FoodItem::incrementQty (int amount){
     unitQuantity = unitQuantity + amount;
 }
