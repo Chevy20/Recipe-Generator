@@ -1,6 +1,7 @@
 #include "FoodItem.h"
 #include <iostream>
 using namespace std;
+
 FoodItem::FoodItem(string item_name, int unit_quantity, string unitMeasure_Type ,string date_Purchased, string expiration_Date, string unit_Type,   int quantity_Threshold,  int date_Threshold){
     unitType = unit_Type;
     unitMeasureType = unitMeasure_Type;
@@ -39,6 +40,7 @@ string FoodItem::getExpiry(){
 int FoodItem::getDateThreshold(){
     return dateThreshold;
 }
+
 int FoodItem::getQuantity(){
     return unitQuantity;
 }
