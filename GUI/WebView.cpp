@@ -24,11 +24,13 @@ class WebView : Wt::WApplication
 
 int main(int argc, char *argv[]) {
     return Wt::WRun(argc, argv, [](const Wt::WEnvironment &env){
+        
         auto app = std::make_unique<Wt::WApplication>(env);
         auto root = app->root();
 
         root->addWidget(std::make_unique<Wt::WLineEdit>("Recipe items: "));
         root->addNew<Wt::WBreak>();
+
         auto edit = root->addNew<Wt::WLineEdit>();
         auto btn = root->addNew<Wt::WPushButton>("Find Recipes");
         
