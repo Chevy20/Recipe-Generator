@@ -10,7 +10,6 @@
 #include <Wt/WLink.h>
 
 
-
 class WebView : Wt::WApplication
 {
     public:
