@@ -59,7 +59,7 @@ void Recipe::changeProportions(float newYield)
 void Recipe::swapIngredient(FoodItem nItem, RecipeItem rItem)
 {
     rItem.setItem(nItem);
-    rItem.setQuantity(1);
+    rItem.setQuantity(0);
     rItem.setItemMeasureUnit(nItem.getMeasureUnit());
 }
 /*
