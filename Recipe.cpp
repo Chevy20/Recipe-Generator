@@ -1,4 +1,5 @@
 #include <iostream>
+#include <math.h>
 #include "Recipe.h"
 
 using namespace std;
@@ -43,9 +44,9 @@ void Recipe::changeProportions(float newYield)
 {
     float change = newYield / recipeYield;
     for(RecipeItem food : recipeIngredients){
-        float quantity = food.getQuantity();
-        quantity = ((quantity + 0.5/2) / 0.5) * 0.5;
-        food.setQuantity(quantity * change);
+        float quantity = food.getQuantity() * change;
+        quantity = ceil(quantity * 100.0) / 100.0;
+        food.setQuantity(quantity);
     }
     recipeYield = newYield;
 }
