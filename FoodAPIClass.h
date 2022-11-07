@@ -1,3 +1,5 @@
+#ifndef FOODAPICLASS_H
+#define FOODAPICLASS_H
 
 #include <string>
 #include <vector>
@@ -5,12 +7,20 @@
 
 class FoodAPIClass {
     private:
+        // Singleton setup
+        static FoodAPIClass* _instance; 
+        FoodAPIClass();
+        FoodAPIClass(const FoodAPIClass&);
+        FoodAPIClass& operator=(const FoodAPIClass&);
+
         std::vector<string> preferences;
         std::vector<Recipe> recipes;
 
+
     public:
-        FoodAPIClass();
+        static FoodAPIClass* getInstance();
         ~FoodAPIClass();
+
         std::vector<std::string> getPreferences();
         void setPrefences(std::vector<string> prefs);
         std::vector<Recipe> getRecipes();
@@ -21,3 +31,5 @@ class FoodAPIClass {
         std::vector<Recipe> sortListRecipeByPreference();
         void buildQueryURL();
 };
+
+#endif

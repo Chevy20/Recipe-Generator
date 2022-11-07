@@ -14,7 +14,7 @@ class FoodItem{
         std::string getDatePurchased ();
         int getThreshold();     //quantity theshold to trigger low quantity alert
         std::string getExpiry();
-        int   getDateThreshold();   // minimum number of days allowed between current date and expiration date to trigger expiration warning
+        int getDateThreshold();   // minimum number of days allowed between current date and expiration date to trigger expiration warning
         void incrementQty (int amount);
         void decrementQty (int amount );
         int getQuantity();
