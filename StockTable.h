@@ -10,6 +10,7 @@
 class StockTable : public t_dbTableStrategy{
 
     public:
+        StockTable();
         StockTable(sqlite3* _db);
         ~StockTable();
         bool insert(void* item) override;

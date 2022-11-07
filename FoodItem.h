@@ -4,14 +4,15 @@
 
 class FoodItem{
     public:
-        FoodItem(string item_name, int unit_quantity, string unitMeasure_Type ,string date_Purchased, string expiration_Date, string unit_Type,   int quantity_Threshold,  int date_Threshold);
+        FoodItem();
+        FoodItem(std::string item_name, int unit_quantity, std::string unitMeasure_Type ,std::string date_Purchased, std::string expiration_Date, std::string unit_Type,   int quantity_Threshold,  int date_Threshold);
         ~FoodItem();
         std::string getType ();
         std::string getName ();
         std::string getMeasureUnit();
-        string getDatePurchased ();
+        std::string getDatePurchased ();
         int getThreshold();    //quantity theshold to trigger low quantity alert
-        string getExpiry();
+        std::string getExpiry();
         int   getDateThreshold();  // minimum number of days allowed between current date and expiration date to trigger expiration warning
         void incrementQty (int amount);
         void decrementQty (int amount );
@@ -24,8 +25,8 @@ class FoodItem{
         int unitQuantity;
         int quantityThreshold; 
         int dateThreshold;
-        string datePurchased;
-        string expirationDate;
+        std::string datePurchased;
+        std::string expirationDate;
 
 
 };
