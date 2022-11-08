@@ -141,7 +141,8 @@ vector<FoodItem> Model::checkForExpiredFood(){
         FoodItem tempFoodItem = items.back();
         
         string tempExp = tempFoodItem.getExpiry();
-        int foodExpiry = stoi(tempExp.erase(remove(tempExp.begin(), tempExp.end(), '/'), tempExp.end()));
+        tempExp.erase(remove(tempExp.begin(), tempExp.end(), '/'), tempExp.end());
+        int foodExpiry = stoi(tempExp);
         
         if(currentTime >= foodExpiry)
             expiredFood.push_back(tempFoodItem);
