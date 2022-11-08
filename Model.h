@@ -6,13 +6,13 @@ class Model{
     private:
         //FoodAPIClass FoodConnector = FoodAPIClass();
         std::vector<Recipe> recipeList;
-        SQLiteConnector dbConnection;
-        StockTable dbContext;
+        SQLiteConnector *dbConnection;
+        StockTable *dbContext;
     public:
         Model();
         ~Model();
-        SQLiteConnector getDBConnection();
-        StockTable getDbContext();
+        SQLiteConnector* getDBConnection();
+        StockTable* getDbContext();
         std::vector<Recipe> getRecipeList();
         void setRecipeList(std::vector<Recipe> recipe_List);
         bool addFoodItem(FoodItem item);
