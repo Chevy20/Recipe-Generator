@@ -1,6 +1,7 @@
 #include "Recipe.h"
 #include "SQLiteConnector.h"
 #include "StockTable.h"
+#include <ctime>
 
 class Model{
     private:
