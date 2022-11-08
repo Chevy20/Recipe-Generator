@@ -2,6 +2,9 @@
 #include "StockTable.h"
 #include <iostream>
 using namespace std;
+StockTable::StockTable(){
+    db = nullptr;
+}
 StockTable::StockTable(sqlite3* _db){
     db = _db;
 }
@@ -17,6 +20,7 @@ FoodItem StockTable::select (string key){
     //use prepare to start the query, if it returns -1, there is an error. Pass result by ref to stmt
     if(sqlite3_prepare_v2(this->db,sql_stmt.c_str(),-1,&stmt,NULL)){
         cout << "Error querying the stock for "+key+""<< endl;
+        
         
     }
     // if no error
@@ -90,8 +94,6 @@ bool StockTable::insert(void* item){
             cout << "Could not insert record into stock_tbl: " << error << endl;
             return false;
     }
-    else
-        cout<<"Inserted Successfully" <<endl;
     delete error;
     return true;
 }
@@ -112,8 +114,6 @@ bool StockTable::update(void* item){
             cout << "Could not update record in stock_tbl: " << error << endl;
             return false;
     }
-    else
-        cout<<"Inserted Successfully" <<endl;
     delete error;
     return true;
 }
@@ -126,8 +126,6 @@ bool StockTable::remove(std::string itemName){
             cout << "Could not delete record in stock_tbl: " << error << endl;
             return false;
     }
-    else
-        cout<<"Deleted Successfully" <<endl;
     delete error;
     return true;
 }
