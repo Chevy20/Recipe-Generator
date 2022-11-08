@@ -12,7 +12,12 @@ using namespace std;
 
 
 
-
+/*
+Function:
+Description:
+Parameters:
+Return:
+*/
 bool isDigit(const string& input){
     for(char const &ch : input){
         if(isdigit(ch) == 0)
@@ -20,6 +25,13 @@ bool isDigit(const string& input){
     }
     return true;
 }
+
+/*
+Function:
+Description:
+Parameters:
+Return:
+*/
 bool check(string input){
     if(!isDigit(input))
         return false;
@@ -31,6 +43,13 @@ bool check(string input){
     }
     return false;
 }
+
+/*
+Function:
+Description:
+Parameters:
+Return:
+*/
 bool checkDate(string input){
     struct tm tm;
     if(!strptime(input.c_str(), "%Y/%m/%d", &tm))
@@ -38,6 +57,12 @@ bool checkDate(string input){
     return true;
 }
 
+/*
+Function:
+Description:
+Parameters:
+Return:
+*/
 void printFoodItem(FoodItem item){
     cout<<"Item Name: " + item.getName()<<endl;
     cout<<"Quantity: " +to_string(item.getQuantity()) +" "+item.getMeasureUnit()<<endl;
@@ -48,7 +73,12 @@ void printFoodItem(FoodItem item){
 }
 
 
-
+/*
+Function:
+Description:
+Parameters:
+Return:
+*/
 int main(int argc, char* argv[]){
     Model *theModel;
     theModel = new Model();

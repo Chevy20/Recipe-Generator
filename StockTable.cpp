@@ -2,16 +2,43 @@
 #include "StockTable.h"
 #include <iostream>
 using namespace std;
+
+/*
+Function:
+Description:
+Parameters:
+Return:
+*/
 StockTable::StockTable(){
     db = nullptr;
 }
+
+/*
+Function:
+Description:
+Parameters:
+Return:
+*/
 StockTable::StockTable(sqlite3* _db){
     db = _db;
 }
+
+/*
+Function:
+Description:
+Parameters:
+Return:
+*/
 StockTable::~StockTable(){
     sqlite3_close(db); 
 }
-//querying one food item at a time
+
+/*
+Function:
+Description:
+Parameters:
+Return:
+*/
 FoodItem StockTable::select (string key){
     FoodItem* result = new FoodItem();
     sqlite3_stmt *stmt;         //pointer that will comtain the sql statment object
@@ -47,7 +74,13 @@ FoodItem StockTable::select (string key){
     int finalize = sqlite3_finalize(stmt);
     return *result;
 }
-//return vector of all food items in stock
+
+/*
+Function:
+Description:
+Parameters:
+Return:
+*/
 std::vector<FoodItem> StockTable::selectAll(){
     vector<FoodItem> result;
     sqlite3_stmt *stmt;         //pointer that will comtain the sql statment object
@@ -80,6 +113,13 @@ std::vector<FoodItem> StockTable::selectAll(){
     return result;
 
 }
+
+/*
+Function:
+Description:
+Parameters:
+Return:
+*/
 bool StockTable::insert(void* item){
     
     FoodItem record = *(FoodItem*)item;
@@ -101,6 +141,13 @@ bool StockTable::insert(void* item){
     delete error;
     return true;
 }
+
+/*
+Function:
+Description:
+Parameters:
+Return:
+*/
 bool StockTable::update(void* item){
     FoodItem record = *(FoodItem*)item;
     string itemName = record.getName();
@@ -121,6 +168,13 @@ bool StockTable::update(void* item){
     delete error;
     return true;
 }
+
+/*
+Function:
+Description:
+Parameters:
+Return:
+*/
 bool StockTable::remove(std::string itemName){
     
     char* error;

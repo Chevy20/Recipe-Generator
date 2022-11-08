@@ -1,12 +1,33 @@
 #include "SQLiteConnector.h"
 #include <iostream>
 using namespace std;
+
+/*
+Function:
+Description:
+Parameters:
+Return:
+*/
 SQLiteConnector::SQLiteConnector(){
     dbName = "FreshRecipes.db";
 }
+
+/*
+Function:
+Description:
+Parameters:
+Return:
+*/
 SQLiteConnector::~SQLiteConnector(){
 
 }
+
+/*
+Function:
+Description:
+Parameters:
+Return:
+*/
 void SQLiteConnector::connectDB(){
     int command = sqlite3_open(dbName.c_str(), &db);
      //code from sqllites docs for error checkking 
@@ -32,6 +53,13 @@ void SQLiteConnector::connectDB(){
     }
 }
 
+
+/*
+Function:
+Description:
+Parameters:
+Return:
+*/
 void SQLiteConnector::dropTable(){
     char* error;
     string sql_stmt = "DROP TABLE IF EXISTS stock_tbl";
@@ -42,6 +70,13 @@ void SQLiteConnector::dropTable(){
     delete error;       // delete the pointer to for the error
 
 }
+
+/*
+Function:
+Description:
+Parameters:
+Return:
+*/
 void SQLiteConnector::dropTableandRebuild(){
     char* error;
     string sql_stmt = "DROP TABLE IF EXISTS stock_tbl";
@@ -63,6 +98,13 @@ void SQLiteConnector::dropTableandRebuild(){
     delete error; 
 
 }
+
+/*
+Function:
+Description:
+Parameters:
+Return:
+*/
 void SQLiteConnector::disconnectDB(){
     if(sqlite3_close(db) == SQLITE_OK){
         cout<<"Database closed successfully"<<endl;
@@ -70,6 +112,13 @@ void SQLiteConnector::disconnectDB(){
     else
         cout<<"Could not close databse"<<endl;
 }
+
+/*
+Function:
+Description:
+Parameters:
+Return:
+*/
 sqlite3* SQLiteConnector::getDbHandle(){
     return db;
 }
