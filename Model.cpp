@@ -131,7 +131,7 @@ Return:
 */
 vector<FoodItem> Model::checkForExpiredFood(){
     vector<FoodItem> expiredFood;
-    vector<FoodItem> items = dbContext.selectAll();
+    vector<FoodItem> items = dbContext->selectAll();
     
     time_t tempTime = time(0);
     tm* tempCurrentTime = localtime(&tempTime);
@@ -160,7 +160,7 @@ Return:
 */
 vector<FoodItem> Model::checkForLowStock(){
     vector<FoodItem> LowStock;
-    vector<FoodItem> items = dbContext.selectAll();
+    vector<FoodItem> items = dbContext->selectAll();
     
     while(items.size() > 0) {
         FoodItem tempFoodItem = items.back();
