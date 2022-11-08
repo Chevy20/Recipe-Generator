@@ -3,7 +3,14 @@
 using namespace std;
 
 FoodItem::FoodItem(){
-
+    unitType = "";
+    unitMeasureType = "";
+    itemName = "";
+    unitQuantity = 0;
+    quantityThreshold = 0;
+    dateThreshold = 0;
+    datePurchased = "";
+    expirationDate = "";
 }
 FoodItem::FoodItem(string item_name, int unit_quantity, string unitMeasure_Type ,string date_Purchased, string expiration_Date, string unit_Type,   int quantity_Threshold,  int date_Threshold){
     unitType = unit_Type;

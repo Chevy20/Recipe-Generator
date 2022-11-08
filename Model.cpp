@@ -21,7 +21,7 @@ void Model::setRecipeList(std::vector<Recipe> recipe_List){
     recipeList = recipe_List;
 }
 bool Model::addFoodItem(FoodItem item){
-    return dbContext.insert(&item);
+    return getDbContext().insert(&item);
 }
 bool Model::removeFoodItem(std::string itemName){
     return dbContext.remove(itemName);
