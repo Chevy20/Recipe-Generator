@@ -130,7 +130,26 @@ Parameters:
 Return:
 */
 vector<FoodItem> Model::checkForExpiredFood(){
-    //TO be implemented later
+    vector<FoodItem> expiredFood;
+    vector<FoodItem> items = dbContext.selectAll();
+    
+    time_t tempTime = time(0);
+    tm* tempCurrentTime = localtime(&tempTime);
+    int currentTime = (((1900 + tempCurrentTime->tm_year) * 10000) + ((1 + tempCurrentTime->tm_mon) * 100)) + (tempCurrentTime->tm_mday);
+    
+    while(items.size() > 0) {
+        FoodItem tempFoodItem = items.back();
+        
+        string tempExp = tempFoodItem.getExpiry();
+        int foodExpiry = stoi(tempExp.erase(remove(tempExp.begin(), tempExp.end(), '/'), tempExp.end()));
+        
+        if(currentTime >= foodExpiry)
+            expiredFood.push_back(tempFoodItem);
+        
+        items.pop_back();
+    }
+    
+    return expiredFood;
 }
 
 /*
@@ -140,5 +159,17 @@ Parameters:
 Return:
 */
 vector<FoodItem> Model::checkForLowStock(){
-    //To be implemented later
+    vector<FoodItem> LowStock;
+    vector<FoodItem> items = dbContext.selectAll();
+    
+    while(items.size() > 0) {
+        FoodItem tempFoodItem = items.back();
+        
+        if(tempFoodItem.getQuantity() <= tempFoodItem.getThreshold())
+            LowStock.push_back(tempFoodItem);
+        
+        items.pop_back();
+    }
+    
+    return LowStock;
 }
