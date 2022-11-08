@@ -68,7 +68,7 @@ int main(int argc, char* argv[]){
     int intInput;
     cout<<"Welcome to Freshcipes Terminal Prototype!" <<endl;
     cout<<"This application will help you search for recipes based on the food you have in your stock. If this is your first time using the app, insert food into your stock to get started!"<<endl;
-    cout<<"Your stock will be stored when exiting the app." <<endl;
+    cout<<"Your stock will be stored when exiting the app.\n" <<endl;
     while (true){
 
         cout<<"1: Insert food item into your stock."<<endl;
@@ -92,7 +92,7 @@ int main(int argc, char* argv[]){
         switch (intInput)
         {
             case 1:
-                cout<<"Inserting an Item into stock:"<<endl;
+                cout<<"\nInserting an Item into stock:"<<endl;
 
                 cout<<"Please enter the name of the food item: ";
                 cin>> itemName;
@@ -123,11 +123,11 @@ int main(int argc, char* argv[]){
                     cin>> datePurchased;
                 }
 
-                cout<<"Please enter the expiry date of the food item: ";
+                cout<<"Please enter the expiry date of the food item in the form YYYY/MM/DD: ";
                 cin>> expirationDate;
                 while(!checkDate(expirationDate)){
                     cout<<"Invalid Date Input detected."<<endl;
-                    cout<<"Please enter the expiry date of the food item: ";
+                    cout<<"Please enter the expiry date of the food item in the form YYYY/MM/DD : ";
                     cin>> expirationDate;
                 }
 
@@ -155,22 +155,22 @@ int main(int argc, char* argv[]){
                 }
                 record = FoodItem(itemName,atoi(unitQuantity.c_str()),unitMeasureType,datePurchased,expirationDate,storage,atoi(quantityThreshold.c_str()),atoi(dateThreshold.c_str()));
                 if(theModel->addFoodItem(record))
-                    cout<<record.getName() + " sucessfully added to stock!"<<endl;
+                    cout<<record.getName() + " sucessfully added to stock!\n"<<endl;
                 else
-                    cout<<"Could not add that record into stock. Review Parameters and try again."<<endl;
+                    cout<<"Could not add that record into stock. Review Parameters and try again.\n"<<endl;
                 break;
 
             case 2:
-                cout<<"Deleting an item from Stock:"<<endl;
+                cout<<"\nDeleting an item from Stock:"<<endl;
                 cout<<"Please enter the name of the food item you wish to remove from the stock: ";
                 cin>>itemName;
                 if(theModel->removeFoodItem(itemName))
-                    cout<<itemName+ " successfully deleted from the stock."<<endl;
+                    cout<<itemName+ " successfully deleted from the stock.\n"<<endl;
                 else
-                    cout<<"Could not delete that record from stock."<<endl;
+                    cout<<"Could not delete that record from stock.\n"<<endl;
                 break;
             case 3:
-                cout<<"Updating an item in the Stock:"<<endl;
+                cout<<"\nUpdating an item in the Stock:"<<endl;
                 cout<<"Please enter all information about the item you are updating:"<<endl;
                 cout<<"Please enter the name of the food item: ";
                 cin>> itemName;
@@ -239,12 +239,12 @@ int main(int argc, char* argv[]){
 
                 break;
             case 4:
-                cout<<"Search stock for singular type of food:"<<endl;
+                cout<<"\nSearch stock for singular type of food:"<<endl;
                 cout<<"Please enter the name of the food you are searching for: ";
                 cin>> itemName;
                 record = theModel->querySingleFoodItem(itemName);
                 if(record.getName() != ""){
-                    cout<<"Query results:"<<endl;
+                    cout<<"\nQuery results:"<<endl;
                     printFoodItem(record);
                 }
                 else{
@@ -253,13 +253,13 @@ int main(int argc, char* argv[]){
                 break;
             case 5:
                 cout<<"List entire stock:"<<endl;
-                cout<<"Query results:"<<endl;
+                cout<<"\nQuery results:"<<endl;
                 multiSearch = theModel->queryAllFoodItems();
                 for(int i = 0; i < multiSearch.size(); i++){
                     printFoodItem(multiSearch[i]);
                 }
+                cout<<"\n"<<endl;
                 break;
-                
             case 6:
                 break;
             case 7:

@@ -13,7 +13,7 @@ StockTable::~StockTable(){
 }
 //querying one food item at a time
 FoodItem StockTable::select (string key){
-    FoodItem* result;
+    FoodItem* result = new FoodItem();
     sqlite3_stmt *stmt;         //pointer that will comtain the sql statment object
     string sql_stmt = "select * from stock_tbl where itemName = '"+key+"'";  // the sql query
     
@@ -28,6 +28,10 @@ FoodItem StockTable::select (string key){
 
         //step through the sql_stmt object until it returns done
         while(sqlite3_step(stmt) != SQLITE_DONE){
+            if (string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 0))) =="") {
+                return FoodItem();
+            }
+            
             string itemName = string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 0))); 
             int quantity = stoi(string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1))));   
             string MeasureType = string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2)));   
