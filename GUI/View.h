@@ -4,7 +4,7 @@
 #ifndef VIEW_H
 #define VIEW_H
 
-#include<Model.h>
+#include "../Model.h"
 
 class View {
     

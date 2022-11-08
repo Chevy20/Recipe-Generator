@@ -4,10 +4,17 @@
 #ifndef WEBVIEW_H
 #define WEBVIEW_H
 
-#include<View.h>
+#include "View.h"
 #include <Wt/WContainerWidget.h>
-#include <Wt/Signals>
+#include <Wt/WText.h>
 #include <Wt/WLineEdit.h>
+#include <Wt/WPushButton.h>
+#include <Wt/WBreak.h>
+#include <Wt/WApplication.h>
+#include <Wt/WServer.h>
+#include <Wt/WFlags.h>
+
+
 
 class WebView : public Wt::WContainerWidget
 {
@@ -35,7 +42,7 @@ private:
     Wt::Signal<int>   stockUpdated_;
 
 
-    void checkInputs(string name, string meas_type, string qty, string date_purch, string exp, string threshold);
+    void checkInputs(std::string name, std::string meas_type, std::string qty, std::string date_purch, std::string exp, std::string threshold);
     void newItem();
 };
 #endif
