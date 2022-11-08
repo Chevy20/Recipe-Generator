@@ -1,5 +1,6 @@
 #include "FoodAPIClass.h"
 #include "HTTPRequest.h"
+#include "com.spoonacular.client.model"
 
 namespace std;
 
