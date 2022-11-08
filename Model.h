@@ -2,6 +2,7 @@
 #include "SQLiteConnector.h"
 #include "StockTable.h"
 #include <ctime>
+#include <algorithm>
 
 class Model{
     private:
