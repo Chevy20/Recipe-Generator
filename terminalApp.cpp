@@ -13,10 +13,10 @@ using namespace std;
 
 
 /*
-Function:
-Description:
-Parameters:
-Return:
+Function: isDigit()
+Description: Function to check if an input string represents a number
+Parameters: const string& input: input string
+Return: true if string is a number, false it not
 */
 bool isDigit(const string& input){
     for(char const &ch : input){
@@ -27,10 +27,10 @@ bool isDigit(const string& input){
 }
 
 /*
-Function:
-Description:
-Parameters:
-Return:
+Function: check()
+Description: Function to check if input is a valid command
+Parameters: string input: input string from user to select a command
+Return: true if string is valid, false if not
 */
 bool check(string input){
     if(!isDigit(input))
@@ -45,10 +45,10 @@ bool check(string input){
 }
 
 /*
-Function:
-Description:
-Parameters:
-Return:
+Function: checkDate()
+Description: Function to check validity of date
+Parameters: string input: input to represent a date
+Return: true if date is valid, false if not
 */
 bool checkDate(string input){
     struct tm tm;
@@ -58,10 +58,10 @@ bool checkDate(string input){
 }
 
 /*
-Function:
-Description:
-Parameters:
-Return:
+Function: printFoodItem()
+Description: Print the parameters of a given foodItem to console
+Parameters: FoodItem item: item to be printed to console
+Return: none
 */
 void printFoodItem(FoodItem item){
     cout<<"Item Name: " + item.getName()<<endl;
@@ -74,32 +74,34 @@ void printFoodItem(FoodItem item){
 
 
 /*
-Function:
-Description:
-Parameters:
-Return:
+Function: main()
+Description: main function of the terminalAPP
+Parameters:int argc: commandLine arg counter, char* argv[]: command line arguments
+Return: 0
 */
 int main(int argc, char* argv[]){
-    Model *theModel;
-    theModel = new Model();
-    
 
-    string userInput;
-    string itemName;
-    string unitQuantity;
-    string unitMeasureType;
-    string datePurchased;
-    string expirationDate;
-    string storage;
-    string quantityThreshold;
-    string dateThreshold;
-    FoodItem record;
-    vector<FoodItem> multiSearch;
-   
-    int intInput;
+    // Declare Variables 
+    Model *theModel;        //the model object to interface with the back end
+    theModel = new Model();
+    string userInput;           //user input from terminal
+    string itemName;            //item name for creation of food item
+    string unitQuantity;        //unit quantity for creation of food item
+    string unitMeasureType;     //unit measurement type for creation of food item
+    string datePurchased;       //date purchased for creation of food item
+    string expirationDate;      //expiration date for creation of food item
+    string storage;             //storage spot for creation of food item
+    string quantityThreshold;   //item name for creation of food item
+    FoodItem record;            //Fooditem used to contain singular FoodItems
+    vector<FoodItem> multiSearch;   //Vector used to contain multiple FoodItems
+    int intInput;                   //used to store integer input 
+
+    //Welcome message
     cout<<"Welcome to Freshcipes Terminal Prototype!" <<endl;
     cout<<"This application will help you search for recipes based on the food you have in your stock. If this is your first time using the app, insert food into your stock to get started!"<<endl;
     cout<<"Your stock will be stored when exiting the app.\n" <<endl;
+
+    //Application Loop
     while (true){
 
         cout<<"1: Insert food item into your stock."<<endl;
@@ -120,6 +122,8 @@ int main(int argc, char* argv[]){
         }
         intInput = atoi(userInput.c_str());
 
+
+        //Command selection
         switch (intInput)
         {
             case 1:
@@ -249,13 +253,7 @@ int main(int argc, char* argv[]){
                     cout<<"Please enter the quantity of food for this item that should trigger a low quantity alert: ";
                     cin>> quantityThreshold;
                 }
-                cout<<"How many days before this item expires would you like to receive an expiration alert: ";
-                cin>> dateThreshold;
-                 while(!isDigit(dateThreshold)){
-                    cout<<"Non Numerical Input detected."<<endl;
-                    cout<<"How many days before this item expires would you like to receive an expiration alert: ";
-                    cin>> dateThreshold;
-                }
+            
                 record = FoodItem(itemName,atoi(unitQuantity.c_str()),unitMeasureType,datePurchased,expirationDate,storage,atoi(quantityThreshold.c_str()));
                 if(theModel->modifyFoodItem(record))
                     cout<<record.getName()+ " successfully updated!\n"<<endl;
@@ -285,7 +283,7 @@ int main(int argc, char* argv[]){
                 }
                 multiSearch = theModel->checkForExpiredFood();
                 if(multiSearch.size() != 0){
-                    cout<<"\nFood Close to expiration:"<<endl;
+                    cout<<"\nExpired Food:"<<endl;
                     for(int i = 0; i < multiSearch.size(); i++){
                         printFoodItem(multiSearch[i]);
                     }

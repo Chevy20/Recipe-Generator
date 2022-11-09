@@ -62,50 +62,50 @@ string FoodItem::getType(){
 }
 
 /*
-Function:
-Description:
-Parameters:
-Return:
+Function: getName()
+Description: Gets the name of the food item
+Parameters: none
+Return: string representing the name of the food
 */
 string FoodItem::getName(){
     return itemName;
 }
 
 /*
-Function:
-Description:
-Parameters:
-Return:
+Function: getMeasureUnit()
+Description: Gets the unit of measurement for the food
+Parameters: none
+Return: string representing the measurement unit of the food
 */
 string FoodItem::getMeasureUnit(){
     return unitMeasureType;
 }
 
 /*
-Function:
-Description:
-Parameters:
-Return:
+Function: getDatePurchased()
+Description: Gets the date the item was purchased on
+Parameters: none
+Return: string representing the purchase date
 */
 string FoodItem::getDatePurchased(){
     return datePurchased;
 }
 
 /*
-Function:
-Description:
-Parameters:
-Return:
+Function: getThreshold
+Description: Gets the number of measurement units where a low stock alert will be sent
+Parameters: none
+Return: String representing the quantity threshold
 */
 int FoodItem::getThreshold(){
     return quantityThreshold;
 }
 
 /*
-Function:
-Description:
-Parameters:
-Return:
+Function: getExpiry()
+Description: Gets the expiry date of the  food
+Parameters: none
+Return: string representing the expiry date
 */
 string FoodItem::getExpiry(){
     return expirationDate;
@@ -113,20 +113,20 @@ string FoodItem::getExpiry(){
 
 
 /*
-Function:
-Description:
-Parameters:
-Return:
+Function: getQuantity()
+Description: Gives the amount of items in the stock
+Parameters: none
+Return: integer representing the amount of food in stock 
 */
 int FoodItem::getQuantity(){
     return unitQuantity;
 }
 
 /*
-Function:
-Description:
-Parameters:
-Return:
+Function: incrementQty()
+Description: Increments quantity specified by passed in amount
+Parameters: int amount: amount to increment by 
+Return: true if able to increment
 */
 bool FoodItem::incrementQty (int amount){
 
@@ -136,10 +136,10 @@ bool FoodItem::incrementQty (int amount){
 }
 
 /*
-Function:
-Description:
-Parameters:
-Return:
+Function: decrementQty()
+Description: Decreases qty by amount passed in, but not below 0
+Parameters: int amount: amount to decrement by
+Return: true if able to decrement, false if not
 */
 bool FoodItem::decrementQty (int amount ){
     if(unitQuantity - amount < 0){

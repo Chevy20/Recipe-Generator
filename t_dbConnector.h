@@ -1,3 +1,7 @@
+/*
+    t_dbConnector Header File 
+    This contains all the definitions for the t_dbConnector abstract class.
+*/
 #ifndef TDBCONNECTOR_H
 #define TDBCONNECTOR_H
 
@@ -11,8 +15,8 @@ class t_dbConnector{
     virtual void disconnectDB() = 0;
 
     protected:
-        std::string dbName;
-        sqlite3* db;
+        std::string dbName;     //database name
+        sqlite3* db;            //Database Handle
 
 };
 

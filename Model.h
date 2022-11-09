@@ -1,3 +1,7 @@
+/*
+    Header file for the Model object
+    Contains declarations for Model Object
+*/
 #include "Recipe.h"
 #include "SQLiteConnector.h"
 #include "StockTable.h"
@@ -8,16 +12,14 @@
 class Model{
     private:
         //FoodAPIClass FoodConnector = FoodAPIClass();
-        std::vector<Recipe> recipeList;
-        SQLiteConnector *dbConnection;
-        StockTable *dbContext;
+        
+        SQLiteConnector *dbConnection;  //database connection
+        StockTable *dbContext;          //database context for table selection
     public:
         Model();
         ~Model();
-        SQLiteConnector* getDBConnection();
+        SQLiteConnector* getDBConnection(); 
         StockTable* getDbContext();
-        std::vector<Recipe> getRecipeList();
-        void setRecipeList(std::vector<Recipe> recipe_List);
         bool addFoodItem(FoodItem item);
         bool removeFoodItem(std::string itemName);
         bool modifyFoodItem(FoodItem item);

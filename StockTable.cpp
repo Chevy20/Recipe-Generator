@@ -4,40 +4,40 @@
 using namespace std;
 
 /*
-Function:
-Description:
-Parameters:
-Return:
+Function:StockTable default constructor
+Description: A default constructor for the StockTable object
+Parameters: non 
+Return: StockTable object with null db pointer
 */
 StockTable::StockTable(){
     db = nullptr;
 }
 
 /*
-Function:
-Description:
-Parameters:
-Return:
+Function: StockTable constructor
+Description: Constructs a StockTable object that extends t_dbTableStrategy
+Parameters: sqlite3* _db: pointer to the db that acts as the handle to the database
+Return: Stocktable object with the passed in database handle
 */
 StockTable::StockTable(sqlite3* _db){
     db = _db;
 }
 
 /*
-Function:
-Description:
-Parameters:
-Return:
+Function: StockTable destructor
+Description: Closes the database object
+Parameters:none
+Return: none
 */
 StockTable::~StockTable(){
     sqlite3_close(db); 
 }
 
 /*
-Function:
-Description:
-Parameters:
-Return:
+Function:select()
+Description: The function to query the database for a single item
+Parameters: string key: the name of the food item that is being searched for
+Return: returns the queryed food item if found, if not found return an default food object
 */
 FoodItem StockTable::select (string key){
     FoodItem* result = new FoodItem();
@@ -75,10 +75,10 @@ FoodItem StockTable::select (string key){
 }
 
 /*
-Function:
-Description:
-Parameters:
-Return:
+Function: selectAll()
+Description: Function to query for all food items in the database
+Parameters: none
+Return: vector<FoodItem> that represents all food items in the database
 */
 std::vector<FoodItem> StockTable::selectAll(){
     vector<FoodItem> result;
@@ -113,13 +113,14 @@ std::vector<FoodItem> StockTable::selectAll(){
 }
 
 /*
-Function:
-Description:
-Parameters:
-Return:
+Function: insert()
+Description: Function to insert into database
+Parameters: void* item: void pointer to an item that will be converted to FoodItem* and then derefed
+Return: true if insert was success, false if not
 */
 bool StockTable::insert(void* item){
     
+    // Chose void pointer method in case we have any other tables 
     FoodItem record = *(FoodItem*)item;
     string itemName = record.getName();
     string quantity = std::to_string(record.getQuantity());
@@ -140,10 +141,10 @@ bool StockTable::insert(void* item){
 }
 
 /*
-Function:
-Description:
-Parameters:
-Return:
+Function: update()
+Description: Function to update an item in the database
+Parameters: void* item: void pointer to an item that will be converted to FoodItem* and then derefed
+Return: true if update was success, false if not
 */
 bool StockTable::update(void* item){
     FoodItem record = *(FoodItem*)item;
@@ -167,10 +168,10 @@ bool StockTable::update(void* item){
 }
 
 /*
-Function:
-Description:
-Parameters:
-Return:
+Function: remove()
+Description: Function to remove an item from the database
+Parameters: string itemName: the name of the item to be removed
+Return: true if success, false if not
 */
 bool StockTable::remove(std::string itemName){
     

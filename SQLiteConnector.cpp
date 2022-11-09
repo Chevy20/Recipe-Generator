@@ -3,30 +3,30 @@
 using namespace std;
 
 /*
-Function:
-Description:
-Parameters:
-Return:
+Function: SQLiteConnector Constructor
+Description: constructs an SQLiteConnector object that extends the t_dbConnector class
+Parameters: none
+Return: SQLite Connector object
 */
 SQLiteConnector::SQLiteConnector(){
-    dbName = "FreshRecipes.db";
+    dbName = "Freshcipes.db";
 }
 
 /*
-Function:
-Description:
-Parameters:
-Return:
+Function: SQLiteConnector Destructor
+Description: Destructor for the SQLiteConnector Object
+Parameters: none
+Return: none
 */
 SQLiteConnector::~SQLiteConnector(){
 
 }
 
 /*
-Function:
-Description:
-Parameters:
-Return:
+Function: connectDB()
+Description: Function to create a connection with the SQL database
+Parameters: none
+Return: none
 */
 void SQLiteConnector::connectDB(){
     int command = sqlite3_open(dbName.c_str(), &db);
@@ -55,10 +55,10 @@ void SQLiteConnector::connectDB(){
 
 
 /*
-Function:
-Description:
-Parameters:
-Return:
+Function: dropTable()
+Description: Function to drop stock_tbl if needed
+Parameters: none
+Return: none
 */
 void SQLiteConnector::dropTable(){
     char* error;
@@ -72,10 +72,10 @@ void SQLiteConnector::dropTable(){
 }
 
 /*
-Function:
-Description:
-Parameters:
-Return:
+Function: dropTableandRebuild
+Description: Function to drop a table and recreate it if needed
+Parameters:none 
+Return:none
 */
 void SQLiteConnector::dropTableandRebuild(){
     char* error;
@@ -100,10 +100,10 @@ void SQLiteConnector::dropTableandRebuild(){
 }
 
 /*
-Function:
-Description:
-Parameters:
-Return:
+Function: discconectDB()
+Description: Function to disconnect from the SQLDB
+Parameters:none
+Return: none
 */
 void SQLiteConnector::disconnectDB(){
     if(sqlite3_close(db) == SQLITE_OK){
@@ -114,10 +114,10 @@ void SQLiteConnector::disconnectDB(){
 }
 
 /*
-Function:
-Description:
-Parameters:
-Return:
+Function: getDbHandle()
+Description: Getter Function for the database handle
+Parameters: 
+Return: sqlite3* object representing the handle to the database
 */
 sqlite3* SQLiteConnector::getDbHandle(){
     return db;
