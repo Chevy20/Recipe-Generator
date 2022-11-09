@@ -1,14 +1,13 @@
-#include "FoodAPI.h"
-#include "HTTPRequest.h"
-#include "com.spoonacular.client.model"
+#include "FoodAPI.hpp"
 #include <stdio.h>
 #include <curl/curl.h>
 #include <iostream>
-#include <json/json.h>
+// #include <json/json.h>
 #include <fstream>
 #include <algorithm>
+#include "dotenv.h"
 
-namespace std;
+using namespace std;
 
 /*
 Function: getInstance()
@@ -40,7 +39,7 @@ Parameters: vector<string> - vector of preferences
 Return: None
 */
 void FoodAPI::setPreferences(vector<string> prefs){
-    this->preferences = pref;
+    this->preferences = prefs;
 }
 
 
@@ -76,6 +75,8 @@ vector<Recipe> FoodAPI::getRecipeByIngredients(std::string itemList){
     CURLcode res;
     std::string BASE_URL = "https://api.spoonacular.com/recipes/findByIngredients";
 
+
+
     curl_global_init(CURL_GLOBAL_DEFAULT);
     
     curl = curl_easy_init();
@@ -97,7 +98,7 @@ vector<Recipe> FoodAPI::getRecipeByIngredients(std::string itemList){
     
     curl_global_cleanup();
     
-    return 0;
+    return recipes;
 }
 
 /*
@@ -107,7 +108,7 @@ Parameters: pref - string name of the preference to add
 Return: None
 */
 void FoodAPI::addPreference(std::string pref){
-    if(!(preferences.find(preferences.begin(), preferences.end(), pref))){
+    if(std::find(preferences.begin(), preferences.end(), pref)==preferences.end()){
         preferences.push_back(pref);
     }
 }
@@ -122,9 +123,15 @@ void FoodAPI::removePreference(std::string pref){
     preferences.erase(std::remove(preferences.begin(), preferences.end(), pref), preferences.end());
 }
         
-
-void FoodAPI::buildQueryURL(std::string baseUrl, std::string){
-
+/*
+Function: buildQueryURL()
+Description: Removes a preference from the preference vector
+Parameters: pref - string name of the preference to remove
+Return: None
+*/
+std::string FoodAPI::buildQueryURL(std::string baseURL, vector<string> items){
+    dotenv::env.load_dotenv();
+    
 }
 
 /*
@@ -133,7 +140,11 @@ Description: Destructor deletes instance of FoodAPI
 Parameters: None
 Return: None
 */
-~FoodAPI(){
-    delete _instance;
+FoodAPI::~FoodAPI(){
+    delete this->_instance;
 }
 
+int main(){
+    dotenv::env.load_dotenv();
+    std::cout << "API_KEY: " << dotenv::env["API_KEY"] << std::endl;
+}
