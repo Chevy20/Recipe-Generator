@@ -85,7 +85,7 @@ void SQLiteConnector::dropTableandRebuild(){
             cout << "Could not drop the stock_tbl: " << error << endl;
     }
 
-    sql_stmt= "create table if not exists stock_tbl (itemName varchar(255), unitQuantity INTEGER, unitMeasureType varchar(255), datePurchased varchar(255), expirationDate varchar(255), unitType varchar(255), quantityThreshold INTEGER, dateThreshold INTEGER, PRIMARY KEY (itemName)) ;";
+    sql_stmt= "create table if not exists stock_tbl (itemName varchar(255), unitQuantity INTEGER, unitMeasureType varchar(255), datePurchased varchar(255), expirationDate varchar(255), unitType varchar(255), quantityThreshold INTEGER, PRIMARY KEY (itemName)) ;";
     command = sqlite3_exec(db,sql_stmt.c_str(), NULL,NULL,&error);
     
     // if the table could not be created, notify user and close database

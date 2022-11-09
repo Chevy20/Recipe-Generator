@@ -4,7 +4,6 @@ This file contains the definitions for the FoodItem Object
 #ifndef FOODITEM_H
 #define FOODITEM_H
 #include <string>
-
 class FoodItem{
     /**< Public Attributes*/
     public:

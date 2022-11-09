@@ -95,6 +95,7 @@ int main(int argc, char* argv[]){
     string dateThreshold;
     FoodItem record;
     vector<FoodItem> multiSearch;
+   
     int intInput;
     cout<<"Welcome to Freshcipes Terminal Prototype!" <<endl;
     cout<<"This application will help you search for recipes based on the food you have in your stock. If this is your first time using the app, insert food into your stock to get started!"<<endl;
@@ -288,6 +289,22 @@ int main(int argc, char* argv[]){
                 for(int i = 0; i < multiSearch.size(); i++){
                     printFoodItem(multiSearch[i]);
                 }
+                multiSearch = theModel->checkForExpiredFood();
+                if(multiSearch.size() != 0){
+                    cout<<"\nFood Close to expiration:"<<endl;
+                    for(int i = 0; i < multiSearch.size(); i++){
+                        printFoodItem(multiSearch[i]);
+                    }
+                }
+                
+                multiSearch = theModel->checkForLowStock();
+                if(multiSearch.size() != 0){
+                    cout<<"\nFood low in stock:"<<endl;
+                    for(int i = 0; i < multiSearch.size(); i++){
+                        printFoodItem(multiSearch[i]);
+                    }
+                }
+                
                 cout<<"\n"<<endl;
                 break;
             case 6:

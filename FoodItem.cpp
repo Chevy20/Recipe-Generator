@@ -17,7 +17,6 @@ FoodItem::FoodItem(){
     itemName = "";
     unitQuantity = 0;
     quantityThreshold = 0;
-    dateThreshold = 0;
     datePurchased = "";
     expirationDate = "";
 }
@@ -30,13 +29,13 @@ string date_Purchased: purchase date in form YYYY/MM/DD, string expiration_Date:
 int quantity_Threshold: the amount needed to trigger low stock alert, int date_Threshold: the number of days from the expiration date that an expiry warning will be triggered
 Return: FoodItem object
 */
-FoodItem::FoodItem(string item_name, int unit_quantity, string unitMeasure_Type ,string date_Purchased, string expiration_Date, string unit_Type,   int quantity_Threshold,  int date_Threshold){
+FoodItem::FoodItem(string item_name, int unit_quantity, string unitMeasure_Type ,string date_Purchased, string expiration_Date, string unit_Type,   int quantity_Threshold){
     unitType = unit_Type;
     unitMeasureType = unitMeasure_Type;
     itemName = item_name;
     unitQuantity = unit_quantity;
     quantityThreshold = quantity_Threshold;
-    dateThreshold = date_Threshold;
+    
     datePurchased = date_Purchased;
     expirationDate = expiration_Date;
     
@@ -112,15 +111,6 @@ string FoodItem::getExpiry(){
     return expirationDate;
 }
 
-/*
-Function:
-Description:
-Parameters:
-Return:
-*/
-int FoodItem::getDateThreshold(){
-    return dateThreshold;
-}
 
 /*
 Function:
