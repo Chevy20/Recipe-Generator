@@ -1,3 +1,7 @@
+/*
+    StockTable Header File
+    This file contains all the definitions for the StockTable object. It is a subclass of the t_dbTableStrategy class.
+*/
 #ifndef STOCKTABLE_H
 #define STOCKTABLE_H
 
@@ -10,6 +14,7 @@
 class StockTable : public t_dbTableStrategy{
 
     public:
+        StockTable();
         StockTable(sqlite3* _db);
         ~StockTable();
         bool insert(void* item) override;

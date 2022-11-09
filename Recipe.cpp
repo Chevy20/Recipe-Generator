@@ -1,7 +1,6 @@
 #include <iostream>
 #include <math.h>
 #include "Recipe.h"
-
 using namespace std;
 
 Recipe::Recipe()
@@ -30,10 +29,7 @@ map<string, int> Recipe::getNutrition()
 {
     return recipeNutrition;
 }
-void Recipe::updateStock()
-{
 
-}
 /*
  * Function: changeProportions 
  * Description: updates all RecipeItems to create the quantity given

@@ -1,3 +1,7 @@
+/*
+    SQLiteConnector Object
+    This headed contains the definitions for the SQLiteConnector object. It is a subclass of t_dbConnector
+*/
 #ifndef SQLITECONNECTOR_H
 #define SQLITECONNECTOR_H
 

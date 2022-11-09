@@ -19,7 +19,6 @@ class Recipe{
         std::string getRecipeName();
         std::vector<RecipeItem> getIngredients();
         std::map<std::string, int> getNutrition();
-        void updateStock();
         void changeProportions(float newYield);
         void swapIngredient(FoodItem nItem, RecipeItem rItem);
         int adjustIngredientAmount(FoodItem item, int quantity);
