@@ -24,7 +24,7 @@ FoodAPI* FoodAPI::getInstance(){
 }
 
 /*
-Function: getPreferences
+Function: getPreferences()
 Description: Returns a vector of preferences in recipes
 Parameters: none
 Return: preferences - vector of string preferences
@@ -34,23 +34,42 @@ vector<string> FoodAPI::getPreferences() {
 }
 
 /*
-Function: setPreferences
-Description: Returns a vector of preferences in recipes
-Parameters: none
-Return: preferences - vector of string preferences
+Function: setPreferences()
+Description: Sets a vector of preferences in recipes
+Parameters: vector<string> - vector of preferences
+Return: None
 */
 void FoodAPI::setPreferences(vector<string> prefs){
     this->preferences = pref;
 }
 
+
+/*
+Function: getRecipes()
+Description: Returns a vector of stored recipes
+Parameters: None
+Return: recipes - vector of recipes
+*/
 vector<Recipe> FoodAPI::getRecipes(){
     return recipes;
 }
 
+/*
+Function: setRecipes()
+Description: Sets the recipes vector
+Parameters: recipes - vector of recipes
+Return: None
+*/
 void FoodAPI::setReceipes(std::vector<Recipe> recipes){
     this->recipes = recipes;
 }
-    
+
+/*
+Function: getRecipeByIngredients()
+Description: Gets recipes with ingredient list from Spoonacular API
+Parameters: itemList - string of comma separated items
+Return: res - Json of recipes found
+*/
 vector<Recipe> FoodAPI::getRecipeByIngredients(std::string itemList){
     
     CURL *curl;
@@ -80,27 +99,40 @@ vector<Recipe> FoodAPI::getRecipeByIngredients(std::string itemList){
     
     return 0;
 }
-    
+
+/*
+Function: addPreference()
+Description: Adds a preference to the preference vector
+Parameters: pref - string name of the preference to add
+Return: None
+*/
 void FoodAPI::addPreference(std::string pref){
     if(!(preferences.find(preferences.begin(), preferences.end(), pref))){
         preferences.push_back(pref);
     }
 }
-    
+
+/*
+Function: removePreference()
+Description: Removes a preference from the preference vector
+Parameters: pref - string name of the preference to remove
+Return: None
+*/
 void FoodAPI::removePreference(std::string pref){
     preferences.erase(std::remove(preferences.begin(), preferences.end(), pref), preferences.end());
 }
         
-vector<Recipe> FoodAPI::sortListRecipeByPreference(){
-
-}
 
 void FoodAPI::buildQueryURL(std::string baseUrl, std::string){
 
 }
 
-
-
+/*
+Function: ~FoodAPI()
+Description: Destructor deletes instance of FoodAPI
+Parameters: None
+Return: None
+*/
 ~FoodAPI(){
     delete _instance;
 }
