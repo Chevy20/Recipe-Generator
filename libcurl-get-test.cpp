@@ -27,7 +27,11 @@
  */
 #include <stdio.h>
 #include <curl/curl.h>
- 
+#include <iostream>
+#include <json/json.h>
+#include <fstream>
+//#include "com.spoonacular.client.model/OAIGetRecipeInformation_200_response_extendedIngredients_inner.h"
+
 int main(void)
 {
   CURL *curl;
@@ -65,6 +69,13 @@ int main(void)
  
     /* Perform the request, res will get the return code */
     res = curl_easy_perform(curl);
+    
+    ifstream ifs(res);
+    Json::Reader reader;
+    Json::Value obj;
+    reader.parse(ifs, obj);
+    std::cout << obj["id"].asString() << std::endl;  
+
     /* Check for errors */
     if(res != CURLE_OK)
       fprintf(stderr, "curl_easy_perform() failed: %s\n",
