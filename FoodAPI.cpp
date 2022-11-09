@@ -10,30 +10,48 @@
 
 namespace std;
 
-FoodAPIClass* FoodAPIClass::getInstance(){
+/*
+Function: getInstance()
+Description: Returns a single instance of the FoodAPI
+Parameters: none
+Return: _instance - single instance of the FoodAPI object
+*/
+FoodAPI* FoodAPI::getInstance(){
     if(_instance == NULL) {
-        _instance = new FoodAPIClass();
+        _instance = new FoodAPI();
     }
     return(_instance);
 }
 
-vector<string> FoodAPIClass::getPreferences() {
+/*
+Function: getPreferences
+Description: Returns a vector of preferences in recipes
+Parameters: none
+Return: preferences - vector of string preferences
+*/
+vector<string> FoodAPI::getPreferences() {
     return this->preferences;
 }
 
-void FoodAPIClass::setPreferences(vector<string> prefs){
+/*
+Function: setPreferences
+Description: Returns a vector of preferences in recipes
+Parameters: none
+Return: preferences - vector of string preferences
+*/
+void FoodAPI::setPreferences(vector<string> prefs){
     this->preferences = pref;
 }
 
-vector<Recipe> FoodAPIClass::getRecipes(){
+vector<Recipe> FoodAPI::getRecipes(){
     return recipes;
 }
 
-void FoodAPIClass::setReceipes(std::vector<Recipe> recipes){
+void FoodAPI::setReceipes(std::vector<Recipe> recipes){
     this->recipes = recipes;
 }
     
-vector<Recipe> FoodAPIClass::getRecipeByIngredients(std::string itemList){
+vector<Recipe> FoodAPI::getRecipeByIngredients(std::string itemList){
     
     CURL *curl;
     CURLcode res;
@@ -63,27 +81,27 @@ vector<Recipe> FoodAPIClass::getRecipeByIngredients(std::string itemList){
     return 0;
 }
     
-void FoodAPIClass::addPreference(std::string pref){
+void FoodAPI::addPreference(std::string pref){
     if(!(preferences.find(preferences.begin(), preferences.end(), pref))){
         preferences.push_back(pref);
     }
 }
     
-void FoodAPIClass::removePreference(std::string pref){
+void FoodAPI::removePreference(std::string pref){
     preferences.erase(std::remove(preferences.begin(), preferences.end(), pref), preferences.end());
 }
         
-vector<Recipe> FoodAPIClass::sortListRecipeByPreference(){
+vector<Recipe> FoodAPI::sortListRecipeByPreference(){
 
 }
 
-void FoodAPIClass::buildQueryURL(std::string baseUrl, std::string){
+void FoodAPI::buildQueryURL(std::string baseUrl, std::string){
 
 }
 
 
 
-~FoodAPIClass(){
+~FoodAPI(){
     delete _instance;
 }
 
