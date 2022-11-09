@@ -66,8 +66,7 @@ FoodItem StockTable::select (string key){
             string expDate = string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 4)));   
             string type = string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 5))); 
             int quanThresh = stoi(string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 6)))); 
-            int dateThresh = stoi(string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 7))));  
-            result = new FoodItem(itemName,quantity,MeasureType,datePurchased,expDate,type,quanThresh,dateThresh);
+            result = new FoodItem(itemName,quantity,MeasureType,datePurchased,expDate,type,quanThresh);
         }
     }
     //finalize will call the destructor of stmt
@@ -102,9 +101,8 @@ std::vector<FoodItem> StockTable::selectAll(){
             string datePurchased = string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3))); 
             string expDate = string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 4)));   
             string type = string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 5))); 
-            int quanThresh = stoi(string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 6)))); 
-            int dateThresh = stoi(string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 7))));  
-            FoodItem add =  FoodItem(itemName,quantity,MeasureType,datePurchased,expDate,type,quanThresh,dateThresh);
+            int quanThresh = stoi(string(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 6))));  
+            FoodItem add =  FoodItem(itemName,quantity,MeasureType,datePurchased,expDate,type,quanThresh);
             result.push_back(add);
         }
     }
@@ -130,9 +128,8 @@ bool StockTable::insert(void* item){
     string expirationDate = record.getExpiry();
     string unitType = record.getType();
     string quanThresh = std::to_string(record.getThreshold());
-    string dateThresh = std::to_string(record.getDateThreshold());
     char* error;
-    string sql_stmt = "INSERT INTO stock_tbl (itemName, unitQuantity, unitMeasureType, datePurchased, expirationDate, unitType, quantityThreshold,dateThreshold) VALUES ('"+itemName+"', "+quantity+", '"+measureType+"', '"+purchaseDate+"', '"+expirationDate+"', '"+unitType+"', "+quanThresh+", "+dateThresh+")";
+    string sql_stmt = "INSERT INTO stock_tbl (itemName, unitQuantity, unitMeasureType, datePurchased, expirationDate, unitType, quantityThreshold) VALUES ('"+itemName+"', "+quantity+", '"+measureType+"', '"+purchaseDate+"', '"+expirationDate+"', '"+unitType+"', "+quanThresh+")";
     int command = sqlite3_exec(this->db, sql_stmt.c_str(),NULL, NULL, &error);
     if(command != SQLITE_OK){
             cout << "Could not insert record into stock_tbl: " << error << endl;
@@ -157,9 +154,9 @@ bool StockTable::update(void* item){
     string expirationDate = record.getExpiry();
     string unitType = record.getType();
     string quanThresh = std::to_string(record.getThreshold());
-    string dateThresh = std::to_string(record.getDateThreshold());
+   
     char* error;
-    string sql_stmt = "UPDATE stock_tbl SET itemName ='"+itemName+"', unitQuantity = "+quantity+", unitMeasureType = '"+measureType+"', datePurchased= '"+purchaseDate+"', expirationDate= '"+expirationDate+"', unitType = '"+unitType+"', quantityThreshold= "+quanThresh+", dateThreshold ="+dateThresh+" WHERE itemName = '"+itemName+"'";
+    string sql_stmt = "UPDATE stock_tbl SET itemName ='"+itemName+"', unitQuantity = "+quantity+", unitMeasureType = '"+measureType+"', datePurchased= '"+purchaseDate+"', expirationDate= '"+expirationDate+"', unitType = '"+unitType+"', quantityThreshold= "+quanThresh+" WHERE itemName = '"+itemName+"'";
     int command = sqlite3_exec(this->db, sql_stmt.c_str(),NULL, NULL, &error);
     if(command != SQLITE_OK){
             cout << "Could not update record in stock_tbl: " << error << endl;

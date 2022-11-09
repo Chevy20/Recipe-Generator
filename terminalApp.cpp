@@ -69,7 +69,7 @@ void printFoodItem(FoodItem item){
     cout<<"Date Purchased: " + item.getDatePurchased()<<endl;
     cout<<"Expiry Date: " + item.getExpiry()<<endl;
     cout<<"You will get a low stock alert when there are " + to_string(item.getThreshold())+" "+item.getMeasureUnit()+" of this item left in stock"<<endl;
-    cout<<"You will get an expiration alert when this item is "+to_string(item.getDateThreshold()) + " days away from expiration.\n"<<endl;
+    
 }
 
 
@@ -177,14 +177,8 @@ int main(int argc, char* argv[]){
                     cout<<"Please enter the quantity of food for this item that should trigger a low quantity alert: ";
                     cin>> quantityThreshold;
                 }
-                cout<<"How many days before this item expires would you like to receive an expiration alert: ";
-                cin>> dateThreshold;
-                 while(!isDigit(dateThreshold)){
-                    cout<<"Non Numerical Input detected."<<endl;
-                    cout<<"How many days before this item expires would you like to receive an expiration alert: ";
-                    cin>> dateThreshold;
-                }
-                record = FoodItem(itemName,atoi(unitQuantity.c_str()),unitMeasureType,datePurchased,expirationDate,storage,atoi(quantityThreshold.c_str()),atoi(dateThreshold.c_str()));
+               
+                record = FoodItem(itemName,atoi(unitQuantity.c_str()),unitMeasureType,datePurchased,expirationDate,storage,atoi(quantityThreshold.c_str()));
                 if(theModel->addFoodItem(record))
                     cout<<record.getName() + " sucessfully added to stock!\n"<<endl;
                 else
@@ -262,7 +256,7 @@ int main(int argc, char* argv[]){
                     cout<<"How many days before this item expires would you like to receive an expiration alert: ";
                     cin>> dateThreshold;
                 }
-                record = FoodItem(itemName,atoi(unitQuantity.c_str()),unitMeasureType,datePurchased,expirationDate,storage,atoi(quantityThreshold.c_str()),atoi(dateThreshold.c_str()));
+                record = FoodItem(itemName,atoi(unitQuantity.c_str()),unitMeasureType,datePurchased,expirationDate,storage,atoi(quantityThreshold.c_str()));
                 if(theModel->modifyFoodItem(record))
                     cout<<record.getName()+ " successfully updated!\n"<<endl;
                 else
