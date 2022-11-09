@@ -22,7 +22,7 @@ Return:none
 */
 Model::~Model(){
     dbContext->~StockTable();
-    delete this;
+    
 }
 
 /*
