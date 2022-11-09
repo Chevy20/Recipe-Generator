@@ -5,21 +5,20 @@
 #include <vector>
 #include "Recipe.h"
 
-class FoodAPIClass {
+class FoodAPI {
     private:
         // Singleton setup
-        static FoodAPIClass* _instance; 
-        FoodAPIClass();
-        FoodAPIClass(const FoodAPIClass&);
-        FoodAPIClass& operator=(const FoodAPIClass&);
+        static FoodAPI* _instance; 
+        FoodAPI();
+        FoodAPI(const FoodAPI&);
+        FoodAPI& operator=(const FoodAPI&);
 
-        std::vector<string> preferences;
+        std::vector<std::string> preferences;
         std::vector<Recipe> recipes;
 
-
     public:
-        static FoodAPIClass* getInstance();
-        ~FoodAPIClass();
+        static FoodAPI* getInstance();
+        ~FoodAPI();
 
         std::vector<std::string> getPreferences();
         void setPrefences(std::vector<string> prefs);

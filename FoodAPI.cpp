@@ -6,6 +6,7 @@
 #include <iostream>
 #include <json/json.h>
 #include <fstream>
+#include <algorithm>
 
 namespace std;
 
@@ -20,7 +21,7 @@ vector<string> FoodAPIClass::getPreferences() {
     return this->preferences;
 }
 
-void FoodAPIClass::setPreferences(string pref){
+void FoodAPIClass::setPreferences(vector<string> prefs){
     this->preferences = pref;
 }
 
@@ -36,7 +37,7 @@ vector<Recipe> FoodAPIClass::getRecipeByIngredients(std::string itemList){
     
     CURL *curl;
     CURLcode res;
-    std::string key = getenv(API_KEY)
+    std::string BASE_URL = "https://api.spoonacular.com/recipes/findByIngredients";
 
     curl_global_init(CURL_GLOBAL_DEFAULT);
     
@@ -47,12 +48,6 @@ vector<Recipe> FoodAPIClass::getRecipeByIngredients(std::string itemList){
    
         /* Perform the request, res will get the return code */
         res = curl_easy_perform(curl);
-        
-        // ifstream ifs(res);
-        // Json::Reader reader;
-        // Json::Value obj;
-        // reader.parse(ifs, obj);
-        // std::cout << obj["id"].asString() << std::endl;  
 
         /* Check for errors */
         if(res != CURLE_OK)
@@ -70,19 +65,19 @@ vector<Recipe> FoodAPIClass::getRecipeByIngredients(std::string itemList){
     
 void FoodAPIClass::addPreference(std::string pref){
     if(!(preferences.find(preferences.begin(), preferences.end(), pref))){
-        preferences.append(pref);
+        preferences.push_back(pref);
     }
 }
     
 void FoodAPIClass::removePreference(std::string pref){
-
+    preferences.erase(std::remove(preferences.begin(), preferences.end(), pref), preferences.end());
 }
         
 vector<Recipe> FoodAPIClass::sortListRecipeByPreference(){
 
 }
 
-void FoodAPIClass::buildQueryURL(){
+void FoodAPIClass::buildQueryURL(std::string baseUrl, std::string){
 
 }
 
