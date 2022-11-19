@@ -29,7 +29,6 @@ map<string, int> Recipe::getNutrition()
 {
     return recipeNutrition;
 }
-
 /*
  * Function: changeProportions 
  * Description: updates all RecipeItems to create the quantity given
@@ -59,12 +58,34 @@ void Recipe::swapIngredient(FoodItem nItem, RecipeItem rItem)
     rItem.setItemMeasureUnit(nItem.getMeasureUnit());
 }
 /*
+ * Function: addIngredient 
+ * Description: add RecipeItem to vector of ingredients given
+ * Parameters: FoodItem nItem : the new food item to be added in, float quantity: the quantity of ingredients
+ * Return: -1, item failed to add, already exists
+ */
+int Recipe::addIngredient(FoodItem nItem)
+{
+    RecipeItem ingredient;
+    ingredient.setItem(nItem);
+    ingredient.setItemMeasureUnit(nItem.getMeasureUnit());
+    ingredient.setQuantity(0);
+
+    for(RecipeItem food : recipeIngredients){
+        if(food.getItem().getName() == nItem.getName()){
+            return -1;
+        }
+    }
+
+    recipeIngredients.push_back(ingredient);
+    
+}
+/*
  * Function: adjustIngredientAmount 
  * Description: updates a RecipeItem to the quantity given
  * Parameters: FoodItem item : check which Recipe item to change, int quantity: the new val to update to
  * Return: -1, food item does not exist
  */
-int Recipe::adjustIngredientAmount(FoodItem item, int quantity)
+int Recipe::adjustIngredientAmount(FoodItem item, float quantity)
 {
     for(RecipeItem food : recipeIngredients){
         if(food.getItem().getName() == item.getName()){

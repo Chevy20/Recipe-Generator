@@ -21,7 +21,8 @@ class Recipe{
         std::map<std::string, int> getNutrition();
         void changeProportions(float newYield);
         void swapIngredient(FoodItem nItem, RecipeItem rItem);
-        int adjustIngredientAmount(FoodItem item, int quantity);
+        int addIngredient(FoodItem nItem);
+        int adjustIngredientAmount(FoodItem item, float quantity);
 };
 
 #endif
