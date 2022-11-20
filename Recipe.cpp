@@ -32,7 +32,7 @@ map<string, int> Recipe::getNutrition()
 /*
  * Function: changeProportions 
  * Description: updates all RecipeItems to create the quantity given
- * Parameters: float newYield : the new yield of the recipe after all chnages made
+ * Parameters: float newYield : the new yield of the recipe after all changes made
  * Return: nothing
  */
 void Recipe::changeProportions(float newYield)
