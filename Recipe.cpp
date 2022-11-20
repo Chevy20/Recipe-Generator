@@ -61,7 +61,7 @@ void Recipe::swapIngredient(FoodItem nItem, RecipeItem rItem)
  * Function: addIngredient 
  * Description: add RecipeItem to vector of ingredients given
  * Parameters: FoodItem nItem : the new food item to be added in, float quantity: the quantity of ingredients
- * Return: -1, item failed to add, already exists
+ * Return: -1, item failed to add: already exists
  */
 int Recipe::addIngredient(FoodItem nItem)
 {
@@ -77,7 +77,7 @@ int Recipe::addIngredient(FoodItem nItem)
     }
 
     recipeIngredients.push_back(ingredient);
-    
+    return 0;
 }
 /*
  * Function: adjustIngredientAmount 
