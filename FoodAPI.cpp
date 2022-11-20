@@ -9,18 +9,32 @@
 
 using namespace std;
 
+const FoodAPI* FoodAPI::_instance = NULL;
+
 /*
 Function: getInstance()
 Description: Returns a single instance of the FoodAPI
 Parameters: none
 Return: _instance - single instance of the FoodAPI object
 */
-FoodAPI* FoodAPI::getInstance(){
+const FoodAPI& FoodAPI::getInstance(){
     if(_instance == NULL) {
         _instance = new FoodAPI();
     }
     return(_instance);
 }
+
+/*
+Function: FoodAPI()
+Description: Constructor
+Parameters: none
+Return: none
+*/
+FoodAPI::FoodAPI(){
+    dotenv::env.load_dotenv();
+    _apiKey = dotenv::env["API_KEY"]; 
+}
+
 
 /*
 Function: getPreferences()
