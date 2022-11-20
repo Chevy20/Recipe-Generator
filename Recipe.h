@@ -13,31 +13,11 @@
  */
 class Recipe{
     private:
-        /**
-         * string
-         * The name of the recipe
-         */
-        std::string recipeName;
-        /**
-         * string
-         * The properties of the recipe
-         */
-        std::string recipeProperties;
-        /**
-         * vector<RecipeItem>
-         * All the ingredients in the recipe
-         */
-        std::vector<RecipeItem> recipeIngredients;
-        /**
-         * map<std::string, int>
-         * All the nutrients / macros of recipe
-         */
-        std::map<std::string, int> recipeNutrition;
-        /**
-         * float
-         * The yield of the recipe in servings
-         */
-        float recipeYield;
+        std::string recipeName; /**< string: The name of the recipe */
+        std::string recipeProperties; /**< string: The properties of the recipe */
+        std::vector<RecipeItem> recipeIngredients; /**< vector<RecipeItem>: All the ingredients in the recipe */
+        std::map<std::string, int> recipeNutrition; /**< map<std::string, int>: All the nutrients / macros of recipe */
+        float recipeYield; /**< float: The yield of the recipe in servings */
     public:
         /**
          * @brief construct the recipe object
