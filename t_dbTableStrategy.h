@@ -1,4 +1,4 @@
-/*
+/**
     t_dbTableStrategy header file 
     This file contains all the definitions for the t_dbTable abstract class.
 */
