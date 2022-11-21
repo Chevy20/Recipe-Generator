@@ -10,8 +10,8 @@
 class RecipeItem
 {
     private:
-        FoodItem item;  /**< FoodItem: The original ingredient from the inventory */
-        float itemQty; /**< float: The numerical quantity of ingredients in recipe */
+        FoodItem item;               /**< FoodItem: The original ingredient from the inventory */
+        float itemQty;               /**< float: The numerical quantity of ingredients in recipe */
         std::string itemMeasureUnit; /**< string: The unit of measurement of ingredient in recipe */
 
     public:
