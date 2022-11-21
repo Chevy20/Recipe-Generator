@@ -14,16 +14,16 @@
 class StockTable : public t_dbTableStrategy{
 
     public:
-        StockTable();
-        StockTable(sqlite3* _db);
-        ~StockTable();
-        bool insert(void* item) override;
-        bool update(void* item) override;
-        bool remove(std::string itemName) override;
-        FoodItem select (std::string key);
-        std::vector<FoodItem> selectAll();
+        StockTable();                               /**< Default constructor: sets db pointer to nullptr */
+        StockTable(sqlite3* _db);                   /**< Constructor: sets db pointer to input */
+        ~StockTable();                              /**< Destructor: close db pointer */
+        bool insert(void* item) override;           /**< add new item to db */
+        bool update(void* item) override;           /**< update all values of item in db */
+        bool remove(std::string itemName) override; /**< remove specific item from db */
+        FoodItem select (std::string key);          /**< create a data structure for one object */
+        std::vector<FoodItem> selectAll();          /**< create a vector of all items in inventory */
     private:
-        sqlite3* db;
+        sqlite3* db;                                /**< sqlite*: pointer to database */
 
 
 };
