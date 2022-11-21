@@ -5,12 +5,10 @@
 // #include <json/json.h>
 #include <fstream>
 #include <algorithm>
-#include "dotenv.h"
 
 using namespace std;
 
 const FoodAPI* FoodAPI::_instance = NULL;
-
 /*
 Function: getInstance()
 Description: Returns a single instance of the FoodAPI
@@ -21,7 +19,7 @@ const FoodAPI& FoodAPI::getInstance(){
     if(_instance == NULL) {
         _instance = new FoodAPI();
     }
-    return(_instance);
+    return *_instance;
 }
 
 /*
@@ -31,10 +29,36 @@ Parameters: none
 Return: none
 */
 FoodAPI::FoodAPI(){
-    dotenv::env.load_dotenv();
-    _apiKey = dotenv::env["API_KEY"]; 
+    
+    if(const char* envVar = std::getenv("SPOONACULAR_API_KEY"))
+        FoodAPI::setAPIKey(envVar);
+    else{
+        cout << "Missing API Key.  Add to environment variables." << endl;
+        exit(0);
+    }
+
 }
 
+/*
+Function: getAPIKey()
+Description: sets the spoonacular API Key
+Parameters: key - api key
+Return: None
+*/
+const string* FoodAPI::getAPIKey(){
+    return this->_apiKey;
+}
+
+/*
+Function: setAPIKey()
+Description: sets the spoonacular API Key
+Parameters: key - api key
+Return: None
+*/
+void FoodAPI::setAPIKey(const char* key){
+    string k = key;
+    this->_apiKey = &k;
+}
 
 /*
 Function: getPreferences()
@@ -144,7 +168,6 @@ Parameters: pref - string name of the preference to remove
 Return: None
 */
 std::string FoodAPI::buildQueryURL(std::string baseURL, vector<string> items){
-    dotenv::env.load_dotenv();
     
 }
 
@@ -155,10 +178,10 @@ Parameters: None
 Return: None
 */
 FoodAPI::~FoodAPI(){
-    delete this->_instance;
+    //delete this->_instance;
 }
 
 int main(){
-    dotenv::env.load_dotenv();
-    std::cout << "API_KEY: " << dotenv::env["API_KEY"] << std::endl;
+    const FoodAPI& ap = FoodAPI::getInstance();
+    cout << ap.getAPIKey() << endl;
 }
