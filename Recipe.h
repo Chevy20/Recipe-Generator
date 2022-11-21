@@ -14,7 +14,6 @@
 class Recipe{
     private:
         std::string recipeName; /**< string: The name of the recipe */
-        std::string recipeProperties; /**< string: The properties of the recipe */
         std::vector<RecipeItem> recipeIngredients; /**< vector<RecipeItem>: All the ingredients in the recipe */
         std::map<std::string, int> recipeNutrition; /**< map<std::string, int>: All the nutrients / macros of recipe */
         float recipeYield; /**< float: The yield of the recipe in servings */
