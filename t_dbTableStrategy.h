@@ -10,12 +10,12 @@
 class t_dbTableStrategy{
     public:
     
-    virtual bool insert(void* item) = 0;  // deference as either FoodItem or user or recipeItem based on currentDB context 
-    virtual bool update(void* item) = 0;  // deference as either FoodItem or user or recipeItem based on currentDB context 
-    virtual bool remove(std::string itemName) = 0;
+    virtual bool insert(void* item) = 0;            /**< deference as either FoodItem or user or recipeItem based on currentDB context */
+    virtual bool update(void* item) = 0;            /**< deference as either FoodItem or user or recipeItem based on currentDB context */
+    virtual bool remove(std::string itemName) = 0;  /**< remove a specific item from stock */
 
     protected:
-    sqlite3* db;    //database handle
+    sqlite3* db;    //database handle               /**< sqlite3*: pointer to db */
 
 };
 #endif
