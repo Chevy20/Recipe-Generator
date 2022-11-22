@@ -1,10 +1,12 @@
-#include "FoodAPI.hpp"
+
 #include <stdio.h>
 #include <curl/curl.h>
 #include <iostream>
+#include <string>
 // #include <json/json.h>
 #include <fstream>
 #include <algorithm>
+#include "FoodAPI.hpp"
 
 using namespace std;
 
@@ -30,13 +32,14 @@ Return: none
 */
 FoodAPI::FoodAPI(){
     
-    if(const char* envVar = std::getenv("SPOONACULAR_API_KEY"))
-        FoodAPI::setAPIKey(envVar);
+    if(const char* envVar = getenv("SPOONACULAR_API_KEY")){
+        std::string key = envVar;
+        FoodAPI::setAPIKey(key);
+    }
     else{
         cout << "Missing API Key.  Add to environment variables." << endl;
         exit(0);
     }
-
 }
 
 /*
@@ -45,7 +48,7 @@ Description: sets the spoonacular API Key
 Parameters: key - api key
 Return: None
 */
-const string* FoodAPI::getAPIKey(){
+string FoodAPI::getAPIKey() const{
     return this->_apiKey;
 }
 
@@ -55,9 +58,8 @@ Description: sets the spoonacular API Key
 Parameters: key - api key
 Return: None
 */
-void FoodAPI::setAPIKey(const char* key){
-    string k = key;
-    this->_apiKey = &k;
+void FoodAPI::setAPIKey(string key){
+    FoodAPI::_apiKey = key;
 }
 
 /*
@@ -111,7 +113,7 @@ vector<Recipe> FoodAPI::getRecipeByIngredients(std::string itemList){
     
     CURL *curl;
     CURLcode res;
-    std::string BASE_URL = "https://api.spoonacular.com/recipes/findByIngredients";
+    string BASE_URL = "https://api.spoonacular.com/recipes/findByIngredients";
 
 
 
@@ -167,7 +169,7 @@ Description: Removes a preference from the preference vector
 Parameters: pref - string name of the preference to remove
 Return: None
 */
-std::string FoodAPI::buildQueryURL(std::string baseURL, vector<string> items){
+string FoodAPI::buildQueryURL(std::string baseURL, vector<string> items){
     
 }
 
@@ -182,6 +184,7 @@ FoodAPI::~FoodAPI(){
 }
 
 int main(){
-    const FoodAPI& ap = FoodAPI::getInstance();
-    cout << ap.getAPIKey() << endl;
+    
+    const FoodAPI* ap = &FoodAPI::getInstance();
+    cout << ap->getAPIKey() << endl;
 }

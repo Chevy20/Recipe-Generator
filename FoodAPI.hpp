@@ -10,11 +10,11 @@ class FoodAPI {
         // Singleton setup
         static const FoodAPI* _instance; 
         FoodAPI(const FoodAPI& other);
-        FoodAPI& operator=(const FoodAPI& other);
+        //FoodAPI& operator=(const FoodAPI& other);
 
         std::vector<std::string> preferences;
         std::vector<Recipe> recipes;
-        const std::string* _apiKey;
+        std::string _apiKey;
 
     protected:
         FoodAPI();  // Prevent instantiation
@@ -24,8 +24,8 @@ class FoodAPI {
         static const FoodAPI& getInstance();
         const FoodAPI& operator<<(const std::string& message) const;
 
-        const std::string* getAPIKey();
-        void setAPIKey(const char* key);
+        std::string getAPIKey() const;
+        void setAPIKey(std::string key);
         std::vector<std::string> getPreferences();
         void setPreferences(std::vector<std::string> prefs);
         std::vector<Recipe> getRecipes();

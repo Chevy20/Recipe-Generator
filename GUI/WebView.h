@@ -13,7 +13,9 @@
 #include <Wt/WApplication.h>
 #include <Wt/WServer.h>
 #include <Wt/WFlags.h>
-
+#include <Wt/WTemplate.h>
+#include <Wt/WTheme.h>
+#include <Wt/WBootstrap5Theme.h>
 
 
 class WebView : public Wt::WContainerWidget
@@ -38,6 +40,7 @@ private:
     Wt::WText        *itemDateThrLbl_;
     Wt::WLineEdit    *itemDateThrInput_;
     Wt::WPushButton  *addToStockBtn;
+    Wt::WNavigationBar *navigation;
 
     Wt::Signal<int>   stockUpdated_;
 

@@ -10,7 +10,7 @@ int main(int argc, char *argv[]) {
         auto root = app->root();
 
         root->setContentAlignment(AlignmentFlag::Center);
-
+        
         root->addWidget(std::make_unique<WLineEdit>("Item name: "));
         root->addNew<WBreak>();
 
@@ -38,7 +38,7 @@ int main(int argc, char *argv[]) {
 
         
         auto showGreeting = [edit, result]{
-            result->setText(Wt::WString("Look up items {1}!").arg(edit->text()));
+            result->setText(Wt::WString("Look up {1}!").arg(edit->text()));
         };
 
         edit->enterPressed().connect(showGreeting);
