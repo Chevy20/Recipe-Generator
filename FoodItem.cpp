@@ -1,5 +1,6 @@
-#include "FoodItem.h"
 #include <iostream>
+#include "FoodItem.h"
+
 using namespace std;
 
 FoodItem::FoodItem(){

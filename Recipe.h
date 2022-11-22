@@ -5,12 +5,13 @@
 #include <map>
 #include "FoodItem.h"
 #include "RecipeItem.h"
+
 class Recipe{
     private:
         std::string recipeName;
         std::string recipeProperties;
         std::vector<RecipeItem> recipeIngredients;
-        std::map<std::string, int> recipeNutrition;
+        std::map<std::string,int> recipeNutrition;
         float recipeYield;
     public:
         Recipe();

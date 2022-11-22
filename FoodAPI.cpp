@@ -180,11 +180,11 @@ Parameters: None
 Return: None
 */
 FoodAPI::~FoodAPI(){
-    //delete this->_instance;
+
 }
 
-int main(){
+// int main(){
     
-    const FoodAPI* ap = &FoodAPI::getInstance();
-    cout << ap->getAPIKey() << endl;
-}
+//     const FoodAPI* ap = &FoodAPI::getInstance();
+//     cout << ap->getAPIKey() << endl;
+// }

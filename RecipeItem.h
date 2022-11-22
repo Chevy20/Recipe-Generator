@@ -2,6 +2,7 @@
 #define RECIPEITEM_H
 
 #include "FoodItem.h"
+
 class RecipeItem
 {
     private:
