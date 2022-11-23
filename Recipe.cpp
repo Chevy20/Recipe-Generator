@@ -58,9 +58,13 @@ void Recipe::changeProportions(float newYield)
  */
 void Recipe::swapIngredient(FoodItem nItem, RecipeItem rItem)
 {
-    rItem.setItem(nItem);
-    rItem.setQuantity(0);
-    rItem.setItemMeasureUnit(nItem.getMeasureUnit());
+    for(auto & food : recipeIngredients){
+        if(food.getItem().getName() == rItem.getItem().getName()){
+            food.setItem(nItem);
+            food.setQuantity(0);
+            food.setItemMeasureUnit(nItem.getMeasureUnit());
+        }
+    }
 }
 /*
  * Function: addIngredient 
@@ -92,7 +96,7 @@ int Recipe::addIngredient(FoodItem nItem)
  */
 int Recipe::adjustIngredientAmount(FoodItem item, float quantity)
 {
-    for(RecipeItem food : recipeIngredients){
+    for(auto & food : recipeIngredients){
         if(food.getItem().getName() == item.getName()){
             food.setQuantity(quantity);
             return 0;
