@@ -30,7 +30,7 @@ class Recipe{
          * @param nutri         : map of all the nutrients
          * @author Andrew Li
          */
-        Recipe(std::string rname, std::vector<RecipeItem> ingredients, std::map<std::string, int> nutri);
+        Recipe(std::string rname, std::vector<RecipeItem> ingredients, std::map<std::string, int> nutri, float yield);
         /**
          * @brief destroy the recipe object
          * @author Andrew Li
@@ -54,6 +54,12 @@ class Recipe{
          * @author Andrew Li
          */
         std::map<std::string, int> getNutrition();
+        /**
+         * @brief access number of servings made by recipe
+         * @return float value of number of servings
+         * @author Kanishk
+         */
+        float getYield();
         /**
          * @brief updates all RecipeItems to create the quantity yield given 
          * @param newYield : the new yield of the recipe after all changes made

@@ -7,11 +7,12 @@ Recipe::Recipe()
 {
     //default     
 }
-Recipe::Recipe(std::string rname, std::vector<RecipeItem> ingredients, std::map<std::string, int> nutri)
+Recipe::Recipe(std::string rname, std::vector<RecipeItem> ingredients, std::map<std::string, int> nutri, float yield)
 {
     recipeName = rname;
     recipeIngredients = ingredients;
     recipeNutrition = nutri;
+    recipeYield = yield;
 }
 Recipe::~Recipe()
 {
@@ -28,6 +29,10 @@ vector<RecipeItem> Recipe::getIngredients()
 map<string, int> Recipe::getNutrition()
 {
     return recipeNutrition;
+}
+float Recipe::getYield()
+{
+    return recipeYield;
 }
 /*
  * Function: changeProportions 
