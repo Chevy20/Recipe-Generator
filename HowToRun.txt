@@ -1,0 +1,5 @@
+To Build this application:
+g++ terminalApp.cpp FoodItem.cpp SQLiteConnector.cpp StockTable.cpp Recipe.cpp RecipeItem.cpp model.cpp -lsqlite3
+
+To run this application:
+./a.out

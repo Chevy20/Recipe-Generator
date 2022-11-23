@@ -6,6 +6,12 @@
 #include "FoodItem.h"
 #include "RecipeItem.h"
 
+
+/**
+ * @brief This class stores and allows the user to amnipulate specific recipes
+ * @author Kanishk Mishra
+ * @author Andrew Li
+ */
 class Recipe{
     private:
         std::string recipeName;
