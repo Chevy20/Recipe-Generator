@@ -101,11 +101,22 @@ int Recipe::adjustIngredientAmount(FoodItem item, float quantity)
     if (quantity < 0){
         return -1;
     }
+    vector<RecipeItem> nRecipe;
     for(auto & food : recipeIngredients){
         if(food.getItem().getName() == item.getName()){
-            food.setQuantity(quantity);
-            return 0;
+            if (quantity > 0){
+                food.setQuantity(quantity);
+                return 0;
+            }
+        } else if(quantity == 0){
+            nRecipe.push_back(food);
         }
     }
+
+    if (quantity == 0){
+        recipeIngredients = nRecipe;
+        return 0;
+    }
+
     return -1;
 }

@@ -88,6 +88,7 @@ class Recipe{
          * @return 0        : adjustment successful
          * @return -1       : nothing was adjusted
          * @author Andrew Li
+         * @author Kanishk Mishra
          */
         int adjustIngredientAmount(FoodItem item, float quantity);
 };

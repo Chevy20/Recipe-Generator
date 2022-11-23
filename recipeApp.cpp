@@ -162,6 +162,31 @@ int main(int argc, char* argv[]){
                 }
             case 4:
                 {
+                    cout << "What ingredient are you adding in (only \"jam\" exists): ";
+                    cin >> userInput;
+                    cout << endl;
+
+                    string nName = userInput;
+
+                    FoodItem item;
+
+                    for (FoodItem food : inventory){
+                        if (food.getName().compare(nName) == 0){
+                            item = food;
+                        }
+                    }
+
+                    if (item.getName().compare("") == 0){
+                        cout << "Not an ingredient in inventory\n" << endl;
+                        break;
+                    }
+
+                    Toast.addIngredient(item);
+
+                    for (auto & ingredient : Toast.getIngredients()){
+                        cout << ingredient.getItem().getName() << ": " << ingredient.getQuantity() << " " << ingredient.getItemMeasureUnit() << endl;
+                    }
+                    cout << endl;
                     break;
                 }
             default:
