@@ -1,10 +1,13 @@
-
+/*! FoodItem Header
+This file contains the definitions for the FoodItem Object
+*/
 #ifndef FOODITEM_H
 #define FOODITEM_H
 #include <string>
-
 class FoodItem{
+    /**< Public Attributes*/
     public:
+<<<<<<< HEAD
         FoodItem();
         FoodItem(std::string item_name, int unit_quantity, std::string unitMeasure_Type ,std::string date_Purchased, std::string expiration_Date, std::string unit_Type,   int quantity_Threshold,  int date_Threshold);
         ~FoodItem();

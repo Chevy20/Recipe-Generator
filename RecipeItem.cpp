@@ -28,9 +28,9 @@ string RecipeItem::getItemMeasureUnit()
 {
     return itemMeasureUnit;
 }
-void RecipeItem::setItem(FoodItem fitem)
+void RecipeItem::setItem(FoodItem fItem)
 {
-    item = fitem;
+    item = fItem;
 }
 void RecipeItem::setQuantity(float num)
 {
