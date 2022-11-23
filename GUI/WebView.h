@@ -18,14 +18,12 @@
 #include <Wt/WBootstrap5Theme.h>
 
 
-class WebView : public Wt::WContainerWidget
+class WebView : public Wt::WApplication
 {
-public:
-    WebView(const std::string &name);
-
-    Wt::Signal<int>& stockUpdated() { return stockUpdated_; }
-
 private:
+    std::string name;  //app name
+    Wt::WContainerWidget* _content;
+
     Wt::WText        *title_;
     Wt::WText        *itemNameLbl_;
     Wt::WLineEdit    *itemNameInput_;
@@ -45,8 +43,18 @@ private:
     Wt::Signal<int>   stockUpdated_;
 
 
+public:
+    WebView(const Wt::WEnvironment &env): Wt:WApplication(env);
+    Wt::WContainerWidget* content();
+    void onInternalPathChange();
+    void header();
+    void sidebar();
+    void footer();
+    void home();
+    void page1();
     void checkInputs(std::string name, std::string meas_type, std::string qty, std::string date_purch, std::string exp, std::string threshold);
     void newItem();
+    Wt::Signal<int>& stockUpdated() { return stockUpdated_; }
 };
 #endif
 

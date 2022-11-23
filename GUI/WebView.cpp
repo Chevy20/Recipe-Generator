@@ -2,7 +2,7 @@
 #include "WebView.h"
 using namespace Wt;
 
-
+/*
 int main(int argc, char *argv[]) {
     return Wt::WRun(argc, argv, [](const WEnvironment &env){
         
@@ -47,4 +47,75 @@ int main(int argc, char *argv[]) {
 
         return app;
     });
+
+}
+*/
+
+WebView::WebView(const WEnvironment &env): WApplication(env){
+    WebView::name = "Freshcipes";
+    setTitle(WebView::name);
+    WebView::_content = 0;
+    WebView::internalPathChanged().connect(this, &WebView::onInternalPathChange);
+
+    Wt::header();
+    Wt::home();
+    Wt::sidebar();
+    Wt::footer();
+}
+
+WContainerWidget* content(){
+    if(WebView::_content == 0) {
+        WebView::_content = new WContainerWidget(root());
+        WebView::_content->setId("content");
+    }
+    return WebView::_content;
+}
+
+void WebView::onInternalPathChange() {
+    content()->clear();
+    if(internalPath()=="/"){
+        home();
+    }
+    else if(internalPath()=="/page1"){
+        page1();
+    }
+}
+
+void WebView::header() {
+    WContainerWidget* header = new WContainerWidget(root());
+    header->setId("header");
+    header->addWidget(new WText("<h1>" + WebView::name + "</h1>"));
+}
+
+void WebView::sidebar() {
+    WContainerWidget* sidebar = new WContainerWidget(root());
+    sidebar->setId("sidebar");
+    sidebar->addWidget(new WText("Sidebar Information"));
+}
+
+void WebView::footer() {
+    WContainerWidget* footer = new WContainerWidget(root());
+    footer->setId("footer");
+    footer->addWidget(new WText("Developed using C++/Wt"));
+}
+
+void home() {
+    WText *t = new WText("<strong>Home</strong> content and a link to <a href='#/page1'>page1</a>");
+    t->setInternalPathEncoding(true);
+    content()->addWidget(t);
+
+}
+
+void page1() {
+    content()->addWidget(new WText("<strong>Home</strong> content and a link to "));
+    WAnchor* a = new WAnchor(WLink(WLink::InternalPath, "/"), "home", content());
+}
+
+WApplication* buildApp(const WEnvironment &env) {
+    return new WebView::WebView(env);
+}
+
+
+int main(int argc, char** argv) {
+    return WRun(argc, argv, &buildApp)
 }
