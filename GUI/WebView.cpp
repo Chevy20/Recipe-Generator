@@ -57,10 +57,10 @@ WebView::WebView(const WEnvironment &env): WApplication(env){
     WebView::_content = 0;
     WebView::internalPathChanged().connect(this, &WebView::onInternalPathChange);
 
-    Wt::header();
-    Wt::home();
-    Wt::sidebar();
-    Wt::footer();
+    WebView::header();
+    WebView::home();
+    WebView::sidebar();
+    WebView::footer();
 }
 
 WContainerWidget* content(){
@@ -99,14 +99,14 @@ void WebView::footer() {
     footer->addWidget(new WText("Developed using C++/Wt"));
 }
 
-void home() {
+void WebView::home() {
     WText *t = new WText("<strong>Home</strong> content and a link to <a href='#/page1'>page1</a>");
     t->setInternalPathEncoding(true);
     content()->addWidget(t);
 
 }
 
-void page1() {
+void WebView::page1() {
     content()->addWidget(new WText("<strong>Home</strong> content and a link to "));
     WAnchor* a = new WAnchor(WLink(WLink::InternalPath, "/"), "home", content());
 }

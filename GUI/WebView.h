@@ -44,7 +44,7 @@ private:
 
 
 public:
-    WebView(const Wt::WEnvironment &env): Wt:WApplication(env);
+    WebView(const Wt::WEnvironment &env): Wt::WApplication(env);
     Wt::WContainerWidget* content();
     void onInternalPathChange();
     void header();
