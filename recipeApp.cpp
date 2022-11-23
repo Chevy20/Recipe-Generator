@@ -31,5 +31,27 @@ int main(int argc, char* argv[]){
 
     Recipe Toast("Toast", recipe, nutri, 1);
 
-    cout << "Change " << Toast.getRecipeName() << " serving size, starts at: " << Toast.getYield() << "\n";
+    cout << "Change " << Toast.getRecipeName() << " serving size, starts at: " << Toast.getYield() << endl;
+
+    string userInput;
+
+    while (true){
+        cout << "select new portions size: ";
+        cin >> userInput;
+        cout << endl;
+
+        if (userInput.compare("exit") == 0){
+            break;
+        }
+
+        int nServings = atoi(userInput.c_str());
+
+        Toast.changeProportions(nServings);
+
+        cout << Toast.getRecipeName() << " now has " << Toast.getYield() << " servings" << endl;
+        vector<RecipeItem> ingredients = Toast.getIngredients();
+        for (auto & ingredient : ingredients){
+            cout << ingredient.getItem().getName() << ": " << ingredient.getQuantity() << " " << ingredient.getItemMeasureUnit() << endl;
+        }
+    }
 }

@@ -43,7 +43,7 @@ float Recipe::getYield()
 void Recipe::changeProportions(float newYield)
 {
     float change = newYield / recipeYield;
-    for(RecipeItem food : recipeIngredients){
+    for(auto & food : recipeIngredients){
         float quantity = food.getQuantity() * change;
         quantity = ceil(quantity * 100.0) / 100.0;
         food.setQuantity(quantity);
