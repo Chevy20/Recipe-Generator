@@ -42,13 +42,15 @@ float Recipe::getYield()
  */
 void Recipe::changeProportions(float newYield)
 {
-    float change = newYield / recipeYield;
-    for(auto & food : recipeIngredients){
-        float quantity = food.getQuantity() * change;
-        quantity = ceil(quantity * 100.0) / 100.0;
-        food.setQuantity(quantity);
+    if (newYield >= 0){
+        float change = newYield / recipeYield;
+        for(auto & food : recipeIngredients){
+            float quantity = food.getQuantity() * change;
+            quantity = ceil(quantity * 100.0) / 100.0;
+            food.setQuantity(quantity);
+        }
+        recipeYield = newYield;
     }
-    recipeYield = newYield;
 }
 /*
  * Function: swapIngredient 
@@ -96,6 +98,9 @@ int Recipe::addIngredient(FoodItem nItem)
  */
 int Recipe::adjustIngredientAmount(FoodItem item, float quantity)
 {
+    if (quantity < 0){
+        return -1;
+    }
     for(auto & food : recipeIngredients){
         if(food.getItem().getName() == item.getName()){
             food.setQuantity(quantity);

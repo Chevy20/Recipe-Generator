@@ -50,7 +50,8 @@ int main(int argc, char* argv[]){
     while (true){
         cout << "1 - select new portions size" << endl;
         cout << "2 - change quantity of specific ingredient" << endl;
-        cout << "3 - swap ingredient for another\n" << endl;
+        cout << "3 - swap ingredient for another" << endl;
+        cout << "4 - add new ingredient to recipe\n" << endl;
 
         int choice;
         cin >> userInput;
@@ -157,6 +158,10 @@ int main(int argc, char* argv[]){
                         cout << ingredient.getItem().getName() << ": " << ingredient.getQuantity() << " " << ingredient.getItemMeasureUnit() << endl;
                     }
                     cout << endl;
+                    break;
+                }
+            case 4:
+                {
                     break;
                 }
             default:
