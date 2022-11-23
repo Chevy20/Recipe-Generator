@@ -30,5 +30,5 @@ class Model{
         std::vector<FoodItem> checkForLowStock();
 
 
-
 };
+
