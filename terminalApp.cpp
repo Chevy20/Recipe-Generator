@@ -10,7 +10,7 @@
 #include "Model.h"
 using namespace std;
 
-
+// g++ terminalApp.cpp FoodItem.cpp SQLiteConnector.cpp StockTable.cpp Recipe.cpp RecipeItem.cpp model.cpp -lsqlite3
 
 /*
 Function: isDigit()
