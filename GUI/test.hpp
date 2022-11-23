@@ -17,6 +17,24 @@
 #include <Wt/WBootstrap5Theme.h>
 #include <Wt/WString.h>
 
+class WebView : public Wt::WApplication{
+    public:
+        WebView(const Wt::WEnvironment& env);
+        static int launch(int argc, char** argv);
+        Wt::WContainerWidget* content();
+        void onInternalPathChange();
+        void header();
+        void sidebar();
+        void footer();
+        void home();
+        void page1();
 
+    private:
+        std::string appName_;
+        Wt::WContainerWidget* _content;
+        
+        Wt::WLineEdit *nameEdit_;
+        Wt::WText *greeting_;
+};
 
 #endif
