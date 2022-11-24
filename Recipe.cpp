@@ -42,13 +42,15 @@ float Recipe::getYield()
  */
 void Recipe::changeProportions(float newYield)
 {
-    float change = newYield / recipeYield;
-    for(auto & food : recipeIngredients){
-        float quantity = food.getQuantity() * change;
-        quantity = ceil(quantity * 100.0) / 100.0;
-        food.setQuantity(quantity);
+    if (newYield >= 0){
+        float change = newYield / recipeYield;
+        for(auto & food : recipeIngredients){
+            float quantity = food.getQuantity() * change;
+            quantity = ceil(quantity * 100.0) / 100.0;
+            food.setQuantity(quantity);
+        }
+        recipeYield = newYield;
     }
-    recipeYield = newYield;
 }
 /*
  * Function: swapIngredient 
@@ -58,9 +60,13 @@ void Recipe::changeProportions(float newYield)
  */
 void Recipe::swapIngredient(FoodItem nItem, RecipeItem rItem)
 {
-    rItem.setItem(nItem);
-    rItem.setQuantity(0);
-    rItem.setItemMeasureUnit(nItem.getMeasureUnit());
+    for(auto & food : recipeIngredients){
+        if(food.getItem().getName() == rItem.getItem().getName()){
+            food.setItem(nItem);
+            food.setQuantity(0);
+            food.setItemMeasureUnit(nItem.getMeasureUnit());
+        }
+    }
 }
 /*
  * Function: addIngredient 
@@ -92,11 +98,25 @@ int Recipe::addIngredient(FoodItem nItem)
  */
 int Recipe::adjustIngredientAmount(FoodItem item, float quantity)
 {
-    for(RecipeItem food : recipeIngredients){
+    if (quantity < 0){
+        return -1;
+    }
+    vector<RecipeItem> nRecipe;
+    for(auto & food : recipeIngredients){
         if(food.getItem().getName() == item.getName()){
-            food.setQuantity(quantity);
-            return 0;
+            if (quantity > 0){
+                food.setQuantity(quantity);
+                return 0;
+            }
+        } else if(quantity == 0){
+            nRecipe.push_back(food);
         }
     }
+
+    if (quantity == 0){
+        recipeIngredients = nRecipe;
+        return 0;
+    }
+
     return -1;
 }

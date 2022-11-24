@@ -20,7 +20,7 @@ FoodItem RecipeItem::getItem()
 {
     return item;
 }
-int RecipeItem::getQuantity()
+float RecipeItem::getQuantity()
 {
     return itemQty;
 }

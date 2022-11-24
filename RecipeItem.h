@@ -45,7 +45,7 @@ class RecipeItem
          * @return the number of items
          * @author Andrew Li
          */
-        int getQuantity();
+        float getQuantity();
         /**
          * @brief access the measurement of the ingredient
          * @return string of the unit of measurement
