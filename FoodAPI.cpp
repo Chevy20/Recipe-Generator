@@ -3,7 +3,7 @@
 #include <curl/curl.h>
 #include <iostream>
 #include <string>
-// #include <json/json.h>
+#include <jsoncpp/json/json.h>
 #include <fstream>
 #include <algorithm>
 #include "FoodAPI.hpp"
@@ -109,23 +109,25 @@ Description: Gets recipes with ingredient list from Spoonacular API
 Parameters: itemList - string of comma separated items
 Return: res - Json of recipes found
 */
-vector<Recipe> FoodAPI::getRecipeByIngredients(std::string itemList){
+void FoodAPI::getRecipeByIngredients(std::string itemList) const{
     
     CURL *curl;
     CURLcode res;
-    string BASE_URL = "https://api.spoonacular.com/recipes/findByIngredients";
-
+    FILE *jsonFile = fopen("apiCall.json","w+");
 
 
     curl_global_init(CURL_GLOBAL_DEFAULT);
     
     curl = curl_easy_init();
     if(curl) {
-        curl_easy_setopt(curl, CURLOPT_URL, "https://api.spoonacular.com/recipes/findByIngredients?apiKey=de32085d5f03454bbccdad302c309955&ingredients=apples");
-    
+        curl_easy_setopt(curl, CURLOPT_URL, buildQueryURL(itemList).c_str());
+        curl_easy_setopt(curl,CURLOPT_WRITEDATA,jsonFile);
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, NULL);
    
         /* Perform the request, res will get the return code */
+        
         res = curl_easy_perform(curl);
+     
 
         /* Check for errors */
         if(res != CURLE_OK)
@@ -137,8 +139,23 @@ vector<Recipe> FoodAPI::getRecipeByIngredients(std::string itemList){
     }
     
     curl_global_cleanup();
+    ifstream file("apiCall.json");
+    Json::Value jsonObj;
+    Json::Reader reader;
+    reader.parse(file,jsonObj);
+    string recipeName; 
+    int recipeID;
     
-    return recipes;
+
+    //Nested for loops for indexing through json parameters. Talk to group about recipeItem.
+    for(Json::Value::ArrayIndex i = 0; i!=jsonObj.size(); i++){
+        for(Json::Value::ArrayIndex j = 0; j!=jsonObj[i]["missedIngredients"].size(); j++){
+            
+        }
+    }
+    
+    cout<<jsonObj.toStyledString()<<endl;
+    fclose(jsonFile);
 }
 
 /*
@@ -169,7 +186,9 @@ Description: Removes a preference from the preference vector
 Parameters: pref - string name of the preference to remove
 Return: None
 */
-string FoodAPI::buildQueryURL(std::string baseURL, vector<string> items){
+string FoodAPI::buildQueryURL(string itemList) const{
+    string URL = "https://api.spoonacular.com/recipes/findByIngredients?apiKey="+this->getAPIKey()+"&ingredients="+itemList+"&number=5&ranking=2&ignorePantry=true";
+    return URL;
     
 }
 
@@ -183,8 +202,9 @@ FoodAPI::~FoodAPI(){
 
 }
 
-// int main(){
+int main(){
     
-//     const FoodAPI* ap = &FoodAPI::getInstance();
-//     cout << ap->getAPIKey() << endl;
-// }
+    const FoodAPI* ap = &FoodAPI::getInstance();
+    ap->getRecipeByIngredients("apples,flour,sugar");
+    
+}

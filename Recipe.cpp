@@ -7,12 +7,13 @@ Recipe::Recipe()
 {
     //default     
 }
-Recipe::Recipe(std::string rname, std::vector<RecipeItem> ingredients, std::map<std::string, int> nutri, float yield)
+Recipe::Recipe(std::string rname, std::vector<RecipeItem> ingredients,std::vector<RecipeItem> missingingredients, std::map<std::string, float> nutri)
 {
     recipeName = rname;
+    missingIngredients = missingingredients;
     recipeIngredients = ingredients;
     recipeNutrition = nutri;
-    recipeYield = yield;
+    
 }
 Recipe::~Recipe()
 {
@@ -26,30 +27,18 @@ vector<RecipeItem> Recipe::getIngredients()
 {
     return recipeIngredients;
 }
-map<string, int> Recipe::getNutrition()
+map<string, float> Recipe::getNutrition()
 {
     return recipeNutrition;
 }
-float Recipe::getYield()
-{
-    return recipeYield;
-}
+
 /*
  * Function: changeProportions 
  * Description: updates all RecipeItems to create the quantity given
  * Parameters: float newYield : the new yield of the recipe after all changes made
  * Return: nothing
  */
-void Recipe::changeProportions(float newYield)
-{
-    float change = newYield / recipeYield;
-    for(auto & food : recipeIngredients){
-        float quantity = food.getQuantity() * change;
-        quantity = ceil(quantity * 100.0) / 100.0;
-        food.setQuantity(quantity);
-    }
-    recipeYield = newYield;
-}
+
 /*
  * Function: swapIngredient 
  * Description: updates all RecipeItems to create the quantity given

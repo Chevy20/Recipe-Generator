@@ -7,9 +7,8 @@ This file contains the definitions for the FoodItem Object
 class FoodItem{
     /**< Public Attributes*/
     public:
-<<<<<<< HEAD
         FoodItem();
-        FoodItem(std::string item_name, int unit_quantity, std::string unitMeasure_Type ,std::string date_Purchased, std::string expiration_Date, std::string unit_Type,   int quantity_Threshold,  int date_Threshold);
+        FoodItem(std::string item_name, int unit_quantity, std::string unitMeasure_Type ,std::string date_Purchased, std::string expiration_Date, std::string unit_Type,   int quantity_Threshold);
         ~FoodItem();
         std::string getType ();
         std::string getName ();
@@ -18,8 +17,8 @@ class FoodItem{
         int getThreshold();    //quantity theshold to trigger low quantity alert
         std::string getExpiry();
         int   getDateThreshold();  // minimum number of days allowed between current date and expiration date to trigger expiration warning
-        void incrementQty (int amount);
-        void decrementQty (int amount );
+        bool incrementQty (int amount);
+        bool decrementQty (int amount );
         int getQuantity();
 
     private:

@@ -30,10 +30,10 @@ class FoodAPI {
         void setPreferences(std::vector<std::string> prefs);
         std::vector<Recipe> getRecipes();
         void setReceipes(std::vector<Recipe> recipes);
-        std::vector<Recipe> getRecipeByIngredients(std::string itemList);
+        void getRecipeByIngredients(std::string itemList) const;
         void addPreference(std::string pref);
         void removePreference(std::string pref);
-        std::string buildQueryURL(std::string baseURL, std::vector<std::string> items);
+        std::string buildQueryURL(std::string itemList) const;
 };
 
 #endif
