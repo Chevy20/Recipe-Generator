@@ -51,6 +51,22 @@ int main(int argc, char *argv[]) {
 }
 */
 
+WebView::WebView(const Model &model){
+    this->model = model;
+}
+
+WebView::~WebView(){
+    delete this;
+}
+
+void WebView::setModel(const Model &model){
+    this->model=model;
+}
+
+void WebView::display(){
+
+}
+
 WebView::WebView(const WEnvironment &env): WApplication(env){
     WebView::name = "Freshcipes";
     setTitle(WebView::name);

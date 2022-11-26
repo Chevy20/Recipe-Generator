@@ -17,10 +17,23 @@
 #include <Wt/WTheme.h>
 #include <Wt/WBootstrap5Theme.h>
 
+class TouchScreenView : public View {
+    
+    private:
+        Model* model;
+    
+    public:
+        TouchScreenView(const Model &model);
+        ~TouchScreenView();
+        void setModel(const Model &model);
+        void display();
+};
 
-class WebView : public Wt::WApplication
+
+class WebView : public Wt::WApplication, public View
 {
 private:
+    Model* model;
     std::string name;  //app name
     Wt::WContainerWidget* _content;
 
@@ -44,6 +57,11 @@ private:
 
 
 public:
+
+    WebView(const Model &model);
+    ~WebView();
+    void setModel(const Model &model);
+    void display();
     WebView(const Wt::WEnvironment &env): Wt::WApplication(env);
     Wt::WContainerWidget* content();
     void onInternalPathChange();
