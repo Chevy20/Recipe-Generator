@@ -13,11 +13,15 @@ Recipe::Recipe(std::string rname, std::vector<RecipeItem> ingredients,std::vecto
     missingIngredients = missingingredients;
     recipeIngredients = ingredients;
     recipeNutrition = nutri;
+   
     
 }
 Recipe::~Recipe()
 {
 
+}
+vector<RecipeItem> Recipe::getMissingIngredients(){
+    return missingIngredients;
 }
 string Recipe::getRecipeName()
 {

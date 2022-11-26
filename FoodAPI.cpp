@@ -166,19 +166,44 @@ void FoodAPI::getRecipeByIngredients(void* _theModel) const{
     Json::Value jsonObj;
     Json::Reader reader;
     reader.parse(file,jsonObj);
-    string recipeName; 
-    int recipeID;
-    
-
-    //Nested for loops for indexing through json parameters. Talk to group about recipeItem.
+    vector<Recipe> recipies;
     for(Json::Value::ArrayIndex i = 0; i!=jsonObj.size(); i++){
-        //For loop for making RecipeItems for missed ingredients
-        for(Json::Value::ArrayIndex j = 0; j!=jsonObj[i]["missedIngredients"].size(); j++){
-            
+            //For loop for making RecipeItems for missed ingredients
+            vector<RecipeItem> used;
+            vector<RecipeItem> missing;
+            map<string, float> n;
+            string name = jsonObj[i]["title"].toStyledString(); 
+            for(Json::Value::ArrayIndex j = 0; j!=jsonObj[i]["missedIngredients"].size(); j++){
+                missing.push_back(RecipeItem(jsonObj[i]["missedIngredients"][j]["name"].toStyledString(), 
+                                    jsonObj[i]["usedIngredients"][j]["amount"].asFloat(), 
+                                    "temp"));
+                used.push_back(RecipeItem(jsonObj[i]["usedIngredients"][j]["name"].toStyledString(), 
+                                    jsonObj[i]["usedIngredients"][j]["amount"].asFloat(), 
+                                    "temp"));
+                recipies.push_back(Recipe(name, used,missing, n));
+            }
+            //cout<<jsonObj[i]<<endl;
         }
+    for(int i = 0; i < recipies.size(); i++){
+        cout<<"Recipe Name: "+recipies[i].getRecipeName()<<endl;;
+        cout<<"Used Ingredients"<<endl;
+        for(int j = 0; j < recipies[i].getIngredients().size(); j++){
+            cout<<recipies[i].getIngredients()[j].getItem()<<endl;
+            cout<<recipies[i].getIngredients()[j].getQuantity()<<endl;
+            cout<<recipies[i].getIngredients()[j].getItemMeasureUnit()<<endl;
+        }
+        cout<<"Missing Ingredients"<<endl;
+        for(int j = 0; j < recipies[i].getMissingIngredients().size(); j++){
+            cout<<recipies[i].getMissingIngredients()[j].getItem()<<endl;
+            cout<<recipies[i].getMissingIngredients()[j].getQuantity()<<endl;
+            cout<<recipies[i].getMissingIngredients()[j].getItemMeasureUnit()<<endl;
+        }
+
     }
+
     
-    cout<<jsonObj.toStyledString()<<endl;
+    
+   // cout<<jsonObj.toStyledString()<<endl;   //remove after
     fclose(jsonFile);
 }
 
@@ -225,6 +250,7 @@ Return: None
 FoodAPI::~FoodAPI(){
     delete _instance;
 }
+//Testing, to be removed later
 int main(){
     
     
@@ -233,9 +259,11 @@ int main(){
     FoodItem item1 = FoodItem("apples",4,"apples","2022/11/25","2022/11/30","fridge",1);
     FoodItem item2 = FoodItem("flour",4,"cups","2022/11/25","2022/11/30","pantry",1);
     FoodItem item3 = FoodItem("sugar",4,"cups","2022/11/25","2022/11/30","fridge",1);
+    /*
     modl->addFoodItem(item1);
     modl->addFoodItem(item2);
     modl->addFoodItem(item3);
+    */
     
     modl->getFoodAPI()->getRecipeByIngredients(modl);
     

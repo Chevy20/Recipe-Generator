@@ -25,6 +25,7 @@ class Recipe{
         Recipe(std::string rname, std::vector<RecipeItem> ingredients,std::vector<RecipeItem> missingingredients, std::map<std::string, float> nutri);
         ~Recipe();
         std::string getRecipeName();
+        std::vector<RecipeItem> getMissingIngredients();
         std::vector<RecipeItem> getIngredients();
         std::map<std::string, float> getNutrition();    
         void swapIngredient(std::string nItem, float nQuan, std::string nMeasure, RecipeItem rItem);
