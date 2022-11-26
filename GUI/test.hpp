@@ -23,6 +23,18 @@
 #include <Wt/WString.h>
 #include <Wt/WLink.h>
 #include <Wt/WAnchor.h>
+#include <Wt/WNavigationBar.h>
+#include <Wt/WMenu.h>
+#include <Wt/WMenuItem.h>
+#include <Wt/WStackedWidget.h>
+#include <Wt/WBootstrap5Theme.h>
+#include <Wt/WTheme.h>
+#include <Wt/WLink.h>
+
+#define INSERT_ITEM_TXT = "Insert Item"
+#define INSERT_ITEM_TXT = "Insert Item"
+#define INSERT_ITEM_TXT = "Insert Item"
+#define INSERT_ITEM_TXT = "Insert Item"
 
 class WebView : public Wt::WApplication {
     public:
@@ -35,14 +47,19 @@ class WebView : public Wt::WApplication {
         Wt::WContainerWidget* footer();
         void home();
         void page1();
+        void handleInternalPath(const std::string &internalPath);  // for navigation
         
 
     private:
+        enum commands{ INSERT, DELETE, MODIFY, FIND_STOCK_ITEM, FIND_STOCK_ALL, RECIPE_BY_ITEM, RECIPE_FOR_ALL, QUIT };
         std::string appName_;
         Wt::WContainerWidget *content_;
         
         Wt::WLineEdit *nameEdit_;
         Wt::WText *greeting_;
+    
+    protected: 
+        const std::map<commands, std::string> cmd;
 };
 
 #endif
