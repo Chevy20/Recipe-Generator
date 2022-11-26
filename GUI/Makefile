@@ -11,3 +11,5 @@ test: test.o
 
 test.o: test.cpp
 	${CC} ${CFLAGS1} test.cpp -lwt -lwthttp
+
+./test --docroot . --http-address 0.0.0.0 --http-port 8080
