@@ -7,6 +7,7 @@
 #include <fstream>
 #include <algorithm>
 #include "FoodAPI.hpp"
+#include "Model.h"
 
 using namespace std;
 
@@ -51,7 +52,19 @@ Return: None
 string FoodAPI::getAPIKey() const{
     return this->_apiKey;
 }
-
+std::string buildItemList(std::vector<FoodItem> dbStock)  {
+    string result="";
+    for(int i = 0; i < dbStock.size(); i++){
+        
+        if(i!= dbStock.size() -1){
+            result += dbStock[i].getName() +",";
+        }
+        else{
+            result += dbStock[i].getName();
+        }
+    }
+    return result;
+}
 /*
 Function: setAPIKey()
 Description: sets the spoonacular API Key
@@ -109,18 +122,28 @@ Description: Gets recipes with ingredient list from Spoonacular API
 Parameters: itemList - string of comma separated items
 Return: res - Json of recipes found
 */
-void FoodAPI::getRecipeByIngredients(std::string itemList) const{
-    
+void FoodAPI::getRecipeByIngredients(void* _theModel) const{
+    Model* mod = (Model*)_theModel;
     CURL *curl;
     CURLcode res;
     FILE *jsonFile = fopen("apiCall.json","w+");
-
-
+    vector<FoodItem> stock = mod->queryAllFoodItems();
+    string result="";
+    for(int i = 0; i < stock.size(); i++){
+        
+        if(i!= stock.size() -1){
+            result += stock[i].getName() +",";
+        }
+        else{
+            result += stock[i].getName();
+        }
+    }
+   
     curl_global_init(CURL_GLOBAL_DEFAULT);
     
     curl = curl_easy_init();
     if(curl) {
-        curl_easy_setopt(curl, CURLOPT_URL, buildQueryURL(itemList).c_str());
+        curl_easy_setopt(curl, CURLOPT_URL, buildQueryURL(result).c_str());
         curl_easy_setopt(curl,CURLOPT_WRITEDATA,jsonFile);
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, NULL);
    
@@ -202,10 +225,20 @@ Return: None
 FoodAPI::~FoodAPI(){
     delete _instance;
 }
-
 int main(){
     
-    const FoodAPI* ap = &FoodAPI::getInstance();
-    ap->getRecipeByIngredients("apples,flour,sugar");
+    
+    Model* modl = new Model();
+    
+    FoodItem item1 = FoodItem("apples",4,"apples","2022/11/25","2022/11/30","fridge",1);
+    FoodItem item2 = FoodItem("flour",4,"cups","2022/11/25","2022/11/30","pantry",1);
+    FoodItem item3 = FoodItem("sugar",4,"cups","2022/11/25","2022/11/30","fridge",1);
+    modl->addFoodItem(item1);
+    modl->addFoodItem(item2);
+    modl->addFoodItem(item3);
+    
+    modl->getFoodAPI()->getRecipeByIngredients(modl);
     
 }
+
+

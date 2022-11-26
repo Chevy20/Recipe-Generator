@@ -2,22 +2,24 @@
     Header file for the Model object
     Contains declarations for Model Object
 */
+
+#pragma once
 #include "Recipe.h"
 #include "SQLiteConnector.h"
 #include "StockTable.h"
 #include <string>
 #include <ctime>
 #include <algorithm>
-
+#include "FoodAPI.hpp"
 class Model{
     private:
-        //FoodAPIClass FoodConnector = FoodAPIClass();
-        
+        const FoodAPI* FoodConnection;
         SQLiteConnector *dbConnection;  //database connection
         StockTable *dbContext;          //database context for table selection
     public:
         Model();
         ~Model();
+        const FoodAPI* getFoodAPI();
         SQLiteConnector* getDBConnection(); 
         StockTable* getDbContext();
         bool addFoodItem(FoodItem item);
@@ -31,4 +33,5 @@ class Model{
 
 
 };
+
 

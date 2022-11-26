@@ -9,6 +9,7 @@ Return: Model object
 */
 Model::Model(){
     //create new instance of SQLite connector. Connect to DB and create new dbconext passing in the handle from the dbConnection
+    FoodConnection = &FoodAPI::getInstance();
     dbConnection = new SQLiteConnector();
     dbConnection->connectDB();
     dbContext = new StockTable(dbConnection->getDbHandle());
@@ -22,6 +23,7 @@ Return:none
 */
 Model::~Model(){
     dbContext->~StockTable();
+    delete FoodConnection;
     
 }
 
@@ -34,6 +36,7 @@ Return: SQLiteConnector* representing the connection to the db
 SQLiteConnector* Model::getDBConnection(){
     return dbConnection;
 }
+
 
 /*
 Function:getDBContext()
@@ -98,7 +101,9 @@ Return: vector<FoodItem> representing all food items in the database
 vector<FoodItem> Model::queryAllFoodItems(){
     return dbContext->selectAll();
 }
-
+const FoodAPI* Model::getFoodAPI(){
+    return FoodConnection;
+}
 /*
 Function:processJSON
 Description: Function to process JSON into recipe objects. Will be implemented later
