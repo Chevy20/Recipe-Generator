@@ -149,6 +149,7 @@ void FoodAPI::getRecipeByIngredients(std::string itemList) const{
 
     //Nested for loops for indexing through json parameters. Talk to group about recipeItem.
     for(Json::Value::ArrayIndex i = 0; i!=jsonObj.size(); i++){
+        //For loop for making RecipeItems for missed ingredients
         for(Json::Value::ArrayIndex j = 0; j!=jsonObj[i]["missedIngredients"].size(); j++){
             
         }
@@ -199,7 +200,7 @@ Parameters: None
 Return: None
 */
 FoodAPI::~FoodAPI(){
-
+    delete _instance;
 }
 
 int main(){
