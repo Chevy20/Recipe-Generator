@@ -2,7 +2,7 @@
     This file contains the implementation for all methods of the FoodItem Class
 */
 #include "FoodItem.h"
-
+#include <iostream>
 using namespace std;
 
 /*
@@ -35,7 +35,6 @@ FoodItem::FoodItem(string item_name, int unit_quantity, string unitMeasure_Type 
     itemName = item_name;
     unitQuantity = unit_quantity;
     quantityThreshold = quantity_Threshold;
-    
     datePurchased = date_Purchased;
     expirationDate = expiration_Date;
     

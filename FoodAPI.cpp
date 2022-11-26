@@ -3,10 +3,11 @@
 #include <curl/curl.h>
 #include <iostream>
 #include <string>
-// #include <json/json.h>
+#include <jsoncpp/json/json.h>
 #include <fstream>
 #include <algorithm>
 #include "FoodAPI.hpp"
+#include "Model.h"
 
 using namespace std;
 
@@ -51,7 +52,19 @@ Return: None
 string FoodAPI::getAPIKey() const{
     return this->_apiKey;
 }
-
+std::string buildItemList(std::vector<FoodItem> dbStock)  {
+    string result="";
+    for(int i = 0; i < dbStock.size(); i++){
+        
+        if(i!= dbStock.size() -1){
+            result += dbStock[i].getName() +",";
+        }
+        else{
+            result += dbStock[i].getName();
+        }
+    }
+    return result;
+}
 /*
 Function: setAPIKey()
 Description: sets the spoonacular API Key
@@ -109,23 +122,35 @@ Description: Gets recipes with ingredient list from Spoonacular API
 Parameters: itemList - string of comma separated items
 Return: res - Json of recipes found
 */
-vector<Recipe> FoodAPI::getRecipeByIngredients(std::string itemList){
-    
+void FoodAPI::getRecipeByIngredients(void* _theModel) const{
+    Model* mod = (Model*)_theModel;
     CURL *curl;
     CURLcode res;
-    string BASE_URL = "https://api.spoonacular.com/recipes/findByIngredients";
-
-
-
+    FILE *jsonFile = fopen("apiCall.json","w+");
+    vector<FoodItem> stock = mod->queryAllFoodItems();
+    string result="";
+    for(int i = 0; i < stock.size(); i++){
+        
+        if(i!= stock.size() -1){
+            result += stock[i].getName() +",";
+        }
+        else{
+            result += stock[i].getName();
+        }
+    }
+   
     curl_global_init(CURL_GLOBAL_DEFAULT);
     
     curl = curl_easy_init();
     if(curl) {
-        curl_easy_setopt(curl, CURLOPT_URL, "https://api.spoonacular.com/recipes/findByIngredients?apiKey=de32085d5f03454bbccdad302c309955&ingredients=apples");
-    
+        curl_easy_setopt(curl, CURLOPT_URL, buildQueryURL(result).c_str());
+        curl_easy_setopt(curl,CURLOPT_WRITEDATA,jsonFile);
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, NULL);
    
         /* Perform the request, res will get the return code */
+        
         res = curl_easy_perform(curl);
+     
 
         /* Check for errors */
         if(res != CURLE_OK)
@@ -137,8 +162,49 @@ vector<Recipe> FoodAPI::getRecipeByIngredients(std::string itemList){
     }
     
     curl_global_cleanup();
+    ifstream file("apiCall.json");
+    Json::Value jsonObj;
+    Json::Reader reader;
+    reader.parse(file,jsonObj);
+    vector<Recipe> recipies;
+    for(Json::Value::ArrayIndex i = 0; i!=jsonObj.size(); i++){
+            //For loop for making RecipeItems for missed ingredients
+            vector<RecipeItem> used;
+            vector<RecipeItem> missing;
+            map<string, float> n;
+            string name = jsonObj[i]["title"].toStyledString(); 
+            for(Json::Value::ArrayIndex j = 0; j!=jsonObj[i]["missedIngredients"].size(); j++){
+                missing.push_back(RecipeItem(jsonObj[i]["missedIngredients"][j]["name"].toStyledString(), 
+                                    jsonObj[i]["usedIngredients"][j]["amount"].asFloat(), 
+                                    "temp"));
+                used.push_back(RecipeItem(jsonObj[i]["usedIngredients"][j]["name"].toStyledString(), 
+                                    jsonObj[i]["usedIngredients"][j]["amount"].asFloat(), 
+                                    "temp"));
+                recipies.push_back(Recipe(name, used,missing, n));
+            }
+            //cout<<jsonObj[i]<<endl;
+        }
+    for(int i = 0; i < recipies.size(); i++){
+        cout<<"Recipe Name: "+recipies[i].getRecipeName()<<endl;;
+        cout<<"Used Ingredients"<<endl;
+        for(int j = 0; j < recipies[i].getIngredients().size(); j++){
+            cout<<recipies[i].getIngredients()[j].getItem()<<endl;
+            cout<<recipies[i].getIngredients()[j].getQuantity()<<endl;
+            cout<<recipies[i].getIngredients()[j].getItemMeasureUnit()<<endl;
+        }
+        cout<<"Missing Ingredients"<<endl;
+        for(int j = 0; j < recipies[i].getMissingIngredients().size(); j++){
+            cout<<recipies[i].getMissingIngredients()[j].getItem()<<endl;
+            cout<<recipies[i].getMissingIngredients()[j].getQuantity()<<endl;
+            cout<<recipies[i].getMissingIngredients()[j].getItemMeasureUnit()<<endl;
+        }
+
+    }
+
     
-    return recipes;
+    
+   // cout<<jsonObj.toStyledString()<<endl;   //remove after
+    fclose(jsonFile);
 }
 
 /*
@@ -169,7 +235,9 @@ Description: Removes a preference from the preference vector
 Parameters: pref - string name of the preference to remove
 Return: None
 */
-string FoodAPI::buildQueryURL(std::string baseURL, vector<string> items){
+string FoodAPI::buildQueryURL(string itemList) const{
+    string URL = "https://api.spoonacular.com/recipes/findByIngredients?apiKey="+this->getAPIKey()+"&ingredients="+itemList+"&number=5&ranking=2&ignorePantry=true";
+    return URL;
     
 }
 
@@ -180,11 +248,25 @@ Parameters: None
 Return: None
 */
 FoodAPI::~FoodAPI(){
-
+    delete _instance;
+}
+//Testing, to be removed later
+int main(){
+    
+    
+    Model* modl = new Model();
+    
+    FoodItem item1 = FoodItem("apples",4,"apples","2022/11/25","2022/11/30","fridge",1);
+    FoodItem item2 = FoodItem("flour",4,"cups","2022/11/25","2022/11/30","pantry",1);
+    FoodItem item3 = FoodItem("sugar",4,"cups","2022/11/25","2022/11/30","fridge",1);
+    /*
+    modl->addFoodItem(item1);
+    modl->addFoodItem(item2);
+    modl->addFoodItem(item3);
+    */
+    
+    modl->getFoodAPI()->getRecipeByIngredients(modl);
+    
 }
 
-// int main(){
-    
-//     const FoodAPI* ap = &FoodAPI::getInstance();
-//     cout << ap->getAPIKey() << endl;
-// }
+
