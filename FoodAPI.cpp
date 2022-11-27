@@ -122,7 +122,7 @@ Description: Gets recipes with ingredient list from Spoonacular API
 Parameters: itemList - string of comma separated items
 Return: res - Json of recipes found
 */
-void FoodAPI::getRecipeByIngredients(void* _theModel) const{
+ std::vector<Recipe> FoodAPI::getRecipeByIngredients(void* _theModel) const{
     Model* mod = (Model*)_theModel;
     CURL *curl;
     CURLcode res;
@@ -171,19 +171,25 @@ void FoodAPI::getRecipeByIngredients(void* _theModel) const{
             //For loop for making RecipeItems for missed ingredients
             vector<RecipeItem> used;
             vector<RecipeItem> missing;
-            map<string, float> n;
-            string name = jsonObj[i]["title"].toStyledString(); 
+            map<string, float> n;   //to be possibly implemented
+            string name = stripQuotes(jsonObj[i]["title"].toStyledString()); 
+            
             for(Json::Value::ArrayIndex j = 0; j!=jsonObj[i]["missedIngredients"].size(); j++){
-                missing.push_back(RecipeItem(jsonObj[i]["missedIngredients"][j]["name"].toStyledString(), 
-                                    jsonObj[i]["usedIngredients"][j]["amount"].asFloat(), 
-                                    "temp"));
-                used.push_back(RecipeItem(jsonObj[i]["usedIngredients"][j]["name"].toStyledString(), 
-                                    jsonObj[i]["usedIngredients"][j]["amount"].asFloat(), 
-                                    "temp"));
-                recipies.push_back(Recipe(name, used,missing, n));
+                missing.push_back(RecipeItem(stripQuotes(jsonObj[i]["missedIngredients"][j]["name"].toStyledString()), 
+                                    jsonObj[i]["missedIngredients"][j]["amount"].asFloat(), 
+                                    stripQuotes(jsonObj[i]["missedIngredients"][j]["unit"].toStyledString())));
             }
+            for(Json::Value::ArrayIndex j = 0; j!=jsonObj[i]["usedIngredients"].size(); j++){
+                used.push_back(RecipeItem(stripQuotes(jsonObj[i]["usedIngredients"][j]["name"].toStyledString()), 
+                                    jsonObj[i]["usedIngredients"][j]["amount"].asFloat(), 
+                                    stripQuotes(jsonObj[i]["usedIngredients"][j]["unit"].toStyledString())));
+            }
+            //push recipe to vector after all used/missing recipe items are retreived
+            recipies.push_back(Recipe(name, used,missing, n));
             //cout<<jsonObj[i]<<endl;
         }
+    
+    /*
     for(int i = 0; i < recipies.size(); i++){
         cout<<"Recipe Name: "+recipies[i].getRecipeName()<<endl;;
         cout<<"Used Ingredients"<<endl;
@@ -200,11 +206,18 @@ void FoodAPI::getRecipeByIngredients(void* _theModel) const{
         }
 
     }
-
+    */
     
     
-   // cout<<jsonObj.toStyledString()<<endl;   //remove after
+    
+    //cout<<jsonObj.toStyledString()<<endl;   //remove after
     fclose(jsonFile);
+   return recipies;
+}
+
+string FoodAPI::stripQuotes(string line) const{
+    line.erase(std::remove(line.begin(),line.end(),'\"'),line.end());
+    return line;
 }
 
 /*
@@ -250,23 +263,7 @@ Return: None
 FoodAPI::~FoodAPI(){
     delete _instance;
 }
-//Testing, to be removed later
-int main(){
-    
-    
-    Model* modl = new Model();
-    
-    FoodItem item1 = FoodItem("apples",4,"apples","2022/11/25","2022/11/30","fridge",1);
-    FoodItem item2 = FoodItem("flour",4,"cups","2022/11/25","2022/11/30","pantry",1);
-    FoodItem item3 = FoodItem("sugar",4,"cups","2022/11/25","2022/11/30","fridge",1);
-    /*
-    modl->addFoodItem(item1);
-    modl->addFoodItem(item2);
-    modl->addFoodItem(item3);
-    */
-    
-    modl->getFoodAPI()->getRecipeByIngredients(modl);
-    
-}
+
+
 
 

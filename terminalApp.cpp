@@ -20,7 +20,7 @@ Return: true if string is a number, false it not
 */
 bool isDigit(const string& input){
     for(char const &ch : input){
-        if(isdigit(ch) == 0)
+        if(isdigit(ch) == 0 && &ch!=".")
         return false;
     }
     return true;
@@ -36,8 +36,19 @@ bool check(string input){
     if(!isDigit(input))
         return false;
     else{
-        int num = atoi(input.c_str());
-        if(num >=1 && num <=8){
+        float num = stof(input);
+        if(num >=1 && num <=9){
+            return true;
+        }
+    }
+    return false;
+}
+bool checkRecipe(string input,vector<Recipe> recipieList){
+    if(!isDigit(input))
+        return false;
+    else{
+        float num = stof(input);
+        if(num >=1 && num <=recipieList.size()){
             return true;
         }
     }
@@ -111,12 +122,13 @@ int main(int argc, char* argv[]){
         cout<<"5: Return all food items in Stock."<<endl;
         cout<<"6: Search for recipes based on items you specify."<<endl;
         cout<<"7: Search for recipes based on all items in your stock."<<endl;
-        cout<<"8: Quit." << endl;
-        cout<<"Please type a number, 1-8, to select an option: ";
+        cout<<"8: Select a Recipie to cook."<<endl;
+        cout<<"9: Quit." << endl;
+        cout<<"Please type a number, 1-9, to select an option: ";
         cin>> userInput;
         while(!check(userInput)){
             cout<<"Input invalid."<<endl;
-            cout<<"Please type a number, 1-8, to select an option: ";
+            cout<<"Please type a number, 1-9, to select an option: ";
             cin>> userInput;
             
         }
@@ -182,7 +194,7 @@ int main(int argc, char* argv[]){
                     cin>> quantityThreshold;
                 }
                
-                record = FoodItem(itemName,atoi(unitQuantity.c_str()),unitMeasureType,datePurchased,expirationDate,storage,atoi(quantityThreshold.c_str()));
+                record = FoodItem(itemName,stof(unitQuantity),unitMeasureType,datePurchased,expirationDate,storage,stof(quantityThreshold));
                 if(theModel->addFoodItem(record))
                     cout<<record.getName() + " sucessfully added to stock!\n"<<endl;
                 else
@@ -254,7 +266,7 @@ int main(int argc, char* argv[]){
                     cin>> quantityThreshold;
                 }
             
-                record = FoodItem(itemName,atoi(unitQuantity.c_str()),unitMeasureType,datePurchased,expirationDate,storage,atoi(quantityThreshold.c_str()));
+                record = FoodItem(itemName,stof(unitQuantity),unitMeasureType,datePurchased,expirationDate,storage,stof(quantityThreshold));
                 if(theModel->modifyFoodItem(record))
                     cout<<record.getName()+ " successfully updated!\n"<<endl;
                 else
@@ -301,9 +313,45 @@ int main(int argc, char* argv[]){
                 break;
             case 6:
                 break;
-            case 7:
+            //API call for all stock
+            case 7:{
+                cout<<"Searching spoonacular for Recipes based on all food items in your stock."<<endl;
+                vector<Recipe> apiSearch = theModel->getFoodAPI()->getRecipeByIngredients(theModel);
+                theModel->setQueriedRecipes(apiSearch);
+                theModel->printRecipeToConsole();
                 break;
-            case 8:
+            }
+            case 8:{
+                theModel->printRecipeToConsole();
+                cout<<"Please the number of the recipe you would like to cook."<<endl;
+                cout<<"If your stock can be managed automatically, the necessary deductions will be made and you will see your updated stock."<<endl;
+                cout<<"If your stock cannot be managed automatically, you will be prompted to enter the new quantity for each item used in the recipie."<<endl;
+                cout<<"Please type the number of the recipe you would like to cook: ";
+                cin>> userInput;
+                vector<Recipe> rList = theModel->getQueriedRecipes();
+                while(!checkRecipe(userInput,rList)){
+                    cout<<"Input invalid."<<endl;
+                    cout<<"Please type the number of the recipe you would like to cook: ";
+                    cin>> userInput;
+                }
+                Recipe selectedRecipe = rList[atoi(userInput.c_str())];
+
+                //AutoComputeStock
+                if(theModel->checkAutoStock(selectedRecipe)){
+                    cout<<"Auto stock management possible."<<endl;
+                    if(!theModel->autoComputeStockAfterRecipe(selectedRecipe))
+                        cout<<"Error in completing stock update. Please manually check and update your stock."<<endl;
+                    else
+                        cout<<"Stock updated successfully!"<<endl;
+                }
+                //Manually compute stock
+                else{
+                    cout<<"Auto stock management not possible."<<endl;
+                    //vector<FoodItem
+
+                }
+            }
+            case 9:
                 cout<<"Shutting down!"<<endl;
                 delete theModel;
                 return 0;
