@@ -48,7 +48,13 @@ class WebView : public Wt::WApplication {
         void home();
         void page1();
         void handleInternalPath(const std::string &internalPath);  // for navigation
-        void buildLayout(); 
+        
+        Wt::WContainerWidget* addStockItemPage();
+        Wt::WContainerWidget* deleteStockItemPage();
+        Wt::WContainerWidget* modifyStockItemPage();
+        Wt::WContainerWidget* findStockItemPage();
+        Wt::WContainerWidget* findRecipeByItemPage();
+        Wt::WContainerWidget* findRecipeByStockPage();
 
     private:
         enum commands{ INSERT, DELETE, MODIFY, FIND_STOCK_ITEM, FIND_STOCK_ALL, RECIPE_BY_ITEM, RECIPE_FOR_ALL, QUIT };

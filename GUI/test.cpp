@@ -35,17 +35,35 @@ WebView::WebView(const WEnvironment& env) : WApplication(env){
     auto leftMenu = std::make_unique<Wt::WMenu>(contentStack);
     auto leftMenu_ = navigation->addMenu(std::move(leftMenu));
 
+    // Create a popup submenu for the Recipe menu.
+    auto recipePopupPtr = std::make_unique<Wt::WPopupMenu>();
+    auto recipePopup = recipePopupPtr.get();
+    recipePopup->addItem("Find By Item")
+        ->setLink(WLink(LinkType::InternalPath, "/recipe-by-item"));
+    recipePopup->addItem("Find for All Stock")
+        ->setLink(WLink(LinkType::InternalPath, "/recipe-by-all-stock"));
+
+    // Create a popup submenu for the Stock menu.
+    auto stockPopupPtr = std::make_unique<Wt::WPopupMenu>();
+    auto stockPopup = stockPopupPtr.get();
+    stockPopup->addItem("Add")->setLink(WLink(LinkType::InternalPath, "/add-stock"));
+    stockPopup->addItem("Delete")->setLink(WLink(LinkType::InternalPath, "/delete-stock"));
+    stockPopup->addItem("Edit")->setLink(WLink(LinkType::InternalPath, "/edit-stock"));
+    stockPopup->addItem("Find")->setLink(WLink(LinkType::InternalPath, "/find-stock"));
+
     auto searchResult = std::make_unique<Wt::WText>("Buy or Sell... Bye!");
     auto searchResult_ = searchResult.get();
 
     leftMenu_->addItem("Home", std::make_unique<Wt::WText>("There is no better place!"))
-        ->setLink(Wt::WLink(Wt::LinkType::InternalPath, "/"));
-    leftMenu_->addItem("Stock", std::make_unique<Wt::WText>("There is no better place!"))
-        ->setLink(Wt::WLink(Wt::LinkType::InternalPath, "/add-item-to-stock"));
-    leftMenu_->addItem("Recipes", std::make_unique<Wt::WText>("Delete stock item"))
-        ->setLink(Wt::WLink(Wt::LinkType::InternalPath, "/delete-item-from-stock"));
-
-
+       ->setLink(Wt::WLink(LinkType::InternalPath, "/"));
+    
+    auto stockItem = std::make_unique<Wt::WMenuItem>("Stock");
+    stockItem->setMenu(std::move(stockPopupPtr));
+    leftMenu_->addItem(std::move(stockItem));
+ 
+     auto recipeItem = std::make_unique<Wt::WMenuItem>("Recipes");
+    recipeItem->setMenu(std::move(recipePopupPtr));
+    leftMenu_->addItem(std::move(recipeItem));
 
     leftMenu_->addItem("TEST", std::move(searchResult));
     leftMenu_->addStyleClass("me-auto");
@@ -94,7 +112,6 @@ WebView::WebView(const WEnvironment& env) : WApplication(env){
     item->setMenu(std::move(popupPtr));
     rightMenu_->addItem(std::move(item));
 
-    
     /* END NAVBAR **********************************************************/
 
 
@@ -103,7 +120,7 @@ WebView::WebView(const WEnvironment& env) : WApplication(env){
     // root()->addWidget(std::unique_ptr<WWidget>(content()));
     // root()->addWidget(std::unique_ptr<WWidget>(footer()));
     
-    // handleInternalPath(path);
+    handleInternalPath(internalPath());
 
     
 }
@@ -123,10 +140,6 @@ WContainerWidget* WebView::header() {
     return header;
 }
 
-// WNavigationBar* WebView::navbar() {
-
-// }
-
 WContainerWidget* WebView::sidebar() {
     WContainerWidget* sidebar = new WContainerWidget();
     sidebar->setId("sidebar");
@@ -134,7 +147,7 @@ WContainerWidget* WebView::sidebar() {
     return sidebar;
 }
 
-Wt::WContainerWidget* WebView::footer() {
+WContainerWidget* WebView::footer() {
     Wt::WContainerWidget* footer = new WContainerWidget();
     footer->setId("footer");
     footer->addWidget(std::make_unique<WText>("Developed using C++/Wt"));
@@ -147,6 +160,14 @@ void WebView::home() {
     content()->addWidget(std::unique_ptr<WText>(t));
 }
 
+WContainerWidget* WebView::addStockItemPage() {
+    if (content_ == 0) {
+        content_ = new WContainerWidget();
+        content_->setId("content");
+    }
+    return content_;
+}
+
 
 
 // void WebView::page1() {
@@ -157,13 +178,12 @@ void WebView::home() {
 
 // Navigate the internal pages of the GUI
 void WebView::handleInternalPath(const std::string &internalPath){
-    if(internalPath == "/add-item-to-stock"){ std::cerr << "HELLO IM HERE"; }
-    else if(internalPath == "/"){}
-    else if(internalPath == "/"){}
-    else if(internalPath == "/"){}
-    else if(internalPath == "/"){}
-    else if(internalPath == "/"){}
-    else if(internalPath == "/"){}
+    if(internalPath == "/add-stock"){ std::cerr << "HHHHHHHEEEEEEERRRRREEEEE ADD STOCK"; }
+    else if(internalPath == "/delete-stock"){ std::cerr << "DELETE STOCK"; }
+    else if(internalPath == "/modify-stock"){ std::cerr << "MODIFY STOCK"; }
+    else if(internalPath == "/find-stock"){ std::cerr << "FIND STOCK"; }
+    else if(internalPath == "/recipe-by-item"){ std::cerr << "FIND RECIPE BY ITEM"; }
+    else if(internalPath == "/recipe-by-all-stock"){ std::cerr << "FIND RECIPE FROM STOCK"; }
     else{
         WApplication::instance()->setInternalPath("/", true);
     }
