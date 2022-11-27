@@ -35,10 +35,14 @@ WebView::WebView(const WEnvironment& env) : WApplication(env){
 
 
     WNavigationBar* nav = root()->addWidget(std::make_unique<WNavigationBar>());
-    auto nav_contents = nav->addWidget(std::make_unique<WStackedWidget>());
-    auto addItemToStockPage = WLink("/add-item-to-stock");
-    
-    nav_contents->addWidget(std::make_unique<WLink>(&addItemToStockPage));
+    nav->setMargin(WLength(5));
+    nav->setVerticalAlignment(AlignmentFlag::Middle);
+
+    auto pb1 = std::make_unique<WPushButton>();
+    nav->setMargin(WLength(20));
+
+    nav->addWidget(std::make_unique<WText>("<a href='/add-item-to-stock'>Add Item</a>"));
+    nav->addWidget(std::make_unique<WPushButton>("TEST2"));
     nav->addSearch(std::make_unique<WLineEdit>());
     nav->show();    
 }
