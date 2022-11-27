@@ -48,7 +48,7 @@ class WebView : public Wt::WApplication {
         void home();
         void page1();
         void handleInternalPath(const std::string &internalPath);  // for navigation
-        
+        void buildLayout(); 
 
     private:
         enum commands{ INSERT, DELETE, MODIFY, FIND_STOCK_ITEM, FIND_STOCK_ALL, RECIPE_BY_ITEM, RECIPE_FOR_ALL, QUIT };
