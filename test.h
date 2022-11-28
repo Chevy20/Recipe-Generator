@@ -18,6 +18,7 @@
 #include "FoodItem.h"
 
 #define INPUT_WIDTH_PERCENT 35
+#define NAV_BUTTON_WIDTH 80
 
 static int launch(int argc, char **argv);
 
@@ -27,6 +28,11 @@ public:
     WebViewTest(const Wt::WEnvironment& env);
 
 private:
+    const std::string addItemPath = "/add-to-stock";
+    const std::string deleteItemPath = "/delete-from-stock";
+    const std::string modItemPath = "/add-to-stock";
+    const std::string findItemPath = "/add-to-stock";
+
     Model *model;
 
     // Add Stock Item
@@ -45,5 +51,7 @@ private:
     // Functional containers
     Wt::WContainerWidget* addStockItem();
     Wt::WContainerWidget* deleteStockItem();
+
+    void handleInternalPathChange();
     
 };

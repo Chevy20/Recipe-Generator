@@ -15,6 +15,8 @@ WebViewTest::WebViewTest(const Wt::WEnvironment& env)
     // Add navbar
     // auto navbarCont = navbar();
     // root()->addWidget(std::unique_ptr<WContainerWidget>(navbarCont));
+
+
     auto container = new WContainerWidget();
     container->setWidth(WLength(50, LengthUnit::Percentage));
     auto horizBox = container->setLayout(std::make_unique<WHBoxLayout>());
@@ -23,14 +25,18 @@ WebViewTest::WebViewTest(const Wt::WEnvironment& env)
     auto sidebarCont = std::unique_ptr<WContainerWidget>(sidebar());
     horizBox->addWidget(std::move(sidebarCont));
 
-    auto addStockCont = std::unique_ptr<WContainerWidget>(addStockItem());
-    horizBox->addWidget(std::move(addStockCont));
+    auto content = handleInternalPathChange();
+
+    auto contentContainer = std::unique_ptr<WContainerWidget>(content);
+    horizBox->addWidget(std::move(contentContainer));
 
     root()->addWidget(std::unique_ptr<WContainerWidget>(container));
 
 }
 
-
+/**
+ * Navigation Bar - NOT USED
+*/
 WContainerWidget* WebViewTest::navbar(){
 
     // Create navigation bar container
@@ -130,6 +136,9 @@ WContainerWidget* WebViewTest::navbar(){
 
 }
 
+/**
+ * Build Sidebar Navigation
+*/
 WContainerWidget* WebViewTest::sidebar(){
 
   // Create sidebar container
@@ -145,29 +154,89 @@ WContainerWidget* WebViewTest::sidebar(){
   // Create container for pushbuttons
   auto stockPbCont = new WContainerWidget();
 
-  // Add pushbutton to pb container
+  // Add pushbuttons to pb container
+  // Add Item Button
   auto addItemBtn = stockPbCont->addWidget(std::make_unique<Wt::WPushButton>("Add Item"));
   addItemBtn->setLink(Wt::WLink(Wt::LinkType::InternalPath, "/add-to-stock"));
   addItemBtn->setMargin(5, Wt::Side::Bottom);
   addItemBtn->setVerticalAlignment(AlignmentFlag::Center);
+  addItemBtn->setWidth(WLength(NAV_BUTTON_WIDTH,WLength::Unit::Percentage));
+  addItemBtn->setStyleClass("btn-success");
   stockPbCont->addWidget(std::make_unique<WBreak>());
   
+  // Delete Item Button
   auto deleteItemBtn = stockPbCont->addWidget(std::make_unique<Wt::WPushButton>("Delete Item"));
   deleteItemBtn->setLink(Wt::WLink(Wt::LinkType::InternalPath, "/delete-to-stock"));
   deleteItemBtn->setMargin(5, Wt::Side::Bottom);
   deleteItemBtn->setVerticalAlignment(AlignmentFlag::Center);
+  deleteItemBtn->setWidth(WLength(NAV_BUTTON_WIDTH,WLength::Unit::Percentage));
+  deleteItemBtn->setStyleClass("btn-success");
   stockPbCont->addWidget(std::make_unique<WBreak>());
   
+  // Modify Item Button
   auto modItemBtn = stockPbCont->addWidget(std::make_unique<Wt::WPushButton>("Modify Item"));
   modItemBtn->setLink(Wt::WLink(Wt::LinkType::InternalPath, "/modify-stock"));
   modItemBtn->setMargin(5, Wt::Side::Bottom);
   modItemBtn->setVerticalAlignment(AlignmentFlag::Center);
+  modItemBtn->setWidth(WLength(NAV_BUTTON_WIDTH,WLength::Unit::Percentage));
+  modItemBtn->setStyleClass("btn-success");
+
+ // Find Item Button
+  auto findStockItemBtn = stockPbCont->addWidget(std::make_unique<Wt::WPushButton>("Find Item"));
+  findStockItemBtn->setLink(Wt::WLink(Wt::LinkType::InternalPath, "/modify-stock"));
+  findStockItemBtn->setMargin(5, Wt::Side::Bottom);
+  findStockItemBtn->setVerticalAlignment(AlignmentFlag::Center);
+  findStockItemBtn->setWidth(WLength(NAV_BUTTON_WIDTH,WLength::Unit::Percentage));
+  findStockItemBtn->setStyleClass("btn-success");
 
   stockPbCont->addWidget(std::make_unique<WBreak>());
   stockPbCont->setVerticalAlignment(AlignmentFlag::Center);
 
   // Add stock action pbs to panel
   stockPanel->setCentralWidget(std::unique_ptr<WContainerWidget>(stockPbCont));
+
+  sidebarCont->addWidget(std::make_unique<WBreak>());
+
+  // Create panel for Recipe buttons to be added in
+  auto recipePanel = sidebarCont->addWidget(std::make_unique<Wt::WPanel>());
+  recipePanel->addStyleClass("centered-example");
+  recipePanel->setTitle("RECIPE ACTIONS");
+
+  // Create container for pushbuttons
+  auto recipePbCont = new WContainerWidget();
+
+  // Add pushbuttons to pb container
+  // Find Recipe by Item Button
+  auto findRecipeByItemBtn = recipePbCont->addWidget(std::make_unique<Wt::WPushButton>("Find By Item"));
+  findRecipeByItemBtn->setLink(Wt::WLink(Wt::LinkType::InternalPath, "/recipe-by-item"));
+  findRecipeByItemBtn->setMargin(5, Wt::Side::Bottom);
+  findRecipeByItemBtn->setVerticalAlignment(AlignmentFlag::Center);
+  findRecipeByItemBtn->setWidth(WLength(NAV_BUTTON_WIDTH,WLength::Unit::Percentage));
+  findRecipeByItemBtn->setStyleClass("btn-success");
+  recipePbCont->addWidget(std::make_unique<WBreak>());
+  
+  // Find Recipes for all stock Button
+  auto findRecipeForAllBtn = recipePbCont->addWidget(std::make_unique<Wt::WPushButton>("Find for All Items"));
+  findRecipeForAllBtn->setLink(Wt::WLink(Wt::LinkType::InternalPath, "/recipe-all-stock"));
+  findRecipeForAllBtn->setMargin(5, Wt::Side::Bottom);
+  findRecipeForAllBtn->setVerticalAlignment(AlignmentFlag::Center);
+  findRecipeForAllBtn->setWidth(WLength(NAV_BUTTON_WIDTH,WLength::Unit::Percentage));
+  findRecipeForAllBtn->setStyleClass("btn-success");
+  recipePbCont->addWidget(std::make_unique<WBreak>());
+  
+  // Select Recipe to Cook Button
+  auto selectRecipeBtn = recipePbCont->addWidget(std::make_unique<Wt::WPushButton>("Select Recipe"));
+  selectRecipeBtn->setLink(Wt::WLink(Wt::LinkType::InternalPath, "/recipe-select"));
+  selectRecipeBtn->setMargin(5, Wt::Side::Bottom);
+  selectRecipeBtn->setVerticalAlignment(AlignmentFlag::Center);
+  selectRecipeBtn->setWidth(WLength(NAV_BUTTON_WIDTH,WLength::Unit::Percentage));
+  selectRecipeBtn->setStyleClass("btn-success");
+
+  recipePbCont->addWidget(std::make_unique<WBreak>());
+  recipePbCont->setVerticalAlignment(AlignmentFlag::Center);
+
+  // Add stock action pbs to panel
+  recipePanel->setCentralWidget(std::unique_ptr<WContainerWidget>(recipePbCont));
 
   return sidebarCont;
 
@@ -246,8 +315,14 @@ WContainerWidget* WebViewTest::addStockItem(){
       FoodItem *fi = new FoodItem(nameEdit_->text().toUTF8(), std::stoi(qtyEdit_->text().toUTF8()), 
         unitEdit_->text().toUTF8(), purchaseEdit_->text().toUTF8(), 
         expiryEdit_->text().toUTF8(), locationEdit_->text().toUTF8(), std::stoi(alertQtyEdit_->text().toUTF8()));
-      model->addFoodItem(*fi);
-      std::cerr<<"\nMADE IT HERE\n";
+      
+      try{
+        model->addFoodItem(*fi);
+        std::cerr<<"\nMADE IT HERE\n";
+      } catch(...){
+        //THROW POP UP BOX
+      }
+
     };
     addItemBtn->clicked().connect(addItem);
 
@@ -256,7 +331,9 @@ WContainerWidget* WebViewTest::addStockItem(){
     return addStockCont;
 }
 
-// Delete Stock Item
+/**
+ * Delete Stock Item
+*/
 WContainerWidget* WebViewTest::deleteStockItem(){
 
     auto deleteStockCont = new WContainerWidget();
@@ -285,7 +362,23 @@ WContainerWidget* WebViewTest::deleteStockItem(){
     return deleteStockCont;
 }
 
-// Launch Application
+
+WContainerWidget* WebViewTest::handleInternalPathChange()
+{
+    WApplication *app = Wt::WApplication::instance();
+
+    if (app->internalPath() == addItemPath)
+        return addStockItem();
+    else if (app->internalPath() == deleteItemPath)
+        return deleteStockItem();
+    else if (app->internalPath() == modItemPath)
+    else
+        app->show();
+}
+
+/**
+ * Launch Application
+*/
 static int launch(int argc, char**argv){
     return Wt::WRun(argc, argv, [](const Wt::WEnvironment& env) {
       return std::make_unique<WebViewTest>(env);
