@@ -7,9 +7,10 @@ class Observer {
 private:
     Controller& controller;
 public:
-    Observer() {};
-    ~Observer() {};
+    virtual ~Observer();
     virtual void update(Controller* controller) = 0;
+protected:
+    Observer();
 };
 
 #endif
