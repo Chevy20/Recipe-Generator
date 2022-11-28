@@ -21,7 +21,7 @@ public:
 private:
     Model *model;
 
-    // User entry
+    // Add Stock Item
     Wt::WLineEdit *nameEdit_;
     Wt::WLineEdit *unitEdit_;
     Wt::WLineEdit *qtyEdit_;
@@ -29,6 +29,6 @@ private:
     Wt::WLineEdit *expiryEdit_;
     Wt::WLineEdit *locationEdit_;
     Wt::WLineEdit *alertQtyEdit_;    
-
-    Wt::WText *greeting_;
+    
+    Wt::WContainerWidget* addStockItem();
 };
