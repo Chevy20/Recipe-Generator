@@ -3,7 +3,7 @@
 #include <curl/curl.h>
 #include <iostream>
 #include <string>
-#include <jsoncpp/json/json.h>
+#include <json/json.h>
 #include <fstream>
 #include <algorithm>
 #include "FoodAPI.hpp"

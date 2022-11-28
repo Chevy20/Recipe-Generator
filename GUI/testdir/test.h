@@ -7,6 +7,9 @@
 #include <Wt/WBootstrap5Theme.h>
 
 #include "../../Model.h"
+#include "../../FoodItem.h"
+
+#define INPUT_WIDTH_PERCENT 35
 
 static int launch(int argc, char **argv);
 

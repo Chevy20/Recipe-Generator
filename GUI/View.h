@@ -9,7 +9,7 @@
 class View {
     
     private:
-        Model* model;
+        const Model* model;
     
     public:
         View(const Model &model);

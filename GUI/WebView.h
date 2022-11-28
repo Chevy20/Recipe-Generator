@@ -57,12 +57,13 @@ private:
 
 
 public:
-
+    
     WebView(const Model &model);
     ~WebView();
     void setModel(const Model &model);
     void display();
-    WebView(const Wt::WEnvironment &env): Wt::WApplication(env);
+    WebView(const Wt::WEnvironment& env);
+    static int launch(int argc, char** argv);
     Wt::WContainerWidget* content();
     void onInternalPathChange();
     void header();

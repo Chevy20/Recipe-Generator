@@ -3,10 +3,10 @@
 class View {
     
     private:
-        Model* model;
+        const Model* model;
     
     public:
-        View(const Model &model) {
+        View(const Model *model) {
             this->model = model;
         }
         void setModel(const Model &model);
