@@ -4,8 +4,6 @@
 #include "Wt/WLink.h"
 #include "Wt/WPopupMenu.h"
 #include "Wt/WMessageBox.h"
-#include <memory>
-#include <Wt/WHBoxLayout.h>
 #include <iostream>
 
 using namespace Wt;
@@ -25,17 +23,17 @@ WebView::WebView(const WEnvironment& env) : WApplication(env){
     /* NAVBAR **********************************************************/
     auto nav_container = root()->addWidget(std::make_unique<WContainerWidget>());
     //Create nav bar
-    WNavigationBar *navbar = nav_container->addNew<WNavigationBar>();
-    navbar->setResponsive(true);
-    navbar->addStyleClass("navbar-light bg-light");
-    navbar->setTitle("Freschipes", "/");
+    WNavigationBar *navigation = nav_container->addNew<WNavigationBar>();
+    navigation->setResponsive(true);
+    navigation->addStyleClass("navbar-light bg-light");
+    navigation->setTitle("Freschipes", "/");
 
     WStackedWidget *contentStack = nav_container->addNew<WStackedWidget>();
     contentStack->addStyleClass("contents");
     
     // Setup a Left-aligned menu.
     auto leftMenu = std::make_unique<Wt::WMenu>(contentStack);
-    auto leftMenu_ = navbar->addMenu(std::move(leftMenu));
+    auto leftMenu_ = navigation->addMenu(std::move(leftMenu));
 
     // Create a popup submenu for the Recipe menu.
     auto recipePopupPtr = std::make_unique<Wt::WPopupMenu>();
@@ -56,7 +54,7 @@ WebView::WebView(const WEnvironment& env) : WApplication(env){
     auto searchResult = std::make_unique<Wt::WText>("Buy or Sell... Bye!");
     auto searchResult_ = searchResult.get();
 
-    leftMenu_->addItem("Home", std::make_unique<Wt::WText>())
+    leftMenu_->addItem("Home", std::make_unique<Wt::WText>("There is no better place!"))
        ->setLink(Wt::WLink(LinkType::InternalPath, "/"));
     
     auto stockItem = std::make_unique<Wt::WMenuItem>("Stock");
@@ -81,11 +79,11 @@ WebView::WebView(const WEnvironment& env) : WApplication(env){
                                     .arg(edit->text()));
     });
 
-    navbar->addSearch(std::move(editPtr));
+    navigation->addSearch(std::move(editPtr));
 
     // Setup a Right-aligned menu.
     auto rightMenu = std::make_unique<Wt::WMenu>();
-    auto rightMenu_ = navbar->addMenu(std::move(rightMenu));
+    auto rightMenu_ = navigation->addMenu(std::move(rightMenu));
 
     // Create a popup submenu for the Help menu.
     auto popupPtr = std::make_unique<Wt::WPopupMenu>();
@@ -122,7 +120,6 @@ WebView::WebView(const WEnvironment& env) : WApplication(env){
     // root()->addWidget(std::unique_ptr<WWidget>(content()));
     // root()->addWidget(std::unique_ptr<WWidget>(footer()));
     
-
     handleInternalPath(internalPath());
 
     
@@ -168,12 +165,6 @@ WContainerWidget* WebView::addStockItemPage() {
         content_ = new WContainerWidget();
         content_->setId("content");
     }
-    std::cerr << "HHHHHHHEEEEEEERRRRREEEEE ADD STOCK"; 
-    auto panel = content_->addWidget(std::make_unique<Wt::WPanel>());
-    panel->addStyleClass("centered-example");
-    panel->setCentralWidget(std::make_unique<Wt::WText>("This is a default panel.")); 
-    content_->show();
-
     return content_;
 }
 
@@ -187,9 +178,7 @@ WContainerWidget* WebView::addStockItemPage() {
 
 // Navigate the internal pages of the GUI
 void WebView::handleInternalPath(const std::string &internalPath){
-    if(internalPath == "/?_/=add-stock"){ 
-        root()->addWidget(std::unique_ptr<WWidget>(addStockItemPage()));
-    }
+    if(internalPath == "/add-stock"){ std::cerr << "HHHHHHHEEEEEEERRRRREEEEE ADD STOCK"; }
     else if(internalPath == "/delete-stock"){ std::cerr << "DELETE STOCK"; }
     else if(internalPath == "/modify-stock"){ std::cerr << "MODIFY STOCK"; }
     else if(internalPath == "/find-stock"){ std::cerr << "FIND STOCK"; }

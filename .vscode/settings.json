@@ -65,11 +65,6 @@
     "locale": "cpp",
     "mutex": "cpp",
     "ratio": "cpp",
-    "set": "cpp",
-    "__bits": "cpp",
-    "__string": "cpp",
-    "compare": "cpp",
-    "concepts": "cpp",
-    "variant": "cpp"
+    "set": "cpp"
   }
 }

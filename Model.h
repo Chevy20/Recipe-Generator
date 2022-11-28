@@ -11,6 +11,7 @@
 #include <ctime>
 #include <algorithm>
 #include "FoodAPI.hpp"
+
 class Model{
     private:
         const FoodAPI* FoodConnection;
