@@ -1,10 +1,18 @@
 #include <Wt/WApplication.h>
-#include <Wt/WBreak.h>
 #include <Wt/WContainerWidget.h>
+#include <Wt/WNavigationBar.h>
+#include <Wt/WBreak.h>
 #include <Wt/WLineEdit.h>
 #include <Wt/WPushButton.h>
 #include <Wt/WText.h>
 #include <Wt/WBootstrap5Theme.h>
+#include <Wt/WStackedWidget.h>
+#include <Wt/WPopupMenu.h>
+#include <Wt/WMenu.h>
+#include <Wt/WLink.h>
+#include <Wt/WMessageBox.h>
+#include <Wt/WPanel.h>
+#include <Wt/WHBoxLayout.h>
 
 #include "Model.h"
 #include "FoodItem.h"
@@ -30,6 +38,12 @@ private:
     Wt::WLineEdit *locationEdit_;
     Wt::WLineEdit *alertQtyEdit_;    
     
+    // Structural containers
+    Wt::WContainerWidget* navbar();
+    Wt::WContainerWidget* sidebar();
+
+    // Functional containers
     Wt::WContainerWidget* addStockItem();
     Wt::WContainerWidget* deleteStockItem();
+    
 };
