@@ -18,14 +18,12 @@ Model::Model(){
 
 /*
 Function: Destructor for Model
-Description: This will close connection to the db
+Description: This will close connection to the db   
 Parameters:none
 Return:none
 */
 Model::~Model(){
-    dbContext->~StockTable();
-    delete FoodConnection;
-    
+    dbContext->~StockTable(); 
 }
 
 /*
@@ -186,14 +184,20 @@ bool Model::checkAutoStock(Recipe cookedRecipie){
 }
 
 void Model::printRecipeToConsole(){
-    cout<<"Here are the recipies returned from Spoonacular"<<endl;
+    cout<<"Here are the recipes returned from Spoonacular"<<endl;
     for(int i = 0; i <queriedRecipes.size(); i++){
         cout<<"Recipe "+to_string(i+1)+ ": "+queriedRecipes[i].getRecipeName()<<endl;
-        cout<<"Ingredients: "<<endl;
+        cout<<"Ingredients Found: "<<endl;
         vector<RecipeItem> ingredients = queriedRecipes[i].getIngredients();
         for(int j = 0; j <ingredients.size(); j++){
             cout<<"Ingredient Name: " + ingredients[j].getItem()<<endl;
             cout<<"Quantity: "+to_string(ingredients[j].getQuantity()) +" "+ingredients[j].getItemMeasureUnit()<<endl;
+        }
+        cout<<"Missing Ingredients: "<<endl;
+        vector<RecipeItem> mIngredients = queriedRecipes[i].getMissingIngredients();
+        for(int j = 0; j < mIngredients.size(); j++){
+            cout<<"Ingredient Name: " + mIngredients[j].getItem()<<endl;
+            cout<<"Quantity: "+to_string(mIngredients[j].getQuantity()) +" "+ mIngredients[j].getItemMeasureUnit()<<endl;
         }
         cout<<endl;
     }

@@ -32,6 +32,7 @@ class FoodAPI {
         std::vector<Recipe> getRecipes();
         void setReceipes(std::vector<Recipe> recipes);
         std::vector<Recipe> getRecipeByIngredients(void* theModel) const;
+        std::vector<Recipe> getRecipeBySpecificIngredients(std::string query) const;
         void addPreference(std::string pref);
         void removePreference(std::string pref);
         std::string buildQueryURL(std::string itemList) const;
