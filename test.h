@@ -31,4 +31,5 @@ private:
     Wt::WLineEdit *alertQtyEdit_;    
     
     Wt::WContainerWidget* addStockItem();
+    Wt::WContainerWidget* deleteStockItem();
 };

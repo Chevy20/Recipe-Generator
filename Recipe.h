@@ -20,6 +20,7 @@ class Recipe{
         std::vector<RecipeItem> recipeIngredients;
         std::map<std::string,float> recipeNutrition;
         
+        
     public:
         Recipe();
         Recipe(std::string rname, std::vector<RecipeItem> ingredients,std::vector<RecipeItem> missingingredients, std::map<std::string, float> nutri);

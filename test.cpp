@@ -11,15 +11,12 @@ WebViewTest::WebViewTest(const Wt::WEnvironment& env)
     setTitle("Freshcipes");
     setTheme(std::make_shared<WBootstrap5Theme>());
 
-    auto addStockCont = addStockItem();
-    root()->addWidget(std::unique_ptr<WContainerWidget>(addStockCont));
+    // auto addStockCont = addStockItem();
+    // root()->addWidget(std::unique_ptr<WContainerWidget>(addStockCont));
 
-}
+    auto deleteStockCont = deleteStockItem();
+    root()->addWidget(std::unique_ptr<WContainerWidget>(deleteStockCont));
 
-static int launch(int argc, char**argv){
-    return Wt::WRun(argc, argv, [](const Wt::WEnvironment& env) {
-      return std::make_unique<WebViewTest>(env);
-    });    
 }
 
 // Add Stock Item
@@ -100,6 +97,41 @@ WContainerWidget* WebViewTest::addStockItem(){
 
     addStockCont->setWidth(WLength(INPUT_WIDTH_PERCENT,WLength::Unit::Percentage));
     return addStockCont;
+}
+
+// Delete Stock Item
+WContainerWidget* WebViewTest::deleteStockItem(){
+
+    auto deleteStockCont = new WContainerWidget();
+
+    // Item Name
+    auto nameContainer = deleteStockCont->addWidget(std::make_unique<WContainerWidget>());
+    nameContainer->addWidget(std::make_unique<Wt::WText>("Item Name"));
+    nameEdit_ = nameContainer->addWidget(std::make_unique<Wt::WLineEdit>());
+    nameContainer->addWidget(std::make_unique<Wt::WBreak>());
+    nameContainer->setId("nameContainer");
+
+    // Delete Stock Pushbutton
+    Wt::WPushButton *deleteItemBtn = deleteStockCont->addWidget(std::make_unique<Wt::WPushButton>("Delete Item"));
+    deleteStockCont->addWidget(std::make_unique<Wt::WBreak>());
+    deleteStockCont->addWidget(std::make_unique<Wt::WBreak>());
+    
+    // Delete the item from the model
+    auto deleteItem = [this]{
+      model->removeFoodItem(nameEdit_->text().toUTF8());
+      std::cout << nameEdit_->text() << " successfully deleted!" << std::endl;
+    };
+    deleteItemBtn->clicked().connect(deleteItem);
+
+    deleteStockCont->setWidth(WLength(INPUT_WIDTH_PERCENT,WLength::Unit::Percentage));
+    return deleteStockCont;
+}
+
+// Launch Application
+static int launch(int argc, char**argv){
+    return Wt::WRun(argc, argv, [](const Wt::WEnvironment& env) {
+      return std::make_unique<WebViewTest>(env);
+    });    
 }
 
 int main(int argc, char **argv)
