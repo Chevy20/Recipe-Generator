@@ -17,7 +17,7 @@ class Observer {
     /**
      * Destructor - Deletes the class variables of this controller.
      */
-    Observer::~Observer() {
+    Observer::~Observer() override {
 
     }
 
