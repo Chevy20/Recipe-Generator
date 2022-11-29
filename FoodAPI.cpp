@@ -3,7 +3,7 @@
 #include <curl/curl.h>
 #include <iostream>
 #include <string>
-#include <jsoncpp/json/json.h>
+#include <json/json.h>
 #include <fstream>
 #include <algorithm>
 #include "FoodAPI.hpp"
@@ -296,7 +296,23 @@ Return: None
 FoodAPI::~FoodAPI(){
     delete _instance;
 }
-
-
+// //Testing, to be removed later
+// int main(){
+    
+    
+//     Model* modl = new Model();
+    
+//     FoodItem item1 = FoodItem("apples",4,"apples","2022/11/25","2022/11/30","fridge",1);
+//     FoodItem item2 = FoodItem("flour",4,"cups","2022/11/25","2022/11/30","pantry",1);
+//     FoodItem item3 = FoodItem("sugar",4,"cups","2022/11/25","2022/11/30","fridge",1);
+//     /*
+//     modl->addFoodItem(item1);
+//     modl->addFoodItem(item2);
+//     modl->addFoodItem(item3);
+//     */
+    
+//     modl->getFoodAPI()->getRecipeByIngredients(modl);
+    
+// }
 
 
