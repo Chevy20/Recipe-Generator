@@ -6,7 +6,7 @@ WebViewTest::WebViewTest(const Wt::WEnvironment& env)
     : Wt::WApplication(env)
 {
     // Get Application instance
-    WApplication *app = WApplication::instance();
+    app = WApplication::instance();
     content_=0;
     
     // Set application attributes
@@ -346,10 +346,32 @@ WContainerWidget* WebViewTest::addStockItem(){
         expiryEdit_->text().toUTF8(), locationEdit_->text().toUTF8(), std::stoi(alertQtyEdit_->text().toUTF8()));
       
       try{
-        model->addFoodItem(*fi);
-        std::cout<<"\nITEM ADDED TO STOCK\n";
-      } catch(...){
+        
+        if(model->addFoodItem(*fi)){
+          // Success Message
+          std::cout << nameEdit_->text() << " successfully added!" << std::endl;
+          auto messageBox = app->addChild(std::make_unique<WMessageBox>(
+            "Success!", WString("{1} successfully added!").arg(nameEdit_->text()), 
+            Icon::Information, StandardButton::Ok));
+
+          messageBox->buttonClicked().connect([=]{
+            app->removeChild(messageBox);
+          });
+          messageBox->show();
+        }
+        else{
+          throw "Item could not be added";
+        } 
+
+      } catch(const char* msg){
         //THROW POP UP BOX
+        auto messageBox = app->addChild(std::make_unique<WMessageBox>(
+        "Error!", WString(msg), Icon::Warning, StandardButton::Ok));
+        
+        messageBox->buttonClicked().connect([=]{
+          app->removeChild(messageBox);
+        });
+        messageBox->show();
       }
 
     };
@@ -389,9 +411,34 @@ WContainerWidget* WebViewTest::deleteStockItem(){
     
     // Delete the item from the model
     auto deleteItem = [this]{
-      model->removeFoodItem(nameEdit_->text().toUTF8());
-      std::cout << nameEdit_->text() << " successfully deleted!" << std::endl;
+      try{
+        if(model->removeFoodItem(nameEdit_->text().toUTF8())){
+          
+          // Success Message
+          std::cout << nameEdit_->text() << " successfully deleted!" << std::endl;
+          auto messageBox = app->addChild(std::make_unique<WMessageBox>(
+            "Success!", WString("{1} successfully deleted.").arg(nameEdit_->text()), 
+            Icon::Information, StandardButton::Ok));
+
+          messageBox->buttonClicked().connect([=]{
+            app->removeChild(messageBox);
+          });
+          messageBox->show();
+        }
+        else{
+          throw "Item could not be deleted";
+        }        
+      } catch (const char* msg) {         
+        auto messageBox = app->addChild(std::make_unique<WMessageBox>(
+        "Error!", WString(msg), Icon::Warning, StandardButton::Ok));
+        
+        messageBox->buttonClicked().connect([=]{
+          app->removeChild(messageBox);
+        });
+        messageBox->show();
+      }
     };
+
     deleteItemBtn->clicked().connect(deleteItem);
 
     deleteStockCont->setWidth(WLength(INPUT_WIDTH_PERCENT,WLength::Unit::Percentage));
@@ -406,30 +453,145 @@ WContainerWidget* WebViewTest::deleteStockItem(){
 */
 WContainerWidget* WebViewTest::modifyStockItem(){
 
-    auto modifyStockCont = new WContainerWidget();
+    auto container = new WContainerWidget();
+    auto modStockCont = new WContainerWidget();
+    
+    // Create panel for input fields to be added in
+    auto modPanel = container->addWidget(std::make_unique<WPanel>());
+    modPanel->addStyleClass("centered-example");
+    modPanel->setTitle("MODIFY STOCK ITEM");
+    modPanel->setWidth(WLength(100,LengthUnit::Percentage));
 
     // Item Name
-    auto nameContainer = modifyStockCont->addWidget(std::make_unique<WContainerWidget>());
+    auto nameContainer = modStockCont->addWidget(std::make_unique<WContainerWidget>());
     nameContainer->addWidget(std::make_unique<Wt::WText>("Item Name"));
     nameEdit_ = nameContainer->addWidget(std::make_unique<Wt::WLineEdit>());
     nameContainer->addWidget(std::make_unique<Wt::WBreak>());
     nameContainer->setId("nameContainer");
+    // nameContainer->setWidth(WLength(INPUT_WIDTH_PERCENT,WLength::Unit::Percentage));
 
-    // Modify Stock Pushbutton
-    Wt::WPushButton *modifyItemBtn = modifyStockCont->addWidget(std::make_unique<Wt::WPushButton>("Modify Item"));
-    modifyStockCont->addWidget(std::make_unique<Wt::WBreak>());
-    modifyStockCont->addWidget(std::make_unique<Wt::WBreak>());
+    // Mesurement Unit Entry
+    auto unitContainer = modStockCont->addWidget(std::make_unique<WContainerWidget>());
+    unitContainer->addWidget(std::make_unique<Wt::WText>("Measurement Unit"));
+    unitEdit_ = unitContainer->addWidget(std::make_unique<Wt::WLineEdit>());
+    unitContainer->addWidget(std::make_unique<Wt::WBreak>());
+    unitContainer->setId("unitContainer");
+
+    // Quantity Entry
+    auto qtyContainer = modStockCont->addWidget(std::make_unique<WContainerWidget>());
+    qtyContainer->addWidget(std::make_unique<Wt::WText>("Quantity"));
+    qtyEdit_ = qtyContainer->addWidget(std::make_unique<Wt::WLineEdit>());
+    qtyContainer->addWidget(std::make_unique<Wt::WBreak>());
+    qtyContainer->setId("qtyContainer");
+
+    // Date Purchased Entry
+    auto purchaseContainer = modStockCont->addWidget(std::make_unique<WContainerWidget>());
+    purchaseContainer->addWidget(std::make_unique<Wt::WText>("Purchase Date (YYYY/MM/DD)"));
+    purchaseEdit_ = purchaseContainer->addWidget(std::make_unique<Wt::WLineEdit>());
+    purchaseContainer->addWidget(std::make_unique<Wt::WBreak>());
+    purchaseContainer->setId("purchaseContainer");
+
+    // Expiry Date Entry
+    auto expiryContainer = modStockCont->addWidget(std::make_unique<WContainerWidget>());
+    expiryContainer->addWidget(std::make_unique<Wt::WText>("Expiration Date (YYYY/MM/DD)"));
+    expiryEdit_ = expiryContainer->addWidget(std::make_unique<Wt::WLineEdit>());
+    expiryContainer->addWidget(std::make_unique<Wt::WBreak>());
+    expiryContainer->setId("expiryContainer");
+    // expiryContainer->setWidth(WLength(INPUT_WIDTH_PERCENT,WLength::Unit::Percentage));
+
+    // Storage Location Entry
+    auto locationContainer = modStockCont->addWidget(std::make_unique<WContainerWidget>());
+    locationContainer->addWidget(std::make_unique<Wt::WText>("Storage Location"));
+    locationEdit_ = locationContainer->addWidget(std::make_unique<Wt::WLineEdit>());
+    locationContainer->addWidget(std::make_unique<Wt::WBreak>());
+    locationContainer->setId("locationContainer");
+    // locationContainer->setWidth(WLength(INPUT_WIDTH_PERCENT,WLength::Unit::Percentage));
+
+    // Stock Low Alert Quantity Entry
+    auto alertQtyContainer = modStockCont->addWidget(std::make_unique<WContainerWidget>());
+    alertQtyContainer->addWidget(std::make_unique<Wt::WText>("Low Qty Threshold"));
+    alertQtyEdit_ = alertQtyContainer->addWidget(std::make_unique<Wt::WLineEdit>());
+    alertQtyContainer->addWidget(std::make_unique<Wt::WBreak>());
+    alertQtyContainer->setId("locationContainer");
+    // alertQtyContainer->setWidth(WLength(INPUT_WIDTH_PERCENT,WLength::Unit::Percentage));
+
+    // Add to Stock Pushbutton
+    Wt::WPushButton *modItemBtn = modStockCont->addWidget(std::make_unique<Wt::WPushButton>("Modify Item"));
+    modStockCont->addWidget(std::make_unique<Wt::WBreak>());
+    modStockCont->addWidget(std::make_unique<Wt::WBreak>());
     
-    // Delete the item from the model
-    auto modifyItem = [this]{
-      model->removeFoodItem(nameEdit_->text().toUTF8());
-      std::cout << nameEdit_->text() << " successfully modified!" << std::endl;
+    // Populate the text fields
+    auto populateFields = [this]{
+      FoodItem fi = model->querySingleFoodItem(nameEdit_->text().toUTF8());
+      try{
+        
+        // If invalid entry throw exception
+        if(fi.getName()==""){
+          throw std::exception();
+        }
+
+        nameEdit_->setText(fi.getName());
+        unitEdit_->setText(fi.getMeasureUnit());
+        qtyEdit_->setText(std::to_string(fi.getQuantity()));
+        purchaseEdit_->setText(fi.getDatePurchased());
+        expiryEdit_->setText(fi.getExpiry());
+        locationEdit_->setText(fi.getType());
+        alertQtyEdit_->setText(std::to_string(fi.getThreshold()));
+
+      } catch (...) {
+        //THROW POP UP BOX
+        auto messageBox = app->addChild(std::make_unique<WMessageBox>(
+          "Error!", WString("Item doesn't exist"), Icon::Warning, StandardButton::Ok));
+        
+        messageBox->buttonClicked().connect([=]{
+          app->removeChild(messageBox);
+        });
+        messageBox->show();
+        
+        // Clear entries
+        nameEdit_->setText("");
+        unitEdit_->setText("");
+        qtyEdit_->setText("");
+        purchaseEdit_->setText("");
+        expiryEdit_->setText("");
+        locationEdit_->setText("");
+        alertQtyEdit_->setText("");
+      }
+
     };
-    modifyItemBtn->clicked().connect(modifyItem);
+    nameEdit_->changed().connect(populateFields);
 
-    modifyStockCont->setWidth(WLength(INPUT_WIDTH_PERCENT,WLength::Unit::Percentage));
-    
-    return modifyStockCont;
+    // Build the FoodItem and connect the Add stock button
+    auto modItem = [this]{
+      FoodItem *fi = new FoodItem(nameEdit_->text().toUTF8(), std::stoi(qtyEdit_->text().toUTF8()), 
+        unitEdit_->text().toUTF8(), purchaseEdit_->text().toUTF8(), 
+        expiryEdit_->text().toUTF8(), locationEdit_->text().toUTF8(), std::stoi(alertQtyEdit_->text().toUTF8()));
+      
+      try{
+        bool result = false;
+        result = model->modifyFoodItem(*fi);
+        if(!result){
+          throw "Food Item could not be modified.";
+        }
+        std::cout<<"\nITEM MODIFIED IN STOCK\n";
+      } catch(const char* msg){
+        //THROW POP UP BOX
+        auto messageBox = app->addChild(std::make_unique<WMessageBox>(
+          "Error!", WString(msg), Icon::Warning, StandardButton::Ok));
+        
+        messageBox->buttonClicked().connect([=]{
+          app->removeChild(messageBox);
+        });
+        messageBox->show();
+      }
+      delete fi;
+    };
+    modItemBtn->clicked().connect(modItem);
+
+    modStockCont->setWidth(WLength(INPUT_WIDTH_PERCENT,WLength::Unit::Percentage));
+    modPanel->setCentralWidget(std::unique_ptr<WContainerWidget>(modStockCont));
+
+    return container;
 }
 
 void WebViewTest::handleInternalPathChange()
@@ -439,17 +601,16 @@ void WebViewTest::handleInternalPathChange()
     content()->clear();
 
     if (app->internalPath() == addItemPath){
-      std::cerr<<"\nPATH CHANGED - ADD\n";
+      std::cerr<<"\nPATH CHANGED - ADD ITEM\n";
       content()->addWidget(std::unique_ptr<WContainerWidget>(addStockItem()));
     }
     else if (app->internalPath() == deleteItemPath){
-      std::cerr<<"\nPATH CHANGED - DELETE\n";
+      std::cerr<<"\nPATH CHANGED - DELETE ITEM\n";
       content()->addWidget(std::unique_ptr<WContainerWidget>(deleteStockItem()));
     }
     else if (app->internalPath() == modItemPath){
-      std::cerr<<"\nPATH CHANGED - MODIFY\n";
-      //delete content_;
-      //content_= modifyStockItem();
+      std::cerr<<"\nPATH CHANGED - MODIFY ITEM\n";
+      content()->addWidget(std::unique_ptr<WContainerWidget>(modifyStockItem()));
     }
     else if (app->internalPath() == findItemPath){
       std::cerr<<"\nPATH CHANGED - FIND ITEM\n";

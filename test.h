@@ -27,6 +27,7 @@ class WebViewTest : public Wt::WApplication
 {
 public:
     WebViewTest(const Wt::WEnvironment& env);
+    Wt::WApplication *app;
 
 private:
     const std::string addItemPath = "/?_=add-to-stock";
