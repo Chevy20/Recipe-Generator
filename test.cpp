@@ -2,7 +2,7 @@
 
 using namespace Wt;
 
-WebViewTest::WebViewTest(const Wt::WEnvironment& env)
+WebView::WebView(const Wt::WEnvironment& env)
     : Wt::WApplication(env)
 {
     // Get Application instance
@@ -14,7 +14,7 @@ WebViewTest::WebViewTest(const Wt::WEnvironment& env)
     setTheme(std::make_shared<WBootstrap5Theme>());
 
     // Define model
-    model = new Model();
+    setModel(new Model());
 
     // Path change
     app->internalPathChanged().connect([=]{
@@ -34,6 +34,7 @@ WebViewTest::WebViewTest(const Wt::WEnvironment& env)
     auto sidebarCont = std::unique_ptr<WContainerWidget>(sidebar());
     horizBox->addWidget(std::move(sidebarCont));
 
+    // Add the content widget
     auto contentContainer = std::unique_ptr<WContainerWidget>(content());
     horizBox->addWidget(std::move(contentContainer));
 
@@ -44,7 +45,7 @@ WebViewTest::WebViewTest(const Wt::WEnvironment& env)
 /**
  * Navigation Bar - NOT USED
 */
-WContainerWidget* WebViewTest::navbar(){
+WContainerWidget* WebView::navbar(){
 
     // Create navigation bar container
     auto nav_container = new WContainerWidget();
@@ -148,7 +149,7 @@ WContainerWidget* WebViewTest::navbar(){
 /**
  * Build Sidebar Navigation
 */
-WContainerWidget* WebViewTest::sidebar(){
+WContainerWidget* WebView::sidebar(){
 
   // Create sidebar container
   auto sidebarCont = new WContainerWidget();
@@ -254,7 +255,7 @@ WContainerWidget* WebViewTest::sidebar(){
 /**
  * Page Content
 */
-WContainerWidget* WebViewTest::content(){
+WContainerWidget* WebView::content(){
   
   if (content_ == 0) {
     content_ = new WContainerWidget();
@@ -267,7 +268,7 @@ WContainerWidget* WebViewTest::content(){
 /**
  * Add Stock Item
  * */ 
-WContainerWidget* WebViewTest::addStockItem(){
+WContainerWidget* WebView::addStockItem(){
 
     auto container = new WContainerWidget();
     auto addStockCont = new WContainerWidget();
@@ -347,7 +348,7 @@ WContainerWidget* WebViewTest::addStockItem(){
       
       try{
         
-        if(model->addFoodItem(*fi)){
+        if(getModel()->addFoodItem(*fi)){
           // Success Message
           std::cout << nameEdit_->text() << " successfully added!" << std::endl;
           auto messageBox = app->addChild(std::make_unique<WMessageBox>(
@@ -386,7 +387,7 @@ WContainerWidget* WebViewTest::addStockItem(){
 /**
  * Delete Stock Item
 */
-WContainerWidget* WebViewTest::deleteStockItem(){
+WContainerWidget* WebView::deleteStockItem(){
 
     auto container = new WContainerWidget();
     auto deleteStockCont = new WContainerWidget();
@@ -412,7 +413,7 @@ WContainerWidget* WebViewTest::deleteStockItem(){
     // Delete the item from the model
     auto deleteItem = [this]{
       try{
-        if(model->removeFoodItem(nameEdit_->text().toUTF8())){
+        if(getModel()->removeFoodItem(nameEdit_->text().toUTF8())){
           
           // Success Message
           std::cout << nameEdit_->text() << " successfully deleted!" << std::endl;
@@ -451,7 +452,7 @@ WContainerWidget* WebViewTest::deleteStockItem(){
 /**
  * Modify Stock Item
 */
-WContainerWidget* WebViewTest::modifyStockItem(){
+WContainerWidget* WebView::modifyStockItem(){
 
     auto container = new WContainerWidget();
     auto modStockCont = new WContainerWidget();
@@ -522,7 +523,7 @@ WContainerWidget* WebViewTest::modifyStockItem(){
     
     // Populate the text fields
     auto populateFields = [this]{
-      FoodItem fi = model->querySingleFoodItem(nameEdit_->text().toUTF8());
+      FoodItem fi = getModel()->querySingleFoodItem(nameEdit_->text().toUTF8());
       try{
         
         // If invalid entry throw exception
@@ -569,12 +570,13 @@ WContainerWidget* WebViewTest::modifyStockItem(){
       
       try{
         bool result = false;
-        result = model->modifyFoodItem(*fi);
+        result = getModel()->modifyFoodItem(*fi);
         if(!result){
           throw "Food Item could not be modified.";
         }
         std::cout<<"\nITEM MODIFIED IN STOCK\n";
-      } catch(const char* msg){
+      } 
+      catch(const char* msg){
         //THROW POP UP BOX
         auto messageBox = app->addChild(std::make_unique<WMessageBox>(
           "Error!", WString(msg), Icon::Warning, StandardButton::Ok));
@@ -594,7 +596,10 @@ WContainerWidget* WebViewTest::modifyStockItem(){
     return container;
 }
 
-void WebViewTest::handleInternalPathChange()
+/**
+ * Handle an internal path change
+*/
+void WebView::handleInternalPathChange()
 {
     WApplication *app = Wt::WApplication::instance();
     
@@ -624,12 +629,24 @@ void WebViewTest::handleInternalPathChange()
 
 }
 
+Model* WebView::getModel(){
+  return model;
+}
+
+void WebView::setModel(Model *model){
+  this->model = model;
+}
+
+void WebView::display(){
+
+}
+
 /**
  * Launch Application
 */
 static int launch(int argc, char**argv){
     return Wt::WRun(argc, argv, [](const Wt::WEnvironment& env) {
-      return std::make_unique<WebViewTest>(env);
+      return std::make_unique<WebView>(env);
     });    
 }
 

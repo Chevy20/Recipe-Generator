@@ -1,3 +1,9 @@
+/*
+ * WebView.h
+ */
+#ifndef WEBVIEW_H
+#define WEBVIEW_H
+
 #include <Wt/WApplication.h>
 #include <Wt/WContainerWidget.h>
 #include <Wt/WNavigationBar.h>
@@ -14,8 +20,10 @@
 #include <Wt/WPanel.h>
 #include <Wt/WHBoxLayout.h>
 
+#include "View.h"
 #include "Model.h"
 #include "FoodItem.h"
+
 
 #define APP_NAME "Freshcipes"
 #define INPUT_WIDTH_PERCENT 80
@@ -23,17 +31,28 @@
 
 static int launch(int argc, char **argv);
 
-class WebViewTest : public Wt::WApplication
+class WebView : public Wt::WApplication, public View
 {
 public:
-    WebViewTest(const Wt::WEnvironment& env);
+    WebView(const Wt::WEnvironment& env);
+    virtual ~WebView() = default;
     Wt::WApplication *app;
 
+    // Inherited functions
+    virtual Model* getModel();
+    virtual void setModel(Model *model);
+    virtual void display();
+
 private:
+
+    // Path constants for nav buttons
     const std::string addItemPath = "/?_=add-to-stock";
     const std::string deleteItemPath = "/?_=delete-from-stock";
     const std::string modItemPath = "/?_=modify-stock";
     const std::string findItemPath = "/?_=find-stock";
+    const std::string temp1 = "/?_=delete-from-stock";
+    const std::string temp2 = "/?_=modify-stock";
+    const std::string temp3 = "/?_=find-stock";
 
     // Model
     Model *model;
@@ -64,3 +83,5 @@ private:
     void handleInternalPathChange();
     
 };
+
+#endif
