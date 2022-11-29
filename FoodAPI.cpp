@@ -32,15 +32,10 @@ Parameters: none
 Return: none
 */
 FoodAPI::FoodAPI(){
+    string key = "254ee65b4d89431f9465d6b595199032";
+    FoodAPI::setAPIKey(key);
     
-    if(const char* envVar = getenv("SPOONACULAR_API_KEY")){
-        std::string key = envVar;
-        FoodAPI::setAPIKey(key);
-    }
-    else{
-        cout << "Missing API Key.  Add to environment variables." << endl;
-        exit(0);
-    }
+    
 }
 
 /*
