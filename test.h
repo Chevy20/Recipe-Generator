@@ -18,7 +18,7 @@
 #include "FoodItem.h"
 
 #define APP_NAME "Freshcipes"
-#define INPUT_WIDTH_PERCENT 35
+#define INPUT_WIDTH_PERCENT 80
 #define NAV_BUTTON_WIDTH 80
 
 static int launch(int argc, char **argv);
@@ -38,7 +38,7 @@ private:
     Model *model;
 
     Wt::WHBoxLayout *horizBox;
-    Wt::WContainerWidget *content_;
+    Wt::WContainerWidget *content_;    
 
     // Add Stock Item
     Wt::WLineEdit *nameEdit_;

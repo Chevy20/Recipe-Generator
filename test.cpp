@@ -251,6 +251,9 @@ WContainerWidget* WebViewTest::sidebar(){
 
 }
 
+/**
+ * Page Content
+*/
 WContainerWidget* WebViewTest::content(){
   
   if (content_ == 0) {
@@ -266,7 +269,14 @@ WContainerWidget* WebViewTest::content(){
  * */ 
 WContainerWidget* WebViewTest::addStockItem(){
 
+    auto container = new WContainerWidget();
     auto addStockCont = new WContainerWidget();
+    
+    // Create panel for Recipe buttons to be added in
+    auto addPanel = container->addWidget(std::make_unique<WPanel>());
+    addPanel->addStyleClass("centered-example");
+    addPanel->setTitle("ADD ITEM TO STOCK");
+    addPanel->setWidth(WLength(100,LengthUnit::Percentage));
 
     // Item Name
     auto nameContainer = addStockCont->addWidget(std::make_unique<WContainerWidget>());
@@ -346,8 +356,9 @@ WContainerWidget* WebViewTest::addStockItem(){
     addItemBtn->clicked().connect(addItem);
 
     addStockCont->setWidth(WLength(INPUT_WIDTH_PERCENT,WLength::Unit::Percentage));
+    addPanel->setCentralWidget(std::unique_ptr<WContainerWidget>(addStockCont));
 
-    return addStockCont;
+    return container;
 }
 
 /**
@@ -355,7 +366,14 @@ WContainerWidget* WebViewTest::addStockItem(){
 */
 WContainerWidget* WebViewTest::deleteStockItem(){
 
+    auto container = new WContainerWidget();
     auto deleteStockCont = new WContainerWidget();
+
+    // Create panel for Recipe buttons to be added in
+    auto deletePanel = container->addWidget(std::make_unique<WPanel>());
+    deletePanel->addStyleClass("centered-example");
+    deletePanel->setTitle("DELETE ITEM FROM STOCK");
+    deletePanel->setWidth(WLength(100,LengthUnit::Percentage));
 
     // Item Name
     auto nameContainer = deleteStockCont->addWidget(std::make_unique<WContainerWidget>());
@@ -377,8 +395,9 @@ WContainerWidget* WebViewTest::deleteStockItem(){
     deleteItemBtn->clicked().connect(deleteItem);
 
     deleteStockCont->setWidth(WLength(INPUT_WIDTH_PERCENT,WLength::Unit::Percentage));
-    
-    return deleteStockCont;
+    deletePanel->setCentralWidget(std::unique_ptr<WContainerWidget>(deleteStockCont));
+
+    return container;
 }
 
 
@@ -432,6 +451,11 @@ void WebViewTest::handleInternalPathChange()
       //delete content_;
       //content_= modifyStockItem();
     }
+    else if (app->internalPath() == findItemPath){
+      std::cerr<<"\nPATH CHANGED - FIND ITEM\n";
+      //delete content_;
+      //content_= modifyStockItem();
+    }    
     else
       std::cerr<<"\nPATH CHANGED - HOME\n";
       //delete content_;
