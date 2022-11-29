@@ -19,13 +19,16 @@ class Recipe{
         std::vector<RecipeItem> missingIngredients;
         std::vector<RecipeItem> recipeIngredients;
         std::map<std::string,float> recipeNutrition;
+        std::string imageURL;
+       
         
         
     public:
         Recipe();
-        Recipe(std::string rname, std::vector<RecipeItem> ingredients,std::vector<RecipeItem> missingingredients, std::map<std::string, float> nutri);
+        Recipe(std::string rname, std::vector<RecipeItem> ingredients,std::vector<RecipeItem> missingingredients, std::map<std::string, float> nutri, std::string img);
         ~Recipe();
         std::string getRecipeName();
+        std::string getImageURL();
         std::vector<RecipeItem> getMissingIngredients();
         std::vector<RecipeItem> getIngredients();
         std::map<std::string, float> getNutrition();    

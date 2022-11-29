@@ -7,12 +7,13 @@ Recipe::Recipe()
 {
     //default     
 }
-Recipe::Recipe(std::string rname, std::vector<RecipeItem> ingredients,std::vector<RecipeItem> missingingredients, std::map<std::string, float> nutri)
+Recipe::Recipe(std::string rname, std::vector<RecipeItem> ingredients,std::vector<RecipeItem> missingingredients, std::map<std::string, float> nutri, std::string img)
 {
     recipeName = rname;
     missingIngredients = missingingredients;
     recipeIngredients = ingredients;
     recipeNutrition = nutri;
+    imageURL = img;
    
     
 }
@@ -22,6 +23,9 @@ Recipe::~Recipe()
 }
 vector<RecipeItem> Recipe::getMissingIngredients(){
     return missingIngredients;
+}
+string Recipe::getImageURL(){
+    return imageURL;
 }
 string Recipe::getRecipeName()
 {

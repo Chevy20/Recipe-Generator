@@ -199,6 +199,7 @@ void Model::printRecipeToConsole(){
             cout<<"Ingredient Name: " + mIngredients[j].getItem()<<endl;
             cout<<"Quantity: "+to_string(mIngredients[j].getQuantity()) +" "+ mIngredients[j].getItemMeasureUnit()<<endl;
         }
+        cout<<"Image URL: "+queriedRecipes[i].getImageURL()<<endl;
         cout<<endl;
     }
 }

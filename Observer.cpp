@@ -8,7 +8,7 @@ class Observer {
      * 
      * @param controller The controller that is being observed.
      */
-    Observer::Observer(Controller &controller) {
+    Observer::Observer(Controller& _controller) {
         this->controller = controller;
         this->controller.registerObserver(this);
     }
