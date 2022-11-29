@@ -5,32 +5,39 @@ using namespace Wt;
 WebViewTest::WebViewTest(const Wt::WEnvironment& env)
     : Wt::WApplication(env)
 {
+    // Get Application instance
+    WApplication *app = WApplication::instance();
+    content_=0;
+    
+    // Set application attributes
+    setTitle(APP_NAME);
+    setTheme(std::make_shared<WBootstrap5Theme>());
+
     // Define model
     model = new Model();
 
-    setTitle("Freshcipes");
-    setTheme(std::make_shared<WBootstrap5Theme>());
+    // Path change
+    app->internalPathChanged().connect([=]{
+      handleInternalPathChange();
+    });
 
-
-    // Add navbar
-    // auto navbarCont = navbar();
-    // root()->addWidget(std::unique_ptr<WContainerWidget>(navbarCont));
-
-
+    // Set up main containers and layout
     auto container = new WContainerWidget();
     container->setWidth(WLength(50, LengthUnit::Percentage));
-    auto horizBox = container->setLayout(std::make_unique<WHBoxLayout>());
+    horizBox = container->setLayout(std::make_unique<WHBoxLayout>());
+
+    // Add navbar
+    auto navbarCont = navbar();
+    app->root()->addWidget(std::unique_ptr<WContainerWidget>(navbarCont));
 
     // Add sidebar
     auto sidebarCont = std::unique_ptr<WContainerWidget>(sidebar());
     horizBox->addWidget(std::move(sidebarCont));
 
-    auto content = handleInternalPathChange();
-
-    auto contentContainer = std::unique_ptr<WContainerWidget>(content);
+    auto contentContainer = std::unique_ptr<WContainerWidget>(content());
     horizBox->addWidget(std::move(contentContainer));
 
-    root()->addWidget(std::unique_ptr<WContainerWidget>(container));
+    app->root()->addWidget(std::unique_ptr<WContainerWidget>(container));
 
 }
 
@@ -48,6 +55,7 @@ WContainerWidget* WebViewTest::navbar(){
     nav->addStyleClass("navbar-light bg-light");
     nav->setTitle("Freschipes", "/");
 
+    /*
     WStackedWidget *menuStack = nav_container->addNew<WStackedWidget>();
     menuStack->addStyleClass("contents");
     
@@ -131,10 +139,11 @@ WContainerWidget* WebViewTest::navbar(){
     auto menuItem = std::make_unique<Wt::WMenuItem>("Help");
     menuItem->setMenu(std::move(popupPtr));
     rightNavMenu->addItem(std::move(menuItem));
-
+    */
     return nav_container;
 
 }
+
 
 /**
  * Build Sidebar Navigation
@@ -157,7 +166,7 @@ WContainerWidget* WebViewTest::sidebar(){
   // Add pushbuttons to pb container
   // Add Item Button
   auto addItemBtn = stockPbCont->addWidget(std::make_unique<Wt::WPushButton>("Add Item"));
-  addItemBtn->setLink(Wt::WLink(Wt::LinkType::InternalPath, "/add-to-stock"));
+  addItemBtn->setLink(Wt::WLink(Wt::LinkType::InternalPath, addItemPath));
   addItemBtn->setMargin(5, Wt::Side::Bottom);
   addItemBtn->setVerticalAlignment(AlignmentFlag::Center);
   addItemBtn->setWidth(WLength(NAV_BUTTON_WIDTH,WLength::Unit::Percentage));
@@ -166,7 +175,7 @@ WContainerWidget* WebViewTest::sidebar(){
   
   // Delete Item Button
   auto deleteItemBtn = stockPbCont->addWidget(std::make_unique<Wt::WPushButton>("Delete Item"));
-  deleteItemBtn->setLink(Wt::WLink(Wt::LinkType::InternalPath, "/delete-to-stock"));
+  deleteItemBtn->setLink(Wt::WLink(Wt::LinkType::InternalPath, deleteItemPath));
   deleteItemBtn->setMargin(5, Wt::Side::Bottom);
   deleteItemBtn->setVerticalAlignment(AlignmentFlag::Center);
   deleteItemBtn->setWidth(WLength(NAV_BUTTON_WIDTH,WLength::Unit::Percentage));
@@ -175,7 +184,7 @@ WContainerWidget* WebViewTest::sidebar(){
   
   // Modify Item Button
   auto modItemBtn = stockPbCont->addWidget(std::make_unique<Wt::WPushButton>("Modify Item"));
-  modItemBtn->setLink(Wt::WLink(Wt::LinkType::InternalPath, "/modify-stock"));
+  modItemBtn->setLink(Wt::WLink(Wt::LinkType::InternalPath, modItemPath));
   modItemBtn->setMargin(5, Wt::Side::Bottom);
   modItemBtn->setVerticalAlignment(AlignmentFlag::Center);
   modItemBtn->setWidth(WLength(NAV_BUTTON_WIDTH,WLength::Unit::Percentage));
@@ -183,7 +192,7 @@ WContainerWidget* WebViewTest::sidebar(){
 
  // Find Item Button
   auto findStockItemBtn = stockPbCont->addWidget(std::make_unique<Wt::WPushButton>("Find Item"));
-  findStockItemBtn->setLink(Wt::WLink(Wt::LinkType::InternalPath, "/modify-stock"));
+  findStockItemBtn->setLink(Wt::WLink(Wt::LinkType::InternalPath, findItemPath));
   findStockItemBtn->setMargin(5, Wt::Side::Bottom);
   findStockItemBtn->setVerticalAlignment(AlignmentFlag::Center);
   findStockItemBtn->setWidth(WLength(NAV_BUTTON_WIDTH,WLength::Unit::Percentage));
@@ -208,7 +217,7 @@ WContainerWidget* WebViewTest::sidebar(){
   // Add pushbuttons to pb container
   // Find Recipe by Item Button
   auto findRecipeByItemBtn = recipePbCont->addWidget(std::make_unique<Wt::WPushButton>("Find By Item"));
-  findRecipeByItemBtn->setLink(Wt::WLink(Wt::LinkType::InternalPath, "/recipe-by-item"));
+  findRecipeByItemBtn->setLink(Wt::WLink(Wt::LinkType::InternalPath, "recipe-by-item"));
   findRecipeByItemBtn->setMargin(5, Wt::Side::Bottom);
   findRecipeByItemBtn->setVerticalAlignment(AlignmentFlag::Center);
   findRecipeByItemBtn->setWidth(WLength(NAV_BUTTON_WIDTH,WLength::Unit::Percentage));
@@ -217,7 +226,7 @@ WContainerWidget* WebViewTest::sidebar(){
   
   // Find Recipes for all stock Button
   auto findRecipeForAllBtn = recipePbCont->addWidget(std::make_unique<Wt::WPushButton>("Find for All Items"));
-  findRecipeForAllBtn->setLink(Wt::WLink(Wt::LinkType::InternalPath, "/recipe-all-stock"));
+  findRecipeForAllBtn->setLink(Wt::WLink(Wt::LinkType::InternalPath, "recipe-all-stock"));
   findRecipeForAllBtn->setMargin(5, Wt::Side::Bottom);
   findRecipeForAllBtn->setVerticalAlignment(AlignmentFlag::Center);
   findRecipeForAllBtn->setWidth(WLength(NAV_BUTTON_WIDTH,WLength::Unit::Percentage));
@@ -226,7 +235,7 @@ WContainerWidget* WebViewTest::sidebar(){
   
   // Select Recipe to Cook Button
   auto selectRecipeBtn = recipePbCont->addWidget(std::make_unique<Wt::WPushButton>("Select Recipe"));
-  selectRecipeBtn->setLink(Wt::WLink(Wt::LinkType::InternalPath, "/recipe-select"));
+  selectRecipeBtn->setLink(Wt::WLink(Wt::LinkType::InternalPath, "recipe-select"));
   selectRecipeBtn->setMargin(5, Wt::Side::Bottom);
   selectRecipeBtn->setVerticalAlignment(AlignmentFlag::Center);
   selectRecipeBtn->setWidth(WLength(NAV_BUTTON_WIDTH,WLength::Unit::Percentage));
@@ -240,6 +249,16 @@ WContainerWidget* WebViewTest::sidebar(){
 
   return sidebarCont;
 
+}
+
+WContainerWidget* WebViewTest::content(){
+  
+  if (content_ == 0) {
+    content_ = new WContainerWidget();
+    content_->setId("content");
+  }
+  
+  return content_;
 }
 
 /**
@@ -318,7 +337,7 @@ WContainerWidget* WebViewTest::addStockItem(){
       
       try{
         model->addFoodItem(*fi);
-        std::cerr<<"\nMADE IT HERE\n";
+        std::cout<<"\nITEM ADDED TO STOCK\n";
       } catch(...){
         //THROW POP UP BOX
       }
@@ -363,17 +382,61 @@ WContainerWidget* WebViewTest::deleteStockItem(){
 }
 
 
-WContainerWidget* WebViewTest::handleInternalPathChange()
+/**
+ * Modify Stock Item
+*/
+WContainerWidget* WebViewTest::modifyStockItem(){
+
+    auto modifyStockCont = new WContainerWidget();
+
+    // Item Name
+    auto nameContainer = modifyStockCont->addWidget(std::make_unique<WContainerWidget>());
+    nameContainer->addWidget(std::make_unique<Wt::WText>("Item Name"));
+    nameEdit_ = nameContainer->addWidget(std::make_unique<Wt::WLineEdit>());
+    nameContainer->addWidget(std::make_unique<Wt::WBreak>());
+    nameContainer->setId("nameContainer");
+
+    // Modify Stock Pushbutton
+    Wt::WPushButton *modifyItemBtn = modifyStockCont->addWidget(std::make_unique<Wt::WPushButton>("Modify Item"));
+    modifyStockCont->addWidget(std::make_unique<Wt::WBreak>());
+    modifyStockCont->addWidget(std::make_unique<Wt::WBreak>());
+    
+    // Delete the item from the model
+    auto modifyItem = [this]{
+      model->removeFoodItem(nameEdit_->text().toUTF8());
+      std::cout << nameEdit_->text() << " successfully modified!" << std::endl;
+    };
+    modifyItemBtn->clicked().connect(modifyItem);
+
+    modifyStockCont->setWidth(WLength(INPUT_WIDTH_PERCENT,WLength::Unit::Percentage));
+    
+    return modifyStockCont;
+}
+
+void WebViewTest::handleInternalPathChange()
 {
     WApplication *app = Wt::WApplication::instance();
+    
+    content()->clear();
 
-    if (app->internalPath() == addItemPath)
-        return addStockItem();
-    else if (app->internalPath() == deleteItemPath)
-        return deleteStockItem();
-    else if (app->internalPath() == modItemPath)
+    if (app->internalPath() == addItemPath){
+      std::cerr<<"\nPATH CHANGED - ADD\n";
+      content()->addWidget(std::unique_ptr<WContainerWidget>(addStockItem()));
+    }
+    else if (app->internalPath() == deleteItemPath){
+      std::cerr<<"\nPATH CHANGED - DELETE\n";
+      content()->addWidget(std::unique_ptr<WContainerWidget>(deleteStockItem()));
+    }
+    else if (app->internalPath() == modItemPath){
+      std::cerr<<"\nPATH CHANGED - MODIFY\n";
+      //delete content_;
+      //content_= modifyStockItem();
+    }
     else
-        app->show();
+      std::cerr<<"\nPATH CHANGED - HOME\n";
+      //delete content_;
+      //content_ = new WContainerWidget();
+
 }
 
 /**

@@ -17,6 +17,7 @@
 #include "Model.h"
 #include "FoodItem.h"
 
+#define APP_NAME "Freshcipes"
 #define INPUT_WIDTH_PERCENT 35
 #define NAV_BUTTON_WIDTH 80
 
@@ -28,12 +29,16 @@ public:
     WebViewTest(const Wt::WEnvironment& env);
 
 private:
-    const std::string addItemPath = "/add-to-stock";
-    const std::string deleteItemPath = "/delete-from-stock";
-    const std::string modItemPath = "/add-to-stock";
-    const std::string findItemPath = "/add-to-stock";
+    const std::string addItemPath = "/?_=add-to-stock";
+    const std::string deleteItemPath = "/?_=delete-from-stock";
+    const std::string modItemPath = "/?_=modify-stock";
+    const std::string findItemPath = "/?_=find-stock";
 
+    // Model
     Model *model;
+
+    Wt::WHBoxLayout *horizBox;
+    Wt::WContainerWidget *content_;
 
     // Add Stock Item
     Wt::WLineEdit *nameEdit_;
@@ -47,10 +52,13 @@ private:
     // Structural containers
     Wt::WContainerWidget* navbar();
     Wt::WContainerWidget* sidebar();
+    Wt::WContainerWidget* content();
 
     // Functional containers
     Wt::WContainerWidget* addStockItem();
     Wt::WContainerWidget* deleteStockItem();
+    Wt::WContainerWidget* modifyStockItem();
+
 
     void handleInternalPathChange();
     
