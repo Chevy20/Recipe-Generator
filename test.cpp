@@ -376,6 +376,7 @@ WContainerWidget* WebView::addStockItem(){
       }
 
     };
+
     addItemBtn->clicked().connect(addItem);
 
     addStockCont->setWidth(WLength(INPUT_WIDTH_PERCENT,WLength::Unit::Percentage));
@@ -596,6 +597,82 @@ WContainerWidget* WebView::modifyStockItem(){
     return container;
 }
 
+
+/**
+ * Find Stock Item
+*/
+WContainerWidget* WebView::findStockItem(){
+
+    auto container = new WContainerWidget();
+    auto findStockCont = new WContainerWidget();
+
+    // Create panel for buttons to be added in
+    auto findPanel = container->addWidget(std::make_unique<WPanel>());
+    findPanel->addStyleClass("centered-example");
+    findPanel->setTitle("FIND ITEM IN STOCK");
+    findPanel->setWidth(WLength(100,LengthUnit::Percentage));
+
+    // Item Name
+    auto nameContainer = findStockCont->addWidget(std::make_unique<WContainerWidget>());
+    nameContainer->addWidget(std::make_unique<Wt::WText>("Item Name"));
+    nameEdit_ = nameContainer->addWidget(std::make_unique<Wt::WLineEdit>());
+    nameContainer->addWidget(std::make_unique<Wt::WBreak>());
+    nameContainer->setId("nameContainer");
+
+    // Find Stock Item Pushbutton
+    Wt::WPushButton *findItemBtn = findStockCont->addWidget(std::make_unique<Wt::WPushButton>("Search"));
+    findStockCont->addWidget(std::make_unique<Wt::WBreak>());
+    findStockCont->addWidget(std::make_unique<Wt::WBreak>());
+    
+    // find the item from the model
+    auto findItem = [this]{
+      try{
+        FoodItem fi = getModel()->querySingleFoodItem(nameEdit_->text().toUTF8());
+        std::cerr<<"\n"<<fi.getName()<<" NAMMMMMMEE" <<std::endl;
+        if(fi.getName()==""){
+          throw WString("{1} could not be found").arg(nameEdit_->text());
+        }
+        
+        else{       
+          // Success Message - print out finding
+          std::cout << nameEdit_->text() << " successfully found!" << std::endl;
+          auto messageBox = app->addChild(std::make_unique<WMessageBox>(
+            "Success!",
+            WString("Item: {1}\n"
+                    "Qty: {2}\n"
+                    "Expiry Date: {3}\n"
+                    "Location: {4}\n")
+                    .arg(fi.getName())
+                    .arg(fi.getQuantity())
+                    .arg(fi.getExpiry())
+                    .arg(fi.getType()).toUTF8(), 
+            Icon::Information, StandardButton::Ok));
+
+          messageBox->buttonClicked().connect([=]{
+            app->removeChild(messageBox);
+          });
+          messageBox->show();
+        }        
+
+      } catch (WString msg) {         
+        auto messageBox = app->addChild(std::make_unique<WMessageBox>(
+        "Error!", msg, Icon::Warning, StandardButton::Ok));
+        
+        messageBox->buttonClicked().connect([=]{
+          app->removeChild(messageBox);
+        });
+        messageBox->show();
+      }
+    };
+
+    findItemBtn->clicked().connect(findItem);
+
+    findStockCont->setWidth(WLength(INPUT_WIDTH_PERCENT,WLength::Unit::Percentage));
+    findPanel->setCentralWidget(std::unique_ptr<WContainerWidget>(findStockCont));
+
+    return container;
+}
+
 /**
  * Handle an internal path change
 */
@@ -619,8 +696,7 @@ void WebView::handleInternalPathChange()
     }
     else if (app->internalPath() == findItemPath){
       std::cerr<<"\nPATH CHANGED - FIND ITEM\n";
-      //delete content_;
-      //content_= modifyStockItem();
+      content()->addWidget(std::unique_ptr<WContainerWidget>(findStockItem()));
     }    
     else
       std::cerr<<"\nPATH CHANGED - HOME\n";

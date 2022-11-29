@@ -1,5 +1,5 @@
 /*
- * WebView.h
+ * test.h
  */
 #ifndef WEBVIEW_H
 #define WEBVIEW_H
@@ -50,9 +50,9 @@ private:
     const std::string deleteItemPath = "/?_=delete-from-stock";
     const std::string modItemPath = "/?_=modify-stock";
     const std::string findItemPath = "/?_=find-stock";
-    const std::string temp1 = "/?_=delete-from-stock";
-    const std::string temp2 = "/?_=modify-stock";
-    const std::string temp3 = "/?_=find-stock";
+    const std::string temp1 = "/?_=get-all-stock";
+    const std::string temp2 = "/?_=find-recipe-by-items";
+    const std::string temp3 = "/?_=find-recipe-for-all-stock";
 
     // Model
     Model *model;
@@ -78,7 +78,11 @@ private:
     Wt::WContainerWidget* addStockItem();
     Wt::WContainerWidget* deleteStockItem();
     Wt::WContainerWidget* modifyStockItem();
-
+    Wt::WContainerWidget* findStockItem();
+    Wt::WContainerWidget* getAllStock();
+    Wt::WContainerWidget* findRecipeByItems();
+    Wt::WContainerWidget* findRecipeForStock();
+    Wt::WContainerWidget* selectRecipe();
 
     void handleInternalPathChange();
     
