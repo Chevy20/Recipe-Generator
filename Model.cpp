@@ -1,4 +1,5 @@
 #include "Model.h"
+#include <iostream>
 using namespace std;
 
 /*
@@ -9,6 +10,7 @@ Return: Model object
 */
 Model::Model(){
     //create new instance of SQLite connector. Connect to DB and create new dbconext passing in the handle from the dbConnection
+    FoodConnection = &FoodAPI::getInstance();
     dbConnection = new SQLiteConnector();
     dbConnection->connectDB();
     dbContext = new StockTable(dbConnection->getDbHandle());
@@ -16,13 +18,12 @@ Model::Model(){
 
 /*
 Function: Destructor for Model
-Description: This will close connection to the db
+Description: This will close connection to the db   
 Parameters:none
 Return:none
 */
 Model::~Model(){
-    dbContext->~StockTable();
-    
+    dbContext->~StockTable(); 
 }
 
 /*
@@ -34,6 +35,7 @@ Return: SQLiteConnector* representing the connection to the db
 SQLiteConnector* Model::getDBConnection(){
     return dbConnection;
 }
+
 
 /*
 Function:getDBContext()
@@ -98,16 +100,10 @@ Return: vector<FoodItem> representing all food items in the database
 vector<FoodItem> Model::queryAllFoodItems(){
     return dbContext->selectAll();
 }
+const FoodAPI* Model::getFoodAPI(){
+    return FoodConnection;
+}
 
-/*
-Function:processJSON
-Description: Function to process JSON into recipe objects. Will be implemented later
-Parameters:
-Return:
-*/
-/*std::vector<Recipe> Model::processJSON(JSON queryReturn){
-
-}*/
 
 /*
 Function: checkForExpiredFood()
@@ -160,3 +156,66 @@ vector<FoodItem> Model::checkForLowStock(){
     
     return LowStock;
 }
+
+bool Model::autoComputeStockAfterRecipe(Recipe cookedRecipe){
+    vector<RecipeItem> ingredients = cookedRecipe.getIngredients();
+    for(int i = 0; i < ingredients.size(); i ++){
+        RecipeItem item = ingredients[i];
+        FoodItem stockItem = querySingleFoodItem(item.getItem());
+        if(stockItem.decrementQty(item.getQuantity())){
+            if(!modifyFoodItem(stockItem))
+                return false;
+        }
+        else{
+            return false;
+        }
+
+    }
+    return true;
+}
+bool Model::checkAutoStock(Recipe cookedRecipie){
+    for(int i = 0; i < cookedRecipie.getIngredients().size(); i++){
+        RecipeItem rItem = cookedRecipie.getIngredients()[i];
+        FoodItem item = querySingleFoodItem(rItem.getItem());
+        if(item.getMeasureUnit() != rItem.getItemMeasureUnit())
+            return false;
+    }
+    return true;
+}
+
+void Model::printRecipeToConsole(){
+    cout<<"Here are the recipes returned from Spoonacular"<<endl;
+    for(int i = 0; i <queriedRecipes.size(); i++){
+        cout<<"Recipe "+to_string(i+1)+ ": "+queriedRecipes[i].getRecipeName()<<endl;
+        cout<<"Ingredients Found: "<<endl;
+        vector<RecipeItem> ingredients = queriedRecipes[i].getIngredients();
+        for(int j = 0; j <ingredients.size(); j++){
+            cout<<"Ingredient Name: " + ingredients[j].getItem()<<endl;
+            cout<<"Quantity: "+to_string(ingredients[j].getQuantity()) +" "+ingredients[j].getItemMeasureUnit()<<endl;
+        }
+        cout<<"Missing Ingredients: "<<endl;
+        vector<RecipeItem> mIngredients = queriedRecipes[i].getMissingIngredients();
+        for(int j = 0; j < mIngredients.size(); j++){
+            cout<<"Ingredient Name: " + mIngredients[j].getItem()<<endl;
+            cout<<"Quantity: "+to_string(mIngredients[j].getQuantity()) +" "+ mIngredients[j].getItemMeasureUnit()<<endl;
+        }
+        cout<<"Image URL: "+queriedRecipes[i].getImageURL()<<endl;
+        cout<<endl;
+    }
+}
+
+//Note, once the autoStock check fails, this method will then be called using the update food items made by the front end as a parameter
+bool Model::manualCompleteStockAfterRecipe(std::vector<FoodItem> items){
+    for(int i = 0; i < items.size(); i++)   {
+        if(!modifyFoodItem(items[i]))
+            return false;
+    }
+    return true; 
+}
+std::vector<Recipe> Model::getQueriedRecipes(){
+    return queriedRecipes;
+}
+void Model::setQueriedRecipes(std::vector<Recipe> recipes){
+    queriedRecipes = recipes;
+}
+

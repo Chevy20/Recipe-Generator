@@ -6,7 +6,7 @@ RecipeItem::RecipeItem()
 {
     //default
 }
-RecipeItem::RecipeItem(FoodItem fitem, float num, string unit)
+RecipeItem::RecipeItem(string fitem, float num, string unit)
 {
     item = fitem;
     itemQty = num;
@@ -16,7 +16,7 @@ RecipeItem::~RecipeItem()
 {
 
 }
-FoodItem RecipeItem::getItem()
+string RecipeItem::getItem()
 {
     return item;
 }
@@ -28,7 +28,7 @@ string RecipeItem::getItemMeasureUnit()
 {
     return itemMeasureUnit;
 }
-void RecipeItem::setItem(FoodItem fItem)
+void RecipeItem::setItem(string fItem)
 {
     item = fItem;
 }

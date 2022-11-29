@@ -1,3 +1,4 @@
+/*
 #include <iostream>
 #include <stdlib.h>
 #include <signal.h>
@@ -15,7 +16,7 @@ Function: main()
 Description: main function of the terminalAPP
 Parameters:int argc: commandLine arg counter, char* argv[]: command line arguments
 Return: 0
-*/
+
 int main(int argc, char* argv[]){
     FoodItem bread("bread", 30, "slices", "2022/12/01", "2023/04/01", "fridge", 4);
     FoodItem butter("butter", 100, "ounces", "2022/12/01", "2023/04/01", "fridge", 10);
@@ -194,3 +195,4 @@ int main(int argc, char* argv[]){
         }
     }
 }
+*/

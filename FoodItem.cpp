@@ -2,7 +2,7 @@
     This file contains the implementation for all methods of the FoodItem Class
 */
 #include "FoodItem.h"
-
+#include <iostream>
 using namespace std;
 
 /*
@@ -29,13 +29,12 @@ string date_Purchased: purchase date in form YYYY/MM/DD, string expiration_Date:
 int quantity_Threshold: the amount needed to trigger low stock alert, int date_Threshold: the number of days from the expiration date that an expiry warning will be triggered
 Return: FoodItem object
 */
-FoodItem::FoodItem(string item_name, int unit_quantity, string unitMeasure_Type ,string date_Purchased, string expiration_Date, string unit_Type,   int quantity_Threshold){
+FoodItem::FoodItem(string item_name, float unit_quantity, string unitMeasure_Type ,string date_Purchased, string expiration_Date, string unit_Type,   float quantity_Threshold){
     unitType = unit_Type;
     unitMeasureType = unitMeasure_Type;
     itemName = item_name;
     unitQuantity = unit_quantity;
     quantityThreshold = quantity_Threshold;
-    
     datePurchased = date_Purchased;
     expirationDate = expiration_Date;
     
@@ -97,7 +96,7 @@ Description: Gets the number of measurement units where a low stock alert will b
 Parameters: none
 Return: String representing the quantity threshold
 */
-int FoodItem::getThreshold(){
+float FoodItem::getThreshold(){
     return quantityThreshold;
 }
 
@@ -118,7 +117,7 @@ Description: Gives the amount of items in the stock
 Parameters: none
 Return: integer representing the amount of food in stock 
 */
-int FoodItem::getQuantity(){
+float FoodItem::getQuantity(){
     return unitQuantity;
 }
 
@@ -128,7 +127,7 @@ Description: Increments quantity specified by passed in amount
 Parameters: int amount: amount to increment by 
 Return: true if able to increment
 */
-bool FoodItem::incrementQty (int amount){
+bool FoodItem::incrementQty (float amount){
 
     unitQuantity = unitQuantity + amount;
     return true;
@@ -141,7 +140,7 @@ Description: Decreases qty by amount passed in, but not below 0
 Parameters: int amount: amount to decrement by
 Return: true if able to decrement, false if not
 */
-bool FoodItem::decrementQty (int amount ){
+bool FoodItem::decrementQty (float amount ){
     if(unitQuantity - amount < 0){
         cout << "Invalid use of items. Not enough in stock" <<endl;
         return false;

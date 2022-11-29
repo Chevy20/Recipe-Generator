@@ -5,30 +5,27 @@ This file contains the definitions for the FoodItem Object
 #define FOODITEM_H
 #include <string>
 class FoodItem{
-    /**< Public Attributes*/
+    //! Public Attributes
     public:
-<<<<<<< HEAD
         FoodItem();
-        FoodItem(std::string item_name, int unit_quantity, std::string unitMeasure_Type ,std::string date_Purchased, std::string expiration_Date, std::string unit_Type,   int quantity_Threshold,  int date_Threshold);
+        FoodItem(std::string item_name, float unit_quantity, std::string unitMeasure_Type ,std::string date_Purchased, std::string expiration_Date, std::string unit_Type,   float quantity_Threshold);
         ~FoodItem();
         std::string getType ();
         std::string getName ();
         std::string getMeasureUnit();
         std::string getDatePurchased ();
-        int getThreshold();    //quantity theshold to trigger low quantity alert
+        float getThreshold();    //quantity theshold to trigger low quantity alert
         std::string getExpiry();
-        int   getDateThreshold();  // minimum number of days allowed between current date and expiration date to trigger expiration warning
-        void incrementQty (int amount);
-        void decrementQty (int amount );
-        int getQuantity();
+        bool incrementQty (float amount);
+        bool decrementQty (float amount );
+        float getQuantity();
 
     private:
         std::string unitType;
         std::string unitMeasureType;
         std::string itemName; 
-        int unitQuantity;
-        int quantityThreshold; 
-        int dateThreshold;
+        float unitQuantity;
+        float quantityThreshold; 
         std::string datePurchased;
         std::string expirationDate;
 

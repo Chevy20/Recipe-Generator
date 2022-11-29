@@ -10,7 +10,7 @@
 class RecipeItem
 {
     private:
-        FoodItem item;               /**< FoodItem: The original ingredient from the inventory */
+        std::string item;               /**< string: name of the foodItem */
         float itemQty;               /**< float: The numerical quantity of ingredients in recipe */
         std::string itemMeasureUnit; /**< string: The unit of measurement of ingredient in recipe */
 
@@ -22,13 +22,13 @@ class RecipeItem
         RecipeItem();
         /**
          * @brief construct the recipe ingredient
-         * @param fitem : the FoodItem from our inventory in recipe
+         * @param fitem : the string of the name of food item 
          * @param num   : the quantity in numeric value
          * @param unit  : the string of the unit of the quantity of the ingredient
          * @author Andrew Li
          * @author Kanishk Mishra
          */
-        RecipeItem(FoodItem fitem, float num, std::string unit);
+        RecipeItem(std::string fitem, float num, std::string unit);
         /**
          * @brief destroy the recipe ingredient
          * @author Andrew Li
@@ -39,7 +39,7 @@ class RecipeItem
          * @return the original FoodItem
          * @author Andrew Li
          */
-        FoodItem getItem();
+        std::string getItem();
         /**
          * @brief access the numeric quantity of ingredient
          * @return the number of items
@@ -57,7 +57,7 @@ class RecipeItem
          * @param fitem : the new FoodItem from inventory
          * @author Andrew Li
          */
-        void setItem(FoodItem fItem);
+        void setItem(std::string fItem);
         /**
          * @brief change the numerical quantity in recipe
          * @param qty   : float for the quantity of ingredients
