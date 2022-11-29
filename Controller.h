@@ -13,16 +13,17 @@ private:
     std::vector<Observer*> observerList;
 public:
     Controller();
+    Controller(Model* model, View* view);
     ~Controller();
     bool updateModel();
     bool updateView();
-    Model getModel();
-    View getView();
-    void setModel(Model model);
-    void setView(View view);
-    void registerObserver();
-    void removeObserver();
-    virtual void notify();
+    Model* getModel();
+    View* getView();
+    void setModel(Model* model);
+    void setView(View* view);
+    void registerObserver(Observer* observer);
+    void removeObserver(Observer* observer);
+    void notify() ;
     void eventHandler();
 };
 

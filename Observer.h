@@ -5,12 +5,12 @@
 
 class Observer {
 private:
-    Controller& controller;
+    Controller* controller;
 public:
     virtual ~Observer();
     virtual void update(Controller* controller) = 0;
 protected:
-    Observer();
+    Observer(Controller* controller);
 };
 
 #endif

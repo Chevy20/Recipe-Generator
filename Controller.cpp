@@ -18,7 +18,7 @@ Controller::Controller() {
  * @param model The model that this controller communicates to.
  * @param view The view that controls this controller.
  */
-Controller::Controller(Model &model, View &view) {
+Controller::Controller(Model* model, View* view) {
     this->model = model;
     this->view = view;
 }
@@ -58,7 +58,7 @@ bool Controller::updateView() {
  * 
  * @return The model connected to this controller.
  */
-Model Controller::getModel() {
+Model* Controller::getModel() {
     return this->model;
 }
 
@@ -68,7 +68,7 @@ Model Controller::getModel() {
  * 
  * @return The view connected to this controller.
  */
-View Controller::getView() {
+View* Controller::getView() {
     return this->view;
 }
 
@@ -78,7 +78,7 @@ View Controller::getView() {
  * 
  * @param model The model to connect.
  */
-void Controller::setModel(Model &model) {
+void Controller::setModel(Model* model) {
     this->model = model;
 }
 
@@ -88,7 +88,7 @@ void Controller::setModel(Model &model) {
  * 
  * @param model The view to connect.
  */
-void Controller::setView(View &view) {
+void Controller::setView(View* view) {
     this->view = view;
 }
 
@@ -118,9 +118,9 @@ void Controller::removeObserver(Observer* observer) {
 /**
  * Notifies/updates all the observers.
  */
-void Controller::notify() override {
+void Controller::notify(){
     for(int n = 0; n < this->observerList.size(); n++)
-        this->observerList[n].update(this);
+        observerList[n].update(this);
 }
 
 
