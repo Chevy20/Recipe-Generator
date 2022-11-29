@@ -46,7 +46,6 @@ map<string, float> Recipe::getNutrition()
  * Parameters: float newYield : the new yield of the recipe after all changes made
  * Return: nothing
  */
-
 /*
  * Function: swapIngredient 
  * Description: updates all RecipeItems to create the quantity given
@@ -95,5 +94,8 @@ int Recipe::adjustIngredientAmount(RecipeItem item, float quantity)
             return 0;
         }
     }
+
+  
+
     return -1;
 }
