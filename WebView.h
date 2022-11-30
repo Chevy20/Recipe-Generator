@@ -70,6 +70,7 @@ private:
     Wt::WLineEdit *locationEdit_;
     Wt::WLineEdit *alertQtyEdit_;
     Wt::WContainerWidget *internalStockCont_;  
+    Wt::WContainerWidget *internalRecipeCont_;
     
     // Structural containers
     Wt::WContainerWidget* navbar();
@@ -83,7 +84,7 @@ private:
     Wt::WContainerWidget* modifyStockItem();
     Wt::WContainerWidget* findStockItem();
     Wt::WContainerWidget* getAllStock();
-    Wt::WContainerWidget* findRecipeByItems();
+    Wt::WContainerWidget* findRecipeByItem();
     Wt::WContainerWidget* findRecipeForStock();
     Wt::WContainerWidget* selectRecipe();
 
