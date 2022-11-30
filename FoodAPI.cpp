@@ -83,6 +83,7 @@ void FoodAPI::setAPIKey(string key){
     FoodAPI::_apiKey = key;
 }
 
+
 /*
 Function: getPreferences()
 Description: Returns a vector of preferences in recipes
@@ -92,6 +93,7 @@ Return: preferences - vector of string preferences
 vector<string> FoodAPI::getPreferences() {
     return this->preferences;
 }
+
 
 /*
 Function: setPreferences()
@@ -114,6 +116,7 @@ vector<Recipe> FoodAPI::getRecipes(){
     return recipes;
 }
 
+
 /*
 Function: setRecipes()
 Description: Sets the recipes vector
@@ -123,6 +126,7 @@ Return: None
 void FoodAPI::setReceipes(std::vector<Recipe> recipes){
     this->recipes = recipes;
 }
+
 
 /*
 Function: getRecipeByIngredients()
@@ -199,6 +203,14 @@ Return: res - Json of recipes found
    return recipies;
 }
 
+
+/**
+ * Checks for and returns a list of recipes that use a specific ingredient.
+ * 
+ * @param query The ingredient to search for.
+ * 
+ * @return A list of all the recipes that use the specified ingredient.
+ */
 std::vector<Recipe> FoodAPI::getRecipeBySpecificIngredients(string query) const{
     CURL *curl;
     CURLcode res;
@@ -266,10 +278,19 @@ std::vector<Recipe> FoodAPI::getRecipeBySpecificIngredients(string query) const{
     
 }
 
+
+/**
+ * Removes unneccesary punctuation from strings and returns it.
+ * 
+ * @param line The string to remove the punctuation from.
+ * 
+ * @return The stripped string.
+ */
 string FoodAPI::stripQuotes(string line) const{
     line.erase(std::remove(line.begin(),line.end(),'\"'),line.end());
     return line;
 }
+
 
 /*
 Function: addPreference()
@@ -283,6 +304,7 @@ void FoodAPI::addPreference(std::string pref){
     }
 }
 
+
 /*
 Function: removePreference()
 Description: Removes a preference from the preference vector
@@ -292,7 +314,8 @@ Return: None
 void FoodAPI::removePreference(std::string pref){
     preferences.erase(std::remove(preferences.begin(), preferences.end(), pref), preferences.end());
 }
-        
+
+
 /*
 Function: buildQueryURL()
 Description: Removes a preference from the preference vector
@@ -304,6 +327,7 @@ string FoodAPI::buildQueryURL(string itemList) const{
     return URL;
     
 }
+
 
 /*
 Function: ~FoodAPI()
@@ -332,5 +356,3 @@ FoodAPI::~FoodAPI(){
 //     modl->getFoodAPI()->getRecipeByIngredients(modl);
     
 // }
-
-
