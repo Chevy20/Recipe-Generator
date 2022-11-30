@@ -19,6 +19,7 @@
 #include <Wt/WMessageBox.h>
 #include <Wt/WPanel.h>
 #include <Wt/WHBoxLayout.h>
+#include <Wt/WServer.h>
 
 #include "View.h"
 #include "Model.h"
