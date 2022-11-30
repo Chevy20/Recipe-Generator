@@ -1,0 +1,411 @@
+\hypertarget{classFoodAPI}{}\doxysection{Food\+A\+PI Class Reference}
+\label{classFoodAPI}\index{FoodAPI@{FoodAPI}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classFoodAPI_a42c74dc01963ffec670af1b32bbc3f4e}{$\sim$\+Food\+A\+PI}} ()
+\begin{DoxyCompactList}\small\item\em Destructor -\/ Deletes instance of \mbox{\hyperlink{classFoodAPI}{Food\+A\+PI}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classFoodAPI_aa7c1308b3ea1ff41466b82d830f31d75}\label{classFoodAPI_aa7c1308b3ea1ff41466b82d830f31d75}} 
+const \mbox{\hyperlink{classFoodAPI}{Food\+A\+PI}} \& {\bfseries operator$<$$<$} (const std\+::string \&message) const
+\item 
+std\+::string \mbox{\hyperlink{classFoodAPI_aef264f8d428f5db8824221547fcfbf79}{build\+Item\+List}} (std\+::vector$<$ \mbox{\hyperlink{classFoodItem}{Food\+Item}} $>$ db\+Stock) const
+\begin{DoxyCompactList}\small\item\em Takes the list of the ingredients in the stock and turns them into a printable string. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classFoodAPI_a81afb17d14b5d74a8eb35a4b84db269b}{get\+A\+P\+I\+Key}} () const
+\begin{DoxyCompactList}\small\item\em Gets the spoonacular A\+PI Key. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classFoodAPI_a3f7575b2ac92f57a10a4db299cb23f57}{set\+A\+P\+I\+Key}} (std\+::string key)
+\begin{DoxyCompactList}\small\item\em Sets the spoonacular A\+PI Key. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{classFoodAPI_ac9598ef86f83be8061a2342d7834c07e}{get\+Preferences}} ()
+\begin{DoxyCompactList}\small\item\em Returns a list of preferences in recipes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classFoodAPI_aa8de227a8c702a3678ddc3fe5bf48371}{set\+Preferences}} (std\+::vector$<$ std\+::string $>$ prefs)
+\begin{DoxyCompactList}\small\item\em Sets a list of preferences in recipes. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classRecipe}{Recipe}} $>$ \mbox{\hyperlink{classFoodAPI_a1d6958a826b7bae659354db0e83f8059}{get\+Recipes}} ()
+\begin{DoxyCompactList}\small\item\em Returns a list of stored recipes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classFoodAPI_a1d3866f15b202d243cab1bb9b8195db7}{set\+Receipes}} (std\+::vector$<$ \mbox{\hyperlink{classRecipe}{Recipe}} $>$ recipes)
+\begin{DoxyCompactList}\small\item\em Sets the recipes list. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classRecipe}{Recipe}} $>$ \mbox{\hyperlink{classFoodAPI_a39eb781b2481fca6179a434619db1eba}{get\+Recipe\+By\+Ingredients}} (void $\ast$the\+Model) const
+\begin{DoxyCompactList}\small\item\em Gets recipes with ingredient list from Spoonacular A\+PI. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classRecipe}{Recipe}} $>$ \mbox{\hyperlink{classFoodAPI_a2893afeb0ce758f24ebc2335ef98bff7}{get\+Recipe\+By\+Specific\+Ingredients}} (std\+::string query) const
+\begin{DoxyCompactList}\small\item\em Checks for and returns a list of recipes that use a specific ingredient. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classFoodAPI_ac80dea7b3c4374254e7b0c5bb96f67c7}{add\+Preference}} (std\+::string pref)
+\begin{DoxyCompactList}\small\item\em Adds a preference to the preference list. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classFoodAPI_a4a278ea038c387e59fe707eba9d6eb43}{remove\+Preference}} (std\+::string pref)
+\begin{DoxyCompactList}\small\item\em Removes a preference from the preference list. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classFoodAPI_a9b6a2c57a214525ac72f84639c8e0d99}{build\+Query\+U\+RL}} (std\+::string item\+List) const
+\begin{DoxyCompactList}\small\item\em Builds and returns the query U\+RL. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static const \mbox{\hyperlink{classFoodAPI}{Food\+A\+PI}} \& \mbox{\hyperlink{classFoodAPI_a9181d44c8579a1caa8c42bfde97e58c7}{get\+Instance}} ()
+\begin{DoxyCompactList}\small\item\em Returns a single instance of the \mbox{\hyperlink{classFoodAPI}{Food\+A\+PI}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classFoodAPI_ace8a6c5670354ba6e719e0a4c43b339b}{Food\+A\+PI}} ()
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classFoodAPI_ace8a6c5670354ba6e719e0a4c43b339b}\label{classFoodAPI_ace8a6c5670354ba6e719e0a4c43b339b}} 
+\index{FoodAPI@{FoodAPI}!FoodAPI@{FoodAPI}}
+\index{FoodAPI@{FoodAPI}!FoodAPI@{FoodAPI}}
+\doxysubsubsection{\texorpdfstring{FoodAPI()}{FoodAPI()}}
+{\footnotesize\ttfamily Food\+A\+P\+I\+::\+Food\+A\+PI (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Constructor. 
+
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+
+Jared Anstett 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classFoodAPI_a42c74dc01963ffec670af1b32bbc3f4e}\label{classFoodAPI_a42c74dc01963ffec670af1b32bbc3f4e}} 
+\index{FoodAPI@{FoodAPI}!````~FoodAPI@{$\sim$FoodAPI}}
+\index{````~FoodAPI@{$\sim$FoodAPI}!FoodAPI@{FoodAPI}}
+\doxysubsubsection{\texorpdfstring{$\sim$FoodAPI()}{~FoodAPI()}}
+{\footnotesize\ttfamily Food\+A\+P\+I\+::$\sim$\+Food\+A\+PI (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Destructor -\/ Deletes instance of \mbox{\hyperlink{classFoodAPI}{Food\+A\+PI}}. 
+
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+
+Jared Anstett 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classFoodAPI_ac80dea7b3c4374254e7b0c5bb96f67c7}\label{classFoodAPI_ac80dea7b3c4374254e7b0c5bb96f67c7}} 
+\index{FoodAPI@{FoodAPI}!addPreference@{addPreference}}
+\index{addPreference@{addPreference}!FoodAPI@{FoodAPI}}
+\doxysubsubsection{\texorpdfstring{addPreference()}{addPreference()}}
+{\footnotesize\ttfamily void Food\+A\+P\+I\+::add\+Preference (\begin{DoxyParamCaption}\item[{std\+::string}]{pref }\end{DoxyParamCaption})}
+
+
+
+Adds a preference to the preference list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pref} & The string name of the preference to add.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+
+Jared Anstett 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em pref} & The string name of the preference to add. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classFoodAPI_aef264f8d428f5db8824221547fcfbf79}\label{classFoodAPI_aef264f8d428f5db8824221547fcfbf79}} 
+\index{FoodAPI@{FoodAPI}!buildItemList@{buildItemList}}
+\index{buildItemList@{buildItemList}!FoodAPI@{FoodAPI}}
+\doxysubsubsection{\texorpdfstring{buildItemList()}{buildItemList()}}
+{\footnotesize\ttfamily std\+::string Food\+A\+P\+I\+::build\+Item\+List (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classFoodItem}{Food\+Item}} $>$}]{db\+Stock }\end{DoxyParamCaption}) const}
+
+
+
+Takes the list of the ingredients in the stock and turns them into a printable string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db\+Stock} & The stock of ingredients in the database.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The string of all the ingredients in stock. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classFoodAPI_a9b6a2c57a214525ac72f84639c8e0d99}\label{classFoodAPI_a9b6a2c57a214525ac72f84639c8e0d99}} 
+\index{FoodAPI@{FoodAPI}!buildQueryURL@{buildQueryURL}}
+\index{buildQueryURL@{buildQueryURL}!FoodAPI@{FoodAPI}}
+\doxysubsubsection{\texorpdfstring{buildQueryURL()}{buildQueryURL()}}
+{\footnotesize\ttfamily string Food\+A\+P\+I\+::build\+Query\+U\+RL (\begin{DoxyParamCaption}\item[{std\+::string}]{item\+List }\end{DoxyParamCaption}) const}
+
+
+
+Builds and returns the query U\+RL. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item\+List} & The string of the ingredients.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The query U\+RL.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em item\+List} & The string of the ingredients. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+
+Jared Anstett 
+\end{DoxyAuthor}
+\begin{DoxyReturn}{Returns}
+The query U\+RL. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classFoodAPI_a81afb17d14b5d74a8eb35a4b84db269b}\label{classFoodAPI_a81afb17d14b5d74a8eb35a4b84db269b}} 
+\index{FoodAPI@{FoodAPI}!getAPIKey@{getAPIKey}}
+\index{getAPIKey@{getAPIKey}!FoodAPI@{FoodAPI}}
+\doxysubsubsection{\texorpdfstring{getAPIKey()}{getAPIKey()}}
+{\footnotesize\ttfamily string Food\+A\+P\+I\+::get\+A\+P\+I\+Key (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the spoonacular A\+PI Key. 
+
+\begin{DoxyReturn}{Returns}
+The A\+PI key.
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+
+Jared Anstett ~\newline
+ 
+\end{DoxyAuthor}
+\begin{DoxyReturn}{Returns}
+The A\+PI key. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classFoodAPI_a9181d44c8579a1caa8c42bfde97e58c7}\label{classFoodAPI_a9181d44c8579a1caa8c42bfde97e58c7}} 
+\index{FoodAPI@{FoodAPI}!getInstance@{getInstance}}
+\index{getInstance@{getInstance}!FoodAPI@{FoodAPI}}
+\doxysubsubsection{\texorpdfstring{getInstance()}{getInstance()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{classFoodAPI}{Food\+A\+PI}} \& Food\+A\+P\+I\+::get\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Returns a single instance of the \mbox{\hyperlink{classFoodAPI}{Food\+A\+PI}}. 
+
+\begin{DoxyReturn}{Returns}
+Single instance of the \mbox{\hyperlink{classFoodAPI}{Food\+A\+PI}} object.
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+
+Jared Anstett 
+\end{DoxyAuthor}
+\begin{DoxyReturn}{Returns}
+Single instance of the \mbox{\hyperlink{classFoodAPI}{Food\+A\+PI}} object. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classFoodAPI_ac9598ef86f83be8061a2342d7834c07e}\label{classFoodAPI_ac9598ef86f83be8061a2342d7834c07e}} 
+\index{FoodAPI@{FoodAPI}!getPreferences@{getPreferences}}
+\index{getPreferences@{getPreferences}!FoodAPI@{FoodAPI}}
+\doxysubsubsection{\texorpdfstring{getPreferences()}{getPreferences()}}
+{\footnotesize\ttfamily vector$<$ string $>$ Food\+A\+P\+I\+::get\+Preferences (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns a list of preferences in recipes. 
+
+\begin{DoxyReturn}{Returns}
+A list of string preferences.
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+
+Jared Anstett 
+\end{DoxyAuthor}
+\begin{DoxyReturn}{Returns}
+A list of string preferences. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classFoodAPI_a39eb781b2481fca6179a434619db1eba}\label{classFoodAPI_a39eb781b2481fca6179a434619db1eba}} 
+\index{FoodAPI@{FoodAPI}!getRecipeByIngredients@{getRecipeByIngredients}}
+\index{getRecipeByIngredients@{getRecipeByIngredients}!FoodAPI@{FoodAPI}}
+\doxysubsubsection{\texorpdfstring{getRecipeByIngredients()}{getRecipeByIngredients()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{classRecipe}{Recipe}} $>$ Food\+A\+P\+I\+::get\+Recipe\+By\+Ingredients (\begin{DoxyParamCaption}\item[{void $\ast$}]{\+\_\+the\+Model }\end{DoxyParamCaption}) const}
+
+
+
+Gets recipes with ingredient list from Spoonacular A\+PI. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+the\+Model} & String of comma separated items.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Json of recipes found.
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+
+Jared Anstett 
+
+Andrew Li 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+the\+Model} & String of comma separated items.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Json of recipes found. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classFoodAPI_a2893afeb0ce758f24ebc2335ef98bff7}\label{classFoodAPI_a2893afeb0ce758f24ebc2335ef98bff7}} 
+\index{FoodAPI@{FoodAPI}!getRecipeBySpecificIngredients@{getRecipeBySpecificIngredients}}
+\index{getRecipeBySpecificIngredients@{getRecipeBySpecificIngredients}!FoodAPI@{FoodAPI}}
+\doxysubsubsection{\texorpdfstring{getRecipeBySpecificIngredients()}{getRecipeBySpecificIngredients()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{classRecipe}{Recipe}} $>$ Food\+A\+P\+I\+::get\+Recipe\+By\+Specific\+Ingredients (\begin{DoxyParamCaption}\item[{std\+::string}]{query }\end{DoxyParamCaption}) const}
+
+
+
+Checks for and returns a list of recipes that use a specific ingredient. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em query} & The ingredient to search for.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A list of all the recipes that use the specified ingredient.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em query} & The ingredient to search for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+
+Jared Anstett 
+
+Andrew Li 
+\end{DoxyAuthor}
+\begin{DoxyReturn}{Returns}
+A list of all the recipes that use the specified ingredient. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classFoodAPI_a1d6958a826b7bae659354db0e83f8059}\label{classFoodAPI_a1d6958a826b7bae659354db0e83f8059}} 
+\index{FoodAPI@{FoodAPI}!getRecipes@{getRecipes}}
+\index{getRecipes@{getRecipes}!FoodAPI@{FoodAPI}}
+\doxysubsubsection{\texorpdfstring{getRecipes()}{getRecipes()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{classRecipe}{Recipe}} $>$ Food\+A\+P\+I\+::get\+Recipes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns a list of stored recipes. 
+
+\begin{DoxyReturn}{Returns}
+A list of recipes.
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+
+Jared Anstett 
+\end{DoxyAuthor}
+\begin{DoxyReturn}{Returns}
+A list of recipes. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classFoodAPI_a4a278ea038c387e59fe707eba9d6eb43}\label{classFoodAPI_a4a278ea038c387e59fe707eba9d6eb43}} 
+\index{FoodAPI@{FoodAPI}!removePreference@{removePreference}}
+\index{removePreference@{removePreference}!FoodAPI@{FoodAPI}}
+\doxysubsubsection{\texorpdfstring{removePreference()}{removePreference()}}
+{\footnotesize\ttfamily void Food\+A\+P\+I\+::remove\+Preference (\begin{DoxyParamCaption}\item[{std\+::string}]{pref }\end{DoxyParamCaption})}
+
+
+
+Removes a preference from the preference list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pref} & The string name of the preference to remove.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+
+Jared Anstett 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em pref} & The string name of the preference to remove. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classFoodAPI_a3f7575b2ac92f57a10a4db299cb23f57}\label{classFoodAPI_a3f7575b2ac92f57a10a4db299cb23f57}} 
+\index{FoodAPI@{FoodAPI}!setAPIKey@{setAPIKey}}
+\index{setAPIKey@{setAPIKey}!FoodAPI@{FoodAPI}}
+\doxysubsubsection{\texorpdfstring{setAPIKey()}{setAPIKey()}}
+{\footnotesize\ttfamily void Food\+A\+P\+I\+::set\+A\+P\+I\+Key (\begin{DoxyParamCaption}\item[{std\+::string}]{key }\end{DoxyParamCaption})}
+
+
+
+Sets the spoonacular A\+PI Key. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The A\+PI key.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+
+Jared Anstett 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The A\+PI key. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classFoodAPI_aa8de227a8c702a3678ddc3fe5bf48371}\label{classFoodAPI_aa8de227a8c702a3678ddc3fe5bf48371}} 
+\index{FoodAPI@{FoodAPI}!setPreferences@{setPreferences}}
+\index{setPreferences@{setPreferences}!FoodAPI@{FoodAPI}}
+\doxysubsubsection{\texorpdfstring{setPreferences()}{setPreferences()}}
+{\footnotesize\ttfamily void Food\+A\+P\+I\+::set\+Preferences (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::string $>$}]{prefs }\end{DoxyParamCaption})}
+
+
+
+Sets a list of preferences in recipes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em prefs} & List of preferences to set.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+
+Jared Anstett 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em prefs} & List of preferences to set. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classFoodAPI_a1d3866f15b202d243cab1bb9b8195db7}\label{classFoodAPI_a1d3866f15b202d243cab1bb9b8195db7}} 
+\index{FoodAPI@{FoodAPI}!setReceipes@{setReceipes}}
+\index{setReceipes@{setReceipes}!FoodAPI@{FoodAPI}}
+\doxysubsubsection{\texorpdfstring{setReceipes()}{setReceipes()}}
+{\footnotesize\ttfamily void Food\+A\+P\+I\+::set\+Receipes (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classRecipe}{Recipe}} $>$}]{recipes }\end{DoxyParamCaption})}
+
+
+
+Sets the recipes list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em recipes} & List of recipes to set.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+
+Jared Anstett 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em recipes} & List of recipes to set. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Food\+A\+P\+I.\+hpp\item 
+\mbox{\hyperlink{FoodAPI_8cpp}{Food\+A\+P\+I.\+cpp}}\end{DoxyCompactItemize}

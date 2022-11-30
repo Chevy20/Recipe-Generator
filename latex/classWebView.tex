@@ -1,0 +1,121 @@
+\hypertarget{classWebView}{}\doxysection{Web\+View Class Reference}
+\label{classWebView}\index{WebView@{WebView}}
+
+
+\mbox{\hyperlink{classWebView}{Web\+View}} class builds a G\+UI for users to interact with the Freshcipes recipe and stock management application.  
+
+
+
+
+{\ttfamily \#include $<$Web\+View.\+h$>$}
+
+
+
+Inheritance diagram for Web\+View\+:
+% FIG 0
+
+
+Collaboration diagram for Web\+View\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classWebView_a7b883a147a556c4f103e125dd5fbc0ea}{Web\+View}} (const Wt\+::\+W\+Environment \&env)
+\begin{DoxyCompactList}\small\item\em Contructor -\/ \mbox{\hyperlink{classWebView}{Web\+View}} view object. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classModel}{Model}} $\ast$ \mbox{\hyperlink{classWebView_a4e4d3c0d88ec16b9a793be6d679d467f}{get\+Model}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classWebView_a4e4d3c0d88ec16b9a793be6d679d467f}{get\+Model()}} -\/ Returns the model object pointer \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classWebView_ab3814b60bb278eda976731674a697c83}{set\+Model}} (\mbox{\hyperlink{classModel}{Model}} $\ast$model)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classWebView_ab3814b60bb278eda976731674a697c83}{set\+Model()}} -\/ Sets the model object pointer \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classWebView_aebc27e306cd08d34fcceb8f1862dc7f5}{display}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classWebView_aebc27e306cd08d34fcceb8f1862dc7f5}{display()}} -\/ displays content to be updated by the controller \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classWebView_aacc5b09f9d08d4dc4e7c859d8872925e}\label{classWebView_aacc5b09f9d08d4dc4e7c859d8872925e}} 
+Wt\+::\+W\+Application $\ast$ {\bfseries app}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classWebView}{Web\+View}} class builds a G\+UI for users to interact with the Freshcipes recipe and stock management application. 
+
+It inherits from the W\+Application and \mbox{\hyperlink{classView}{View}} classes 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classWebView_a7b883a147a556c4f103e125dd5fbc0ea}\label{classWebView_a7b883a147a556c4f103e125dd5fbc0ea}} 
+\index{WebView@{WebView}!WebView@{WebView}}
+\index{WebView@{WebView}!WebView@{WebView}}
+\doxysubsubsection{\texorpdfstring{WebView()}{WebView()}}
+{\footnotesize\ttfamily Web\+View\+::\+Web\+View (\begin{DoxyParamCaption}\item[{const Wt\+::\+W\+Environment \&}]{env }\end{DoxyParamCaption})}
+
+
+
+Contructor -\/ \mbox{\hyperlink{classWebView}{Web\+View}} view object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em env} & -\/ W\+Environment \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Jared Anstett 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classWebView_aebc27e306cd08d34fcceb8f1862dc7f5}\label{classWebView_aebc27e306cd08d34fcceb8f1862dc7f5}} 
+\index{WebView@{WebView}!display@{display}}
+\index{display@{display}!WebView@{WebView}}
+\doxysubsubsection{\texorpdfstring{display()}{display()}}
+{\footnotesize\ttfamily void Web\+View\+::display (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{classWebView_aebc27e306cd08d34fcceb8f1862dc7f5}{display()}} -\/ displays content to be updated by the controller 
+
+
+
+Implements \mbox{\hyperlink{classView}{View}}.
+
+\mbox{\Hypertarget{classWebView_a4e4d3c0d88ec16b9a793be6d679d467f}\label{classWebView_a4e4d3c0d88ec16b9a793be6d679d467f}} 
+\index{WebView@{WebView}!getModel@{getModel}}
+\index{getModel@{getModel}!WebView@{WebView}}
+\doxysubsubsection{\texorpdfstring{getModel()}{getModel()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classModel}{Model}} $\ast$ Web\+View\+::get\+Model (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{classWebView_a4e4d3c0d88ec16b9a793be6d679d467f}{get\+Model()}} -\/ Returns the model object pointer 
+
+\begin{DoxyReturn}{Returns}
+Model$\ast$ -\/ pointer to the model object 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classView}{View}}.
+
+\mbox{\Hypertarget{classWebView_ab3814b60bb278eda976731674a697c83}\label{classWebView_ab3814b60bb278eda976731674a697c83}} 
+\index{WebView@{WebView}!setModel@{setModel}}
+\index{setModel@{setModel}!WebView@{WebView}}
+\doxysubsubsection{\texorpdfstring{setModel()}{setModel()}}
+{\footnotesize\ttfamily void Web\+View\+::set\+Model (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classModel}{Model}} $\ast$}]{model }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+\mbox{\hyperlink{classWebView_ab3814b60bb278eda976731674a697c83}{set\+Model()}} -\/ Sets the model object pointer 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model} & -\/ pointer to the model object \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classView}{View}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{WebView_8h}{Web\+View.\+h}}\item 
+\mbox{\hyperlink{WebView_8cpp}{Web\+View.\+cpp}}\end{DoxyCompactItemize}

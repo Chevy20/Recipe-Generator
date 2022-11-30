@@ -1,0 +1,115 @@
+\hypertarget{classt__dbConnector}{}\doxysection{t\+\_\+db\+Connector Class Reference}
+\label{classt__dbConnector}\index{t\_dbConnector@{t\_dbConnector}}
+
+
+Inheritance diagram for t\+\_\+db\+Connector\+:
+% FIG 0
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classt__dbConnector_ade5b4a327aeea6ac34229e885a76be2f}{connect\+DB}} ()=0
+\begin{DoxyCompactList}\small\item\em abstract function to create and connect to database. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classt__dbConnector_aa1357aa4717bac4b4f0893b96bde6411}{drop\+Table}} ()=0
+\begin{DoxyCompactList}\small\item\em abstract function to drop the database. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classt__dbConnector_a8bc2844b083abf0ec779d195558b5153}{drop\+Tableand\+Rebuild}} ()=0
+\begin{DoxyCompactList}\small\item\em abstract function to drop table and rebuild the database. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classt__dbConnector_ab458a5d40167f2f698d8db7c6d0c3176}{disconnect\+DB}} ()=0
+\begin{DoxyCompactList}\small\item\em abstract function to deconstruct the database. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{classt__dbConnector_a58a131d10050c79f85278ca7c8f15d88}{db\+Name}}
+\item 
+sqlite3 $\ast$ \mbox{\hyperlink{classt__dbConnector_ad48cbe7ca83910d7f3d252a6c529d96d}{db}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classt__dbConnector_ade5b4a327aeea6ac34229e885a76be2f}\label{classt__dbConnector_ade5b4a327aeea6ac34229e885a76be2f}} 
+\index{t\_dbConnector@{t\_dbConnector}!connectDB@{connectDB}}
+\index{connectDB@{connectDB}!t\_dbConnector@{t\_dbConnector}}
+\doxysubsubsection{\texorpdfstring{connectDB()}{connectDB()}}
+{\footnotesize\ttfamily virtual void t\+\_\+db\+Connector\+::connect\+DB (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+abstract function to create and connect to database. 
+
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+\end{DoxyAuthor}
+
+
+Implemented in \mbox{\hyperlink{classSQLiteConnector_aab1f20f73f9a9d276c10d4f6ed388aa2}{S\+Q\+Lite\+Connector}}.
+
+\mbox{\Hypertarget{classt__dbConnector_ab458a5d40167f2f698d8db7c6d0c3176}\label{classt__dbConnector_ab458a5d40167f2f698d8db7c6d0c3176}} 
+\index{t\_dbConnector@{t\_dbConnector}!disconnectDB@{disconnectDB}}
+\index{disconnectDB@{disconnectDB}!t\_dbConnector@{t\_dbConnector}}
+\doxysubsubsection{\texorpdfstring{disconnectDB()}{disconnectDB()}}
+{\footnotesize\ttfamily virtual void t\+\_\+db\+Connector\+::disconnect\+DB (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+abstract function to deconstruct the database. 
+
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+\end{DoxyAuthor}
+
+
+Implemented in \mbox{\hyperlink{classSQLiteConnector_a093407508d85237f70a72d5f992e2db2}{S\+Q\+Lite\+Connector}}.
+
+\mbox{\Hypertarget{classt__dbConnector_aa1357aa4717bac4b4f0893b96bde6411}\label{classt__dbConnector_aa1357aa4717bac4b4f0893b96bde6411}} 
+\index{t\_dbConnector@{t\_dbConnector}!dropTable@{dropTable}}
+\index{dropTable@{dropTable}!t\_dbConnector@{t\_dbConnector}}
+\doxysubsubsection{\texorpdfstring{dropTable()}{dropTable()}}
+{\footnotesize\ttfamily virtual void t\+\_\+db\+Connector\+::drop\+Table (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+abstract function to drop the database. 
+
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+\end{DoxyAuthor}
+
+
+Implemented in \mbox{\hyperlink{classSQLiteConnector_af47a3b00d7e903509f8c96cf3b1d6ba9}{S\+Q\+Lite\+Connector}}.
+
+\mbox{\Hypertarget{classt__dbConnector_a8bc2844b083abf0ec779d195558b5153}\label{classt__dbConnector_a8bc2844b083abf0ec779d195558b5153}} 
+\index{t\_dbConnector@{t\_dbConnector}!dropTableandRebuild@{dropTableandRebuild}}
+\index{dropTableandRebuild@{dropTableandRebuild}!t\_dbConnector@{t\_dbConnector}}
+\doxysubsubsection{\texorpdfstring{dropTableandRebuild()}{dropTableandRebuild()}}
+{\footnotesize\ttfamily virtual void t\+\_\+db\+Connector\+::drop\+Tableand\+Rebuild (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+abstract function to drop table and rebuild the database. 
+
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+\end{DoxyAuthor}
+
+
+Implemented in \mbox{\hyperlink{classSQLiteConnector_a4eb30913fdf667b8ed8a383f8cd7003b}{S\+Q\+Lite\+Connector}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classt__dbConnector_ad48cbe7ca83910d7f3d252a6c529d96d}\label{classt__dbConnector_ad48cbe7ca83910d7f3d252a6c529d96d}} 
+\index{t\_dbConnector@{t\_dbConnector}!db@{db}}
+\index{db@{db}!t\_dbConnector@{t\_dbConnector}}
+\doxysubsubsection{\texorpdfstring{db}{db}}
+{\footnotesize\ttfamily sqlite3$\ast$ t\+\_\+db\+Connector\+::db\hspace{0.3cm}{\ttfamily [protected]}}
+
+sqlite3$\ast$\+: Database Handle \mbox{\Hypertarget{classt__dbConnector_a58a131d10050c79f85278ca7c8f15d88}\label{classt__dbConnector_a58a131d10050c79f85278ca7c8f15d88}} 
+\index{t\_dbConnector@{t\_dbConnector}!dbName@{dbName}}
+\index{dbName@{dbName}!t\_dbConnector@{t\_dbConnector}}
+\doxysubsubsection{\texorpdfstring{dbName}{dbName}}
+{\footnotesize\ttfamily std\+::string t\+\_\+db\+Connector\+::db\+Name\hspace{0.3cm}{\ttfamily [protected]}}
+
+string\+: database name 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{t__dbConnector_8h}{t\+\_\+db\+Connector.\+h}}\end{DoxyCompactItemize}

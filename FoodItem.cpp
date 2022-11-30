@@ -1,6 +1,14 @@
-/* FoodItem Implementation file
-    This file contains the implementation for all methods of the FoodItem Class
-*/
+/**
+ * @file FoodItem.cpp
+ * @author Matthew Cheverie
+ * @brief FoodItem program file. Contains the implementation for the FoodItem Class.
+ * Used to represent records in database.
+ * @version 0.1
+ * @date 2022-11-29
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include "FoodItem.h"
 #include <iostream>
 using namespace std;

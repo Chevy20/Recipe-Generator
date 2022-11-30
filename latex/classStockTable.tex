@@ -1,0 +1,198 @@
+\hypertarget{classStockTable}{}\doxysection{Stock\+Table Class Reference}
+\label{classStockTable}\index{StockTable@{StockTable}}
+
+
+Inheritance diagram for Stock\+Table\+:
+% FIG 0
+
+
+Collaboration diagram for Stock\+Table\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classStockTable_a23fc9587474d941b058bf6f3a381dd81}{Stock\+Table}} ()
+\begin{DoxyCompactList}\small\item\em Constructor -\/ Sets teh variables for this class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classStockTable_a4fe76ab0c548328521da874723b04772}{Stock\+Table}} (sqlite3 $\ast$\+\_\+db)
+\begin{DoxyCompactList}\small\item\em Constructor -\/ Sets teh variables for this class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classStockTable_aa306197ffd9281ee8c776ad1b07dca13}{$\sim$\+Stock\+Table}} ()
+\begin{DoxyCompactList}\small\item\em Destructor -\/ Closes the database. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classStockTable_a7b0716fb7979b9f402fb5747b553d603}{insert}} (void $\ast$item) override
+\begin{DoxyCompactList}\small\item\em Inserts a food item into the database. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classStockTable_a9e7080d00884300f5d3327d06c9c3d09}{update}} (void $\ast$item) override
+\begin{DoxyCompactList}\small\item\em Updates a food item in the database. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classStockTable_a0264bd157e1dffc8d87d3f5c6e7b59ec}{remove}} (std\+::string item\+Name) override
+\begin{DoxyCompactList}\small\item\em Removes a food item from the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classFoodItem}{Food\+Item}} \mbox{\hyperlink{classStockTable_a4dff29e16a3d4c1010a9f1121e49f69d}{select}} (std\+::string key)
+\begin{DoxyCompactList}\small\item\em Gets the food item data from the database that has the same name as specified. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classFoodItem}{Food\+Item}} $>$ \mbox{\hyperlink{classStockTable_a70aff0d188c63b1f1d36da71e2387ba4}{select\+All}} ()
+\begin{DoxyCompactList}\small\item\em Gets the food item data of all items from the database. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classStockTable_a23fc9587474d941b058bf6f3a381dd81}\label{classStockTable_a23fc9587474d941b058bf6f3a381dd81}} 
+\index{StockTable@{StockTable}!StockTable@{StockTable}}
+\index{StockTable@{StockTable}!StockTable@{StockTable}}
+\doxysubsubsection{\texorpdfstring{StockTable()}{StockTable()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Stock\+Table\+::\+Stock\+Table (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructor -\/ Sets teh variables for this class. 
+
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classStockTable_a4fe76ab0c548328521da874723b04772}\label{classStockTable_a4fe76ab0c548328521da874723b04772}} 
+\index{StockTable@{StockTable}!StockTable@{StockTable}}
+\index{StockTable@{StockTable}!StockTable@{StockTable}}
+\doxysubsubsection{\texorpdfstring{StockTable()}{StockTable()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Stock\+Table\+::\+Stock\+Table (\begin{DoxyParamCaption}\item[{sqlite3 $\ast$}]{\+\_\+db }\end{DoxyParamCaption})}
+
+
+
+Constructor -\/ Sets teh variables for this class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+db} & The database to set. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classStockTable_aa306197ffd9281ee8c776ad1b07dca13}\label{classStockTable_aa306197ffd9281ee8c776ad1b07dca13}} 
+\index{StockTable@{StockTable}!````~StockTable@{$\sim$StockTable}}
+\index{````~StockTable@{$\sim$StockTable}!StockTable@{StockTable}}
+\doxysubsubsection{\texorpdfstring{$\sim$StockTable()}{~StockTable()}}
+{\footnotesize\ttfamily Stock\+Table\+::$\sim$\+Stock\+Table (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructor -\/ Closes the database. 
+
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classStockTable_a7b0716fb7979b9f402fb5747b553d603}\label{classStockTable_a7b0716fb7979b9f402fb5747b553d603}} 
+\index{StockTable@{StockTable}!insert@{insert}}
+\index{insert@{insert}!StockTable@{StockTable}}
+\doxysubsubsection{\texorpdfstring{insert()}{insert()}}
+{\footnotesize\ttfamily bool Stock\+Table\+::insert (\begin{DoxyParamCaption}\item[{void $\ast$}]{item }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Inserts a food item into the database. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item} & A void pointer to a food item to insert.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Boolean of success. 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+\end{DoxyAuthor}
+
+
+Implements \mbox{\hyperlink{classt__dbTableStrategy_ad16d72a8126573512195d3c48b5827d9}{t\+\_\+db\+Table\+Strategy}}.
+
+\mbox{\Hypertarget{classStockTable_a0264bd157e1dffc8d87d3f5c6e7b59ec}\label{classStockTable_a0264bd157e1dffc8d87d3f5c6e7b59ec}} 
+\index{StockTable@{StockTable}!remove@{remove}}
+\index{remove@{remove}!StockTable@{StockTable}}
+\doxysubsubsection{\texorpdfstring{remove()}{remove()}}
+{\footnotesize\ttfamily bool Stock\+Table\+::remove (\begin{DoxyParamCaption}\item[{std\+::string}]{item\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Removes a food item from the database. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item} & The name of the food item to remove.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Boolean of success. 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+\end{DoxyAuthor}
+
+
+Implements \mbox{\hyperlink{classt__dbTableStrategy_ac9c2ab23db2c4a89bd9b7a36854e90ac}{t\+\_\+db\+Table\+Strategy}}.
+
+\mbox{\Hypertarget{classStockTable_a4dff29e16a3d4c1010a9f1121e49f69d}\label{classStockTable_a4dff29e16a3d4c1010a9f1121e49f69d}} 
+\index{StockTable@{StockTable}!select@{select}}
+\index{select@{select}!StockTable@{StockTable}}
+\doxysubsubsection{\texorpdfstring{select()}{select()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classFoodItem}{Food\+Item}} Stock\+Table\+::select (\begin{DoxyParamCaption}\item[{std\+::string}]{key }\end{DoxyParamCaption})}
+
+
+
+Gets the food item data from the database that has the same name as specified. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The item name to query for.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The food item. 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classStockTable_a70aff0d188c63b1f1d36da71e2387ba4}\label{classStockTable_a70aff0d188c63b1f1d36da71e2387ba4}} 
+\index{StockTable@{StockTable}!selectAll@{selectAll}}
+\index{selectAll@{selectAll}!StockTable@{StockTable}}
+\doxysubsubsection{\texorpdfstring{selectAll()}{selectAll()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{classFoodItem}{Food\+Item}} $>$ Stock\+Table\+::select\+All (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the food item data of all items from the database. 
+
+\begin{DoxyReturn}{Returns}
+The list of food items. 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classStockTable_a9e7080d00884300f5d3327d06c9c3d09}\label{classStockTable_a9e7080d00884300f5d3327d06c9c3d09}} 
+\index{StockTable@{StockTable}!update@{update}}
+\index{update@{update}!StockTable@{StockTable}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily bool Stock\+Table\+::update (\begin{DoxyParamCaption}\item[{void $\ast$}]{item }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Updates a food item in the database. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item} & A void pointer to a food item to update.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Boolean of success. 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+\end{DoxyAuthor}
+
+
+Implements \mbox{\hyperlink{classt__dbTableStrategy_ac1fb3446388b31d5bb5127ca5b94b991}{t\+\_\+db\+Table\+Strategy}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{StockTable_8h}{Stock\+Table.\+h}}\item 
+Stock\+Table.\+cpp\end{DoxyCompactItemize}

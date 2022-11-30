@@ -1,3 +1,15 @@
+/**
+ * @file FoodAPI.h
+ * @author Matthew Cheverie
+ * @brief FoodAPI header file. Contains the defintions for FoodAPI class. Used to communicate with Spoonacular API
+ * and create various objects
+ * Used to represent records in database.
+ * @version 0.1
+ * @date 2022-11-29
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #ifndef FOODAPI_H
 #define FOODAPI_H
 

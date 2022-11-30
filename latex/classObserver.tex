@@ -1,0 +1,75 @@
+\hypertarget{classObserver}{}\doxysection{Observer Class Reference}
+\label{classObserver}\index{Observer@{Observer}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classObserver_a450645e61c136826f09940a1334c7f34}{$\sim$\+Observer}} ()
+\begin{DoxyCompactList}\small\item\em Destructor -\/ Deletes the class variables of this controller. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classObserver_a10d333f262a37b81d7c9090f421bb8a2}{update}} (\mbox{\hyperlink{classController}{Controller}} $\ast$controller)=0
+\begin{DoxyCompactList}\small\item\em Updates this observer with the current controller. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classObserver_a5585b3ea0ae2cfddd947dd3827bd93d8}{Observer}} (\mbox{\hyperlink{classController}{Controller}} $\ast$controller)
+\begin{DoxyCompactList}\small\item\em Constructor -\/ Sets the variables of this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classObserver_a450645e61c136826f09940a1334c7f34}\label{classObserver_a450645e61c136826f09940a1334c7f34}} 
+\index{Observer@{Observer}!````~Observer@{$\sim$Observer}}
+\index{````~Observer@{$\sim$Observer}!Observer@{Observer}}
+\doxysubsubsection{\texorpdfstring{$\sim$Observer()}{~Observer()}}
+{\footnotesize\ttfamily Observer\+::$\sim$\+Observer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Destructor -\/ Deletes the class variables of this controller. 
+
+\begin{DoxyAuthor}{Author}
+Nick Baesso 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classObserver_a5585b3ea0ae2cfddd947dd3827bd93d8}\label{classObserver_a5585b3ea0ae2cfddd947dd3827bd93d8}} 
+\index{Observer@{Observer}!Observer@{Observer}}
+\index{Observer@{Observer}!Observer@{Observer}}
+\doxysubsubsection{\texorpdfstring{Observer()}{Observer()}}
+{\footnotesize\ttfamily Observer\+::\+Observer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classController}{Controller}} $\ast$}]{controller }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Constructor -\/ Sets the variables of this class. 
+
+\begin{DoxyAuthor}{Author}
+Nick Baesso
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em controller} & The controller that is being observed. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classObserver_a10d333f262a37b81d7c9090f421bb8a2}\label{classObserver_a10d333f262a37b81d7c9090f421bb8a2}} 
+\index{Observer@{Observer}!update@{update}}
+\index{update@{update}!Observer@{Observer}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Observer\+::update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classController}{Controller}} $\ast$}]{controller }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [pure virtual]}}
+
+
+
+Updates this observer with the current controller. 
+
+\begin{DoxyAuthor}{Author}
+Nick Baesso
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em controller} & The current controller to update this observer with. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Observer.\+h\item 
+Observer.\+cpp\end{DoxyCompactItemize}

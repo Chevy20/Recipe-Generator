@@ -1,0 +1,205 @@
+\hypertarget{classRecipe}{}\doxysection{Recipe Class Reference}
+\label{classRecipe}\index{Recipe@{Recipe}}
+
+
+This class stores and allows the user to manipulate specific recipes.  
+
+
+
+
+{\ttfamily \#include $<$Recipe.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classRecipe_adfaccd149c99c8908772fc2281820041}\label{classRecipe_adfaccd149c99c8908772fc2281820041}} 
+\mbox{\hyperlink{classRecipe_adfaccd149c99c8908772fc2281820041}{Recipe}} ()
+\begin{DoxyCompactList}\small\item\em Constructor -\/ Sets all the variables for this class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classRecipe_a7ee59ca139b14752277ad29e74c1997a}{Recipe}} (std\+::string rname, std\+::vector$<$ \mbox{\hyperlink{classRecipeItem}{Recipe\+Item}} $>$ ingredients, std\+::vector$<$ \mbox{\hyperlink{classRecipeItem}{Recipe\+Item}} $>$ missingingredients, std\+::map$<$ std\+::string, float $>$ nutri, std\+::string img)
+\begin{DoxyCompactList}\small\item\em Constructor -\/ Sets all the variables for this class. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classRecipe_ac1cc2fc54a9588d98ac21e7fae3d175f}\label{classRecipe_ac1cc2fc54a9588d98ac21e7fae3d175f}} 
+\mbox{\hyperlink{classRecipe_ac1cc2fc54a9588d98ac21e7fae3d175f}{$\sim$\+Recipe}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classRecipe_a5352991c05cdf1a17ee2783c0f005d3f}{get\+Recipe\+Name}} ()
+\begin{DoxyCompactList}\small\item\em Returns the name of the recipe. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classRecipe_a2fbfe5792ec22753ed4ce40eb9766232}{get\+Image\+U\+RL}} ()
+\begin{DoxyCompactList}\small\item\em Returns the url of the image of the recipe. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classRecipeItem}{Recipe\+Item}} $>$ \mbox{\hyperlink{classRecipe_ad2ea8f37374919800dde76de59ee760f}{get\+Missing\+Ingredients}} ()
+\begin{DoxyCompactList}\small\item\em Returns a list of the missing ingredients required for the recipe. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classRecipeItem}{Recipe\+Item}} $>$ \mbox{\hyperlink{classRecipe_a70eb9de0a3104907c45b8bc2b052ded7}{get\+Ingredients}} ()
+\begin{DoxyCompactList}\small\item\em Returns the list of the ingredients for the recipe. \end{DoxyCompactList}\item 
+std\+::map$<$ std\+::string, float $>$ \mbox{\hyperlink{classRecipe_a721facf9cdeb26798e3e4c924327eb24}{get\+Nutrition}} ()
+\begin{DoxyCompactList}\small\item\em Returns the nutrition of the recipe. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRecipe_a4da7bc840eb1d47091de180a7d98a4e4}{swap\+Ingredient}} (std\+::string n\+Item, float n\+Quan, std\+::string n\+Measure, \mbox{\hyperlink{classRecipeItem}{Recipe\+Item}} r\+Item)
+\begin{DoxyCompactList}\small\item\em Overwrites a food item with a new item. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classRecipe_a1458d9fa71b6d373526bcc0eebe0e3af}{adjust\+Ingredient\+Amount}} (\mbox{\hyperlink{classRecipeItem}{Recipe\+Item}} item, float quantity)
+\begin{DoxyCompactList}\small\item\em Adjusts the ingredient amount for a recipe. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classRecipe_a20c1d26cae4092e24f7b18be497d1a33}{add\+Ingredient}} (\mbox{\hyperlink{classRecipeItem}{Recipe\+Item}} n\+Item)
+\begin{DoxyCompactList}\small\item\em Adds an ingredient to a recipe. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This class stores and allows the user to manipulate specific recipes. 
+
+\begin{DoxyAuthor}{Author}
+Kanishk Mishra 
+
+Andrew Li 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classRecipe_a7ee59ca139b14752277ad29e74c1997a}\label{classRecipe_a7ee59ca139b14752277ad29e74c1997a}} 
+\index{Recipe@{Recipe}!Recipe@{Recipe}}
+\index{Recipe@{Recipe}!Recipe@{Recipe}}
+\doxysubsubsection{\texorpdfstring{Recipe()}{Recipe()}}
+{\footnotesize\ttfamily Recipe\+::\+Recipe (\begin{DoxyParamCaption}\item[{std\+::string}]{rname,  }\item[{std\+::vector$<$ \mbox{\hyperlink{classRecipeItem}{Recipe\+Item}} $>$}]{ingredients,  }\item[{std\+::vector$<$ \mbox{\hyperlink{classRecipeItem}{Recipe\+Item}} $>$}]{missingingredients,  }\item[{std\+::map$<$ std\+::string, float $>$}]{nutri,  }\item[{std\+::string}]{img }\end{DoxyParamCaption})}
+
+
+
+Constructor -\/ Sets all the variables for this class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rname} & The name of the recipe. \\
+\hline
+{\em ingredients} & The list of ingredients required for the recipe. \\
+\hline
+{\em missingingredients} & List of any ingredients that are missing from the stock. \\
+\hline
+{\em nutri} & The nutrition of the recipe. \\
+\hline
+{\em img} & The image source for the picture of the recipe. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classRecipe_a20c1d26cae4092e24f7b18be497d1a33}\label{classRecipe_a20c1d26cae4092e24f7b18be497d1a33}} 
+\index{Recipe@{Recipe}!addIngredient@{addIngredient}}
+\index{addIngredient@{addIngredient}!Recipe@{Recipe}}
+\doxysubsubsection{\texorpdfstring{addIngredient()}{addIngredient()}}
+{\footnotesize\ttfamily int Recipe\+::add\+Ingredient (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classRecipeItem}{Recipe\+Item}}}]{n\+Item }\end{DoxyParamCaption})}
+
+
+
+Adds an ingredient to a recipe. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n\+Item} & The recipe to add to.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Int used as a boolean of success. -\/1 if duplicate ingredient. 0 otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classRecipe_a1458d9fa71b6d373526bcc0eebe0e3af}\label{classRecipe_a1458d9fa71b6d373526bcc0eebe0e3af}} 
+\index{Recipe@{Recipe}!adjustIngredientAmount@{adjustIngredientAmount}}
+\index{adjustIngredientAmount@{adjustIngredientAmount}!Recipe@{Recipe}}
+\doxysubsubsection{\texorpdfstring{adjustIngredientAmount()}{adjustIngredientAmount()}}
+{\footnotesize\ttfamily int Recipe\+::adjust\+Ingredient\+Amount (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classRecipeItem}{Recipe\+Item}}}]{item,  }\item[{float}]{quantity }\end{DoxyParamCaption})}
+
+
+
+Adjusts the ingredient amount for a recipe. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item} & The ingredient to adjust. \\
+\hline
+{\em quantity} & The new quantity.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Int used as a boolean of success. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classRecipe_a2fbfe5792ec22753ed4ce40eb9766232}\label{classRecipe_a2fbfe5792ec22753ed4ce40eb9766232}} 
+\index{Recipe@{Recipe}!getImageURL@{getImageURL}}
+\index{getImageURL@{getImageURL}!Recipe@{Recipe}}
+\doxysubsubsection{\texorpdfstring{getImageURL()}{getImageURL()}}
+{\footnotesize\ttfamily string Recipe\+::get\+Image\+U\+RL (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the url of the image of the recipe. 
+
+\begin{DoxyReturn}{Returns}
+The string of the image source. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classRecipe_a70eb9de0a3104907c45b8bc2b052ded7}\label{classRecipe_a70eb9de0a3104907c45b8bc2b052ded7}} 
+\index{Recipe@{Recipe}!getIngredients@{getIngredients}}
+\index{getIngredients@{getIngredients}!Recipe@{Recipe}}
+\doxysubsubsection{\texorpdfstring{getIngredients()}{getIngredients()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{classRecipeItem}{Recipe\+Item}} $>$ Recipe\+::get\+Ingredients (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the list of the ingredients for the recipe. 
+
+\begin{DoxyReturn}{Returns}
+The ingredient list for the recipe. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classRecipe_ad2ea8f37374919800dde76de59ee760f}\label{classRecipe_ad2ea8f37374919800dde76de59ee760f}} 
+\index{Recipe@{Recipe}!getMissingIngredients@{getMissingIngredients}}
+\index{getMissingIngredients@{getMissingIngredients}!Recipe@{Recipe}}
+\doxysubsubsection{\texorpdfstring{getMissingIngredients()}{getMissingIngredients()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{classRecipeItem}{Recipe\+Item}} $>$ Recipe\+::get\+Missing\+Ingredients (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns a list of the missing ingredients required for the recipe. 
+
+\begin{DoxyReturn}{Returns}
+The list of missing ingredients. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classRecipe_a721facf9cdeb26798e3e4c924327eb24}\label{classRecipe_a721facf9cdeb26798e3e4c924327eb24}} 
+\index{Recipe@{Recipe}!getNutrition@{getNutrition}}
+\index{getNutrition@{getNutrition}!Recipe@{Recipe}}
+\doxysubsubsection{\texorpdfstring{getNutrition()}{getNutrition()}}
+{\footnotesize\ttfamily map$<$ string, float $>$ Recipe\+::get\+Nutrition (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the nutrition of the recipe. 
+
+\begin{DoxyReturn}{Returns}
+The recipe\textquotesingle{}s nutrition. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classRecipe_a5352991c05cdf1a17ee2783c0f005d3f}\label{classRecipe_a5352991c05cdf1a17ee2783c0f005d3f}} 
+\index{Recipe@{Recipe}!getRecipeName@{getRecipeName}}
+\index{getRecipeName@{getRecipeName}!Recipe@{Recipe}}
+\doxysubsubsection{\texorpdfstring{getRecipeName()}{getRecipeName()}}
+{\footnotesize\ttfamily string Recipe\+::get\+Recipe\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the name of the recipe. 
+
+\begin{DoxyReturn}{Returns}
+The string of the recipe name. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classRecipe_a4da7bc840eb1d47091de180a7d98a4e4}\label{classRecipe_a4da7bc840eb1d47091de180a7d98a4e4}} 
+\index{Recipe@{Recipe}!swapIngredient@{swapIngredient}}
+\index{swapIngredient@{swapIngredient}!Recipe@{Recipe}}
+\doxysubsubsection{\texorpdfstring{swapIngredient()}{swapIngredient()}}
+{\footnotesize\ttfamily void Recipe\+::swap\+Ingredient (\begin{DoxyParamCaption}\item[{std\+::string}]{n\+Item,  }\item[{float}]{n\+Quan,  }\item[{std\+::string}]{n\+Measure,  }\item[{\mbox{\hyperlink{classRecipeItem}{Recipe\+Item}}}]{r\+Item }\end{DoxyParamCaption})}
+
+
+
+Overwrites a food item with a new item. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n\+Item} & The name of the new food item to be swapped in. \\
+\hline
+{\em n\+Quan} & The quantity of the new food item to be swapped in. \\
+\hline
+{\em n\+Measure} & The measurement of the new food item to be swapped in. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Recipe.\+h\item 
+Recipe.\+cpp\end{DoxyCompactItemize}

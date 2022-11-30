@@ -1,3 +1,14 @@
+/**
+ * @file TerminalView.cpp
+ * @author Matthew Cheverie
+ * @brief TerminalView program. This cpp file contains the implemntation of the terminalView class
+ * It will make a view that is meant for the terminal
+ * @version 0.1
+ * @date 2022-11-29
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include "TerminalView.h"
 using namespace std;
 
@@ -123,14 +134,14 @@ void TerminalView::display() {
     FoodItem record;            //Fooditem used to contain singular FoodItems
     vector<FoodItem> multiSearch;   //Vector used to contain multiple FoodItems
     int intInput;                   //used to store integer input 
-
+    bool flag = true;
     //Welcome message
     cout<<"Welcome to Freshcipes Terminal Application" <<endl;
     cout<<"This application will help you search for recipes based on the food you have in your stock. If this is your first time using the app, insert food into your stock to get started!"<<endl;
     cout<<"Your stock will be stored when exiting the app.\n" <<endl;
 
     //Application Loop
-    while (true){
+    while (flag){
 
         cout<<"1: Insert food item into your stock."<<endl;
         cout<<"2: Delete food item from your stock"<<endl;
@@ -372,20 +383,27 @@ void TerminalView::display() {
                 
             //API call for all stock
             case 7:{
+                // Mass query for entire stock.
                 cout<<"Searching spoonacular for Recipes based on all food items in your stock."<<endl;
                 vector<Recipe> apiSearch = modl->getFoodAPI()->getRecipeByIngredients(modl);
                 modl->setQueriedRecipes(apiSearch);
                 modl->printRecipeToConsole();
                 break;
             }
+            
+            //Select a recipise too cook
             case 8:{
+                //get recipe list 
                 vector<Recipe> rList = modl->getQueriedRecipes();
+                // if there is at least one recipe returned
                 if(rList.size() != 0){
+                    // print recipes to console
                     modl->printRecipeToConsole();
                     cout<<"Please the number of the recipe you would like to cook."<<endl;
                     cout<<"If your stock can be managed automatically, the necessary deductions will be made and you will see your updated stock."<<endl;
                     cout<<"If your stock cannot be managed automatically, you will be prompted to enter the new quantity for each item used in the recipie."<<endl;
                     cout<<"Please type the number of the recipe you would like to cook: ";
+                    //ask user to select a recipe to cook
                     cin>> userInput;
                     while(!checkRecipe(userInput,rList)){
                         cout<<"Input invalid."<<endl;
@@ -394,9 +412,10 @@ void TerminalView::display() {
                     }
                     Recipe selectedRecipe = rList[atoi(userInput.c_str())-1];
 
-                    //AutoComputeStock
+                    //Check if auto stock managment is possible. Only possible is units of measurement match for each recipe ingredient and its corresponding entry in the db
                     if(modl->checkAutoStock(selectedRecipe)){
                         cout<<"Auto stock management possible."<<endl;
+                        //if auto stock fails for some reason
                         if(!modl->autoComputeStockAfterRecipe(selectedRecipe))
                             cout<<"Error in completing stock update. Please manually check and update your stock."<<endl;
                         else
@@ -404,12 +423,19 @@ void TerminalView::display() {
                     }
                     //Manually compute stock
                     else{
+                        // If auto stock managment is not possible 
                         cout<<"Auto stock management not possible for " +selectedRecipe.getRecipeName()<<endl;
                         vector<FoodItem> updatedStock; 
                         vector<RecipeItem> ingredients = selectedRecipe.getIngredients();
+
+                        //get corresponding food item from stock 
                         for(int i = 0; i <ingredients.size(); i++){
                             FoodItem item = modl->querySingleFoodItem(ingredients[i].getItem());
+                            /// if item is found, sometimes queries from API return a hit on similar ingredient names. For example
+                            /// if we have apples in our stock, a recipe might get returned with a used ingredient as green apples
+                            /// we cannot manage stock for item we dont have so we go to the else
                             if(item.getName()!= ""){
+                                //Show user the amount of item before cooking. Ask how much they used while cooking. Compute new stock and update item in db
                                 cout<<"Item in stock before cooking:"<<endl;
                                 cout<<"Item Name: "+item.getName()<<endl;
                                 cout<<"Item quantity: "+to_string(item.getQuantity())+" "+item.getMeasureUnit()<<endl;
@@ -431,17 +457,21 @@ void TerminalView::display() {
 
                     }
                 }
+
                 else{
                     cout<<"No recipes have been queried for. Search for some recipes first."<<endl;
                 }
-                
                 break;
                 
             }
-            case 9:
+
+            //Quit out of app
+            case 9:{
                 cout<<"Shutting down!"<<endl;
                 delete modl;
-                exit(0);
+                flag = false;
+            }
+                
             default:
                 break;
         }

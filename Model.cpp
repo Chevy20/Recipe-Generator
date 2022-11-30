@@ -1,3 +1,13 @@
+/**
+ * @file Model.cpp
+ * @author Matthew Cheverie
+ * @brief Model program file. Contains the implementations for the Model Class. The model is used as a middleman between the front end and the back end.
+ * @version 0.1
+ * @date 2022-11-29
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include "Model.h"
 #include <iostream>
 using namespace std;
@@ -5,6 +15,7 @@ using namespace std;
 
 /**
  * @brief Constructor - Sets the variables for this class.
+ * @author Matthew Cheverie
  */
 Model::Model(){
     //create new instance of SQLite connector. Connect to DB and create new dbconext passing in the handle from the dbConnection
@@ -17,6 +28,7 @@ Model::Model(){
 
 /**
  * @brief Destructor - Closes the connection to the database.
+ * @author Matthew Cheverie
  */
 Model::~Model(){
     dbContext->~StockTable(); 
@@ -27,6 +39,7 @@ Model::~Model(){
  * @brief Returns the dbConnection object.
  * 
  * @return The dbConnection object.
+ * @author Matthew Cheverie
  */
 SQLiteConnector* Model::getDBConnection(){
     return dbConnection;
@@ -37,6 +50,7 @@ SQLiteConnector* Model::getDBConnection(){
  * @brief Returns the dbContext object.
  * 
  * @return The dbContext object.
+ * @author Matthew Cheverie
  */
 StockTable *Model::getDbContext(){
     return dbContext;
@@ -47,7 +61,7 @@ StockTable *Model::getDbContext(){
  * @brief Adds a food item into the stock table.
  * 
  * @param item The food item to add.
- * 
+ * @author Matthew Cheverie
  * @return Boolean for success.
  */
 bool Model::addFoodItem(FoodItem item){
@@ -59,7 +73,7 @@ bool Model::addFoodItem(FoodItem item){
  * @brief Removes a food item from the stock table.
  * 
  * @param itemName The name of the food item to remove.
- * 
+ * @author Matthew Cheverie
  * @return Boolean for success.
  */
 bool Model::removeFoodItem(std::string itemName){
@@ -71,7 +85,7 @@ bool Model::removeFoodItem(std::string itemName){
  * @brief Modifies an existing food item in the stock table.
  * 
  * @param item The modified food item.
- * 
+ * @author Matthew Cheverie
  * @return Boolean for success.
  */
 bool Model::modifyFoodItem(FoodItem item){
@@ -83,7 +97,7 @@ bool Model::modifyFoodItem(FoodItem item){
  * @brief Queries for and returns the desired food item.
  * 
  * @param item The name of the food item.
- * 
+ * @author Matthew Cheverie
  * @return The found food item.
  */
 FoodItem Model::querySingleFoodItem(string item){
@@ -93,7 +107,7 @@ FoodItem Model::querySingleFoodItem(string item){
 
 /**
  * @brief Queries and returns all food items in the database.
- * 
+ * @author Matthew Cheverie
  * @return The list of all food items.
  */
 vector<FoodItem> Model::queryAllFoodItems(){
@@ -103,7 +117,7 @@ vector<FoodItem> Model::queryAllFoodItems(){
 
 /**
  * @brief Returns the food API.
- * 
+ * @author Matthew Cheverie
  * @return The food API.
  */
 const FoodAPI* Model::getFoodAPI(){
@@ -113,7 +127,7 @@ const FoodAPI* Model::getFoodAPI(){
 
 /**
  * @brief Checks for and returns a list of all expired food items.
- * 
+ * @author Matthew Cheverie
  * @return A list of all exired food items.
  */
 vector<FoodItem> Model::checkForExpiredFood(){
@@ -143,7 +157,7 @@ vector<FoodItem> Model::checkForExpiredFood(){
 
 /**
  * @brief Checks for and returns a list of all food items with low stock.
- * 
+ * @author Matthew Cheverie
  * @return A list of all food items with low stock.
  */
 vector<FoodItem> Model::checkForLowStock(){
@@ -167,7 +181,7 @@ vector<FoodItem> Model::checkForLowStock(){
  * @brief Computes the stock after a recipe is used.
  * 
  * @param cookedRecipe The recipe that was made.
- * 
+ * @author Matthew Cheverie
  * @return Boolean for success.
  */
 bool Model::autoComputeStockAfterRecipe(Recipe cookedRecipe){
@@ -192,7 +206,7 @@ bool Model::autoComputeStockAfterRecipe(Recipe cookedRecipe){
  * @brief Checks if the units of the recipe match the stock measurements.
  * 
  * @param cookedRecipe The recipe to check.
- * 
+ * @author Matthew Cheverie
  * @return True if the measurements are the same. False otherwise.
  */
 bool Model::checkAutoStock(Recipe cookedRecipie){
@@ -208,6 +222,7 @@ bool Model::checkAutoStock(Recipe cookedRecipie){
 
 /**
  * @brief Prints all the recipes.
+ * @author Matthew Cheverie
  */
 void Model::printRecipeToConsole(){
     cout<<"Here are the recipes returned from Spoonacular"<<endl;
@@ -236,7 +251,7 @@ void Model::printRecipeToConsole(){
  * @brief Maually updates the stock after a recipe is used. Called when the measurements of the recipe and stock don't match.
  * 
  * @param items The list of food items that need to be updated.
- * 
+ * @author Matthew Cheverie
  * @return Boolean for success.
  */
 bool Model::manualCompleteStockAfterRecipe(std::vector<FoodItem> items){
@@ -250,7 +265,7 @@ bool Model::manualCompleteStockAfterRecipe(std::vector<FoodItem> items){
 
 /**
  * @brief Returns the list of the recipes that were queried for.
- * 
+ * @author Matthew Cheverie
  * @return The list of queried recipes.
  */
 std::vector<Recipe> Model::getQueriedRecipes(){
@@ -260,7 +275,7 @@ std::vector<Recipe> Model::getQueriedRecipes(){
 
 /**
  * @brief Sets the list of the recipes that were queried for
- * 
+ * @author Matthew Cheverie
  * @param recipes The list of queried recipes to set.
  */
 void Model::setQueriedRecipes(std::vector<Recipe> recipes){

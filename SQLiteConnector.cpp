@@ -1,3 +1,14 @@
+/**
+ * @file SQLiteConnector.cpp
+ * @author Matthew Cheverie
+ * @brief SQLiteConnector program file. This file contains the implementation for the SQLiteConnector class. It inherits t_dbConnector.
+ * It is used to directly create/connect to the SQLite3 database and initialize the tables.
+ * @version 0.1
+ * @date 2022-11-29
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */   
 #include "SQLiteConnector.h"
 #include <iostream>
 using namespace std;
@@ -5,6 +16,7 @@ using namespace std;
 
 /**
  * @brief Constructor - Sets the variables for this class.
+ * @author Matthew Cheverie
  */
 SQLiteConnector::SQLiteConnector(){
     dbName = "Freshcipes.db";
@@ -13,6 +25,7 @@ SQLiteConnector::SQLiteConnector(){
 
 /**
  * @brief Destructor.
+ * @author Matthew Cheverie
  */
 SQLiteConnector::~SQLiteConnector(){
 
@@ -21,6 +34,7 @@ SQLiteConnector::~SQLiteConnector(){
 
 /**
  * @brief Creates a connection with the SQL database.
+ * @author Matthew Cheverie
  */
 void SQLiteConnector::connectDB(){
     int command = sqlite3_open(dbName.c_str(), &db);
@@ -50,6 +64,7 @@ void SQLiteConnector::connectDB(){
 
 /**
  * @brief Drops the stock_tbl.
+ * @author Matthew Cheverie
  */
 void SQLiteConnector::dropTable(){
     char* error;
@@ -65,6 +80,7 @@ void SQLiteConnector::dropTable(){
 
 /**
  * @brief Drops the stock_tbl and recreates it.
+ * @author Matthew Cheverie
  */
 void SQLiteConnector::dropTableandRebuild(){
     char* error;
@@ -91,6 +107,7 @@ void SQLiteConnector::dropTableandRebuild(){
 
 /**
  * @brief Disconnects from stock_tbl.
+ * @author Matthew Cheverie
  */
 void SQLiteConnector::disconnectDB(){
     if(sqlite3_close(db) == SQLITE_OK){
@@ -105,6 +122,7 @@ void SQLiteConnector::disconnectDB(){
  * @brief Returns the database.
  * 
  * @return The handle to the database.
+ * @author Matthew Cheverie
  */
 sqlite3* SQLiteConnector::getDbHandle(){
     return db;

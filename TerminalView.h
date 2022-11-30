@@ -1,5 +1,13 @@
-/*
- * TerminalView.h
+/**
+ * @file TerminalView.h
+ * @author Matthew Cheverie
+ * @brief TerminalView header file. This file contains the definitions for the terminal view class.
+ * It inherits View class
+ * @version 0.1
+ * @date 2022-11-29
+ * 
+ * @copyright Copyright (c) 2022
+ * 
  */
 #ifndef TERMINAL_VIEW_H
 #define TERMINAL_VIEW_H
@@ -12,10 +20,6 @@
 #include "FoodItem.h"
 #include "Recipe.h"
 #include "RecipeItem.h"
-/*
-    Terminal View class 
-*/
-
 #include "StockTable.h"
 #include "SQLiteConnector.h"
 #include "Model.h"

@@ -1,0 +1,254 @@
+\hypertarget{classController}{}\doxysection{Controller Class Reference}
+\label{classController}\index{Controller@{Controller}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classController_a95c56822d667e94b031451729ce069a9}{Controller}} ()
+\begin{DoxyCompactList}\small\item\em Constructor -\/ Sets the variables of this class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classController_acc4691a24b53d965c0728d754d02f8d1}{Controller}} (\mbox{\hyperlink{classModel}{Model}} $\ast$model, \mbox{\hyperlink{classView}{View}} $\ast$view)
+\begin{DoxyCompactList}\small\item\em Constructor -\/ Sets the variables of this class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classController_a0ab87934c4f7a266cfdb86e0f36bc1b5}{$\sim$\+Controller}} ()
+\begin{DoxyCompactList}\small\item\em Destructor -\/ Deletes the class variables of this controller. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classController_a3de7bb17e4810b275074609c64f1eb02}\label{classController_a3de7bb17e4810b275074609c64f1eb02}} 
+bool {\bfseries update\+Model} ()
+\item 
+\mbox{\Hypertarget{classController_aefb41cc7211b9415d15677339083fb50}\label{classController_aefb41cc7211b9415d15677339083fb50}} 
+bool {\bfseries update\+View} ()
+\item 
+\mbox{\hyperlink{classModel}{Model}} $\ast$ \mbox{\hyperlink{classController_a4ee9d22ba70cea8d8aae27ed8fcbac49}{get\+Model}} ()
+\begin{DoxyCompactList}\small\item\em Returns the model. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classView}{View}} $\ast$ \mbox{\hyperlink{classController_a21976015e8454c8814ecb0a1957ca0ce}{get\+View}} ()
+\begin{DoxyCompactList}\small\item\em Returns the view. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classController_a5338379926db83b2a31f6458579fde83}{set\+Model}} (\mbox{\hyperlink{classModel}{Model}} $\ast$model)
+\begin{DoxyCompactList}\small\item\em Sets the model connected to this controller. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classController_a24f0b6a74d8c5bdb93efc9855ebb6ee9}{set\+View}} (\mbox{\hyperlink{classView}{View}} $\ast$view)
+\begin{DoxyCompactList}\small\item\em Sets the view connected to this controller. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classController_ae206ecdf80f7e51a982568babbd5af76}{register\+Observer}} (\mbox{\hyperlink{classObserver}{Observer}} $\ast$observer)
+\begin{DoxyCompactList}\small\item\em Registers/attaches an observer onto this controller. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classController_a6069827dc91936a1a0b3401ee72277f4}{remove\+Observer}} (\mbox{\hyperlink{classObserver}{Observer}} $\ast$observer)
+\begin{DoxyCompactList}\small\item\em Removes an observer from this controller. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classController_a307aa0c858b5738cd3d16739f4cca373}{notify}} ()
+\begin{DoxyCompactList}\small\item\em Notifies/updates all the observers. \end{DoxyCompactList}\item 
+auto \mbox{\hyperlink{classController_a2e9d1970e22dc3632176b8edcbdeffb2}{event\+Handler}} (std\+::string func)
+\begin{DoxyCompactList}\small\item\em Takes a function from the view and calls the related model function. \end{DoxyCompactList}\item 
+auto \mbox{\hyperlink{classController_a063e17a691a74ad536f28b360ebfa28e}{event\+Handler}} (std\+::string func, auto item)
+\begin{DoxyCompactList}\small\item\em Takes a function from the view and calls the related model function. These are functions with a parameter. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classController_a95c56822d667e94b031451729ce069a9}\label{classController_a95c56822d667e94b031451729ce069a9}} 
+\index{Controller@{Controller}!Controller@{Controller}}
+\index{Controller@{Controller}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{Controller()}{Controller()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Controller\+::\+Controller (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructor -\/ Sets the variables of this class. 
+
+\begin{DoxyAuthor}{Author}
+Nick Baesso 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classController_acc4691a24b53d965c0728d754d02f8d1}\label{classController_acc4691a24b53d965c0728d754d02f8d1}} 
+\index{Controller@{Controller}!Controller@{Controller}}
+\index{Controller@{Controller}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{Controller()}{Controller()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Controller\+::\+Controller (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classModel}{Model}} $\ast$}]{model,  }\item[{\mbox{\hyperlink{classView}{View}} $\ast$}]{view }\end{DoxyParamCaption})}
+
+
+
+Constructor -\/ Sets the variables of this class. 
+
+\begin{DoxyAuthor}{Author}
+Nick Baesso
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em model} & The model that this controller communicates to. \\
+\hline
+{\em view} & The view that controls this controller. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classController_a0ab87934c4f7a266cfdb86e0f36bc1b5}\label{classController_a0ab87934c4f7a266cfdb86e0f36bc1b5}} 
+\index{Controller@{Controller}!````~Controller@{$\sim$Controller}}
+\index{````~Controller@{$\sim$Controller}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{$\sim$Controller()}{~Controller()}}
+{\footnotesize\ttfamily Controller\+::$\sim$\+Controller (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructor -\/ Deletes the class variables of this controller. 
+
+\begin{DoxyAuthor}{Author}
+Nick Baesso 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classController_a2e9d1970e22dc3632176b8edcbdeffb2}\label{classController_a2e9d1970e22dc3632176b8edcbdeffb2}} 
+\index{Controller@{Controller}!eventHandler@{eventHandler}}
+\index{eventHandler@{eventHandler}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{eventHandler()}{eventHandler()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily auto Controller\+::event\+Handler (\begin{DoxyParamCaption}\item[{std\+::string}]{func }\end{DoxyParamCaption})}
+
+
+
+Takes a function from the view and calls the related model function. 
+
+\begin{DoxyAuthor}{Author}
+Nick Baesso
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em func} & The desired function. Is case sensitive and must be without any parenthesis.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The corresponding return value of the desired function from the model. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classController_a063e17a691a74ad536f28b360ebfa28e}\label{classController_a063e17a691a74ad536f28b360ebfa28e}} 
+\index{Controller@{Controller}!eventHandler@{eventHandler}}
+\index{eventHandler@{eventHandler}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{eventHandler()}{eventHandler()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily auto Controller\+::event\+Handler (\begin{DoxyParamCaption}\item[{std\+::string}]{func,  }\item[{auto}]{item }\end{DoxyParamCaption})}
+
+
+
+Takes a function from the view and calls the related model function. These are functions with a parameter. 
+
+\begin{DoxyAuthor}{Author}
+Nick Baesso
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em func} & The desired function. Is case sensitive and must be without any parenthesis. \\
+\hline
+{\em item} & The parameter of the desired function.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The corresponding return value of the desired function from the model. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classController_a4ee9d22ba70cea8d8aae27ed8fcbac49}\label{classController_a4ee9d22ba70cea8d8aae27ed8fcbac49}} 
+\index{Controller@{Controller}!getModel@{getModel}}
+\index{getModel@{getModel}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{getModel()}{getModel()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classModel}{Model}} $\ast$ Controller\+::get\+Model (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the model. 
+
+\begin{DoxyAuthor}{Author}
+Nick Baesso
+\end{DoxyAuthor}
+\begin{DoxyReturn}{Returns}
+The model connected to this controller. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classController_a21976015e8454c8814ecb0a1957ca0ce}\label{classController_a21976015e8454c8814ecb0a1957ca0ce}} 
+\index{Controller@{Controller}!getView@{getView}}
+\index{getView@{getView}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{getView()}{getView()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classView}{View}} $\ast$ Controller\+::get\+View (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the view. 
+
+\begin{DoxyAuthor}{Author}
+Nick Baesso
+\end{DoxyAuthor}
+\begin{DoxyReturn}{Returns}
+The view connected to this controller. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classController_a307aa0c858b5738cd3d16739f4cca373}\label{classController_a307aa0c858b5738cd3d16739f4cca373}} 
+\index{Controller@{Controller}!notify@{notify}}
+\index{notify@{notify}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{notify()}{notify()}}
+{\footnotesize\ttfamily void Controller\+::notify (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Notifies/updates all the observers. 
+
+\begin{DoxyAuthor}{Author}
+Nick Baesso 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classController_ae206ecdf80f7e51a982568babbd5af76}\label{classController_ae206ecdf80f7e51a982568babbd5af76}} 
+\index{Controller@{Controller}!registerObserver@{registerObserver}}
+\index{registerObserver@{registerObserver}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{registerObserver()}{registerObserver()}}
+{\footnotesize\ttfamily void Controller\+::register\+Observer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classObserver}{Observer}} $\ast$}]{observer }\end{DoxyParamCaption})}
+
+
+
+Registers/attaches an observer onto this controller. 
+
+\begin{DoxyAuthor}{Author}
+Nick Baesso
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em observer} & \mbox{\hyperlink{classObserver}{Observer}} to attach. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classController_a6069827dc91936a1a0b3401ee72277f4}\label{classController_a6069827dc91936a1a0b3401ee72277f4}} 
+\index{Controller@{Controller}!removeObserver@{removeObserver}}
+\index{removeObserver@{removeObserver}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{removeObserver()}{removeObserver()}}
+{\footnotesize\ttfamily void Controller\+::remove\+Observer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classObserver}{Observer}} $\ast$}]{observer }\end{DoxyParamCaption})}
+
+
+
+Removes an observer from this controller. 
+
+\begin{DoxyAuthor}{Author}
+Nick Baesso
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em observer} & \mbox{\hyperlink{classObserver}{Observer}} to remove. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classController_a5338379926db83b2a31f6458579fde83}\label{classController_a5338379926db83b2a31f6458579fde83}} 
+\index{Controller@{Controller}!setModel@{setModel}}
+\index{setModel@{setModel}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{setModel()}{setModel()}}
+{\footnotesize\ttfamily void Controller\+::set\+Model (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classModel}{Model}} $\ast$}]{model }\end{DoxyParamCaption})}
+
+
+
+Sets the model connected to this controller. 
+
+\begin{DoxyAuthor}{Author}
+Nick Baesso
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em model} & The model to connect. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classController_a24f0b6a74d8c5bdb93efc9855ebb6ee9}\label{classController_a24f0b6a74d8c5bdb93efc9855ebb6ee9}} 
+\index{Controller@{Controller}!setView@{setView}}
+\index{setView@{setView}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{setView()}{setView()}}
+{\footnotesize\ttfamily void Controller\+::set\+View (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classView}{View}} $\ast$}]{view }\end{DoxyParamCaption})}
+
+
+
+Sets the view connected to this controller. 
+
+\begin{DoxyAuthor}{Author}
+Nick Baesso
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em model} & The view to connect. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Controller.\+h\item 
+Controller.\+cpp\end{DoxyCompactItemize}

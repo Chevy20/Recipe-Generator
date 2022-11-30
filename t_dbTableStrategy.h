@@ -1,7 +1,13 @@
 /**
-    t_dbTableStrategy header file 
-    This file contains all the definitions for the t_dbTable abstract class.
-*/
+ * @file t_dbTableStrategy.h
+ * @author Matthew Cheverie
+ * @brief t_dbTableStrategy header file. This contains the definitions for the Database Table Strategy template
+ * @version 0.1
+ * @date 2022-11-29
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #ifndef TDBTABLESTRATEGY_H
 #define TDBTABLESTRATEGY_H
 

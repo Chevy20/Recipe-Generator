@@ -1,7 +1,13 @@
 /**
-    t_dbConnector Header File 
-    This contains all the definitions for the t_dbConnector abstract class.
-*/
+ * @file t_dbConnector.h
+ * @author Matthew Cheverie
+ * @brief t_dbConnector header file. This contains the definitions for the Database Connector Template
+ * @version 0.1
+ * @date 2022-11-29
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #ifndef TDBCONNECTOR_H
 #define TDBCONNECTOR_H
 

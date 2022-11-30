@@ -1,9 +1,37 @@
-To Build this application:
-g++ terminalApp.cpp FoodItem.cpp SQLiteConnector.cpp StockTable.cpp Recipe.cpp RecipeItem.cpp model.cpp -lsqlite3
+How to Run:
+Dependencies needed:
+CURL: https://www.cyberciti.biz/faq/how-to-install-curl-command-on-a-ubuntu-linux/#:~:text=Advertisement-,Installing%20cURL%20for%20Ubuntu%20Linux,by%20running%3A%20curl%20%2D%2Dversion
+SQLite3: https://linuxhint.com/install-sqlite-ubuntu-linux-mint/
+wt: https://www.webtoolkit.eu/wt/doc/reference/html/InstallationUnix.html
+jsoncpp:https://linux.tips/programming/how-to-install-and-use-json-cpp-library-on-ubuntu-linux-os
 
-To run this application:
-./a.out
+How to Build: 
+Once dependencies have been installed you can build the terminalApplication with the following command: 
+g++ terminalApplication.cpp FoodAPI.cpp FoodItem.cpp Model.cpp Recipe.cpp RecipeItem.cpp SQLiteConnector.cpp StockTable.cpp View.cpp terminalView.cpp  -o terminalApplication  -lstdc++ -lcurl -lm -ljsoncpp -lsqlite3
 
-g++ -std=c++1z WebView.cpp Model.cpp FoodItem.cpp StockTable.cpp SQLiteConnector.cpp FoodAPI.cpp Recipe.cpp RecipeItem.cpp -o WebView -lwt -lwthttp -lcurl -I/opt/homebrew/include -lsqlite3 -ljsoncpp
+Once dependencies have been installed you can build the webApplication with the following command: 
+g++ webApplication.cpp FoodAPI.cpp FoodItem.cpp Model.cpp Recipe.cpp RecipeItem.cpp SQLiteConnector.cpp StockTable.cpp View.cpp  WebView.cpp  -o webApplication  -lstdc++ -lcurl -lm -ljsoncpp -lsqlite3 -lwt -lwthttp
 
-./WebView --docroot . --http-address 0.0.0.0 --http-port 9080
+How to Run:
+
+You can run terminalAppplication and webApplication at the same time but they MUST be run in seperate shell instances!!!!
+
+To run webApplication, type the following: 
+./webApplication --docroot . --http-address 0.0.0.0 --http-port 9080
+
+You will see a line in the terminal that says: 
+[2022-Nov-30 06:08:00.805] 999 - [info] "wthttp: started server: http://0.0.0.0:9080"
+
+Open http://0.0.0.0:9080 to access the webApplication
+
+Note: please close web page from browser before shutting down webserver.
+To shutdown the webServer, Control + C on the terminal
+
+To run terminalApplication, type the following:
+./terminalApplication 
+
+
+
+
+
+

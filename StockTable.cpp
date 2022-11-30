@@ -1,3 +1,14 @@
+/**
+ * @file StockTable.h
+ * @author Matthew Cheverie
+ * @brief StockTable program. This file contains the implementations for the functions StockTable class. It inherits t_dbTableStrategy.
+ * It is used to directly interface with the SQLite3 database
+ * @version 0.1
+ * @date 2022-11-29
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include "sqlite3.h"
 #include "StockTable.h"
 #include <iostream>
@@ -6,6 +17,7 @@ using namespace std;
 
 /**
  * @brief Constructor - Sets teh variables for this class.
+ * @author Matthew Cheverie
  */
 StockTable::StockTable(){
     db = nullptr;
@@ -16,6 +28,7 @@ StockTable::StockTable(){
  * @brief Constructor - Sets teh variables for this class.
  * 
  * @param _db The database to set.
+ * @author Matthew Cheverie
  */
 StockTable::StockTable(sqlite3* _db){
     db = _db;
@@ -24,6 +37,7 @@ StockTable::StockTable(sqlite3* _db){
 
 /**
  * @brief Destructor - Closes the database.
+ * @author Matthew Cheverie
  */
 StockTable::~StockTable(){
     sqlite3_close(db); 
@@ -36,6 +50,7 @@ StockTable::~StockTable(){
  * @param key The item name to query for.
  * 
  * @return The food item.
+ * @author Matthew Cheverie
  */
 FoodItem StockTable::select (string key){
     FoodItem* result = new FoodItem();
@@ -77,6 +92,7 @@ FoodItem StockTable::select (string key){
  * @brief Gets the food item data of all items from the database.
  * 
  * @return The list of food items.
+ * @author Matthew Cheverie
  */
 std::vector<FoodItem> StockTable::selectAll(){
     vector<FoodItem> result;
@@ -117,6 +133,7 @@ std::vector<FoodItem> StockTable::selectAll(){
  * @param item A void pointer to a food item to insert.
  * 
  * @return Boolean of success.
+ * @author Matthew Cheverie
  */
 bool StockTable::insert(void* item){
     
@@ -147,6 +164,7 @@ bool StockTable::insert(void* item){
  * @param item A void pointer to a food item to update.
  * 
  * @return Boolean of success.
+ * @author Matthew Cheverie
  */
 bool StockTable::update(void* item){
     FoodItem record = *(FoodItem*)item;
@@ -176,6 +194,7 @@ bool StockTable::update(void* item){
  * @param item The name of the food item to remove.
  * 
  * @return Boolean of success.
+ * @author Matthew Cheverie
  */
 bool StockTable::remove(std::string itemName){
     

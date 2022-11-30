@@ -1,4 +1,15 @@
-
+/**
+ * @file FoodAPI.cpp
+ * @author Matthew Cheverie
+ * @brief FoodAPI program file. Contains the implementation for FoodAPI class. Used to communicate with Spoonacular API
+ * and create various objects
+ * Used to represent records in database.
+ * @version 0.1
+ * @date 2022-11-29
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include <stdio.h>
 #include <curl/curl.h>
 #include <iostream>
@@ -16,7 +27,8 @@ const FoodAPI* FoodAPI::_instance = NULL;
 
 /**
  * @brief Returns a single instance of the FoodAPI.
- * 
+ * @author Matthew Cheverie
+ * @author Jared Anstett
  * @return Single instance of the FoodAPI object.
  */
 const FoodAPI& FoodAPI::getInstance(){
@@ -29,6 +41,8 @@ const FoodAPI& FoodAPI::getInstance(){
 
 /**
  * @brief Constructor
+ * @author Matthew Cheverie
+ * @author Jared Anstett
  */
 FoodAPI::FoodAPI(){
     string key = "254ee65b4d89431f9465d6b595199032";
@@ -38,7 +52,8 @@ FoodAPI::FoodAPI(){
 
 /**
  * @brief Gets the spoonacular API Key
- * 
+ * @author Matthew Cheverie
+ * @author Jared Anstett    
  * @return The API key.
  */
 string FoodAPI::getAPIKey() const{
@@ -50,7 +65,8 @@ string FoodAPI::getAPIKey() const{
  * @brief Takes the list of the ingredients in the stock and turns them into a printable string.
  * 
  * @param dbStock The stock of ingredients in the database.
- * 
+ * @author Matthew Cheverie
+ * @author Jared Anstett
  * @return The string of all the ingredients in stock.
  */
 std::string buildItemList(std::vector<FoodItem> dbStock)  {
@@ -70,7 +86,8 @@ std::string buildItemList(std::vector<FoodItem> dbStock)  {
 
 /**
  * @brief Sets the spoonacular API Key.
- * 
+ * @author Matthew Cheverie
+ * @author Jared Anstett
  * @param key The API key.
  */
 void FoodAPI::setAPIKey(string key){
@@ -80,7 +97,8 @@ void FoodAPI::setAPIKey(string key){
 
 /**
  * @brief Returns a list of preferences in recipes.
- * 
+ * @author Matthew Cheverie
+ * @author Jared Anstett
  * @return A list of string preferences.
  */
 vector<string> FoodAPI::getPreferences() {
@@ -90,7 +108,8 @@ vector<string> FoodAPI::getPreferences() {
 
 /**
  * @brief Sets a list of preferences in recipes.
- * 
+ * @author Matthew Cheverie
+ * @author Jared Anstett
  * @param prefs List of preferences to set.
  */
 void FoodAPI::setPreferences(vector<string> prefs){
@@ -100,7 +119,8 @@ void FoodAPI::setPreferences(vector<string> prefs){
 
 /**
  * @brief Returns a list of stored recipes.
- * 
+ * @author Matthew Cheverie
+ * @author Jared Anstett
  * @return A list of recipes.
  */
 vector<Recipe> FoodAPI::getRecipes(){
@@ -110,7 +130,8 @@ vector<Recipe> FoodAPI::getRecipes(){
 
 /**
  * @brief Sets the recipes list.
- * 
+ * @author Matthew Cheverie
+ * @author Jared Anstett
  * @param recipes List of recipes to set.
  */
 void FoodAPI::setReceipes(std::vector<Recipe> recipes){
@@ -120,7 +141,9 @@ void FoodAPI::setReceipes(std::vector<Recipe> recipes){
 
 /**
  * @brief Gets recipes with ingredient list from Spoonacular API.
- * 
+ * @author Matthew Cheverie
+ * @author Jared Anstett
+ * @author Andrew Li
  * @param _theModel String of comma separated items.
  * 
  * @return Json of recipes found.
@@ -200,7 +223,9 @@ std::vector<Recipe> FoodAPI::getRecipeByIngredients(void* _theModel) const{
  * @brief Checks for and returns a list of recipes that use a specific ingredient.
  * 
  * @param query The ingredient to search for.
- * 
+ * @author Matthew Cheverie
+ * @author Jared Anstett
+ * @author Andrew Li
  * @return A list of all the recipes that use the specified ingredient.
  */
 std::vector<Recipe> FoodAPI::getRecipeBySpecificIngredients(string query) const{
@@ -275,7 +300,7 @@ std::vector<Recipe> FoodAPI::getRecipeBySpecificIngredients(string query) const{
  * @brief Removes unneccesary punctuation from strings and returns it.
  * 
  * @param line The string to remove the punctuation from.
- * 
+ * @author Matthew Cheverie
  * @return The stripped string.
  */
 string FoodAPI::stripQuotes(string line) const{
@@ -286,7 +311,8 @@ string FoodAPI::stripQuotes(string line) const{
 
 /**
  * @brief Adds a preference to the preference list.
- * 
+ * @author Matthew Cheverie
+ * @author Jared Anstett
  * @param pref The string name of the preference to add.
  */
 void FoodAPI::addPreference(std::string pref){
@@ -298,7 +324,8 @@ void FoodAPI::addPreference(std::string pref){
 
 /**
  * @brief Removes a preference from the preference list.
- * 
+ * @author Matthew Cheverie
+ * @author Jared Anstett
  * @param pref The string name of the preference to remove.
  */
 void FoodAPI::removePreference(std::string pref){
@@ -310,7 +337,8 @@ void FoodAPI::removePreference(std::string pref){
  * @brief Builds and returns the query URL.
  * 
  * @param itemList The string of the ingredients.
- * 
+ * @author Matthew Cheverie
+ * @author Jared Anstett
  * @return The query URL.
  */
 string FoodAPI::buildQueryURL(string itemList) const{
@@ -322,25 +350,9 @@ string FoodAPI::buildQueryURL(string itemList) const{
 
 /**
  * @brief Destructor - Deletes instance of FoodAPI.
+ * @author Matthew Cheverie
+ * @author Jared Anstett
  */
 FoodAPI::~FoodAPI(){
     delete _instance;
 }
-// //Testing, to be removed later
-// int main(){
-    
-    
-//     Model* modl = new Model();
-    
-//     FoodItem item1 = FoodItem("apples",4,"apples","2022/11/25","2022/11/30","fridge",1);
-//     FoodItem item2 = FoodItem("flour",4,"cups","2022/11/25","2022/11/30","pantry",1);
-//     FoodItem item3 = FoodItem("sugar",4,"cups","2022/11/25","2022/11/30","fridge",1);
-//     /*
-//     modl->addFoodItem(item1);
-//     modl->addFoodItem(item2);
-//     modl->addFoodItem(item3);
-//     */
-    
-//     modl->getFoodAPI()->getRecipeByIngredients(modl);
-    
-// }

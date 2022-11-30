@@ -1,0 +1,226 @@
+\hypertarget{classRecipeItem}{}\doxysection{Recipe\+Item Class Reference}
+\label{classRecipeItem}\index{RecipeItem@{RecipeItem}}
+
+
+This class stores information about a specific ingredient in a specific recipe.  
+
+
+
+
+{\ttfamily \#include $<$Recipe\+Item.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classRecipeItem_af6b654b0ab0106389c3de7f2fcc24889}{Recipe\+Item}} ()
+\begin{DoxyCompactList}\small\item\em construct the recipe ingredient \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classRecipeItem_a8605f51e0b33b4b474cbff3037948813}{Recipe\+Item}} (std\+::string fitem, float num, std\+::string unit)
+\begin{DoxyCompactList}\small\item\em construct the recipe ingredient \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classRecipeItem_a71ff095f017fb513d5f1589829fc68f8}{$\sim$\+Recipe\+Item}} ()
+\begin{DoxyCompactList}\small\item\em destroy the recipe ingredient \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classRecipeItem_a47b6074b948b23576c995041fee9e95f}{get\+Item}} ()
+\begin{DoxyCompactList}\small\item\em get the name of the ingredient \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classRecipeItem_ae2cf9c03d0c00e465db846997ee5bd9f}{get\+Quantity}} ()
+\begin{DoxyCompactList}\small\item\em access the numeric quantity of ingredient \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classRecipeItem_ae48a4e62ac42d29e587ab805b425e3b8}{get\+Item\+Measure\+Unit}} ()
+\begin{DoxyCompactList}\small\item\em access the measurement of the ingredient \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRecipeItem_a3300415223084b5bddbcae490a9f2cf7}{set\+Item}} (std\+::string f\+Item)
+\begin{DoxyCompactList}\small\item\em setter method for the name of item \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRecipeItem_abd4c068e0aed922680f6ad998746e34f}{set\+Quantity}} (float qty)
+\begin{DoxyCompactList}\small\item\em change the numerical quantity in recipe \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRecipeItem_a92f755c925b8bbdee1759d3c78811d25}{set\+Item\+Measure\+Unit}} (std\+::string unit)
+\begin{DoxyCompactList}\small\item\em change the unit of measurement for ingredient \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This class stores information about a specific ingredient in a specific recipe. 
+
+\begin{DoxyAuthor}{Author}
+Kanishk Mishra 
+
+Andrew Li 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classRecipeItem_af6b654b0ab0106389c3de7f2fcc24889}\label{classRecipeItem_af6b654b0ab0106389c3de7f2fcc24889}} 
+\index{RecipeItem@{RecipeItem}!RecipeItem@{RecipeItem}}
+\index{RecipeItem@{RecipeItem}!RecipeItem@{RecipeItem}}
+\doxysubsubsection{\texorpdfstring{RecipeItem()}{RecipeItem()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Recipe\+Item\+::\+Recipe\+Item (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+construct the recipe ingredient 
+
+\begin{DoxyAuthor}{Author}
+Andrew Li 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classRecipeItem_a8605f51e0b33b4b474cbff3037948813}\label{classRecipeItem_a8605f51e0b33b4b474cbff3037948813}} 
+\index{RecipeItem@{RecipeItem}!RecipeItem@{RecipeItem}}
+\index{RecipeItem@{RecipeItem}!RecipeItem@{RecipeItem}}
+\doxysubsubsection{\texorpdfstring{RecipeItem()}{RecipeItem()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Recipe\+Item\+::\+Recipe\+Item (\begin{DoxyParamCaption}\item[{std\+::string}]{fitem,  }\item[{float}]{num,  }\item[{std\+::string}]{unit }\end{DoxyParamCaption})}
+
+
+
+construct the recipe ingredient 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fitem} & \+: the string of the name of food item \\
+\hline
+{\em num} & \+: the quantity in numeric value \\
+\hline
+{\em unit} & \+: the string of the unit of the quantity of the ingredient \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Andrew Li 
+
+Kanishk Mishra 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classRecipeItem_a71ff095f017fb513d5f1589829fc68f8}\label{classRecipeItem_a71ff095f017fb513d5f1589829fc68f8}} 
+\index{RecipeItem@{RecipeItem}!````~RecipeItem@{$\sim$RecipeItem}}
+\index{````~RecipeItem@{$\sim$RecipeItem}!RecipeItem@{RecipeItem}}
+\doxysubsubsection{\texorpdfstring{$\sim$RecipeItem()}{~RecipeItem()}}
+{\footnotesize\ttfamily Recipe\+Item\+::$\sim$\+Recipe\+Item (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+destroy the recipe ingredient 
+
+\begin{DoxyAuthor}{Author}
+Andrew Li 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classRecipeItem_a47b6074b948b23576c995041fee9e95f}\label{classRecipeItem_a47b6074b948b23576c995041fee9e95f}} 
+\index{RecipeItem@{RecipeItem}!getItem@{getItem}}
+\index{getItem@{getItem}!RecipeItem@{RecipeItem}}
+\doxysubsubsection{\texorpdfstring{getItem()}{getItem()}}
+{\footnotesize\ttfamily string Recipe\+Item\+::get\+Item (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+get the name of the ingredient 
+
+access the original ingredient in inventory
+
+\begin{DoxyReturn}{Returns}
+the name of the ingredient 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Andrew Li
+\end{DoxyAuthor}
+\begin{DoxyReturn}{Returns}
+the original \mbox{\hyperlink{classFoodItem}{Food\+Item}} 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Andrew Li 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classRecipeItem_ae48a4e62ac42d29e587ab805b425e3b8}\label{classRecipeItem_ae48a4e62ac42d29e587ab805b425e3b8}} 
+\index{RecipeItem@{RecipeItem}!getItemMeasureUnit@{getItemMeasureUnit}}
+\index{getItemMeasureUnit@{getItemMeasureUnit}!RecipeItem@{RecipeItem}}
+\doxysubsubsection{\texorpdfstring{getItemMeasureUnit()}{getItemMeasureUnit()}}
+{\footnotesize\ttfamily string Recipe\+Item\+::get\+Item\+Measure\+Unit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+access the measurement of the ingredient 
+
+\begin{DoxyReturn}{Returns}
+string of the unit of measurement 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Andrew Li 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classRecipeItem_ae2cf9c03d0c00e465db846997ee5bd9f}\label{classRecipeItem_ae2cf9c03d0c00e465db846997ee5bd9f}} 
+\index{RecipeItem@{RecipeItem}!getQuantity@{getQuantity}}
+\index{getQuantity@{getQuantity}!RecipeItem@{RecipeItem}}
+\doxysubsubsection{\texorpdfstring{getQuantity()}{getQuantity()}}
+{\footnotesize\ttfamily float Recipe\+Item\+::get\+Quantity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+access the numeric quantity of ingredient 
+
+\begin{DoxyReturn}{Returns}
+the number of items 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Andrew Li 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classRecipeItem_a3300415223084b5bddbcae490a9f2cf7}\label{classRecipeItem_a3300415223084b5bddbcae490a9f2cf7}} 
+\index{RecipeItem@{RecipeItem}!setItem@{setItem}}
+\index{setItem@{setItem}!RecipeItem@{RecipeItem}}
+\doxysubsubsection{\texorpdfstring{setItem()}{setItem()}}
+{\footnotesize\ttfamily void Recipe\+Item\+::set\+Item (\begin{DoxyParamCaption}\item[{std\+::string}]{f\+Item }\end{DoxyParamCaption})}
+
+
+
+setter method for the name of item 
+
+change the original ingredient in inventory
+
+
+\begin{DoxyParams}{Parameters}
+{\em fitem} & \+: the new name of this ingredient \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Andrew Li
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em fitem} & \+: the new \mbox{\hyperlink{classFoodItem}{Food\+Item}} from inventory \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Andrew Li 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classRecipeItem_a92f755c925b8bbdee1759d3c78811d25}\label{classRecipeItem_a92f755c925b8bbdee1759d3c78811d25}} 
+\index{RecipeItem@{RecipeItem}!setItemMeasureUnit@{setItemMeasureUnit}}
+\index{setItemMeasureUnit@{setItemMeasureUnit}!RecipeItem@{RecipeItem}}
+\doxysubsubsection{\texorpdfstring{setItemMeasureUnit()}{setItemMeasureUnit()}}
+{\footnotesize\ttfamily void Recipe\+Item\+::set\+Item\+Measure\+Unit (\begin{DoxyParamCaption}\item[{std\+::string}]{unit }\end{DoxyParamCaption})}
+
+
+
+change the unit of measurement for ingredient 
+
+
+\begin{DoxyParams}{Parameters}
+{\em unit} & \+: The new unit of measurement \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Andrew Li 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classRecipeItem_abd4c068e0aed922680f6ad998746e34f}\label{classRecipeItem_abd4c068e0aed922680f6ad998746e34f}} 
+\index{RecipeItem@{RecipeItem}!setQuantity@{setQuantity}}
+\index{setQuantity@{setQuantity}!RecipeItem@{RecipeItem}}
+\doxysubsubsection{\texorpdfstring{setQuantity()}{setQuantity()}}
+{\footnotesize\ttfamily void Recipe\+Item\+::set\+Quantity (\begin{DoxyParamCaption}\item[{float}]{num }\end{DoxyParamCaption})}
+
+
+
+change the numerical quantity in recipe 
+
+
+\begin{DoxyParams}{Parameters}
+{\em qty} & \+: float for the quantity of ingredients \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Andrew Li 
+
+Kanishk Mishra 
+\end{DoxyAuthor}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Recipe\+Item.\+h\item 
+Recipe\+Item.\+cpp\end{DoxyCompactItemize}

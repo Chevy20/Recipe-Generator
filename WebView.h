@@ -38,9 +38,7 @@
 #define INPUT_WIDTH_PERCENT 80
 #define NAV_BUTTON_WIDTH 80
 
-<<<<<<< HEAD
 
-=======
 /**
  * @brief launch() - launches the application
  * 
@@ -48,7 +46,6 @@
  * @param argv 
  * @return int 
  */
->>>>>>> 27c71f504679f4861b1f4ae669054879b90a8c1d
 static int launch(int argc, char **argv);
 
 /**

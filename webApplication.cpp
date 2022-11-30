@@ -1,7 +1,15 @@
-/*
-  WebView Application
-  This program will be the launcher for the webview
-*/
+/**
+ * @file webApplication.cpp
+ * @author Matthew Cheverie
+ * @author Jared Anstett
+ * @brief webApplication runs an application that launches the Wt webserver and Wt web application and 
+ * links it to the model
+ * @version 0.1
+ * @date 2022-11-29
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include "WebView.h"
 #include <signal.h>
 using namespace Wt;
