@@ -9,13 +9,36 @@
 
 class SQLiteConnector : public t_dbConnector{
     public:
-    SQLiteConnector();                  /**< Default constructor */
-    ~SQLiteConnector();                 /**< Destructor */
-    void connectDB() override;          /**< Connect to db indicated by dbname and create table stock_tbl */
-    void dropTable() override;          /**< Delete table stock_tbl if made in dbname */
-    void dropTableandRebuild()override; /**< Delete */
-    void disconnectDB()override;        /**< Disconnect from db indicated by dbname */
-    sqlite3* getDbHandle();             /**< Access the db handle */
+    /**
+     * @brief Constructor - Sets the variables for this class.
+     */
+    SQLiteConnector();
+    /**
+     * @brief Destructor.
+     */
+    ~SQLiteConnector();
+    /**
+     * @brief Creates a connection with the SQL database.
+     */
+    void connectDB() override;
+    /**
+     * @brief Drops the stock_tbl.
+     */
+    void dropTable() override;
+    /**
+     * @brief Drops the stock_tbl and recreates it.
+     */
+    void dropTableandRebuild()override;
+    /**
+     * @brief Disconnects from stock_tbl.
+     */
+    void disconnectDB()override;
+    /**
+     * @brief Returns the database.
+     * 
+     * @return The handle to the database.
+     */
+    sqlite3* getDbHandle();
         
 
 };
