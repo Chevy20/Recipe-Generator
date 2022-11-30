@@ -50,15 +50,16 @@ private:
     const std::string deleteItemPath = "/?_=delete-from-stock";
     const std::string modItemPath = "/?_=modify-stock";
     const std::string findItemPath = "/?_=find-stock";
-    const std::string temp1 = "/?_=get-all-stock";
-    const std::string temp2 = "/?_=find-recipe-by-items";
-    const std::string temp3 = "/?_=find-recipe-for-all-stock";
+    const std::string getAllStockPath = "/?_=get-all-stock";
+    const std::string findRecipeByItemPath = "/?_=find-recipe-by-items";
+    const std::string findRecipeAllStockPath = "/?_=find-recipe-for-all-stock";
 
     // Model
     Model *model;
 
     Wt::WHBoxLayout *horizBox;
-    Wt::WContainerWidget *content_;    
+    Wt::WContainerWidget *leftContent_;
+    Wt::WContainerWidget *rightContent_;    
 
     // Add Stock Item
     Wt::WLineEdit *nameEdit_;
@@ -67,12 +68,14 @@ private:
     Wt::WLineEdit *purchaseEdit_;
     Wt::WLineEdit *expiryEdit_;
     Wt::WLineEdit *locationEdit_;
-    Wt::WLineEdit *alertQtyEdit_;    
+    Wt::WLineEdit *alertQtyEdit_;
+    Wt::WContainerWidget *internalStockCont_;  
     
     // Structural containers
     Wt::WContainerWidget* navbar();
     Wt::WContainerWidget* sidebar();
-    Wt::WContainerWidget* content();
+    Wt::WContainerWidget* inputContent();
+    Wt::WContainerWidget* recipeContent();
 
     // Functional containers
     Wt::WContainerWidget* addStockItem();

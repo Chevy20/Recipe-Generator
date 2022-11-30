@@ -34,9 +34,10 @@ WebView::WebView(const Wt::WEnvironment& env)
     auto sidebarCont = std::unique_ptr<WContainerWidget>(sidebar());
     horizBox->addWidget(std::move(sidebarCont));
 
-    // Add the content widget
+    // Add the input content widget
     auto contentContainer = std::unique_ptr<WContainerWidget>(content());
     horizBox->addWidget(std::move(contentContainer));
+    
 
     app->root()->addWidget(std::unique_ptr<WContainerWidget>(container));
 
