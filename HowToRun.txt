@@ -4,6 +4,6 @@ g++ terminalApp.cpp FoodItem.cpp SQLiteConnector.cpp StockTable.cpp Recipe.cpp R
 To run this application:
 ./a.out
 
-g++ -std=c++1z test.cpp Model.cpp FoodItem.cpp StockTable.cpp SQLiteConnector.cpp FoodAPI.cpp Recipe.cpp RecipeItem.cpp -o test -lwt -lwthttp -lcurl -I/opt/homebrew/include -lsqlite3 -ljsoncpp
+g++ -std=c++1z WebView.cpp Model.cpp FoodItem.cpp StockTable.cpp SQLiteConnector.cpp FoodAPI.cpp Recipe.cpp RecipeItem.cpp -o WebView -lwt -lwthttp -lcurl -I/opt/homebrew/include -lsqlite3 -ljsoncpp
 
 ./WebView --docroot . --http-address 0.0.0.0 --http-port 9080
