@@ -24,7 +24,7 @@
 #include "Model.h"
 #include "FoodItem.h"
 
-
+// CONSTANTS
 #define APP_NAME "Freshcipes"
 #define INPUT_WIDTH_PERCENT 80
 #define NAV_BUTTON_WIDTH 80
@@ -57,6 +57,7 @@ private:
     // Model
     Model *model;
 
+    // Layout and containers for content
     Wt::WHBoxLayout *horizBox;
     Wt::WContainerWidget *leftContent_;
     Wt::WContainerWidget *rightContent_;    
@@ -86,8 +87,9 @@ private:
     Wt::WContainerWidget* getAllStock();
     Wt::WContainerWidget* findRecipeByItem();
     Wt::WContainerWidget* findRecipeForStock();
-    Wt::WContainerWidget* selectRecipe();
+    Wt::WContainerWidget* selectRecipe();  // Not implemented yet
 
+    // Handle internal path changes
     void handleInternalPathChange();
     
 };
