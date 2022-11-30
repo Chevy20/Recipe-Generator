@@ -25,7 +25,7 @@
 #include "Model.h"
 #include "FoodItem.h"
 
-
+// CONSTANTS
 #define APP_NAME "Freshcipes"
 #define INPUT_WIDTH_PERCENT 80
 #define NAV_BUTTON_WIDTH 80
@@ -57,15 +57,17 @@ private:
     const std::string deleteItemPath = "/?_=delete-from-stock";
     const std::string modItemPath = "/?_=modify-stock";
     const std::string findItemPath = "/?_=find-stock";
-    const std::string temp1 = "/?_=delete-from-stock";
-    const std::string temp2 = "/?_=modify-stock";
-    const std::string temp3 = "/?_=find-stock";
+    const std::string getAllStockPath = "/?_=get-all-stock";
+    const std::string findRecipeByItemPath = "/?_=find-recipe-by-items";
+    const std::string findRecipeAllStockPath = "/?_=find-recipe-for-all-stock";
 
     // Model
     Model *model;
 
+    // Layout and containers for content
     Wt::WHBoxLayout *horizBox;
-    Wt::WContainerWidget *content_;    
+    Wt::WContainerWidget *leftContent_;
+    Wt::WContainerWidget *rightContent_;    
 
     // Add Stock Item
     Wt::WLineEdit *nameEdit_;
@@ -74,7 +76,9 @@ private:
     Wt::WLineEdit *purchaseEdit_;
     Wt::WLineEdit *expiryEdit_;
     Wt::WLineEdit *locationEdit_;
-    Wt::WLineEdit *alertQtyEdit_;    
+    Wt::WLineEdit *alertQtyEdit_;
+    Wt::WContainerWidget *internalStockCont_;  
+    Wt::WContainerWidget *internalRecipeCont_;
     
     // Structural containers
 
@@ -83,16 +87,22 @@ private:
     Wt::WContainerWidget* sidebar();
   
     Wt::WContainerWidget* content();
+    Wt::WContainerWidget* inputContent();
+    Wt::WContainerWidget* recipeContent();
 
     // Functional containers
   
     Wt::WContainerWidget* addStockItem();
   
     Wt::WContainerWidget* deleteStockItem();
-
     Wt::WContainerWidget* modifyStockItem();
+    Wt::WContainerWidget* findStockItem();
+    Wt::WContainerWidget* getAllStock();
+    Wt::WContainerWidget* findRecipeByItem();
+    Wt::WContainerWidget* findRecipeForStock();
+    Wt::WContainerWidget* selectRecipe();  // Not implemented yet
 
-  
+    // Handle internal path changes
     void handleInternalPathChange();
     
 };

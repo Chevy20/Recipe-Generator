@@ -14,16 +14,60 @@
 class StockTable : public t_dbTableStrategy{
 
     public:
-        StockTable();                               /**< Default constructor: sets db pointer to nullptr */
-        StockTable(sqlite3* _db);                   /**< Constructor: sets db pointer to input */
-        ~StockTable();                              /**< Destructor: close db pointer */
-        bool insert(void* item) override;           /**< add new item to db */
-        bool update(void* item) override;           /**< update all values of item in db */
-        bool remove(std::string itemName) override; /**< remove specific item from db */
-        FoodItem select (std::string key);          /**< create a data structure for one object */
-        std::vector<FoodItem> selectAll();          /**< create a vector of all items in inventory */
+        /**
+         * @brief Constructor - Sets teh variables for this class.
+         */
+        StockTable();
+		/**
+         * @brief Constructor - Sets teh variables for this class.
+         * 
+         * @param _db The database to set.
+         */
+        StockTable(sqlite3* _db);
+		/**
+         * @brief Destructor - Closes the database.
+         */
+        ~StockTable();
+        /**
+         * @brief Inserts a food item into the database.
+         * 
+         * @param item A void pointer to a food item to insert.
+         * 
+         * @return Boolean of success.
+         */
+        bool insert(void* item) override;
+        /**
+         * @brief Updates a food item in the database.
+         * 
+         * @param item A void pointer to a food item to update.
+         * 
+         * @return Boolean of success.
+         */
+        bool update(void* item) override;
+        /**
+         * @brief Removes a food item from the database.
+         * 
+         * @param item The name of the food item to remove.
+         * 
+         * @return Boolean of success.
+		 */
+		bool remove(std::string itemName) override;
+        /**
+         * @brief Gets the food item data from the database that has the same name as specified.
+         * 
+         * @param key The item name to query for.
+         * 
+         * @return The food item.
+         */
+        FoodItem select (std::string key);
+        /**
+         * @brief Gets the food item data of all items from the database.
+         * 
+         * @return The list of food items.
+         */
+        std::vector<FoodItem> selectAll();
     private:
-        sqlite3* db;                                /**< sqlite*: pointer to database */
+        sqlite3* db;	/**< sqlite*: pointer to database */
 
 
 };
