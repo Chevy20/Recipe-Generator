@@ -12,6 +12,8 @@
 using namespace std;
 
 const FoodAPI* FoodAPI::_instance = NULL;
+
+
 /*
 Function: getInstance()
 Description: Returns a single instance of the FoodAPI
@@ -25,6 +27,7 @@ const FoodAPI& FoodAPI::getInstance(){
     return *_instance;
 }
 
+
 /*
 Function: FoodAPI()
 Description: Constructor
@@ -33,10 +36,9 @@ Return: none
 */
 FoodAPI::FoodAPI(){
     string key = "254ee65b4d89431f9465d6b595199032";
-    FoodAPI::setAPIKey(key);
-    
-    
+    FoodAPI::setAPIKey(key);    
 }
+
 
 /*
 Function: getAPIKey()
@@ -47,6 +49,15 @@ Return: None
 string FoodAPI::getAPIKey() const{
     return this->_apiKey;
 }
+
+
+/**
+ * Takes the list of the ingredients in the stock and turns them into a printable string.
+ * 
+ * @param dbStock The stock of ingredients in the database.
+ * 
+ * @return The string of all the ingredients in stock.
+ */
 std::string buildItemList(std::vector<FoodItem> dbStock)  {
     string result="";
     for(int i = 0; i < dbStock.size(); i++){
@@ -60,6 +71,8 @@ std::string buildItemList(std::vector<FoodItem> dbStock)  {
     }
     return result;
 }
+
+
 /*
 Function: setAPIKey()
 Description: sets the spoonacular API Key
