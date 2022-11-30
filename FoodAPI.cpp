@@ -14,12 +14,11 @@ using namespace std;
 const FoodAPI* FoodAPI::_instance = NULL;
 
 
-/*
-Function: getInstance()
-Description: Returns a single instance of the FoodAPI
-Parameters: none
-Return: _instance - single instance of the FoodAPI object   
-*/
+/**
+ * @brief Returns a single instance of the FoodAPI.
+ * 
+ * @return Single instance of the FoodAPI object.
+ */
 const FoodAPI& FoodAPI::getInstance(){
     if(_instance == NULL) {
         _instance = new FoodAPI();
@@ -28,31 +27,27 @@ const FoodAPI& FoodAPI::getInstance(){
 }
 
 
-/*
-Function: FoodAPI()
-Description: Constructor
-Parameters: none
-Return: none
-*/
+/**
+ * @brief Constructor
+ */
 FoodAPI::FoodAPI(){
     string key = "254ee65b4d89431f9465d6b595199032";
     FoodAPI::setAPIKey(key);    
 }
 
 
-/*
-Function: getAPIKey()
-Description: sets the spoonacular API Key
-Parameters: key - api key
-Return: None
-*/
+/**
+ * @brief Gets the spoonacular API Key
+ * 
+ * @return The API key.
+ */
 string FoodAPI::getAPIKey() const{
     return this->_apiKey;
 }
 
 
 /**
- * Takes the list of the ingredients in the stock and turns them into a printable string.
+ * @brief Takes the list of the ingredients in the stock and turns them into a printable string.
  * 
  * @param dbStock The stock of ingredients in the database.
  * 
@@ -73,68 +68,64 @@ std::string buildItemList(std::vector<FoodItem> dbStock)  {
 }
 
 
-/*
-Function: setAPIKey()
-Description: sets the spoonacular API Key
-Parameters: key - api key
-Return: None
-*/
+/**
+ * @brief Sets the spoonacular API Key.
+ * 
+ * @param key The API key.
+ */
 void FoodAPI::setAPIKey(string key){
     FoodAPI::_apiKey = key;
 }
 
 
-/*
-Function: getPreferences()
-Description: Returns a vector of preferences in recipes
-Parameters: none
-Return: preferences - vector of string preferences
-*/
+/**
+ * @brief Returns a list of preferences in recipes.
+ * 
+ * @return A list of string preferences.
+ */
 vector<string> FoodAPI::getPreferences() {
     return this->preferences;
 }
 
 
-/*
-Function: setPreferences()
-Description: Sets a vector of preferences in recipes
-Parameters: vector<string> - vector of preferences
-Return: None
-*/
+/**
+ * @brief Sets a list of preferences in recipes.
+ * 
+ * @param prefs List of preferences to set.
+ */
 void FoodAPI::setPreferences(vector<string> prefs){
     this->preferences = prefs;
 }
 
 
-/*
-Function: getRecipes()
-Description: Returns a vector of stored recipes
-Parameters: None
-Return: recipes - vector of recipes
-*/
+/**
+ * @brief Returns a list of stored recipes.
+ * 
+ * @return A list of recipes.
+ */
 vector<Recipe> FoodAPI::getRecipes(){
     return recipes;
 }
 
 
-/*
-Function: setRecipes()
-Description: Sets the recipes vector
-Parameters: recipes - vector of recipes
-Return: None
-*/
+/**
+ * @brief Sets the recipes list.
+ * 
+ * @param recipes List of recipes to set.
+ */
 void FoodAPI::setReceipes(std::vector<Recipe> recipes){
     this->recipes = recipes;
 }
 
 
-/*
-Function: getRecipeByIngredients()
-Description: Gets recipes with ingredient list from Spoonacular API
-Parameters: itemList - string of comma separated items
-Return: res - Json of recipes found
-*/
- std::vector<Recipe> FoodAPI::getRecipeByIngredients(void* _theModel) const{
+/**
+ * @brief Gets recipes with ingredient list from Spoonacular API.
+ * 
+ * @param _theModel String of comma separated items.
+ * 
+ * @return Json of recipes found.
+ */
+std::vector<Recipe> FoodAPI::getRecipeByIngredients(void* _theModel) const{
     Model* mod = (Model*)_theModel;
     CURL *curl;
     CURLcode res;
