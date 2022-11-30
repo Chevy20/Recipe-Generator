@@ -745,13 +745,14 @@ WContainerWidget* WebView::getAllStock(){
           // Loop through the stock and print out
           for(FoodItem fi : v_fi){
             auto text = std::make_unique<WText>();
-            auto item = std::make_unique<WString>("Item: {1}  \tQty: {2}    \tExpiry: {3}");
+            auto item = std::make_unique<WString>("Item: {1}  Qty: {2}    \tExpiry: {3}");
             item->arg(fi.getName())
               .arg(fi.getQuantity())
               .arg(fi.getExpiry());
             text->setText(item->toUTF8());
-
+            text->setStyleClass("fw-lighter");
             internalStockCont_->addWidget(std::move(text));
+            internalStockCont_->addWidget(std::make_unique<WBreak>());
           }
         }        
 
@@ -782,6 +783,7 @@ void WebView::handleInternalPathChange()
     WApplication *app = Wt::WApplication::instance();
     
     inputContent()->clear();
+    recipeContent()->clear();
 
     if (app->internalPath() == addItemPath){
       std::cout<<"\nLOG: PATH CHANGED - ADD ITEM\n"<<std::endl;
@@ -800,7 +802,6 @@ void WebView::handleInternalPathChange()
       inputContent()->addWidget(std::unique_ptr<WContainerWidget>(findStockItem()));
     }
     else if (app->internalPath() == getAllStockPath){
-      recipeContent()->clear();
       std::cout<<"\nLOG: PATH CHANGED - GET ALL STOCK\n";
       recipeContent()->addWidget(std::unique_ptr<WContainerWidget>(getAllStock()));
     }
