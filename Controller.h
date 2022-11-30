@@ -8,8 +8,8 @@
 
 class Controller {
 private:
-    Model *model;
-    View *view;
+    Model* model;
+    View* view;
     std::vector<Observer*> observerList;
 public:
     Controller();
@@ -24,7 +24,8 @@ public:
     void registerObserver(Observer* observer);
     void removeObserver(Observer* observer);
     void notify() ;
-    void eventHandler();
+    auto eventHandler(std::string func);
+	auto eventHandler(std::string func, auto item);
 };
 
 #endif
