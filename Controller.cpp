@@ -4,7 +4,9 @@ using namespace std;
 
 
 /**
- * Constructor - Sets the variables of this class.
+ * @author Nick Baesso
+ * 
+ * @brief Constructor - Sets the variables of this class.
  */
 Controller::Controller() {
     this->model = NULL;
@@ -13,7 +15,9 @@ Controller::Controller() {
 
 
 /**
- * Constructor - Sets the variables of this class.
+ * @author Nick Baesso
+ * 
+ * @brief Constructor - Sets the variables of this class.
  * 
  * @param model The model that this controller communicates to.
  * @param view The view that controls this controller.
@@ -25,7 +29,9 @@ Controller::Controller(Model* model, View* view) {
 
 
 /**
- * Destructor - Deletes the class variables of this controller.
+ * @author Nick Baesso
+ * 
+ * @brief Destructor - Deletes the class variables of this controller.
  */
 Controller::~Controller() {
     delete(this->model);
@@ -54,7 +60,9 @@ bool Controller::updateView() {
 
 
 /**
- * Returns the model.
+ * @author Nick Baesso
+ * 
+ * @brief Returns the model.
  * 
  * @return The model connected to this controller.
  */
@@ -64,7 +72,9 @@ Model* Controller::getModel() {
 
 
 /**
- * Returns the view.
+ * @author Nick Baesso
+ * 
+ * @brief Returns the view.
  * 
  * @return The view connected to this controller.
  */
@@ -74,7 +84,9 @@ View* Controller::getView() {
 
 
 /**
- * Sets the model connected to this controller.
+ * @author Nick Baesso
+ * 
+ * @brief Sets the model connected to this controller.
  * 
  * @param model The model to connect.
  */
@@ -84,7 +96,9 @@ void Controller::setModel(Model* model) {
 
 
 /**
- * Sets the view connected to this controller.
+ * @author Nick Baesso
+ * 
+ * @brief Sets the view connected to this controller.
  * 
  * @param model The view to connect.
  */
@@ -94,7 +108,9 @@ void Controller::setView(View* view) {
 
 
 /**
- * Registers/attaches an observer onto this controller.
+ * @author Nick Baesso
+ * 
+ * @brief Registers/attaches an observer onto this controller.
  * 
  * @param observer Observer to attach.
  */
@@ -104,7 +120,9 @@ void Controller::registerObserver(Observer* observer) {
 
 
 /**
- * Removes an observer from this controller.
+ * @author Nick Baesso
+ * 
+ * @brief Removes an observer from this controller.
  * 
  * @param observer Observer to remove.
  */
@@ -116,7 +134,9 @@ void Controller::removeObserver(Observer* observer) {
 
 
 /**
- * Notifies/updates all the observers.
+ * @author Nick Baesso
+ * 
+ * @brief Notifies/updates all the observers.
  */
 void Controller::notify(){
     for(int n = 0; n < this->observerList.size(); n++)
@@ -125,7 +145,9 @@ void Controller::notify(){
 
 
 /**
- * Takes a function from the view and calls the related model function.
+ * @author Nick Baesso
+ * 
+ * @brief Takes a function from the view and calls the related model function.
  * 
  * @param func The desired function. Is case sensitive and must be without any parenthesis.
  * 
@@ -150,7 +172,9 @@ auto Controller::eventHandler(std::string func) {
 
 
 /**
- * Takes a function from the view and calls the related model function. These are functions with a parameter.
+ * @author Nick Baesso
+ * 
+ * @brief Takes a function from the view and calls the related model function. These are functions with a parameter.
  * 
  * @param func The desired function. Is case sensitive and must be without any parenthesis.
  * @param item The parameter of the desired function.
