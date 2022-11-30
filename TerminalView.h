@@ -11,7 +11,8 @@ class TerminalView : public View {
     
     private:
         const Model* model;
-    
+        bool isDigit(const std::string& input);
+
     public:
         TerminalView(Model *model);
         ~TerminalView();

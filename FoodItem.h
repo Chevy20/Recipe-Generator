@@ -5,7 +5,7 @@ This file contains the definitions for the FoodItem Object
 #define FOODITEM_H
 #include <string>
 class FoodItem{
-    /**< Public Attributes*/
+    //! Public Attributes
     public:
         FoodItem();
         FoodItem(std::string item_name, float unit_quantity, std::string unitMeasure_Type ,std::string date_Purchased, std::string expiration_Date, std::string unit_Type,   float quantity_Threshold);

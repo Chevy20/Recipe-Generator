@@ -3,7 +3,7 @@
 #include <curl/curl.h>
 #include <iostream>
 #include <string>
-#include <json/json.h>
+#include <jsoncpp/json/json.h>
 #include <fstream>
 #include <algorithm>
 #include "FoodAPI.hpp"
@@ -32,15 +32,10 @@ Parameters: none
 Return: none
 */
 FoodAPI::FoodAPI(){
+    string key = "254ee65b4d89431f9465d6b595199032";
+    FoodAPI::setAPIKey(key);
     
-    if(const char* envVar = getenv("SPOONACULAR_API_KEY")){
-        std::string key = envVar;
-        FoodAPI::setAPIKey(key);
-    }
-    else{
-        cout << "Missing API Key.  Add to environment variables." << endl;
-        exit(0);
-    }
+    
 }
 
 /*
@@ -173,7 +168,7 @@ Return: res - Json of recipes found
             vector<RecipeItem> missing;
             map<string, float> n;   //to be possibly implemented
             string name = stripQuotes(jsonObj[i]["title"].toStyledString()); 
-            
+            string imgURL = stripQuotes(jsonObj[i]["image"].toStyledString());
             for(Json::Value::ArrayIndex j = 0; j!=jsonObj[i]["missedIngredients"].size(); j++){
                 missing.push_back(RecipeItem(regex_replace(stripQuotes(jsonObj[i]["missedIngredients"][j]["name"].toStyledString()),regex("\\r\\n|\\r|\\n"),""), 
                                     jsonObj[i]["missedIngredients"][j]["amount"].asFloat(), 
@@ -185,7 +180,7 @@ Return: res - Json of recipes found
                                     regex_replace(stripQuotes(jsonObj[i]["usedIngredients"][j]["unit"].toStyledString()),regex("\\r\\n|\\r|\\n"),"")));
             }
             //push recipe to vector after all used/missing recipe items are retreived
-            recipies.push_back(Recipe(name, used,missing, n));
+            recipies.push_back(Recipe(name, used,missing, n,imgURL));
         }
     fclose(jsonFile);
    return recipies;
@@ -230,7 +225,7 @@ std::vector<Recipe> FoodAPI::getRecipeBySpecificIngredients(string query) const{
             vector<RecipeItem> missing;
             map<string, float> n;   //to be possibly implemented
             string name = stripQuotes(jsonObj[i]["title"].toStyledString()); 
-            
+            string imgURL = stripQuotes(jsonObj[i]["image"].toStyledString());
             for(Json::Value::ArrayIndex j = 0; j!=jsonObj[i]["missedIngredients"].size(); j++){
                 missing.push_back(RecipeItem(regex_replace(stripQuotes(jsonObj[i]["missedIngredients"][j]["name"].toStyledString()),regex("\\r\\n|\\r|\\n"),""), 
                                     jsonObj[i]["missedIngredients"][j]["amount"].asFloat(), 
@@ -242,7 +237,7 @@ std::vector<Recipe> FoodAPI::getRecipeBySpecificIngredients(string query) const{
                                     regex_replace(stripQuotes(jsonObj[i]["usedIngredients"][j]["unit"].toStyledString()),regex("\\r\\n|\\r|\\n"),"")));
             }
             //push recipe to vector after all used/missing recipe items are retreived
-            recipies.push_back(Recipe(name, used,missing, n));
+            recipies.push_back(Recipe(name, used,missing, n,imgURL));
         }
     fclose(jsonFile);
    return recipies;
