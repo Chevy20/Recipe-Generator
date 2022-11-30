@@ -38,6 +38,7 @@ class Model{
         std::vector<FoodItem> checkForLowStock();
         bool checkAutoStock(Recipe cookedRecipie);
         void printRecipeToConsole();
+        
       
 
 

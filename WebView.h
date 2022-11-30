@@ -30,18 +30,24 @@
 #define INPUT_WIDTH_PERCENT 80
 #define NAV_BUTTON_WIDTH 80
 
+
 static int launch(int argc, char **argv);
 
 class WebView : public Wt::WApplication, public View
 {
 public:
     WebView(const Wt::WEnvironment& env);
+    
     virtual ~WebView() = default;
+
     Wt::WApplication *app;
 
     // Inherited functions
+    
     virtual Model* getModel();
+  
     virtual void setModel(Model *model);
+ 
     virtual void display();
 
 private:
@@ -71,16 +77,22 @@ private:
     Wt::WLineEdit *alertQtyEdit_;    
     
     // Structural containers
+
     Wt::WContainerWidget* navbar();
+  
     Wt::WContainerWidget* sidebar();
+  
     Wt::WContainerWidget* content();
 
     // Functional containers
+  
     Wt::WContainerWidget* addStockItem();
+  
     Wt::WContainerWidget* deleteStockItem();
+
     Wt::WContainerWidget* modifyStockItem();
 
-
+  
     void handleInternalPathChange();
     
 };

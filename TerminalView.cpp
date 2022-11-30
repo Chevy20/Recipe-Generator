@@ -1,8 +1,20 @@
 #include "TerminalView.h"
 using namespace std;
+
+/**
+ * @brief constructor for the Terminalview
+ * @param model The pointer object that points to a model object used to interface with the backend
+ * @author Matthew Cheverie
+ */
 TerminalView::TerminalView(Model *model){
     this->model = model;
 }
+/**
+ * @brief This function will check if the given input string is a digit. Ignores '.' to allow for floats
+ * @param input The input string
+ * @author Matthew Cheverie
+ * @return true if digit, false if not. 
+ */
  bool TerminalView::isDigit(const std::string& input){
     for(char const &ch : input){
         if(isdigit(ch) == 0 && &ch!=".")
@@ -10,6 +22,13 @@ TerminalView::TerminalView(Model *model){
     }
     return true;
  }
+
+/**
+ * @brief Checks if a given input will be accepted when the user is prompted to enter a command
+ * @param input the input string
+ * @author Matthew Cheverie
+ * @return true if valid input, false it not
+ */
 bool TerminalView::check(std::string input){
     if(!isDigit(input))
         return false;
@@ -21,6 +40,14 @@ bool TerminalView::check(std::string input){
     }
     return false;
 }
+
+/**
+ * @brief Checks if the input to select a recipe to cook is valid
+ * @param input the input string
+ * @param recipieList the list of recipe objects
+ * @author Matthew Cheverie
+ * @return true if valid recipe input, false if not
+ */
 bool TerminalView::checkRecipe(std::string input, std::vector<Recipe> recipieList){
     if(!isDigit(input))
         return false;
@@ -32,12 +59,23 @@ bool TerminalView::checkRecipe(std::string input, std::vector<Recipe> recipieLis
     }
     return false;
 }
+ /**
+ * @brief check to see if the date inputed is valid
+ * @param input the input string
+ * @author Matthew Cheverie
+ * @return true if valid date, false if not
+ */
 bool TerminalView::checkDate(std::string input){
     struct tm tm;
     if(!strptime(input.c_str(), "%Y/%m/%d", &tm))
         return false;
     return true;
 }
+/**
+ * @brief  prints out a FoodItems attributes to the console in a styleized way.
+ * @param item The food item object to be printed
+ * @author Matthew Cheverie
+ */
 void TerminalView::printFoodItem(FoodItem item){
     cout<<"Item Name: " + item.getName()<<endl;
     cout<<"Quantity: " +to_string(item.getQuantity()) +" "+item.getMeasureUnit()<<endl;
@@ -45,19 +83,35 @@ void TerminalView::printFoodItem(FoodItem item){
     cout<<"Expiry Date: " + item.getExpiry()<<endl;
     cout<<"You will get a low stock alert when there are " + to_string(item.getThreshold())+" "+item.getMeasureUnit()+" of this item left in stock"<<endl;
 }
+/**
+ * @brief Destructor for TerminalView
+ * @author Matthew Cheverie
+ */
 TerminalView::~TerminalView(){
     delete this;
 }
-
+/**
+ * @brief setter function for the model pointer. Inherited from View
+ * @param model the new model object to be set
+ * @author Matthew Cheverie
+ */
 void TerminalView::setModel(Model *model){
     this->model=model;
 }
+
+ /**
+ * @brief Getter function for the model pointer. Inherited from View
+ * @author Matthew Cheverie
+ */
 Model* TerminalView::getModel(){
     return model;
 }
-
+/**
+ * @brief Function to display the view. Inherited from View
+ * @author Matthew Cheverie
+ */
 void TerminalView::display() {
-    Model* modl =  (Model*)model;
+    Model* modl =model;         //makes a model pointer equal to the model instance variable
     string userInput;           //user input from terminal
     string itemName;            //item name for creation of food item
     string unitQuantity;        //unit quantity for creation of food item

@@ -8,7 +8,7 @@
 
 
 /**
- * @brief This class stores and allows the user to amnipulate specific recipes
+ * @brief This class stores and allows the user to manipulate specific recipes
  * @author Kanishk Mishra
  * @author Andrew Li
  */

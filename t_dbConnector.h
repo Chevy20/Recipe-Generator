@@ -9,10 +9,29 @@
 #include <string>
 class t_dbConnector{
     public:
-    virtual void connectDB() = 0;           /**< connect to db */
-    virtual void dropTable() = 0;           /**< delete stock_tbl from db */
-    virtual void dropTableandRebuild() = 0; /**< reset stock_tbl from db, removing all values */
-    virtual void disconnectDB() = 0;        /**< disconnect from db */
+     /**
+     * @brief abstract function to create and connect to database.
+     * @author Matthew Cheverie 
+    */
+    virtual void connectDB() = 0;    
+
+     /**
+     * @brief abstract function to drop the database.
+     * @author Matthew Cheverie 
+    */       
+    virtual void dropTable() = 0;      
+
+     /**
+     * @brief abstract function to drop table and rebuild the database.
+     * @author Matthew Cheverie 
+    */     
+    virtual void dropTableandRebuild() = 0; 
+
+     /**
+     * @brief abstract function to deconstruct the database.
+     * @author Matthew Cheverie 
+    */
+    virtual void disconnectDB() = 0;        
 
     protected:
         std::string dbName;                 /**< string: database name */

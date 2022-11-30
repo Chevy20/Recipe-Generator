@@ -169,6 +169,7 @@ std::vector<Recipe> FoodAPI::getRecipeByIngredients(void* _theModel) const{
     Json::Value jsonObj;
     Json::Reader reader;
     reader.parse(file,jsonObj);
+    //cout<<jsonObj.toStyledString()<<endl;
     vector<Recipe> recipies;
     for(Json::Value::ArrayIndex i = 0; i!=jsonObj.size(); i++){
             //For loop for making RecipeItems for missed ingredients
