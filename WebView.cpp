@@ -1,8 +1,23 @@
+/**
+ * @file WebView.cpp
+ * @author Jared Anstett
+ * @brief WebView class builds a GUI for users to interact
+ * with the Freshcipes recipe and stock management application
+ * @version 0.1
+ * @date 2022-11-29
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include "WebView.h"
 
 using namespace Wt;
 
-
+/**
+ * @brief Contructor - WebView view object
+ * @param env - WEnvironment
+ * @author Jared Anstett
+ */
 WebView::WebView(const Wt::WEnvironment& env)
     : Wt::WApplication(env)
 {
@@ -70,8 +85,10 @@ WebView::WebView(const Wt::WEnvironment& env)
 }
 
 /**
- * Navigation Bar
-*/
+ * @brief navbar() - Builds the navigation bar/banner for the page
+ * 
+ * @return WContainerWidget* 
+ */
 WContainerWidget* WebView::navbar(){
 
     // Create navigation bar container
@@ -95,8 +112,11 @@ WContainerWidget* WebView::navbar(){
 
 
 /**
- * Build Sidebar Navigation
-*/
+ * @brief sidebar() - builds sidebar navigation for the page
+ * and the navigation buttons
+ * 
+ * @return WContainerWidget* - container with GUI objects and functions
+ */
 WContainerWidget* WebView::sidebar(){
 
   // Create sidebar container
@@ -210,8 +230,11 @@ WContainerWidget* WebView::sidebar(){
 }
 
 /**
- * Left side - Input form Content
-*/
+ * @brief inputContent() - returns a container for
+ * the input fields content.
+ * 
+ * @return WContainerWidget* - container with GUI objects and functions
+ */
 WContainerWidget* WebView::inputContent(){
   
   if (leftContent_ == 0) {
@@ -223,8 +246,11 @@ WContainerWidget* WebView::inputContent(){
 }
 
 /**
- * Right side Content
-*/
+ * @brief recipeContent() - returns a container for
+ * the right side where recipe info will be populated.
+ * 
+ * @return WContainerWidget* 
+ */
 WContainerWidget* WebView::recipeContent(){
   
   if (rightContent_ == 0) {
@@ -236,8 +262,11 @@ WContainerWidget* WebView::recipeContent(){
 }
 
 /**
- * Add Stock Item
- * */ 
+ * @brief addStockItem() - Builds container and functionality
+ * to facilitate addition of a single item to stock.
+ * 
+ * @return WContainerWidget* - container with GUI objects and functions
+ */
 WContainerWidget* WebView::addStockItem(){
 
     // Initalize containers
@@ -352,8 +381,11 @@ WContainerWidget* WebView::addStockItem(){
 }
 
 /**
- * Delete Stock Item
-*/
+ * @brief deleteStockItem() - build users interface container
+ * and functionality for deleting an item from stock.
+ * 
+ * @return WContainerWidget* - container with GUI objects and functions
+ */
 WContainerWidget* WebView::deleteStockItem(){
 
     auto container = new WContainerWidget();
@@ -415,10 +447,12 @@ WContainerWidget* WebView::deleteStockItem(){
     return container;
 }
 
-
 /**
- * Modify Stock Item
-*/
+ * @brief modifyStockItem() - builds container and functionlity
+ * for user to modify an items properties in stock.
+ * 
+ * @return WContainerWidget* - container with GUI objects and functions
+ */
 WContainerWidget* WebView::modifyStockItem(){
 
     // Initialize containers
@@ -565,8 +599,11 @@ WContainerWidget* WebView::modifyStockItem(){
 
 
 /**
- * Find Stock Item
-*/
+ * @brief findStockItem() - builds container and functionality
+ * for user to look up a stock item in the data model.
+ * 
+ * @return WContainerWidget* - container with GUI objects and functions
+ */
 WContainerWidget* WebView::findStockItem(){
 
     auto container = new WContainerWidget();
@@ -639,8 +676,11 @@ WContainerWidget* WebView::findStockItem(){
 }
 
 /**
- * Get All Stock Items
-*/
+ * @brief getAllStock() - builds container and functionality
+ * for user to get and display all items in stock.
+ * 
+ * @return WContainerWidget* - container with GUI objects and functions
+ */
 WContainerWidget* WebView::getAllStock(){
 
     auto container = new WContainerWidget();
@@ -710,8 +750,12 @@ WContainerWidget* WebView::getAllStock(){
 }
 
 /**
- * Find Recipe by Item
-*/
+ * @brief findRecipeByItem() - builds container and functionality
+ * for user to find recipes from the API that use the specified
+ * item(s).
+ * 
+ * @return WContainerWidget* - container with GUI objects and functions
+ */
 WContainerWidget* WebView::findRecipeByItem(){
 
     // Initialize containers
@@ -814,8 +858,12 @@ WContainerWidget* WebView::findRecipeByItem(){
 
 
 /**
- * Find Recipes for All Stock Items
-*/
+ * @brief findRecipeForStock() - builds container and functionality
+ * for user to find all recipes from the API that contain at least
+ * one of the items from the entire stock.
+ * 
+ * @return WContainerWidget* - container with GUI objects and functions
+ */
 WContainerWidget* WebView::findRecipeForStock(){
 
     auto container = new WContainerWidget();
@@ -896,8 +944,11 @@ WContainerWidget* WebView::findRecipeForStock(){
 }
 
 /**
- * Handle an internal path change
-*/
+ * @brief handleInternalPathChange() - handles the orchestration
+ * of changing content when a navigation button changes
+ * the internal path link.
+ * 
+ */
 void WebView::handleInternalPathChange()
 {
     WApplication *app = Wt::WApplication::instance();
@@ -946,31 +997,45 @@ void WebView::handleInternalPathChange()
 
 }
 
+/**
+ * @brief getModel() - Returns the model object pointer
+ * 
+ * @return Model* - pointer to the model object
+ */
 Model* WebView::getModel(){
   return model;
 }
 
+/**
+ * @brief setModel() - Sets the model object pointer
+ * 
+ * @param model - pointer to the model object
+ */
 void WebView::setModel(Model *model){
   this->model = model;
 }
 
+/**
+ * @brief display() - displays content to be updated
+ * by the controller
+ * 
+ */
 void WebView::display(){
 
 }
 
 /**
- * Launch Application
-*/
+ * @brief launch() - launches the WebView wweb app GUI
+ * for the user to interact with
+ * 
+ * @param argc 
+ * @param argv 
+ * @return int 
+ */
 static int launch(int argc, char**argv){
     return Wt::WRun(argc, argv, [](const Wt::WEnvironment& env) {
       return std::make_unique<WebView>(env);
     });    
 }
 
-/*
-int main(int argc, char **argv)
-{
-    launch(argc, argv);
-}
-*/
 
