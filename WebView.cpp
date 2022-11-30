@@ -1037,5 +1037,3 @@ static int launch(int argc, char**argv){
       return std::make_unique<WebView>(env);
     });    
 }
-
-
