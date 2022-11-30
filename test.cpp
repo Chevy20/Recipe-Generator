@@ -745,7 +745,7 @@ WContainerWidget* WebView::getAllStock(){
           // Loop through the stock and print out
           for(FoodItem fi : v_fi){
             auto text = std::make_unique<WText>();
-            auto item = std::make_unique<WString>("Item: {1}  Qty: {2}    \tExpiry: {3}");
+            auto item = std::make_unique<WString>("Item: {1}  Qty: {2}  Expiry: {3}");
             item->arg(fi.getName())
               .arg(fi.getQuantity())
               .arg(fi.getExpiry());
@@ -755,7 +755,7 @@ WContainerWidget* WebView::getAllStock(){
             internalStockCont_->addWidget(std::make_unique<WBreak>());
           }
         }        
-
+      
       } catch (WString msg) {         
         auto messageBox = app->addChild(std::make_unique<WMessageBox>(
         "Error!", msg, Icon::Warning, StandardButton::Ok));
@@ -767,8 +767,10 @@ WContainerWidget* WebView::getAllStock(){
       }
     };
 
+    // Connect the get all stock button to function 
     getAllStockBtn->clicked().connect(getAllStock);
 
+    // Set container width and add container to panel
     getAllStockCont->setWidth(WLength(INPUT_WIDTH_PERCENT,WLength::Unit::Percentage));
     getAllStockPanel->setCentralWidget(std::move((getAllStockCont)));
 
@@ -782,29 +784,36 @@ void WebView::handleInternalPathChange()
 {
     WApplication *app = Wt::WApplication::instance();
     
+    // Clear content on any link change
     inputContent()->clear();
     recipeContent()->clear();
 
+    // Add Stock Item
     if (app->internalPath() == addItemPath){
       std::cout<<"\nLOG: PATH CHANGED - ADD ITEM\n"<<std::endl;
       inputContent()->addWidget(std::unique_ptr<WContainerWidget>(addStockItem()));
     }
+    // Delete stock item
     else if (app->internalPath() == deleteItemPath){
       std::cout<<"\nLOG: PATH CHANGED - DELETE ITEM\n"<<std::endl;
       inputContent()->addWidget(std::unique_ptr<WContainerWidget>(deleteStockItem()));
     }
+    // Modify stock item
     else if (app->internalPath() == modItemPath){
       std::cout<<"\nLOG: PATH CHANGED - MODIFY ITEM\n"<<std::endl;
       inputContent()->addWidget(std::unique_ptr<WContainerWidget>(modifyStockItem()));
     }
+    // Find item in stock
     else if (app->internalPath() == findItemPath){
       std::cout<<"\nLOG: PATH CHANGED - FIND ITEM\n";
       inputContent()->addWidget(std::unique_ptr<WContainerWidget>(findStockItem()));
     }
+    // Get list of all stock
     else if (app->internalPath() == getAllStockPath){
       std::cout<<"\nLOG: PATH CHANGED - GET ALL STOCK\n";
       recipeContent()->addWidget(std::unique_ptr<WContainerWidget>(getAllStock()));
     }
+    // Find recipe by item
     // else if (app->internalPath() == findRecipeByItemPath){
     //   std::cout<<"\nLOG: PATH CHANGED - FIND RECIPE FOR ITEM\n";
     //   inputContent()->addWidget(std::unique_ptr<WContainerWidget>(getAllStock()));

@@ -7,7 +7,8 @@ WebView::WebView(const Wt::WEnvironment& env)
 {
     // Get Application instance
     app = WApplication::instance();
-    content_=0;
+    leftContent_=0;
+    rightContent_=0;
     
     // Set application attributes
     setTitle(APP_NAME);
@@ -22,9 +23,21 @@ WebView::WebView(const Wt::WEnvironment& env)
     });
 
     // Set up main containers and layout
-    auto container = new WContainerWidget();
-    container->setWidth(WLength(50, LengthUnit::Percentage));
-    horizBox = container->setLayout(std::make_unique<WHBoxLayout>());
+    auto mainContainer = std::make_unique<WContainerWidget>();
+    auto mainBox = mainContainer->setLayout(std::make_unique<WHBoxLayout>());
+
+    auto leftContainer = std::make_unique<WContainerWidget>();
+    auto leftHorizBox = leftContainer->setLayout(std::make_unique<WHBoxLayout>());
+    leftContainer->setWidth(WLength(50, LengthUnit::Percentage));
+    leftContainer->setVerticalAlignment(AlignmentFlag::Left);
+    
+    auto rightContainer = std::make_unique<WContainerWidget>();
+    auto rightHorizBox = rightContainer->setLayout(std::make_unique<WHBoxLayout>());
+    rightContainer->setWidth(WLength(50, LengthUnit::Percentage));
+    rightContainer->setVerticalAlignment(AlignmentFlag::Right);
+    
+    mainBox->addWidget(std::move(leftContainer));
+    mainBox->addWidget(std::move(rightContainer));
 
     // Add navbar
     auto navbarCont = navbar();
@@ -32,14 +45,18 @@ WebView::WebView(const Wt::WEnvironment& env)
 
     // Add sidebar
     auto sidebarCont = std::unique_ptr<WContainerWidget>(sidebar());
-    horizBox->addWidget(std::move(sidebarCont));
+    leftHorizBox->addWidget(std::move(sidebarCont));
 
-    // Add the input content widget
-    auto contentContainer = std::unique_ptr<WContainerWidget>(content());
-    horizBox->addWidget(std::move(contentContainer));
-    
+    // Add the content widget to left container
+    auto inputContentContainer = std::unique_ptr<WContainerWidget>(inputContent());
+    leftHorizBox->addWidget(std::move(inputContentContainer));
 
-    app->root()->addWidget(std::unique_ptr<WContainerWidget>(container));
+    // Add recipe output content to right container
+    auto recipeContentContainer = std::unique_ptr<WContainerWidget>(recipeContent());
+    rightHorizBox->addWidget(std::move(recipeContentContainer));
+
+    // Assign main container to the app root
+    app->root()->addWidget(std::move(mainContainer));
 
 }
 
@@ -200,6 +217,14 @@ WContainerWidget* WebView::sidebar(){
   findStockItemBtn->setWidth(WLength(NAV_BUTTON_WIDTH,WLength::Unit::Percentage));
   findStockItemBtn->setStyleClass("btn-success");
 
+  // Get All Button
+  auto getAllStockBtn = stockPbCont->addWidget(std::make_unique<Wt::WPushButton>("List Stock"));
+  getAllStockBtn->setLink(Wt::WLink(Wt::LinkType::InternalPath, getAllStockPath));
+  getAllStockBtn->setMargin(5, Wt::Side::Bottom);
+  getAllStockBtn->setVerticalAlignment(AlignmentFlag::Center);
+  getAllStockBtn->setWidth(WLength(NAV_BUTTON_WIDTH,WLength::Unit::Percentage));
+  getAllStockBtn->setStyleClass("btn-success");
+
   stockPbCont->addWidget(std::make_unique<WBreak>());
   stockPbCont->setVerticalAlignment(AlignmentFlag::Center);
 
@@ -254,16 +279,29 @@ WContainerWidget* WebView::sidebar(){
 }
 
 /**
- * Page Content
+ * Left side - Input form Content
 */
-WContainerWidget* WebView::content(){
+WContainerWidget* WebView::inputContent(){
   
-  if (content_ == 0) {
-    content_ = new WContainerWidget();
-    content_->setId("content");
+  if (leftContent_ == 0) {
+    leftContent_ = new WContainerWidget();
+    leftContent_->setId("left-content");
   }
   
-  return content_;
+  return leftContent_;
+}
+
+/**
+ * Right side Content
+*/
+WContainerWidget* WebView::recipeContent(){
+  
+  if (rightContent_ == 0) {
+    rightContent_ = new WContainerWidget();
+    rightContent_->setId("right-content");
+  }
+  
+  return rightContent_;
 }
 
 /**
@@ -576,7 +614,7 @@ WContainerWidget* WebView::modifyStockItem(){
         if(!result){
           throw "Food Item could not be modified.";
         }
-        std::cout<<"\nITEM MODIFIED IN STOCK\n";
+        std::cout<<"\nLOG: ITEM MODIFIED IN STOCK\n";
       } 
       catch(const char* msg){
         //THROW POP UP BOX
@@ -629,11 +667,10 @@ WContainerWidget* WebView::findStockItem(){
     auto findItem = [this]{
       try{
         FoodItem fi = getModel()->querySingleFoodItem(nameEdit_->text().toUTF8());
-        std::cerr<<"\n"<<fi.getName()<<" NAMMMMMMEE" <<std::endl;
         if(fi.getName()==""){
           throw WString("{1} could not be found").arg(nameEdit_->text());
         }
-        
+
         else{       
           // Success Message - print out finding
           std::cout << nameEdit_->text() << " successfully found!" << std::endl;
@@ -675,34 +712,119 @@ WContainerWidget* WebView::findStockItem(){
 }
 
 /**
+ * Get All Stock Items
+*/
+WContainerWidget* WebView::getAllStock(){
+
+    auto container = new WContainerWidget();
+    auto getAllStockCont = std::make_unique<WContainerWidget>();
+
+    // Create panel for buttons to be added in
+    auto getAllStockPanel = container->addWidget(std::make_unique<WPanel>());
+    getAllStockPanel->addStyleClass("centered-example");
+    getAllStockPanel->setTitle("ITEMS IN STOCK");
+    getAllStockPanel->setWidth(WLength(100,LengthUnit::Percentage));
+
+    // Find Stock Item Pushbutton
+    Wt::WPushButton *getAllStockBtn = getAllStockCont->addWidget(std::make_unique<Wt::WPushButton>("Get Current Stock"));
+    getAllStockCont->addWidget(std::make_unique<Wt::WBreak>());
+    getAllStockCont->addWidget(std::make_unique<Wt::WBreak>());
+
+    internalStockCont_ = getAllStockCont->addWidget(std::make_unique<WContainerWidget>());
+    
+    // find the item from the model
+    auto getAllStock = [this]{
+      try{
+        internalStockCont_->clear();
+        std::vector<FoodItem> v_fi = getModel()->queryAllFoodItems();
+        if(v_fi.empty()){
+          throw WString("No items in stock.");
+        }
+
+        else{
+          // Loop through the stock and print out
+          for(FoodItem fi : v_fi){
+            auto text = std::make_unique<WText>();
+            auto item = std::make_unique<WString>("Item: {1}  Qty: {2}  Expiry: {3}");
+            item->arg(fi.getName())
+              .arg(fi.getQuantity())
+              .arg(fi.getExpiry());
+            text->setText(item->toUTF8());
+            text->setStyleClass("fw-lighter");
+            internalStockCont_->addWidget(std::move(text));
+            internalStockCont_->addWidget(std::make_unique<WBreak>());
+          }
+        }        
+      
+      } catch (WString msg) {         
+        auto messageBox = app->addChild(std::make_unique<WMessageBox>(
+        "Error!", msg, Icon::Warning, StandardButton::Ok));
+        
+        messageBox->buttonClicked().connect([=]{
+          app->removeChild(messageBox);
+        });
+        messageBox->show();
+      }
+    };
+
+    // Connect the get all stock button to function 
+    getAllStockBtn->clicked().connect(getAllStock);
+
+    // Set container width and add container to panel
+    getAllStockCont->setWidth(WLength(INPUT_WIDTH_PERCENT,WLength::Unit::Percentage));
+    getAllStockPanel->setCentralWidget(std::move((getAllStockCont)));
+
+    return container;
+}
+
+/**
  * Handle an internal path change
 */
 void WebView::handleInternalPathChange()
 {
     WApplication *app = Wt::WApplication::instance();
     
-    content()->clear();
+    // Clear content on any link change
+    inputContent()->clear();
+    recipeContent()->clear();
 
+    // Add Stock Item
     if (app->internalPath() == addItemPath){
-      std::cerr<<"\nPATH CHANGED - ADD ITEM\n";
-      content()->addWidget(std::unique_ptr<WContainerWidget>(addStockItem()));
+      std::cout<<"\nLOG: PATH CHANGED - ADD ITEM\n"<<std::endl;
+      inputContent()->addWidget(std::unique_ptr<WContainerWidget>(addStockItem()));
     }
+    // Delete stock item
     else if (app->internalPath() == deleteItemPath){
-      std::cerr<<"\nPATH CHANGED - DELETE ITEM\n";
-      content()->addWidget(std::unique_ptr<WContainerWidget>(deleteStockItem()));
+      std::cout<<"\nLOG: PATH CHANGED - DELETE ITEM\n"<<std::endl;
+      inputContent()->addWidget(std::unique_ptr<WContainerWidget>(deleteStockItem()));
     }
+    // Modify stock item
     else if (app->internalPath() == modItemPath){
-      std::cerr<<"\nPATH CHANGED - MODIFY ITEM\n";
-      content()->addWidget(std::unique_ptr<WContainerWidget>(modifyStockItem()));
+      std::cout<<"\nLOG: PATH CHANGED - MODIFY ITEM\n"<<std::endl;
+      inputContent()->addWidget(std::unique_ptr<WContainerWidget>(modifyStockItem()));
     }
+    // Find item in stock
     else if (app->internalPath() == findItemPath){
-      std::cerr<<"\nPATH CHANGED - FIND ITEM\n";
-      content()->addWidget(std::unique_ptr<WContainerWidget>(findStockItem()));
-    }    
+      std::cout<<"\nLOG: PATH CHANGED - FIND ITEM\n";
+      inputContent()->addWidget(std::unique_ptr<WContainerWidget>(findStockItem()));
+    }
+    // Get list of all stock
+    else if (app->internalPath() == getAllStockPath){
+      std::cout<<"\nLOG: PATH CHANGED - GET ALL STOCK\n";
+      recipeContent()->addWidget(std::unique_ptr<WContainerWidget>(getAllStock()));
+    }
+    // Find recipe by item
+    // else if (app->internalPath() == findRecipeByItemPath){
+    //   std::cout<<"\nLOG: PATH CHANGED - FIND RECIPE FOR ITEM\n";
+    //   inputContent()->addWidget(std::unique_ptr<WContainerWidget>(getAllStock()));
+    // }
+    // else if (app->internalPath() == findRecipeAllStockPath){
+    //   std::cout<<"\nLOG: PATH CHANGED - FIND RECIPES FOR ALL STOCK\n";
+    //   inputContent()->addWidget(std::unique_ptr<WContainerWidget>(getAllStock()));
+    // }    
     else
-      std::cerr<<"\nPATH CHANGED - HOME\n";
-      //delete content_;
-      //content_ = new WContainerWidget();
+      std::cout<<"\nPATH CHANGED - HOME\n"<<std::endl;
+
 
 }
 
