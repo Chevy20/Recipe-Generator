@@ -64,7 +64,7 @@ WebView::WebView(const Wt::WEnvironment& env)
 }
 
 /**
- * Navigation Bar
+ * Navigation Bar - NOT USED
 */
 WContainerWidget* WebView::navbar(){
 
@@ -81,6 +81,91 @@ WContainerWidget* WebView::navbar(){
     nav->addWidget(std::unique_ptr<WImage>(logo));
     nav->setTitle("", "/");
 
+    /*
+    WStackedWidget *menuStack = nav_container->addNew<WStackedWidget>();
+    menuStack->addStyleClass("contents");
+    
+    // Setup a Left-aligned menu.
+    auto leftMenu = std::make_unique<Wt::WMenu>(menuStack);
+    auto leftNavMenu = nav->addMenu(std::move(leftMenu));
+
+    // Create a popup submenu for the Recipe menu.
+    auto recipePopupPtr = std::make_unique<Wt::WPopupMenu>();
+    auto recipePopup = recipePopupPtr.get();
+    recipePopup->addItem("Find By Item")
+        ->setLink(WLink(LinkType::InternalPath, "recipe-by-item"));
+    recipePopup->addItem("Find for All Stock")
+        ->setLink(WLink(LinkType::InternalPath, "recipe-by-all-stock"));
+
+    // Create a popup submenu for the Stock menu.
+    auto stockPopupPtr = std::make_unique<Wt::WPopupMenu>();
+    auto stockPopup = stockPopupPtr.get();
+    stockPopup->addItem("Add")->setLink(WLink(LinkType::InternalPath, "add-stock"));
+    stockPopup->addItem("Delete")->setLink(WLink(LinkType::InternalPath, "delete-stock"));
+    stockPopup->addItem("Edit")->setLink(WLink(LinkType::InternalPath, "edit-stock"));
+    stockPopup->addItem("Find")->setLink(WLink(LinkType::InternalPath, "find-stock"));
+
+    auto searchResult = std::make_unique<Wt::WText>("Buy or Sell... Bye!");
+    auto searchResult_ = searchResult.get();
+
+    leftNavMenu->addItem("Home", std::make_unique<Wt::WText>("There is no better place!"))
+       ->setLink(Wt::WLink(LinkType::InternalPath, "/"));
+    
+    auto stockItem = std::make_unique<Wt::WMenuItem>("Stock");
+    stockItem->setMenu(std::move(stockPopupPtr));
+    leftNavMenu->addItem(std::move(stockItem));
+ 
+     auto recipeItem = std::make_unique<Wt::WMenuItem>("Recipes");
+    recipeItem->setMenu(std::move(recipePopupPtr));
+    leftNavMenu->addItem(std::move(recipeItem));
+
+    leftNavMenu->addItem("TEST", std::move(searchResult));
+    leftNavMenu->addStyleClass("me-auto");
+
+    // Add a Search control.
+    auto editPtr = std::make_unique<Wt::WLineEdit>();
+    auto edit = editPtr.get();
+    edit->setPlaceholderText("Enter a search item");
+
+    edit->enterPressed().connect([=] {
+    leftNavMenu->select(2); // is the index of the "Sales"
+    searchResult_->setText(Wt::WString("Nothing found for {1}.")
+                                    .arg(edit->text()));
+    });
+
+    nav->addSearch(std::move(editPtr));
+
+    // Setup a Right-aligned menu.
+    auto rightMenu = std::make_unique<Wt::WMenu>();
+    auto rightNavMenu = nav->addMenu(std::move(rightMenu));
+
+    // Create a popup submenu for the Help menu.
+    auto popupPtr = std::make_unique<Wt::WPopupMenu>();
+    auto popup = popupPtr.get();
+    popup->addItem("Contents");
+    popup->addItem("Index");
+    popup->addSeparator();
+    popup->addItem("About");
+
+    popup->itemSelected().connect([=] (Wt::WMenuItem *item) {
+        auto messageBox = popup->addChild(
+                std::make_unique<Wt::WMessageBox>
+                ("Help",
+                Wt::WString("<p>Showing Help: {1}</p>").arg(item->text()),
+                Wt::Icon::Information,
+                Wt::StandardButton::Ok));
+
+        messageBox->buttonClicked().connect([=] {
+            popup->removeChild(messageBox);
+        });
+
+        messageBox->show();
+    });
+
+    auto menuItem = std::make_unique<Wt::WMenuItem>("Help");
+    menuItem->setMenu(std::move(popupPtr));
+    rightNavMenu->addItem(std::move(menuItem));
+    */
     return nav_container;
 
 }
@@ -754,11 +839,14 @@ WContainerWidget* WebView::findRecipeByItem(){
             std::vector<RecipeItem> all_ingredients = ingredients;
             all_ingredients.insert(all_ingredients.end(), missing_ingredients.begin(), missing_ingredients.end());
 
-            // Loop through ingredients for recipe
+            // Loop through ingredients for recipe and add to the containers
             for(RecipeItem ri : all_ingredients){
+              
+              // Build string
               std::stringstream recipeTxt;
               recipeTxt << ri.getItem() << "     " << ri.getQuantity() << " " << ri.getItemMeasureUnit() << std::endl;
-              std::cerr<<recipeTxt.str()<<std::endl;
+              
+              // Add each recipe string to container
               auto ingredient = std::make_unique<WText>();
               auto str_item = std::make_unique<WString>("{1}");
               str_item->arg(recipeTxt.str());
@@ -769,7 +857,8 @@ WContainerWidget* WebView::findRecipeByItem(){
             }
           }
         }       
-      } catch (WString msg) {         
+      } catch (WString msg) {
+        // Throws an error message box to the user     
         auto messageBox = app->addChild(std::make_unique<WMessageBox>(
         "Error!", msg, Icon::Warning, StandardButton::Ok));
         
@@ -790,38 +879,31 @@ WContainerWidget* WebView::findRecipeByItem(){
 
 
 /**
- * Find Recipe for All Stock Items
+ * Find Recipes for All Stock Items
 */
-WContainerWidget* WebView::findRecipeByItem(){
+WContainerWidget* WebView::findRecipeForStock(){
 
     auto container = new WContainerWidget();
-    auto findRecipeByItemCont = new WContainerWidget();
+    auto findRecipeForStockCont = new WContainerWidget();
 
     // Create panel for buttons to be added in
-    auto findRecipeByItemPanel = container->addWidget(std::make_unique<WPanel>());
-    findRecipeByItemPanel->addStyleClass("centered-example");
-    findRecipeByItemPanel->setTitle("FIND ITEM IN STOCK");
-    findRecipeByItemPanel->setWidth(WLength(100,LengthUnit::Percentage));
-
-    // Item Name
-    auto nameContainer = findRecipeByItemCont->addWidget(std::make_unique<WContainerWidget>());
-    nameContainer->addWidget(std::make_unique<Wt::WText>("Items"));
-    nameEdit_ = nameContainer->addWidget(std::make_unique<Wt::WLineEdit>());
-    nameContainer->addWidget(std::make_unique<Wt::WBreak>());
-    nameContainer->setId("nameContainer");
+    auto findRecipeForStockPanel = container->addWidget(std::make_unique<WPanel>());
+    findRecipeForStockPanel->addStyleClass("centered-example");
+    findRecipeForStockPanel->setTitle("FIND RECIPES FOR ALL ITEMS IN STOCK");
+    findRecipeForStockPanel->setWidth(WLength(100,LengthUnit::Percentage));
 
     // Find Stock Item Pushbutton
-    Wt::WPushButton *findRecipeByItemBtn = findRecipeByItemCont->addWidget(std::make_unique<Wt::WPushButton>("Search"));
-    findRecipeByItemCont->addWidget(std::make_unique<Wt::WBreak>());
-    findRecipeByItemCont->addWidget(std::make_unique<Wt::WBreak>());
+    Wt::WPushButton *findRecipeForStockBtn = findRecipeForStockCont->addWidget(std::make_unique<Wt::WPushButton>("Search"));
+    findRecipeForStockCont->addWidget(std::make_unique<Wt::WBreak>());
+    findRecipeForStockCont->addWidget(std::make_unique<Wt::WBreak>());
     
-    internalRecipeCont_ = findRecipeByItemCont->addWidget(std::make_unique<WContainerWidget>());
+    internalRecipeCont_ = findRecipeForStockCont->addWidget(std::make_unique<WContainerWidget>());
 
     // find the recipe from the model
-    auto findRecipeByItem = [this]{
+    auto findRecipeForStock = [this]{
       internalRecipeCont_->clear();
       try{
-        std::vector<Recipe> v_recipes = getModel()->getFoodAPI()->getRecipeBySpecificIngredients(nameEdit_->text().toUTF8());
+        std::vector<Recipe> v_recipes = getModel()->getFoodAPI()->getRecipeByIngredients(getModel());
         if(v_recipes.empty()){
           throw WString("Recipes not found");
         }
@@ -869,11 +951,12 @@ WContainerWidget* WebView::findRecipeByItem(){
         messageBox->show();
       }
     };
+    // Connects find recipe for all stock button to the above lamba function
+    findRecipeForStockBtn->clicked().connect(findRecipeForStock);
 
-    findRecipeByItemBtn->clicked().connect(findRecipeByItem);
-
-    findRecipeByItemCont->setWidth(WLength(INPUT_WIDTH_PERCENT,WLength::Unit::Percentage));
-    findRecipeByItemPanel->setCentralWidget(std::unique_ptr<WContainerWidget>(findRecipeByItemCont));
+    // Set Recipe Container Width and central widget
+    findRecipeForStockCont->setWidth(WLength(INPUT_WIDTH_PERCENT,WLength::Unit::Percentage));
+    findRecipeForStockPanel->setCentralWidget(std::unique_ptr<WContainerWidget>(findRecipeForStockCont));
 
     return container;
 }
@@ -921,7 +1004,7 @@ void WebView::handleInternalPathChange()
     }
     else if (app->internalPath() == findRecipeAllStockPath){
       std::cout<<"\nLOG: PATH CHANGED - FIND RECIPES FOR ALL STOCK\n";
-      recipeContent()->addWidget(std::unique_ptr<WContainerWidget>(getAllStock()));
+      recipeContent()->addWidget(std::unique_ptr<WContainerWidget>(findRecipeForStock()));
     }    
     else
       std::cout<<"\nPATH CHANGED - HOME\n"<<std::endl;
