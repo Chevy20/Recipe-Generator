@@ -196,7 +196,7 @@ std::vector<Recipe> FoodAPI::getRecipeByIngredients(void* _theModel) const{
 
 
 /**
- * Checks for and returns a list of recipes that use a specific ingredient.
+ * @brief Checks for and returns a list of recipes that use a specific ingredient.
  * 
  * @param query The ingredient to search for.
  * 
@@ -271,7 +271,7 @@ std::vector<Recipe> FoodAPI::getRecipeBySpecificIngredients(string query) const{
 
 
 /**
- * Removes unneccesary punctuation from strings and returns it.
+ * @brief Removes unneccesary punctuation from strings and returns it.
  * 
  * @param line The string to remove the punctuation from.
  * 
@@ -283,12 +283,11 @@ string FoodAPI::stripQuotes(string line) const{
 }
 
 
-/*
-Function: addPreference()
-Description: Adds a preference to the preference vector
-Parameters: pref - string name of the preference to add
-Return: None
-*/
+/**
+ * @brief Adds a preference to the preference list.
+ * 
+ * @param pref The string name of the preference to add.
+ */
 void FoodAPI::addPreference(std::string pref){
     if(std::find(preferences.begin(), preferences.end(), pref)==preferences.end()){
         preferences.push_back(pref);
@@ -296,23 +295,23 @@ void FoodAPI::addPreference(std::string pref){
 }
 
 
-/*
-Function: removePreference()
-Description: Removes a preference from the preference vector
-Parameters: pref - string name of the preference to remove
-Return: None
-*/
+/**
+ * @brief Removes a preference from the preference list.
+ * 
+ * @param pref The string name of the preference to remove.
+ */
 void FoodAPI::removePreference(std::string pref){
     preferences.erase(std::remove(preferences.begin(), preferences.end(), pref), preferences.end());
 }
 
 
-/*
-Function: buildQueryURL()
-Description: Removes a preference from the preference vector
-Parameters: pref - string name of the preference to remove
-Return: None
-*/
+/**
+ * @brief Builds and returns the query URL.
+ * 
+ * @param itemList The string of the ingredients.
+ * 
+ * @return The query URL.
+ */
 string FoodAPI::buildQueryURL(string itemList) const{
     string URL = "https://api.spoonacular.com/recipes/findByIngredients?apiKey="+this->getAPIKey()+"&ingredients="+itemList+"&number=5&ranking=2&ignorePantry=true";
     return URL;
@@ -320,12 +319,9 @@ string FoodAPI::buildQueryURL(string itemList) const{
 }
 
 
-/*
-Function: ~FoodAPI()
-Description: Destructor deletes instance of FoodAPI
-Parameters: None
-Return: None
-*/
+/**
+ * @brief Destructor - Deletes instance of FoodAPI.
+ */
 FoodAPI::~FoodAPI(){
     delete _instance;
 }
