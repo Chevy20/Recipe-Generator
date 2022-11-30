@@ -1,0 +1,290 @@
+\hypertarget{classFoodItem}{}\doxysection{Food\+Item Class Reference}
+\label{classFoodItem}\index{FoodItem@{FoodItem}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classFoodItem_a70e0ac6655a8c4fb69f3c31af378b3fd}{Food\+Item}} ()
+\begin{DoxyCompactList}\small\item\em Public Attributes. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classFoodItem_afbc02837e019b9987bbe4ba3c26be847}{Food\+Item}} (std\+::string item\+\_\+name, float unit\+\_\+quantity, std\+::string unit\+Measure\+\_\+\+Type, std\+::string date\+\_\+\+Purchased, std\+::string expiration\+\_\+\+Date, std\+::string unit\+\_\+\+Type, float quantity\+\_\+\+Threshold)
+\begin{DoxyCompactList}\small\item\em Constructor -\/ Sets the variables used by this class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classFoodItem_a7cf44635fcf4e90a904f88733aee248c}{$\sim$\+Food\+Item}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classFoodItem_a8b6841a4dd1515c0ec6932ea72be3ce9}{get\+Type}} ()
+\begin{DoxyCompactList}\small\item\em Gets the storage type of the food item. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classFoodItem_a56ae674e0034e236c6281af0b61b1d89}{get\+Name}} ()
+\begin{DoxyCompactList}\small\item\em Gets the name of the food item. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classFoodItem_abfc89ad1841e89103eb48e54d9df920c}{get\+Measure\+Unit}} ()
+\begin{DoxyCompactList}\small\item\em Gets the unit of measurement of the food item. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classFoodItem_a895f222d4b93c3fcd57cee8bd3a08271}{get\+Date\+Purchased}} ()
+\begin{DoxyCompactList}\small\item\em Gets the date the food item was purchased on. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classFoodItem_a10a424ba472a923cb1bddc97e31456f7}{get\+Threshold}} ()
+\begin{DoxyCompactList}\small\item\em Gets the quantity of food items needed to trigger a low stock alert. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classFoodItem_a85f4759d78b59fdc86d7a2b53ef3bf73}{get\+Expiry}} ()
+\begin{DoxyCompactList}\small\item\em Gets the expiry date of the food item. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classFoodItem_a3b5a1c92402511b000800bb111673005}{increment\+Qty}} (float amount)
+\begin{DoxyCompactList}\small\item\em Increments the food item\textquotesingle{}s quantity by specified amount. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classFoodItem_a8457e356ba00dc93e381e1e857aacf2d}{decrement\+Qty}} (float amount)
+\begin{DoxyCompactList}\small\item\em Decrements the food item\textquotesingle{}s quantity by specified amount. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classFoodItem_af7576fa138437c57e54d2fcfa7980d12}{get\+Quantity}} ()
+\begin{DoxyCompactList}\small\item\em Gets the amount of items in the stock. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classFoodItem_a70e0ac6655a8c4fb69f3c31af378b3fd}\label{classFoodItem_a70e0ac6655a8c4fb69f3c31af378b3fd}} 
+\index{FoodItem@{FoodItem}!FoodItem@{FoodItem}}
+\index{FoodItem@{FoodItem}!FoodItem@{FoodItem}}
+\doxysubsubsection{\texorpdfstring{FoodItem()}{FoodItem()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Food\+Item\+::\+Food\+Item (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Public Attributes. 
+
+Constructor -\/ Sets the variables used by this class.
+
+Constructor -\/ Sets the variables used by this class. \begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classFoodItem_afbc02837e019b9987bbe4ba3c26be847}\label{classFoodItem_afbc02837e019b9987bbe4ba3c26be847}} 
+\index{FoodItem@{FoodItem}!FoodItem@{FoodItem}}
+\index{FoodItem@{FoodItem}!FoodItem@{FoodItem}}
+\doxysubsubsection{\texorpdfstring{FoodItem()}{FoodItem()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Food\+Item\+::\+Food\+Item (\begin{DoxyParamCaption}\item[{std\+::string}]{item\+\_\+name,  }\item[{float}]{unit\+\_\+quantity,  }\item[{std\+::string}]{unit\+Measure\+\_\+\+Type,  }\item[{std\+::string}]{date\+\_\+\+Purchased,  }\item[{std\+::string}]{expiration\+\_\+\+Date,  }\item[{std\+::string}]{unit\+\_\+\+Type,  }\item[{float}]{quantity\+\_\+\+Threshold }\end{DoxyParamCaption})}
+
+
+
+Constructor -\/ Sets the variables used by this class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item\+\_\+name} & The name of the food item. \\
+\hline
+{\em unit\+\_\+quantity} & The quantity/units of the food item. \\
+\hline
+{\em unit\+Measure\+\_\+\+Type} & The measurement that the food item is measured in. \\
+\hline
+{\em date\+\_\+\+Purchased} & The date that the food item was perchased (in the format Y\+Y\+Y\+Y/\+M\+M/\+DD). \\
+\hline
+{\em expiration\+\_\+\+Date} & The expiration date of the food item (in the format Y\+Y\+Y\+Y/\+M\+M/\+DD). \\
+\hline
+{\em unit\+\_\+\+Type} & Where the unit is stored. \\
+\hline
+{\em quantity\+\_\+\+Threshold} & The quantity needed to trigger a low stock alert. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classFoodItem_a7cf44635fcf4e90a904f88733aee248c}\label{classFoodItem_a7cf44635fcf4e90a904f88733aee248c}} 
+\index{FoodItem@{FoodItem}!````~FoodItem@{$\sim$FoodItem}}
+\index{````~FoodItem@{$\sim$FoodItem}!FoodItem@{FoodItem}}
+\doxysubsubsection{\texorpdfstring{$\sim$FoodItem()}{~FoodItem()}}
+{\footnotesize\ttfamily Food\+Item\+::$\sim$\+Food\+Item (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructor. 
+
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classFoodItem_a8457e356ba00dc93e381e1e857aacf2d}\label{classFoodItem_a8457e356ba00dc93e381e1e857aacf2d}} 
+\index{FoodItem@{FoodItem}!decrementQty@{decrementQty}}
+\index{decrementQty@{decrementQty}!FoodItem@{FoodItem}}
+\doxysubsubsection{\texorpdfstring{decrementQty()}{decrementQty()}}
+{\footnotesize\ttfamily bool Food\+Item\+::decrement\+Qty (\begin{DoxyParamCaption}\item[{float}]{amount }\end{DoxyParamCaption})}
+
+
+
+Decrements the food item\textquotesingle{}s quantity by specified amount. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em amount} & The amount to decrement by.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Boolean for success. False if amount is larger than quantity. 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em amount} & The amount to decrement by.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Boolean for success. False if amount is larger than quantity. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classFoodItem_a895f222d4b93c3fcd57cee8bd3a08271}\label{classFoodItem_a895f222d4b93c3fcd57cee8bd3a08271}} 
+\index{FoodItem@{FoodItem}!getDatePurchased@{getDatePurchased}}
+\index{getDatePurchased@{getDatePurchased}!FoodItem@{FoodItem}}
+\doxysubsubsection{\texorpdfstring{getDatePurchased()}{getDatePurchased()}}
+{\footnotesize\ttfamily string Food\+Item\+::get\+Date\+Purchased (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the date the food item was purchased on. 
+
+\begin{DoxyReturn}{Returns}
+The purchase date. 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie
+\end{DoxyAuthor}
+\begin{DoxyReturn}{Returns}
+The purchase date. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classFoodItem_a85f4759d78b59fdc86d7a2b53ef3bf73}\label{classFoodItem_a85f4759d78b59fdc86d7a2b53ef3bf73}} 
+\index{FoodItem@{FoodItem}!getExpiry@{getExpiry}}
+\index{getExpiry@{getExpiry}!FoodItem@{FoodItem}}
+\doxysubsubsection{\texorpdfstring{getExpiry()}{getExpiry()}}
+{\footnotesize\ttfamily string Food\+Item\+::get\+Expiry (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the expiry date of the food item. 
+
+\begin{DoxyReturn}{Returns}
+The food item\textquotesingle{}s expiry date. 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie
+\end{DoxyAuthor}
+\begin{DoxyReturn}{Returns}
+The food item\textquotesingle{}s expiry date. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classFoodItem_abfc89ad1841e89103eb48e54d9df920c}\label{classFoodItem_abfc89ad1841e89103eb48e54d9df920c}} 
+\index{FoodItem@{FoodItem}!getMeasureUnit@{getMeasureUnit}}
+\index{getMeasureUnit@{getMeasureUnit}!FoodItem@{FoodItem}}
+\doxysubsubsection{\texorpdfstring{getMeasureUnit()}{getMeasureUnit()}}
+{\footnotesize\ttfamily string Food\+Item\+::get\+Measure\+Unit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the unit of measurement of the food item. 
+
+\begin{DoxyReturn}{Returns}
+The food item\textquotesingle{}s unit of measurement. 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie
+\end{DoxyAuthor}
+\begin{DoxyReturn}{Returns}
+The food item\textquotesingle{}s unit of measurement. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classFoodItem_a56ae674e0034e236c6281af0b61b1d89}\label{classFoodItem_a56ae674e0034e236c6281af0b61b1d89}} 
+\index{FoodItem@{FoodItem}!getName@{getName}}
+\index{getName@{getName}!FoodItem@{FoodItem}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily string Food\+Item\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the name of the food item. 
+
+\begin{DoxyReturn}{Returns}
+The food item\textquotesingle{}s name. 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie
+\end{DoxyAuthor}
+\begin{DoxyReturn}{Returns}
+The food item\textquotesingle{}s name. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classFoodItem_af7576fa138437c57e54d2fcfa7980d12}\label{classFoodItem_af7576fa138437c57e54d2fcfa7980d12}} 
+\index{FoodItem@{FoodItem}!getQuantity@{getQuantity}}
+\index{getQuantity@{getQuantity}!FoodItem@{FoodItem}}
+\doxysubsubsection{\texorpdfstring{getQuantity()}{getQuantity()}}
+{\footnotesize\ttfamily float Food\+Item\+::get\+Quantity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the amount of items in the stock. 
+
+\begin{DoxyReturn}{Returns}
+The food item\textquotesingle{}s quantity. 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie
+\end{DoxyAuthor}
+\begin{DoxyReturn}{Returns}
+The food item\textquotesingle{}s quantity. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classFoodItem_a10a424ba472a923cb1bddc97e31456f7}\label{classFoodItem_a10a424ba472a923cb1bddc97e31456f7}} 
+\index{FoodItem@{FoodItem}!getThreshold@{getThreshold}}
+\index{getThreshold@{getThreshold}!FoodItem@{FoodItem}}
+\doxysubsubsection{\texorpdfstring{getThreshold()}{getThreshold()}}
+{\footnotesize\ttfamily float Food\+Item\+::get\+Threshold (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the quantity of food items needed to trigger a low stock alert. 
+
+\begin{DoxyReturn}{Returns}
+The low stock quantity threshold. 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie
+\end{DoxyAuthor}
+\begin{DoxyReturn}{Returns}
+The low stock quantity threshold. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classFoodItem_a8b6841a4dd1515c0ec6932ea72be3ce9}\label{classFoodItem_a8b6841a4dd1515c0ec6932ea72be3ce9}} 
+\index{FoodItem@{FoodItem}!getType@{getType}}
+\index{getType@{getType}!FoodItem@{FoodItem}}
+\doxysubsubsection{\texorpdfstring{getType()}{getType()}}
+{\footnotesize\ttfamily string Food\+Item\+::get\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the storage type of the food item. 
+
+\begin{DoxyReturn}{Returns}
+The food item\textquotesingle{}s storage type. 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie
+\end{DoxyAuthor}
+\begin{DoxyReturn}{Returns}
+The food item\textquotesingle{}s storage type. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classFoodItem_a3b5a1c92402511b000800bb111673005}\label{classFoodItem_a3b5a1c92402511b000800bb111673005}} 
+\index{FoodItem@{FoodItem}!incrementQty@{incrementQty}}
+\index{incrementQty@{incrementQty}!FoodItem@{FoodItem}}
+\doxysubsubsection{\texorpdfstring{incrementQty()}{incrementQty()}}
+{\footnotesize\ttfamily bool Food\+Item\+::increment\+Qty (\begin{DoxyParamCaption}\item[{float}]{amount }\end{DoxyParamCaption})}
+
+
+
+Increments the food item\textquotesingle{}s quantity by specified amount. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em amount} & The amount to increment by.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Boolean for success. 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em amount} & The amount to increment by.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Boolean for success. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{FoodItem_8h}{Food\+Item.\+h}}\item 
+\mbox{\hyperlink{FoodItem_8cpp}{Food\+Item.\+cpp}}\end{DoxyCompactItemize}

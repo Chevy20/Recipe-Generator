@@ -1,0 +1,103 @@
+\hypertarget{classt__dbTableStrategy}{}\doxysection{t\+\_\+db\+Table\+Strategy Class Reference}
+\label{classt__dbTableStrategy}\index{t\_dbTableStrategy@{t\_dbTableStrategy}}
+
+
+Inheritance diagram for t\+\_\+db\+Table\+Strategy\+:
+% FIG 0
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \mbox{\hyperlink{classt__dbTableStrategy_ad16d72a8126573512195d3c48b5827d9}{insert}} (void $\ast$item)=0
+\begin{DoxyCompactList}\small\item\em abstract function to insert into the database. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classt__dbTableStrategy_ac1fb3446388b31d5bb5127ca5b94b991}{update}} (void $\ast$item)=0
+\begin{DoxyCompactList}\small\item\em abstract function to update an entry in the sql database \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classt__dbTableStrategy_ac9c2ab23db2c4a89bd9b7a36854e90ac}{remove}} (std\+::string item\+Name)=0
+\begin{DoxyCompactList}\small\item\em abstract function to remove something from the database \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+sqlite3 $\ast$ \mbox{\hyperlink{classt__dbTableStrategy_af34288c76ac9599a1c4f12556446fa04}{db}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classt__dbTableStrategy_ad16d72a8126573512195d3c48b5827d9}\label{classt__dbTableStrategy_ad16d72a8126573512195d3c48b5827d9}} 
+\index{t\_dbTableStrategy@{t\_dbTableStrategy}!insert@{insert}}
+\index{insert@{insert}!t\_dbTableStrategy@{t\_dbTableStrategy}}
+\doxysubsubsection{\texorpdfstring{insert()}{insert()}}
+{\footnotesize\ttfamily virtual bool t\+\_\+db\+Table\+Strategy\+::insert (\begin{DoxyParamCaption}\item[{void $\ast$}]{item }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+abstract function to insert into the database. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item} & void pointer that will be cast to the table we are looking at \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+\end{DoxyAuthor}
+
+
+Implemented in \mbox{\hyperlink{classStockTable_a7b0716fb7979b9f402fb5747b553d603}{Stock\+Table}}.
+
+\mbox{\Hypertarget{classt__dbTableStrategy_ac9c2ab23db2c4a89bd9b7a36854e90ac}\label{classt__dbTableStrategy_ac9c2ab23db2c4a89bd9b7a36854e90ac}} 
+\index{t\_dbTableStrategy@{t\_dbTableStrategy}!remove@{remove}}
+\index{remove@{remove}!t\_dbTableStrategy@{t\_dbTableStrategy}}
+\doxysubsubsection{\texorpdfstring{remove()}{remove()}}
+{\footnotesize\ttfamily virtual bool t\+\_\+db\+Table\+Strategy\+::remove (\begin{DoxyParamCaption}\item[{std\+::string}]{item\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+abstract function to remove something from the database 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item\+Name} & string to represent the name of the item to be removed \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+\end{DoxyAuthor}
+
+
+Implemented in \mbox{\hyperlink{classStockTable_a0264bd157e1dffc8d87d3f5c6e7b59ec}{Stock\+Table}}.
+
+\mbox{\Hypertarget{classt__dbTableStrategy_ac1fb3446388b31d5bb5127ca5b94b991}\label{classt__dbTableStrategy_ac1fb3446388b31d5bb5127ca5b94b991}} 
+\index{t\_dbTableStrategy@{t\_dbTableStrategy}!update@{update}}
+\index{update@{update}!t\_dbTableStrategy@{t\_dbTableStrategy}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily virtual bool t\+\_\+db\+Table\+Strategy\+::update (\begin{DoxyParamCaption}\item[{void $\ast$}]{item }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+abstract function to update an entry in the sql database 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item} & void pointer that will be cast to the table we are looking at \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+\end{DoxyAuthor}
+
+
+Implemented in \mbox{\hyperlink{classStockTable_a9e7080d00884300f5d3327d06c9c3d09}{Stock\+Table}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classt__dbTableStrategy_af34288c76ac9599a1c4f12556446fa04}\label{classt__dbTableStrategy_af34288c76ac9599a1c4f12556446fa04}} 
+\index{t\_dbTableStrategy@{t\_dbTableStrategy}!db@{db}}
+\index{db@{db}!t\_dbTableStrategy@{t\_dbTableStrategy}}
+\doxysubsubsection{\texorpdfstring{db}{db}}
+{\footnotesize\ttfamily sqlite3$\ast$ t\+\_\+db\+Table\+Strategy\+::db\hspace{0.3cm}{\ttfamily [protected]}}
+
+sqlite3$\ast$\+: pointer to db 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{t__dbTableStrategy_8h}{t\+\_\+db\+Table\+Strategy.\+h}}\end{DoxyCompactItemize}

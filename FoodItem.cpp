@@ -1,16 +1,22 @@
-/* FoodItem Implementation file
-    This file contains the implementation for all methods of the FoodItem Class
-*/
+/**
+ * @file FoodItem.cpp
+ * @author Matthew Cheverie
+ * @brief FoodItem program file. Contains the implementation for the FoodItem Class.
+ * Used to represent records in database.
+ * @version 0.1
+ * @date 2022-11-29
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include "FoodItem.h"
 #include <iostream>
 using namespace std;
 
-/*
-Function: Default FoodItem Constructor
-Description: The default constructor for the FoodItem object. Sets all string attributes to "" and all integer values to 0
-Parameters: nothing
-Return: FoodItem object
-*/
+
+/**
+ * @brief Constructor - Sets the variables used by this class.
+ */
 FoodItem::FoodItem(){
     unitType = "";
     unitMeasureType = "";
@@ -21,15 +27,19 @@ FoodItem::FoodItem(){
     expirationDate = "";
 }
 
-/*
-Function: FoodItem constructor
-Description: The constructor for the food item object
-Parameters: string item_name: the name of the food item, int unit_quantity: the units of food items, string unitMeasure_Type: the type of unit the quantity is measured in,
-string date_Purchased: purchase date in form YYYY/MM/DD, string expiration_Date: expiration date in form YYYY/MM/DD, string unit_Type: where the unit is stored, 
-int quantity_Threshold: the amount needed to trigger low stock alert, int date_Threshold: the number of days from the expiration date that an expiry warning will be triggered
-Return: FoodItem object
-*/
-FoodItem::FoodItem(string item_name, float unit_quantity, string unitMeasure_Type ,string date_Purchased, string expiration_Date, string unit_Type,   float quantity_Threshold){
+
+/**
+ * @brief Constructor - Sets the variables used by this class.
+ * 
+ * @param item_name The name of the food item.
+ * @param unit_quantity The quantity/units of the food item.
+ * @param unitMeasure_Type The measurement that the food item is measured in.
+ * @param date_Purchased The date that the food item was perchased (in the format YYYY/MM/DD).
+ * @param expiration_Date The expiration date of the food item (in the format YYYY/MM/DD).
+ * @param unit_Type Where the unit is stored.
+ * @param quantity_Threshold The quantity needed to trigger a low stock alert.
+ */
+FoodItem::FoodItem(string item_name, float unit_quantity, string unitMeasure_Type ,string date_Purchased, string expiration_Date, string unit_Type, float quantity_Threshold){
     unitType = unit_Type;
     unitMeasureType = unitMeasure_Type;
     itemName = item_name;
@@ -40,93 +50,92 @@ FoodItem::FoodItem(string item_name, float unit_quantity, string unitMeasure_Typ
     
 }
 
-/*
-Function: ~FoodItem()
-Description: The default destructor for the FoodItem object
-Parameters: none
-Return: none
-*/
+
+/**
+ * @brief Destructor
+ */
 FoodItem::~FoodItem(){
-   
 
 }
-/*
-Function: getType()
-Description: Gets the storage type of the food
-Parameters: none
-Return: string representing the storage type
-*/
+
+
+/**
+ * @brief Gets the storage type of the food item.
+ * 
+ * @return The food item's storage type.
+ */
 string FoodItem::getType(){
     return unitType;
 }
 
-/*
-Function: getName()
-Description: Gets the name of the food item
-Parameters: none
-Return: string representing the name of the food
-*/
+
+/**
+ * @brief Gets the name of the food item.
+ * 
+ * @return The food item's name.
+ */
 string FoodItem::getName(){
     return itemName;
 }
 
-/*
-Function: getMeasureUnit()
-Description: Gets the unit of measurement for the food
-Parameters: none
-Return: string representing the measurement unit of the food
-*/
+
+/**
+ * @brief Gets the unit of measurement of the food item.
+ * 
+ * @return The food item's unit of measurement.
+ */
 string FoodItem::getMeasureUnit(){
     return unitMeasureType;
 }
 
-/*
-Function: getDatePurchased()
-Description: Gets the date the item was purchased on
-Parameters: none
-Return: string representing the purchase date
-*/
+
+/**
+ * @brief Gets the date the food item was purchased on.
+ * 
+ * @return The purchase date.
+ */
 string FoodItem::getDatePurchased(){
     return datePurchased;
 }
 
-/*
-Function: getThreshold
-Description: Gets the number of measurement units where a low stock alert will be sent
-Parameters: none
-Return: String representing the quantity threshold
-*/
+
+/**
+ * @brief Gets the quantity of food items needed to trigger a low stock alert.
+ * 
+ * @return The low stock quantity threshold.
+ */
 float FoodItem::getThreshold(){
     return quantityThreshold;
 }
 
-/*
-Function: getExpiry()
-Description: Gets the expiry date of the  food
-Parameters: none
-Return: string representing the expiry date
-*/
+
+/**
+ * @brief Gets the expiry date of the food item.
+ * 
+ * @return The food item's expiry date.
+ */
 string FoodItem::getExpiry(){
     return expirationDate;
 }
 
 
-/*
-Function: getQuantity()
-Description: Gives the amount of items in the stock
-Parameters: none
-Return: integer representing the amount of food in stock 
-*/
+/**
+ * @brief Gets the amount of items in the stock.
+ * 
+ * @return The food item's quantity.
+ */
 float FoodItem::getQuantity(){
     return unitQuantity;
 }
 
-/*
-Function: incrementQty()
-Description: Increments quantity specified by passed in amount
-Parameters: int amount: amount to increment by 
-Return: true if able to increment
-*/
+
+/**
+ * @brief Increments the food item's quantity by specified amount.
+ * 
+ * @param amount The amount to increment by.
+ * 
+ * @return Boolean for success.
+ */
 bool FoodItem::incrementQty (float amount){
 
     unitQuantity = unitQuantity + amount;
@@ -134,12 +143,14 @@ bool FoodItem::incrementQty (float amount){
 
 }
 
-/*
-Function: decrementQty()
-Description: Decreases qty by amount passed in, but not below 0
-Parameters: int amount: amount to decrement by
-Return: true if able to decrement, false if not
-*/
+
+/**
+ * @brief Decrements the food item's quantity by specified amount.
+ * 
+ * @param amount The amount to decrement by.
+ * 
+ * @return Boolean for success. False if amount is larger than quantity.
+ */
 bool FoodItem::decrementQty (float amount ){
     if(unitQuantity - amount < 0){
         cout << "Invalid use of items. Not enough in stock" <<endl;

@@ -5,7 +5,7 @@ using namespace std;
 
 
 /**
- * Constructor - Sets all the variables for this class.
+ * @brief Constructor - Sets all the variables for this class.
  */
 Recipe::Recipe()
 {
@@ -14,7 +14,7 @@ Recipe::Recipe()
 
 
 /**
- * Constructor - Sets all the variables for this class.
+ * @brief Constructor - Sets all the variables for this class.
  * 
  * @param rname The name of the recipe.
  * @param ingredients The list of ingredients required for the recipe.
@@ -35,7 +35,7 @@ Recipe::Recipe(std::string rname, std::vector<RecipeItem> ingredients,std::vecto
 
 
 /**
- * Destructor
+ * @brief Destructor
  */
 Recipe::~Recipe()
 {
@@ -44,7 +44,7 @@ Recipe::~Recipe()
 
 
 /**
- * Returns a list of the missing ingredients required for the recipe.
+ * @brief Returns a list of the missing ingredients required for the recipe.
  * 
  * @return The list of missing ingredients.
  */
@@ -54,7 +54,7 @@ vector<RecipeItem> Recipe::getMissingIngredients(){
 
 
 /**
- * Returns the url of the image of the recipe.
+ * @brief Returns the url of the image of the recipe.
  * 
  * @return The string of the image source.
  */
@@ -64,7 +64,7 @@ string Recipe::getImageURL(){
 
 
 /**
- * Returns the name of the recipe.
+ * @brief Returns the name of the recipe.
  * 
  * @return The string of the recipe name.
  */
@@ -75,7 +75,7 @@ string Recipe::getRecipeName()
 
 
 /**
- * Returns the list of the ingredients for the recipe.
+ * @brief Returns the list of the ingredients for the recipe.
  * 
  * @return The ingredient list for the recipe.
  */
@@ -86,7 +86,7 @@ vector<RecipeItem> Recipe::getIngredients()
 
 
 /**
- * Returns the nutrition of the recipe.
+ * @brief Returns the nutrition of the recipe.
  * 
  * @return The recipe's nutrition.
  */
@@ -96,13 +96,14 @@ map<string, float> Recipe::getNutrition()
 }
 
 
-/*
- * Function: swapIngredient 
- * Description: updates all RecipeItems to create the quantity given
- * Parameters: FoodItem nItem : the new food item to be swapped in, RecipeItem rItem: the item in recipe swapped out
- * Return: nothing
+/**
+ * @brief Overwrites a food item with a new item.
+ * 
+ * @param nItem The name of the new food item to be swapped in.
+ * @param nQuan The quantity of the new food item to be swapped in.
+ * @param nMeasure The measurement of the new food item to be swapped in.
  */
- void swapIngredient(std::string nItem, float nQuan, string nMeasure, RecipeItem rItem)
+void swapIngredient(std::string nItem, float nQuan, string nMeasure, RecipeItem rItem)
 {
     rItem.setItem(nItem);
     rItem.setQuantity(nQuan);
@@ -110,11 +111,12 @@ map<string, float> Recipe::getNutrition()
 }
 
 
-/*
- * Function: addIngredient 
- * Description: add RecipeItem to vector of ingredients given
- * Parameters: FoodItem nItem : the new food item to be added in, float quantity: the quantity of ingredients
- * Return: -1, item failed to add: already exists
+/**
+ * @brief Adds an ingredient to a recipe.
+ * 
+ * @param nItem The recipe to add to.
+ * 
+ * @return Int used as a boolean of success. -1 if duplicate ingredient. 0 otherwise.
  */
 int Recipe::addIngredient(RecipeItem nItem)
 {
@@ -134,11 +136,13 @@ int Recipe::addIngredient(RecipeItem nItem)
 }
 
 
-/*
- * Function: adjustIngredientAmount 
- * Description: updates a RecipeItem to the quantity given
- * Parameters: FoodItem item : check which Recipe item to change, int quantity: the new val to update to
- * Return: -1, food item does not exist
+/**
+ * @brief Adjusts the ingredient amount for a recipe.
+ * 
+ * @param item The ingredient to adjust.
+ * @param quantity The new quantity.
+ * 
+ * @return Int used as a boolean of success.
  */
 int Recipe::adjustIngredientAmount(RecipeItem item, float quantity)
 {

@@ -1,13 +1,22 @@
+/**
+ * @file Model.cpp
+ * @author Matthew Cheverie
+ * @brief Model program file. Contains the implementations for the Model Class. The model is used as a middleman between the front end and the back end.
+ * @version 0.1
+ * @date 2022-11-29
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include "Model.h"
 #include <iostream>
 using namespace std;
 
-/*
-Function: Constructor for Model
-Description: This will create the model object
-Parameters:none
-Return: Model object
-*/
+
+/**
+ * @brief Constructor - Sets the variables for this class.
+ * @author Matthew Cheverie
+ */
 Model::Model(){
     //create new instance of SQLite connector. Connect to DB and create new dbconext passing in the handle from the dbConnection
     FoodConnection = &FoodAPI::getInstance();
@@ -16,101 +25,111 @@ Model::Model(){
     dbContext = new StockTable(dbConnection->getDbHandle());
 }
 
-/*
-Function: Destructor for Model
-Description: This will close connection to the db   
-Parameters:none
-Return:none
-*/
+
+/**
+ * @brief Destructor - Closes the connection to the database.
+ * @author Matthew Cheverie
+ */
 Model::~Model(){
     dbContext->~StockTable(); 
 }
 
-/*
-Function: getDBConnection
-Description: Getter function for the dbConnection object
-Parameters: non
-Return: SQLiteConnector* representing the connection to the db
-*/
+
+/**
+ * @brief Returns the dbConnection object.
+ * 
+ * @return The dbConnection object.
+ * @author Matthew Cheverie
+ */
 SQLiteConnector* Model::getDBConnection(){
     return dbConnection;
 }
 
 
-/*
-Function:getDBContext()
-Description: Getter function for the dbContext
-Parameters: none
-Return: StockTable* represnting the database context for the table we wish to interact with
-*/
+/**
+ * @brief Returns the dbContext object.
+ * 
+ * @return The dbContext object.
+ * @author Matthew Cheverie
+ */
 StockTable *Model::getDbContext(){
     return dbContext;
 }
 
 
-
-
-
-/*
-Function: addFoodItem()
-Description: Function to add a food item into the stock table
-Parameters: FoodItem item: item to be added
-Return: true if added, false if not
-*/
+/**
+ * @brief Adds a food item into the stock table.
+ * 
+ * @param item The food item to add.
+ * @author Matthew Cheverie
+ * @return Boolean for success.
+ */
 bool Model::addFoodItem(FoodItem item){
     return dbContext->insert(&item);
 }
 
-/*
-Function: removeFoodItem()
-Description: Function to remove a food item from the database
-Parameters: string itemName: itemName to remove from the database
-Return: true if remove, false if not
-*/
+
+/**
+ * @brief Removes a food item from the stock table.
+ * 
+ * @param itemName The name of the food item to remove.
+ * @author Matthew Cheverie
+ * @return Boolean for success.
+ */
 bool Model::removeFoodItem(std::string itemName){
     return dbContext->remove(itemName);
 }
 
-/*
-Function: modifyFoodItems()
-Description: Function to modify an existing food item in the table
-Parameters: FoodItem item: modified food item to modify in the table
-Return: true if updated, false if not
-*/
+
+/**
+ * @brief Modifies an existing food item in the stock table.
+ * 
+ * @param item The modified food item.
+ * @author Matthew Cheverie
+ * @return Boolean for success.
+ */
 bool Model::modifyFoodItem(FoodItem item){
     return dbContext->update(&item);
 }
 
-/*
-Function: querySingleFoodItem()
-Description: Function to query for a single food item
-Parameters: string item: the name of an item to query for
-Return: FoodItem objefct representing the FoodItem object found. If query didnt find an item, return a blank food item
-*/
+
+/**
+ * @brief Queries for and returns the desired food item.
+ * 
+ * @param item The name of the food item.
+ * @author Matthew Cheverie
+ * @return The found food item.
+ */
 FoodItem Model::querySingleFoodItem(string item){
     return dbContext->select(item);
 }
 
-/*
-Function: queryAllFoodItems()
-Description:Function to query for all food items in the database
-Parameters: none
-Return: vector<FoodItem> representing all food items in the database
-*/
+
+/**
+ * @brief Queries and returns all food items in the database.
+ * @author Matthew Cheverie
+ * @return The list of all food items.
+ */
 vector<FoodItem> Model::queryAllFoodItems(){
     return dbContext->selectAll();
 }
+
+
+/**
+ * @brief Returns the food API.
+ * @author Matthew Cheverie
+ * @return The food API.
+ */
 const FoodAPI* Model::getFoodAPI(){
     return FoodConnection;
 }
 
 
-/*
-Function: checkForExpiredFood()
-Description:Function to check for expired food in stock if expiry date is before current date
-Parameters: none
-Return: vector<FoodItems> representing all items that are expired
-*/
+/**
+ * @brief Checks for and returns a list of all expired food items.
+ * @author Matthew Cheverie
+ * @return A list of all exired food items.
+ */
 vector<FoodItem> Model::checkForExpiredFood(){
     vector<FoodItem> expiredFood;
     vector<FoodItem> items = dbContext->selectAll();
@@ -135,12 +154,12 @@ vector<FoodItem> Model::checkForExpiredFood(){
     return expiredFood;
 }
 
-/*
-Function: checkForLowStock()
-Description:Function to check for low stock if an items stock is below or eqaul to the threshold
-Parameters: none
-Return: vector<FoodItems> representing all items that are low on stock
-*/
+
+/**
+ * @brief Checks for and returns a list of all food items with low stock.
+ * @author Matthew Cheverie
+ * @return A list of all food items with low stock.
+ */
 vector<FoodItem> Model::checkForLowStock(){
     vector<FoodItem> LowStock;
     vector<FoodItem> items = dbContext->selectAll();
@@ -157,6 +176,14 @@ vector<FoodItem> Model::checkForLowStock(){
     return LowStock;
 }
 
+
+/**
+ * @brief Computes the stock after a recipe is used.
+ * 
+ * @param cookedRecipe The recipe that was made.
+ * @author Matthew Cheverie
+ * @return Boolean for success.
+ */
 bool Model::autoComputeStockAfterRecipe(Recipe cookedRecipe){
     vector<RecipeItem> ingredients = cookedRecipe.getIngredients();
     for(int i = 0; i < ingredients.size(); i ++){
@@ -173,6 +200,15 @@ bool Model::autoComputeStockAfterRecipe(Recipe cookedRecipe){
     }
     return true;
 }
+
+
+/**
+ * @brief Checks if the units of the recipe match the stock measurements.
+ * 
+ * @param cookedRecipe The recipe to check.
+ * @author Matthew Cheverie
+ * @return True if the measurements are the same. False otherwise.
+ */
 bool Model::checkAutoStock(Recipe cookedRecipie){
     for(int i = 0; i < cookedRecipie.getIngredients().size(); i++){
         RecipeItem rItem = cookedRecipie.getIngredients()[i];
@@ -183,6 +219,11 @@ bool Model::checkAutoStock(Recipe cookedRecipie){
     return true;
 }
 
+
+/**
+ * @brief Prints all the recipes.
+ * @author Matthew Cheverie
+ */
 void Model::printRecipeToConsole(){
     cout<<"Here are the recipes returned from Spoonacular"<<endl;
     for(int i = 0; i <queriedRecipes.size(); i++){
@@ -204,7 +245,15 @@ void Model::printRecipeToConsole(){
     }
 }
 
+
 //Note, once the autoStock check fails, this method will then be called using the update food items made by the front end as a parameter
+/**
+ * @brief Maually updates the stock after a recipe is used. Called when the measurements of the recipe and stock don't match.
+ * 
+ * @param items The list of food items that need to be updated.
+ * @author Matthew Cheverie
+ * @return Boolean for success.
+ */
 bool Model::manualCompleteStockAfterRecipe(std::vector<FoodItem> items){
     for(int i = 0; i < items.size(); i++)   {
         if(!modifyFoodItem(items[i]))
@@ -212,9 +261,23 @@ bool Model::manualCompleteStockAfterRecipe(std::vector<FoodItem> items){
     }
     return true; 
 }
+
+
+/**
+ * @brief Returns the list of the recipes that were queried for.
+ * @author Matthew Cheverie
+ * @return The list of queried recipes.
+ */
 std::vector<Recipe> Model::getQueriedRecipes(){
     return queriedRecipes;
 }
+
+
+/**
+ * @brief Sets the list of the recipes that were queried for
+ * @author Matthew Cheverie
+ * @param recipes The list of queried recipes to set.
+ */
 void Model::setQueriedRecipes(std::vector<Recipe> recipes){
     queriedRecipes = recipes;
 }

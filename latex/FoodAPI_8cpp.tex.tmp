@@ -1,0 +1,67 @@
+\hypertarget{FoodAPI_8cpp}{}\doxysection{Food\+A\+P\+I.\+cpp File Reference}
+\label{FoodAPI_8cpp}\index{FoodAPI.cpp@{FoodAPI.cpp}}
+
+
+\mbox{\hyperlink{classFoodAPI}{Food\+A\+PI}} program file. Contains the implementation for \mbox{\hyperlink{classFoodAPI}{Food\+A\+PI}} class. Used to communicate with Spoonacular A\+PI and create various objects Used to represent records in database.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$curl/curl.\+h$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$json/json.\+h$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include \char`\"{}Food\+A\+P\+I.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Model.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$regex$>$}\newline
+Include dependency graph for Food\+A\+P\+I.\+cpp\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{FoodAPI_8cpp_a49e71d572dbb6e760fed72b95ce306c8}{build\+Item\+List}} (std\+::vector$<$ \mbox{\hyperlink{classFoodItem}{Food\+Item}} $>$ db\+Stock)
+\begin{DoxyCompactList}\small\item\em Takes the list of the ingredients in the stock and turns them into a printable string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classFoodAPI}{Food\+A\+PI}} program file. Contains the implementation for \mbox{\hyperlink{classFoodAPI}{Food\+A\+PI}} class. Used to communicate with Spoonacular A\+PI and create various objects Used to represent records in database. 
+
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2022-\/11-\/29
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2022 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{FoodAPI_8cpp_a49e71d572dbb6e760fed72b95ce306c8}\label{FoodAPI_8cpp_a49e71d572dbb6e760fed72b95ce306c8}} 
+\index{FoodAPI.cpp@{FoodAPI.cpp}!buildItemList@{buildItemList}}
+\index{buildItemList@{buildItemList}!FoodAPI.cpp@{FoodAPI.cpp}}
+\doxysubsubsection{\texorpdfstring{buildItemList()}{buildItemList()}}
+{\footnotesize\ttfamily std\+::string build\+Item\+List (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classFoodItem}{Food\+Item}} $>$}]{db\+Stock }\end{DoxyParamCaption})}
+
+
+
+Takes the list of the ingredients in the stock and turns them into a printable string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db\+Stock} & The stock of ingredients in the database. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+
+Jared Anstett 
+\end{DoxyAuthor}
+\begin{DoxyReturn}{Returns}
+The string of all the ingredients in stock. 
+\end{DoxyReturn}

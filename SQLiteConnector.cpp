@@ -1,33 +1,41 @@
+/**
+ * @file SQLiteConnector.cpp
+ * @author Matthew Cheverie
+ * @brief SQLiteConnector program file. This file contains the implementation for the SQLiteConnector class. It inherits t_dbConnector.
+ * It is used to directly create/connect to the SQLite3 database and initialize the tables.
+ * @version 0.1
+ * @date 2022-11-29
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */   
 #include "SQLiteConnector.h"
 #include <iostream>
 using namespace std;
 
-/*
-Function: SQLiteConnector Constructor
-Description: constructs an SQLiteConnector object that extends the t_dbConnector class
-Parameters: none
-Return: SQLite Connector object
-*/
+
+/**
+ * @brief Constructor - Sets the variables for this class.
+ * @author Matthew Cheverie
+ */
 SQLiteConnector::SQLiteConnector(){
     dbName = "Freshcipes.db";
 }
 
-/*
-Function: SQLiteConnector Destructor
-Description: Destructor for the SQLiteConnector Object
-Parameters: none
-Return: none
-*/
+
+/**
+ * @brief Destructor.
+ * @author Matthew Cheverie
+ */
 SQLiteConnector::~SQLiteConnector(){
 
 }
 
-/*
-Function: connectDB()
-Description: Function to create a connection with the SQL database
-Parameters: none
-Return: none
-*/
+
+/**
+ * @brief Creates a connection with the SQL database.
+ * @author Matthew Cheverie
+ */
 void SQLiteConnector::connectDB(){
     int command = sqlite3_open(dbName.c_str(), &db);
      //code from sqllites docs for error checkking 
@@ -54,12 +62,10 @@ void SQLiteConnector::connectDB(){
 }
 
 
-/*
-Function: dropTable()
-Description: Function to drop stock_tbl if needed
-Parameters: none
-Return: none
-*/
+/**
+ * @brief Drops the stock_tbl.
+ * @author Matthew Cheverie
+ */
 void SQLiteConnector::dropTable(){
     char* error;
     string sql_stmt = "DROP TABLE IF EXISTS stock_tbl";
@@ -71,12 +77,11 @@ void SQLiteConnector::dropTable(){
 
 }
 
-/*
-Function: dropTableandRebuild
-Description: Function to drop a table and recreate it if needed
-Parameters:none 
-Return:none
-*/
+
+/**
+ * @brief Drops the stock_tbl and recreates it.
+ * @author Matthew Cheverie
+ */
 void SQLiteConnector::dropTableandRebuild(){
     char* error;
     string sql_stmt = "DROP TABLE IF EXISTS stock_tbl";
@@ -99,12 +104,11 @@ void SQLiteConnector::dropTableandRebuild(){
 
 }
 
-/*
-Function: discconectDB()
-Description: Function to disconnect from the SQLDB
-Parameters:none
-Return: none
-*/
+
+/**
+ * @brief Disconnects from stock_tbl.
+ * @author Matthew Cheverie
+ */
 void SQLiteConnector::disconnectDB(){
     if(sqlite3_close(db) == SQLITE_OK){
         cout<<"Database closed successfully"<<endl;
@@ -113,12 +117,13 @@ void SQLiteConnector::disconnectDB(){
         cout<<"Could not close databse"<<endl;
 }
 
-/*
-Function: getDbHandle()
-Description: Getter Function for the database handle
-Parameters: 
-Return: sqlite3* object representing the handle to the database
-*/
+
+/**
+ * @brief Returns the database.
+ * 
+ * @return The handle to the database.
+ * @author Matthew Cheverie
+ */
 sqlite3* SQLiteConnector::getDbHandle(){
     return db;
 }

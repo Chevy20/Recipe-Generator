@@ -35,8 +35,8 @@ class RecipeItem
          */
         ~RecipeItem();
         /**
-         * @brief access the original ingredient in inventory
-         * @return the original FoodItem
+         * @brief get the name of the ingredient
+         * @return the name of the ingredient
          * @author Andrew Li
          */
         std::string getItem();
@@ -53,8 +53,8 @@ class RecipeItem
          */
         std::string getItemMeasureUnit();
         /**
-         * @brief change the original ingredient in inventory
-         * @param fitem : the new FoodItem from inventory
+         * @brief setter method for the name of item
+         * @param fitem : the new name of this ingredient
          * @author Andrew Li
          */
         void setItem(std::string fItem);

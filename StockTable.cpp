@@ -1,44 +1,57 @@
+/**
+ * @file StockTable.h
+ * @author Matthew Cheverie
+ * @brief StockTable program. This file contains the implementations for the functions StockTable class. It inherits t_dbTableStrategy.
+ * It is used to directly interface with the SQLite3 database
+ * @version 0.1
+ * @date 2022-11-29
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include "sqlite3.h"
 #include "StockTable.h"
 #include <iostream>
 using namespace std;
 
-/*
-Function:StockTable default constructor
-Description: A default constructor for the StockTable object
-Parameters: non 
-Return: StockTable object with null db pointer
-*/
+
+/**
+ * @brief Constructor - Sets teh variables for this class.
+ * @author Matthew Cheverie
+ */
 StockTable::StockTable(){
     db = nullptr;
 }
 
-/*
-Function: StockTable constructor
-Description: Constructs a StockTable object that extends t_dbTableStrategy
-Parameters: sqlite3* _db: pointer to the db that acts as the handle to the database
-Return: Stocktable object with the passed in database handle
-*/
+
+/**
+ * @brief Constructor - Sets teh variables for this class.
+ * 
+ * @param _db The database to set.
+ * @author Matthew Cheverie
+ */
 StockTable::StockTable(sqlite3* _db){
     db = _db;
 }
 
-/*
-Function: StockTable destructor
-Description: Closes the database object
-Parameters:none
-Return: none
-*/
+
+/**
+ * @brief Destructor - Closes the database.
+ * @author Matthew Cheverie
+ */
 StockTable::~StockTable(){
     sqlite3_close(db); 
 }
 
-/*
-Function:select()
-Description: The function to query the database for a single item
-Parameters: string key: the name of the food item that is being searched for
-Return: returns the queryed food item if found, if not found return an default food object
-*/
+
+/**
+ * @brief Gets the food item data from the database that has the same name as specified.
+ * 
+ * @param key The item name to query for.
+ * 
+ * @return The food item.
+ * @author Matthew Cheverie
+ */
 FoodItem StockTable::select (string key){
     FoodItem* result = new FoodItem();
     sqlite3_stmt *stmt;         //pointer that will comtain the sql statment object
@@ -74,12 +87,13 @@ FoodItem StockTable::select (string key){
     return *result;
 }
 
-/*
-Function: selectAll()
-Description: Function to query for all food items in the database
-Parameters: none
-Return: vector<FoodItem> that represents all food items in the database
-*/
+
+/**
+ * @brief Gets the food item data of all items from the database.
+ * 
+ * @return The list of food items.
+ * @author Matthew Cheverie
+ */
 std::vector<FoodItem> StockTable::selectAll(){
     vector<FoodItem> result;
     sqlite3_stmt *stmt;         //pointer that will comtain the sql statment object
@@ -112,12 +126,15 @@ std::vector<FoodItem> StockTable::selectAll(){
 
 }
 
-/*
-Function: insert()
-Description: Function to insert into database
-Parameters: void* item: void pointer to an item that will be converted to FoodItem* and then derefed
-Return: true if insert was success, false if not
-*/
+
+/**
+ * @brief Inserts a food item into the database.
+ * 
+ * @param item A void pointer to a food item to insert.
+ * 
+ * @return Boolean of success.
+ * @author Matthew Cheverie
+ */
 bool StockTable::insert(void* item){
     
     // Chose void pointer method in case we have any other tables 
@@ -140,12 +157,15 @@ bool StockTable::insert(void* item){
     return true;
 }
 
-/*
-Function: update()
-Description: Function to update an item in the database
-Parameters: void* item: void pointer to an item that will be converted to FoodItem* and then derefed
-Return: true if update was success, false if not
-*/
+
+/**
+ * @brief Updates a food item in the database.
+ * 
+ * @param item A void pointer to a food item to update.
+ * 
+ * @return Boolean of success.
+ * @author Matthew Cheverie
+ */
 bool StockTable::update(void* item){
     FoodItem record = *(FoodItem*)item;
     string itemName = record.getName();
@@ -167,12 +187,15 @@ bool StockTable::update(void* item){
     return true;
 }
 
-/*
-Function: remove()
-Description: Function to remove an item from the database
-Parameters: string itemName: the name of the item to be removed
-Return: true if success, false if not
-*/
+
+/**
+ * @brief Removes a food item from the database.
+ * 
+ * @param item The name of the food item to remove.
+ * 
+ * @return Boolean of success.
+ * @author Matthew Cheverie
+ */
 bool StockTable::remove(std::string itemName){
     
     char* error;

@@ -1,0 +1,150 @@
+\hypertarget{classSQLiteConnector}{}\doxysection{S\+Q\+Lite\+Connector Class Reference}
+\label{classSQLiteConnector}\index{SQLiteConnector@{SQLiteConnector}}
+
+
+Inheritance diagram for S\+Q\+Lite\+Connector\+:
+% FIG 0
+
+
+Collaboration diagram for S\+Q\+Lite\+Connector\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classSQLiteConnector_a45a6beba4682b72c84b53b6b9c3fdde2}{S\+Q\+Lite\+Connector}} ()
+\begin{DoxyCompactList}\small\item\em Constructor -\/ Sets the variables for this class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classSQLiteConnector_ad36c36eae0e80302d7c2393f0a3453e3}{$\sim$\+S\+Q\+Lite\+Connector}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSQLiteConnector_aab1f20f73f9a9d276c10d4f6ed388aa2}{connect\+DB}} () override
+\begin{DoxyCompactList}\small\item\em Creates a connection with the S\+QL database. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSQLiteConnector_af47a3b00d7e903509f8c96cf3b1d6ba9}{drop\+Table}} () override
+\begin{DoxyCompactList}\small\item\em Drops the stock\+\_\+tbl. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSQLiteConnector_a4eb30913fdf667b8ed8a383f8cd7003b}{drop\+Tableand\+Rebuild}} () override
+\begin{DoxyCompactList}\small\item\em Drops the stock\+\_\+tbl and recreates it. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSQLiteConnector_a093407508d85237f70a72d5f992e2db2}{disconnect\+DB}} () override
+\begin{DoxyCompactList}\small\item\em Disconnects from stock\+\_\+tbl. \end{DoxyCompactList}\item 
+sqlite3 $\ast$ \mbox{\hyperlink{classSQLiteConnector_a5d2a8cfdfbd9decd020bff4325423ddd}{get\+Db\+Handle}} ()
+\begin{DoxyCompactList}\small\item\em Returns the database. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classSQLiteConnector_a45a6beba4682b72c84b53b6b9c3fdde2}\label{classSQLiteConnector_a45a6beba4682b72c84b53b6b9c3fdde2}} 
+\index{SQLiteConnector@{SQLiteConnector}!SQLiteConnector@{SQLiteConnector}}
+\index{SQLiteConnector@{SQLiteConnector}!SQLiteConnector@{SQLiteConnector}}
+\doxysubsubsection{\texorpdfstring{SQLiteConnector()}{SQLiteConnector()}}
+{\footnotesize\ttfamily S\+Q\+Lite\+Connector\+::\+S\+Q\+Lite\+Connector (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructor -\/ Sets the variables for this class. 
+
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classSQLiteConnector_ad36c36eae0e80302d7c2393f0a3453e3}\label{classSQLiteConnector_ad36c36eae0e80302d7c2393f0a3453e3}} 
+\index{SQLiteConnector@{SQLiteConnector}!````~SQLiteConnector@{$\sim$SQLiteConnector}}
+\index{````~SQLiteConnector@{$\sim$SQLiteConnector}!SQLiteConnector@{SQLiteConnector}}
+\doxysubsubsection{\texorpdfstring{$\sim$SQLiteConnector()}{~SQLiteConnector()}}
+{\footnotesize\ttfamily S\+Q\+Lite\+Connector\+::$\sim$\+S\+Q\+Lite\+Connector (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructor. 
+
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classSQLiteConnector_aab1f20f73f9a9d276c10d4f6ed388aa2}\label{classSQLiteConnector_aab1f20f73f9a9d276c10d4f6ed388aa2}} 
+\index{SQLiteConnector@{SQLiteConnector}!connectDB@{connectDB}}
+\index{connectDB@{connectDB}!SQLiteConnector@{SQLiteConnector}}
+\doxysubsubsection{\texorpdfstring{connectDB()}{connectDB()}}
+{\footnotesize\ttfamily void S\+Q\+Lite\+Connector\+::connect\+DB (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Creates a connection with the S\+QL database. 
+
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+\end{DoxyAuthor}
+
+
+Implements \mbox{\hyperlink{classt__dbConnector_ade5b4a327aeea6ac34229e885a76be2f}{t\+\_\+db\+Connector}}.
+
+\mbox{\Hypertarget{classSQLiteConnector_a093407508d85237f70a72d5f992e2db2}\label{classSQLiteConnector_a093407508d85237f70a72d5f992e2db2}} 
+\index{SQLiteConnector@{SQLiteConnector}!disconnectDB@{disconnectDB}}
+\index{disconnectDB@{disconnectDB}!SQLiteConnector@{SQLiteConnector}}
+\doxysubsubsection{\texorpdfstring{disconnectDB()}{disconnectDB()}}
+{\footnotesize\ttfamily void S\+Q\+Lite\+Connector\+::disconnect\+DB (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Disconnects from stock\+\_\+tbl. 
+
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+\end{DoxyAuthor}
+
+
+Implements \mbox{\hyperlink{classt__dbConnector_ab458a5d40167f2f698d8db7c6d0c3176}{t\+\_\+db\+Connector}}.
+
+\mbox{\Hypertarget{classSQLiteConnector_af47a3b00d7e903509f8c96cf3b1d6ba9}\label{classSQLiteConnector_af47a3b00d7e903509f8c96cf3b1d6ba9}} 
+\index{SQLiteConnector@{SQLiteConnector}!dropTable@{dropTable}}
+\index{dropTable@{dropTable}!SQLiteConnector@{SQLiteConnector}}
+\doxysubsubsection{\texorpdfstring{dropTable()}{dropTable()}}
+{\footnotesize\ttfamily void S\+Q\+Lite\+Connector\+::drop\+Table (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Drops the stock\+\_\+tbl. 
+
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+\end{DoxyAuthor}
+
+
+Implements \mbox{\hyperlink{classt__dbConnector_aa1357aa4717bac4b4f0893b96bde6411}{t\+\_\+db\+Connector}}.
+
+\mbox{\Hypertarget{classSQLiteConnector_a4eb30913fdf667b8ed8a383f8cd7003b}\label{classSQLiteConnector_a4eb30913fdf667b8ed8a383f8cd7003b}} 
+\index{SQLiteConnector@{SQLiteConnector}!dropTableandRebuild@{dropTableandRebuild}}
+\index{dropTableandRebuild@{dropTableandRebuild}!SQLiteConnector@{SQLiteConnector}}
+\doxysubsubsection{\texorpdfstring{dropTableandRebuild()}{dropTableandRebuild()}}
+{\footnotesize\ttfamily void S\+Q\+Lite\+Connector\+::drop\+Tableand\+Rebuild (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Drops the stock\+\_\+tbl and recreates it. 
+
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+\end{DoxyAuthor}
+
+
+Implements \mbox{\hyperlink{classt__dbConnector_a8bc2844b083abf0ec779d195558b5153}{t\+\_\+db\+Connector}}.
+
+\mbox{\Hypertarget{classSQLiteConnector_a5d2a8cfdfbd9decd020bff4325423ddd}\label{classSQLiteConnector_a5d2a8cfdfbd9decd020bff4325423ddd}} 
+\index{SQLiteConnector@{SQLiteConnector}!getDbHandle@{getDbHandle}}
+\index{getDbHandle@{getDbHandle}!SQLiteConnector@{SQLiteConnector}}
+\doxysubsubsection{\texorpdfstring{getDbHandle()}{getDbHandle()}}
+{\footnotesize\ttfamily sqlite3 $\ast$ S\+Q\+Lite\+Connector\+::get\+Db\+Handle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the database. 
+
+\begin{DoxyReturn}{Returns}
+The handle to the database. 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+\end{DoxyAuthor}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{SQLiteConnector_8h}{S\+Q\+Lite\+Connector.\+h}}\item 
+\mbox{\hyperlink{SQLiteConnector_8cpp}{S\+Q\+Lite\+Connector.\+cpp}}\end{DoxyCompactItemize}

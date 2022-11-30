@@ -1,0 +1,478 @@
+\hypertarget{classModel}{}\doxysection{Model Class Reference}
+\label{classModel}\index{Model@{Model}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classModel_ae3b375de5f6df4faf74a95d64748e048}{Model}} ()
+\begin{DoxyCompactList}\small\item\em Constructor -\/ Sets the variables for this class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classModel_ad6ebd2062a0b823db841a0b88baac4c0}{$\sim$\+Model}} ()
+\begin{DoxyCompactList}\small\item\em Destructor -\/ Closes the connection to the database. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{classFoodAPI}{Food\+A\+PI}} $\ast$ \mbox{\hyperlink{classModel_a8766c907940f6c01383931cc017effd6}{get\+Food\+A\+PI}} ()
+\begin{DoxyCompactList}\small\item\em Returns the food A\+PI. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classSQLiteConnector}{S\+Q\+Lite\+Connector}} $\ast$ \mbox{\hyperlink{classModel_a80869f3b7b4b797482b9696a29f4b64a}{get\+D\+B\+Connection}} ()
+\begin{DoxyCompactList}\small\item\em Returns the db\+Connection object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classStockTable}{Stock\+Table}} $\ast$ \mbox{\hyperlink{classModel_a183eadc367f6bf9eeb972407ebcc6f5f}{get\+Db\+Context}} ()
+\begin{DoxyCompactList}\small\item\em Returns the db\+Context object. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classRecipe}{Recipe}} $>$ \mbox{\hyperlink{classModel_a18949daed6373cbbe35b77564410d595}{get\+Queried\+Recipes}} ()
+\begin{DoxyCompactList}\small\item\em Returns the list of the recipes that were queried for. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classModel_ac50eb58a46137cc209dd92b313e25749}{set\+Queried\+Recipes}} (std\+::vector$<$ \mbox{\hyperlink{classRecipe}{Recipe}} $>$ recipes)
+\begin{DoxyCompactList}\small\item\em Sets the list of the recipes that were queried for. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classModel_a544f7f3941ea49cb8f9f9047075f11cf}{add\+Food\+Item}} (\mbox{\hyperlink{classFoodItem}{Food\+Item}} item)
+\begin{DoxyCompactList}\small\item\em Adds a food item into the stock table. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classModel_a95b07dcba80459c992f7aa6b9b7a18d3}{remove\+Food\+Item}} (std\+::string item\+Name)
+\begin{DoxyCompactList}\small\item\em Removes a food item from the stock table. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classModel_af44d3ef1909c274561f2de08d085bc67}{modify\+Food\+Item}} (\mbox{\hyperlink{classFoodItem}{Food\+Item}} item)
+\begin{DoxyCompactList}\small\item\em Modifies an existing food item in the stock table. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classFoodItem}{Food\+Item}} \mbox{\hyperlink{classModel_aeb4778e02c77c817e0c51d0780f30749}{query\+Single\+Food\+Item}} (std\+::string item)
+\begin{DoxyCompactList}\small\item\em Queries for and returns the desired food item. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classFoodItem}{Food\+Item}} $>$ \mbox{\hyperlink{classModel_a4564e3391884aecee1e3754b1ecee490}{query\+All\+Food\+Items}} ()
+\begin{DoxyCompactList}\small\item\em Queries and returns all food items in the database. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classModel_a85fc8bef3674331729af36011100ad71}{auto\+Compute\+Stock\+After\+Recipe}} (\mbox{\hyperlink{classRecipe}{Recipe}} cooked\+Recipe)
+\begin{DoxyCompactList}\small\item\em Computes the stock after a recipe is used. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classModel_a57451947d62859af60c6d0e81fe4f669}{manual\+Complete\+Stock\+After\+Recipe}} (std\+::vector$<$ \mbox{\hyperlink{classFoodItem}{Food\+Item}} $>$ items)
+\begin{DoxyCompactList}\small\item\em Maually updates the stock after a recipe is used. Called when the measurements of the recipe and stock don\textquotesingle{}t match. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classFoodItem}{Food\+Item}} $>$ \mbox{\hyperlink{classModel_ab8148f3e6bd8f79989523aa7c63ce4b2}{check\+For\+Expired\+Food}} ()
+\begin{DoxyCompactList}\small\item\em Checks for and returns a list of all expired food items. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classFoodItem}{Food\+Item}} $>$ \mbox{\hyperlink{classModel_a1371e87f5084d0464f104bde14231fdb}{check\+For\+Low\+Stock}} ()
+\begin{DoxyCompactList}\small\item\em Checks for and returns a list of all food items with low stock. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classModel_af77da5b479213ac6ec7d6e0e072fd6a4}{check\+Auto\+Stock}} (\mbox{\hyperlink{classRecipe}{Recipe}} cooked\+Recipie)
+\begin{DoxyCompactList}\small\item\em Checks if the units of the recipe match the stock measurements. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classModel_a762c5a4f6f8713eeaa812ea18e6de48d}{print\+Recipe\+To\+Console}} ()
+\begin{DoxyCompactList}\small\item\em Prints all the recipes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classModel_ae3b375de5f6df4faf74a95d64748e048}\label{classModel_ae3b375de5f6df4faf74a95d64748e048}} 
+\index{Model@{Model}!Model@{Model}}
+\index{Model@{Model}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{Model()}{Model()}}
+{\footnotesize\ttfamily Model\+::\+Model (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructor -\/ Sets the variables for this class. 
+
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classModel_ad6ebd2062a0b823db841a0b88baac4c0}\label{classModel_ad6ebd2062a0b823db841a0b88baac4c0}} 
+\index{Model@{Model}!````~Model@{$\sim$Model}}
+\index{````~Model@{$\sim$Model}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{$\sim$Model()}{~Model()}}
+{\footnotesize\ttfamily Model\+::$\sim$\+Model (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructor -\/ Closes the connection to the database. 
+
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classModel_a544f7f3941ea49cb8f9f9047075f11cf}\label{classModel_a544f7f3941ea49cb8f9f9047075f11cf}} 
+\index{Model@{Model}!addFoodItem@{addFoodItem}}
+\index{addFoodItem@{addFoodItem}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{addFoodItem()}{addFoodItem()}}
+{\footnotesize\ttfamily bool Model\+::add\+Food\+Item (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classFoodItem}{Food\+Item}}}]{item }\end{DoxyParamCaption})}
+
+
+
+Adds a food item into the stock table. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item} & The food item to add.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Boolean for success. 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em item} & The food item to add. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+\end{DoxyAuthor}
+\begin{DoxyReturn}{Returns}
+Boolean for success. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classModel_a85fc8bef3674331729af36011100ad71}\label{classModel_a85fc8bef3674331729af36011100ad71}} 
+\index{Model@{Model}!autoComputeStockAfterRecipe@{autoComputeStockAfterRecipe}}
+\index{autoComputeStockAfterRecipe@{autoComputeStockAfterRecipe}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{autoComputeStockAfterRecipe()}{autoComputeStockAfterRecipe()}}
+{\footnotesize\ttfamily bool Model\+::auto\+Compute\+Stock\+After\+Recipe (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classRecipe}{Recipe}}}]{cooked\+Recipe }\end{DoxyParamCaption})}
+
+
+
+Computes the stock after a recipe is used. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cooked\+Recipe} & The recipe that was made.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Boolean for success. 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em cooked\+Recipe} & The recipe that was made. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+\end{DoxyAuthor}
+\begin{DoxyReturn}{Returns}
+Boolean for success. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classModel_af77da5b479213ac6ec7d6e0e072fd6a4}\label{classModel_af77da5b479213ac6ec7d6e0e072fd6a4}} 
+\index{Model@{Model}!checkAutoStock@{checkAutoStock}}
+\index{checkAutoStock@{checkAutoStock}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{checkAutoStock()}{checkAutoStock()}}
+{\footnotesize\ttfamily bool Model\+::check\+Auto\+Stock (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classRecipe}{Recipe}}}]{cooked\+Recipie }\end{DoxyParamCaption})}
+
+
+
+Checks if the units of the recipe match the stock measurements. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cooked\+Recipe} & The recipe to check.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the measurements are the same. False otherwise. 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em cooked\+Recipe} & The recipe to check. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+\end{DoxyAuthor}
+\begin{DoxyReturn}{Returns}
+True if the measurements are the same. False otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classModel_ab8148f3e6bd8f79989523aa7c63ce4b2}\label{classModel_ab8148f3e6bd8f79989523aa7c63ce4b2}} 
+\index{Model@{Model}!checkForExpiredFood@{checkForExpiredFood}}
+\index{checkForExpiredFood@{checkForExpiredFood}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{checkForExpiredFood()}{checkForExpiredFood()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{classFoodItem}{Food\+Item}} $>$ Model\+::check\+For\+Expired\+Food (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Checks for and returns a list of all expired food items. 
+
+\begin{DoxyReturn}{Returns}
+A list of all exired food items. 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie
+
+Matthew Cheverie 
+\end{DoxyAuthor}
+\begin{DoxyReturn}{Returns}
+A list of all exired food items. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classModel_a1371e87f5084d0464f104bde14231fdb}\label{classModel_a1371e87f5084d0464f104bde14231fdb}} 
+\index{Model@{Model}!checkForLowStock@{checkForLowStock}}
+\index{checkForLowStock@{checkForLowStock}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{checkForLowStock()}{checkForLowStock()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{classFoodItem}{Food\+Item}} $>$ Model\+::check\+For\+Low\+Stock (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Checks for and returns a list of all food items with low stock. 
+
+\begin{DoxyReturn}{Returns}
+A list of all food items with low stock. 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie
+
+Matthew Cheverie 
+\end{DoxyAuthor}
+\begin{DoxyReturn}{Returns}
+A list of all food items with low stock. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classModel_a80869f3b7b4b797482b9696a29f4b64a}\label{classModel_a80869f3b7b4b797482b9696a29f4b64a}} 
+\index{Model@{Model}!getDBConnection@{getDBConnection}}
+\index{getDBConnection@{getDBConnection}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{getDBConnection()}{getDBConnection()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classSQLiteConnector}{S\+Q\+Lite\+Connector}} $\ast$ Model\+::get\+D\+B\+Connection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the db\+Connection object. 
+
+\begin{DoxyReturn}{Returns}
+The db\+Connection object. 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classModel_a183eadc367f6bf9eeb972407ebcc6f5f}\label{classModel_a183eadc367f6bf9eeb972407ebcc6f5f}} 
+\index{Model@{Model}!getDbContext@{getDbContext}}
+\index{getDbContext@{getDbContext}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{getDbContext()}{getDbContext()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classStockTable}{Stock\+Table}} $\ast$ Model\+::get\+Db\+Context (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the db\+Context object. 
+
+\begin{DoxyReturn}{Returns}
+The db\+Context object. 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classModel_a8766c907940f6c01383931cc017effd6}\label{classModel_a8766c907940f6c01383931cc017effd6}} 
+\index{Model@{Model}!getFoodAPI@{getFoodAPI}}
+\index{getFoodAPI@{getFoodAPI}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{getFoodAPI()}{getFoodAPI()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{classFoodAPI}{Food\+A\+PI}} $\ast$ Model\+::get\+Food\+A\+PI (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the food A\+PI. 
+
+\begin{DoxyReturn}{Returns}
+The food A\+PI. 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie
+
+Matthew Cheverie 
+\end{DoxyAuthor}
+\begin{DoxyReturn}{Returns}
+The food A\+PI. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classModel_a18949daed6373cbbe35b77564410d595}\label{classModel_a18949daed6373cbbe35b77564410d595}} 
+\index{Model@{Model}!getQueriedRecipes@{getQueriedRecipes}}
+\index{getQueriedRecipes@{getQueriedRecipes}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{getQueriedRecipes()}{getQueriedRecipes()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{classRecipe}{Recipe}} $>$ Model\+::get\+Queried\+Recipes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the list of the recipes that were queried for. 
+
+\begin{DoxyReturn}{Returns}
+The list of queried recipes. 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie
+
+Matthew Cheverie 
+\end{DoxyAuthor}
+\begin{DoxyReturn}{Returns}
+The list of queried recipes. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classModel_a57451947d62859af60c6d0e81fe4f669}\label{classModel_a57451947d62859af60c6d0e81fe4f669}} 
+\index{Model@{Model}!manualCompleteStockAfterRecipe@{manualCompleteStockAfterRecipe}}
+\index{manualCompleteStockAfterRecipe@{manualCompleteStockAfterRecipe}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{manualCompleteStockAfterRecipe()}{manualCompleteStockAfterRecipe()}}
+{\footnotesize\ttfamily bool Model\+::manual\+Complete\+Stock\+After\+Recipe (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classFoodItem}{Food\+Item}} $>$}]{items }\end{DoxyParamCaption})}
+
+
+
+Maually updates the stock after a recipe is used. Called when the measurements of the recipe and stock don\textquotesingle{}t match. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em items} & The list of food items that need to be updated.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Boolean for success. 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em items} & The list of food items that need to be updated. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+\end{DoxyAuthor}
+\begin{DoxyReturn}{Returns}
+Boolean for success. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classModel_af44d3ef1909c274561f2de08d085bc67}\label{classModel_af44d3ef1909c274561f2de08d085bc67}} 
+\index{Model@{Model}!modifyFoodItem@{modifyFoodItem}}
+\index{modifyFoodItem@{modifyFoodItem}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{modifyFoodItem()}{modifyFoodItem()}}
+{\footnotesize\ttfamily bool Model\+::modify\+Food\+Item (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classFoodItem}{Food\+Item}}}]{item }\end{DoxyParamCaption})}
+
+
+
+Modifies an existing food item in the stock table. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item} & The modified food item.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Boolean for success. 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em item} & The modified food item. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+\end{DoxyAuthor}
+\begin{DoxyReturn}{Returns}
+Boolean for success. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classModel_a762c5a4f6f8713eeaa812ea18e6de48d}\label{classModel_a762c5a4f6f8713eeaa812ea18e6de48d}} 
+\index{Model@{Model}!printRecipeToConsole@{printRecipeToConsole}}
+\index{printRecipeToConsole@{printRecipeToConsole}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{printRecipeToConsole()}{printRecipeToConsole()}}
+{\footnotesize\ttfamily void Model\+::print\+Recipe\+To\+Console (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Prints all the recipes. 
+
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{classModel_a4564e3391884aecee1e3754b1ecee490}\label{classModel_a4564e3391884aecee1e3754b1ecee490}} 
+\index{Model@{Model}!queryAllFoodItems@{queryAllFoodItems}}
+\index{queryAllFoodItems@{queryAllFoodItems}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{queryAllFoodItems()}{queryAllFoodItems()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{classFoodItem}{Food\+Item}} $>$ Model\+::query\+All\+Food\+Items (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Queries and returns all food items in the database. 
+
+\begin{DoxyReturn}{Returns}
+The list of all food items. 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie
+
+Matthew Cheverie 
+\end{DoxyAuthor}
+\begin{DoxyReturn}{Returns}
+The list of all food items. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classModel_aeb4778e02c77c817e0c51d0780f30749}\label{classModel_aeb4778e02c77c817e0c51d0780f30749}} 
+\index{Model@{Model}!querySingleFoodItem@{querySingleFoodItem}}
+\index{querySingleFoodItem@{querySingleFoodItem}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{querySingleFoodItem()}{querySingleFoodItem()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classFoodItem}{Food\+Item}} Model\+::query\+Single\+Food\+Item (\begin{DoxyParamCaption}\item[{std\+::string}]{item }\end{DoxyParamCaption})}
+
+
+
+Queries for and returns the desired food item. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item} & The name of the food item.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The found food item. 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em item} & The name of the food item. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+\end{DoxyAuthor}
+\begin{DoxyReturn}{Returns}
+The found food item. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classModel_a95b07dcba80459c992f7aa6b9b7a18d3}\label{classModel_a95b07dcba80459c992f7aa6b9b7a18d3}} 
+\index{Model@{Model}!removeFoodItem@{removeFoodItem}}
+\index{removeFoodItem@{removeFoodItem}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{removeFoodItem()}{removeFoodItem()}}
+{\footnotesize\ttfamily bool Model\+::remove\+Food\+Item (\begin{DoxyParamCaption}\item[{std\+::string}]{item\+Name }\end{DoxyParamCaption})}
+
+
+
+Removes a food item from the stock table. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item\+Name} & The name of the food item to remove.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Boolean for success. 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em item\+Name} & The name of the food item to remove. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie 
+\end{DoxyAuthor}
+\begin{DoxyReturn}{Returns}
+Boolean for success. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classModel_ac50eb58a46137cc209dd92b313e25749}\label{classModel_ac50eb58a46137cc209dd92b313e25749}} 
+\index{Model@{Model}!setQueriedRecipes@{setQueriedRecipes}}
+\index{setQueriedRecipes@{setQueriedRecipes}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{setQueriedRecipes()}{setQueriedRecipes()}}
+{\footnotesize\ttfamily void Model\+::set\+Queried\+Recipes (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classRecipe}{Recipe}} $>$}]{recipes }\end{DoxyParamCaption})}
+
+
+
+Sets the list of the recipes that were queried for. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em recipes} & The list of queried recipes to set. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Matthew Cheverie
+
+Matthew Cheverie 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em recipes} & The list of queried recipes to set. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{Model_8h}{Model.\+h}}\item 
+\mbox{\hyperlink{Model_8cpp}{Model.\+cpp}}\end{DoxyCompactItemize}

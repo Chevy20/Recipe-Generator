@@ -1,0 +1,45 @@
+digraph "t_dbTableStrategy.h"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="t_dbTableStrategy.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="t_dbTableStrategy header file. This contains the definitions for the Database Table Strategy template"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="StockTable.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$StockTable_8h.html",tooltip="StockTable program. This file contains the implementations for the functions StockTable class...."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Model.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Model_8h.html",tooltip="Model header file. Contains the defininitions for the Model Class. The model is used as a middleman b..."];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="Controller.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Controller_8h_source.html",tooltip=" "];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="Observer.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Observer_8h_source.html",tooltip=" "];
+  Node5 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="View.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$View_8h.html",tooltip="View is an abstract class meant to be inherited by derived view classes."];
+  Node6 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="TerminalView.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$TerminalView_8h.html",tooltip="TerminalView header file. This file contains the definitions for the terminal view class...."];
+  Node7 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="terminalApplication.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$terminalApplication_8cpp.html",tooltip="terminalApplication program. This program will be the launcher for the terminal app...."];
+  Node7 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="TerminalView.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$TerminalView_8cpp.html",tooltip="TerminalView program. This cpp file contains the implemntation of the terminalView class It will make..."];
+  Node6 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="TouchScreenView.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$TouchScreenView_8h.html",tooltip="TouchScreenView class builds a GUI for users to interact with the Freshcipes recipe and stock managem..."];
+  Node10 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="TouchScreenView.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$TouchScreenView_8cpp.html",tooltip="TouchScreenView class builds a GUI for users to interact with the Freshcipes recipe and stock managem..."];
+  Node6 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="WebView.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$WebView_8h.html",tooltip="WebView header file - this class builds a GUI for users to interact with the Freshcipes recipe and st..."];
+  Node12 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="webApplication.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$webApplication_8cpp.html",tooltip="webApplication runs an application that launches the Wt webserver and Wt web application and links it..."];
+  Node12 -> Node14 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 [label="WebView.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$WebView_8cpp.html",tooltip="WebView class builds a GUI for users to interact with the Freshcipes recipe and stock management appl..."];
+  Node3 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node15 [label="FoodAPI.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$FoodAPI_8cpp.html",tooltip="FoodAPI program file. Contains the implementation for FoodAPI class. Used to communicate with Spoonac..."];
+  Node3 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node16 [label="Model.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Model_8cpp.html",tooltip="Model program file. Contains the implementations for the Model Class. The model is used as a middlema..."];
+  Node3 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 -> Node17 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node17 [label="View.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$View_8cpp.html",tooltip="View is an abstract class meant to be inherited by derived view classes."];
+  Node3 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

@@ -1,0 +1,28 @@
+digraph "View.h"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="View.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="View is an abstract class meant to be inherited by derived view classes."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Controller.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Controller_8h_source.html",tooltip=" "];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Observer.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Observer_8h_source.html",tooltip=" "];
+  Node3 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="TerminalView.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$TerminalView_8h.html",tooltip="TerminalView header file. This file contains the definitions for the terminal view class...."];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="terminalApplication.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$terminalApplication_8cpp.html",tooltip="terminalApplication program. This program will be the launcher for the terminal app...."];
+  Node4 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="TerminalView.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$TerminalView_8cpp.html",tooltip="TerminalView program. This cpp file contains the implemntation of the terminalView class It will make..."];
+  Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="TouchScreenView.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$TouchScreenView_8h.html",tooltip="TouchScreenView class builds a GUI for users to interact with the Freshcipes recipe and stock managem..."];
+  Node7 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="TouchScreenView.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$TouchScreenView_8cpp.html",tooltip="TouchScreenView class builds a GUI for users to interact with the Freshcipes recipe and stock managem..."];
+  Node1 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="WebView.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$WebView_8h.html",tooltip="WebView header file - this class builds a GUI for users to interact with the Freshcipes recipe and st..."];
+  Node9 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="webApplication.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$webApplication_8cpp.html",tooltip="webApplication runs an application that launches the Wt webserver and Wt web application and links it..."];
+  Node9 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="WebView.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$WebView_8cpp.html",tooltip="WebView class builds a GUI for users to interact with the Freshcipes recipe and stock management appl..."];
+}
