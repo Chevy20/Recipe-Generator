@@ -1,5 +1,13 @@
-/*
- * WebView.h
+/**
+ * @file WebView.h
+ * @author Jared Anstett
+ * @brief WebView header file - this class builds a GUI for users to interact
+ * with the Freshcipes recipe and stock management application
+ * @version 0.1
+ * @date 2022-11-29
+ * 
+ * @copyright Copyright (c) 2022
+ * 
  */
 #ifndef WEBVIEW_H
 #define WEBVIEW_H
@@ -30,9 +38,25 @@
 #define INPUT_WIDTH_PERCENT 80
 #define NAV_BUTTON_WIDTH 80
 
+<<<<<<< HEAD
 
+=======
+/**
+ * @brief launch() - launches the application
+ * 
+ * @param argc 
+ * @param argv 
+ * @return int 
+ */
+>>>>>>> 27c71f504679f4861b1f4ae669054879b90a8c1d
 static int launch(int argc, char **argv);
 
+/**
+ * @brief WebView class builds a GUI for users to interact
+ * with the Freshcipes recipe and stock management application
+ * 
+ * It inherits from the WApplication and View classes
+ */
 class WebView : public Wt::WApplication, public View
 {
 public:

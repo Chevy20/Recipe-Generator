@@ -3,7 +3,9 @@ using namespace std;
 
 
 /**
- * Constructor - Sets the variables of this class.
+ * @author Nick Baesso
+ * 
+ * @brief Constructor - Sets the variables of this class.
  * 
  * @param controller The controller that is being observed.
  */
@@ -14,14 +16,18 @@ Observer::Observer(Controller* controller) {
 
 
 /**
- * Destructor - Deletes the class variables of this controller.
+ * @author Nick Baesso
+ * 
+ * @brief Destructor - Deletes the class variables of this controller.
  */
 Observer::~Observer() override {
 
 }
 
 /**
- * Updates this observer with the current controller.
+ * @author Nick Baesso
+ * 
+ * @brief Updates this observer with the current controller.
  * 
  * @param controller The current controller to update this observer with.
  */
