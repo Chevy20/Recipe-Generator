@@ -2,6 +2,7 @@
 
 using namespace Wt;
 
+
 WebView::WebView(const Wt::WEnvironment& env)
     : Wt::WApplication(env)
 {
@@ -13,9 +14,14 @@ WebView::WebView(const Wt::WEnvironment& env)
     setTitle(APP_NAME);
     setTheme(std::make_shared<WBootstrap5Theme>());
 
+    //set up logger
+    WServer srv;
+    srv.logger().setFile("wt_log.txt");
+    srv.logger().configure("* -debug debug:wthttp");
+    
+
     // Define model
     setModel(new Model());
-
     // Path change
     app->internalPathChanged().connect([=]{
       handleInternalPathChange();
@@ -650,8 +656,10 @@ static int launch(int argc, char**argv){
     });    
 }
 
+/*
 int main(int argc, char **argv)
 {
     launch(argc, argv);
 }
+*/
 

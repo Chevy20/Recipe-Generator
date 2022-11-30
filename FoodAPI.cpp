@@ -190,7 +190,7 @@ std::vector<Recipe> FoodAPI::getRecipeBySpecificIngredients(string query) const{
     CURL *curl;
     CURLcode res;
     FILE *jsonFile = fopen("apiCall.json","w+");
-   
+    bool flag = true;
     curl_global_init(CURL_GLOBAL_DEFAULT);
     
     curl = curl_easy_init();
@@ -205,42 +205,52 @@ std::vector<Recipe> FoodAPI::getRecipeBySpecificIngredients(string query) const{
      
 
         /* Check for errors */
-        if(res != CURLE_OK)
-        fprintf(stderr, "curl_easy_perform() failed: %s\n",
+        if(res != CURLE_OK){
+            fprintf(stderr, "curl_easy_perform() failed: %s\n",
                 curl_easy_strerror(res));
+                flag = false;
+        }
+        
     
         /* always cleanup */
         curl_easy_cleanup(curl);
     }
     
     curl_global_cleanup();
-    ifstream file("apiCall.json");
-    Json::Value jsonObj;
-    Json::Reader reader;
-    reader.parse(file,jsonObj);
     vector<Recipe> recipies;
-    for(Json::Value::ArrayIndex i = 0; i!=jsonObj.size(); i++){
-            //For loop for making RecipeItems for missed ingredients
-            vector<RecipeItem> used;
-            vector<RecipeItem> missing;
-            map<string, float> n;   //to be possibly implemented
-            string name = stripQuotes(jsonObj[i]["title"].toStyledString()); 
-            string imgURL = stripQuotes(jsonObj[i]["image"].toStyledString());
-            for(Json::Value::ArrayIndex j = 0; j!=jsonObj[i]["missedIngredients"].size(); j++){
-                missing.push_back(RecipeItem(regex_replace(stripQuotes(jsonObj[i]["missedIngredients"][j]["name"].toStyledString()),regex("\\r\\n|\\r|\\n"),""), 
-                                    jsonObj[i]["missedIngredients"][j]["amount"].asFloat(), 
-                                    regex_replace(stripQuotes(jsonObj[i]["missedIngredients"][j]["unit"].toStyledString()),regex("\\r\\n|\\r|\\n"),"")));
+    if(flag ==false){
+        return recipies;
+    }
+    else{
+        ifstream file("apiCall.json");
+        Json::Value jsonObj;
+        Json::Reader reader;
+        reader.parse(file,jsonObj);
+        vector<Recipe> recipies;
+        for(Json::Value::ArrayIndex i = 0; i!=jsonObj.size(); i++){
+                //For loop for making RecipeItems for missed ingredients
+                vector<RecipeItem> used;
+                vector<RecipeItem> missing;
+                map<string, float> n;   //to be possibly implemented
+                string name = stripQuotes(jsonObj[i]["title"].toStyledString()); 
+                string imgURL = stripQuotes(jsonObj[i]["image"].toStyledString());
+                for(Json::Value::ArrayIndex j = 0; j!=jsonObj[i]["missedIngredients"].size(); j++){
+                    missing.push_back(RecipeItem(regex_replace(stripQuotes(jsonObj[i]["missedIngredients"][j]["name"].toStyledString()),regex("\\r\\n|\\r|\\n"),""), 
+                                        jsonObj[i]["missedIngredients"][j]["amount"].asFloat(), 
+                                        regex_replace(stripQuotes(jsonObj[i]["missedIngredients"][j]["unit"].toStyledString()),regex("\\r\\n|\\r|\\n"),"")));
+                }
+                for(Json::Value::ArrayIndex j = 0; j!=jsonObj[i]["usedIngredients"].size(); j++){
+                    used.push_back(RecipeItem(regex_replace(stripQuotes(jsonObj[i]["usedIngredients"][j]["name"].toStyledString()),regex("\\r\\n|\\r|\\n"),""), 
+                                        jsonObj[i]["usedIngredients"][j]["amount"].asFloat(), 
+                                        regex_replace(stripQuotes(jsonObj[i]["usedIngredients"][j]["unit"].toStyledString()),regex("\\r\\n|\\r|\\n"),"")));
+                }
+                //push recipe to vector after all used/missing recipe items are retreived
+                recipies.push_back(Recipe(name, used,missing, n,imgURL));
             }
-            for(Json::Value::ArrayIndex j = 0; j!=jsonObj[i]["usedIngredients"].size(); j++){
-                used.push_back(RecipeItem(regex_replace(stripQuotes(jsonObj[i]["usedIngredients"][j]["name"].toStyledString()),regex("\\r\\n|\\r|\\n"),""), 
-                                    jsonObj[i]["usedIngredients"][j]["amount"].asFloat(), 
-                                    regex_replace(stripQuotes(jsonObj[i]["usedIngredients"][j]["unit"].toStyledString()),regex("\\r\\n|\\r|\\n"),"")));
-            }
-            //push recipe to vector after all used/missing recipe items are retreived
-            recipies.push_back(Recipe(name, used,missing, n,imgURL));
-        }
-    fclose(jsonFile);
+        fclose(jsonFile);
    return recipies;
+    }
+    
 }
 
 string FoodAPI::stripQuotes(string line) const{

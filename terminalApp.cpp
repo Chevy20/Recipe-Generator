@@ -79,7 +79,7 @@ void printFoodItem(FoodItem item){
     cout<<"Quantity: " +to_string(item.getQuantity()) +" "+item.getMeasureUnit()<<endl;
     cout<<"Date Purchased: " + item.getDatePurchased()<<endl;
     cout<<"Expiry Date: " + item.getExpiry()<<endl;
-    cout<<"You will get a low stock alert when there are " + to_string(item.getThreshold())+" "+item.getMeasureUnit()+" of this item left in stock"<<endl;
+    cout<<"You will get a low stock alert when there are " + to_string(item.getThreshold())+" "+item.getMeasureUnit()+" of this item left in stock\n"<<endl;
     
 }
 
@@ -108,7 +108,7 @@ int main(int argc, char* argv[]){
     int intInput;                   //used to store integer input 
 
     //Welcome message
-    cout<<"Welcome to Freshcipes Terminal Prototype!" <<endl;
+    cout<<"Welcome to Freshcipes Terminal Application" <<endl;
     cout<<"This application will help you search for recipes based on the food you have in your stock. If this is your first time using the app, insert food into your stock to get started!"<<endl;
     cout<<"Your stock will be stored when exiting the app.\n" <<endl;
 

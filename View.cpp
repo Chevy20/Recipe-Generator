@@ -6,7 +6,7 @@ class View {
         const Model* model;
     
     public:
-        View::View(Model *model) {
+        View(Model *model) {
             this->model = model;
         }
 };
