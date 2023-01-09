@@ -1,5 +1,6 @@
 # Recipe-Generator
 A C++ linux application that will generate recipes based on what the user has on their stock. Was developed in a group. <br>
+Note: Was hosted on Western University's Bitbucket. Moved to git for public access. <br>
 Files I wrote: <br>
 FoodAPI.hpp and FoodAPI.cpp <br>
 FoodItem.h and FoodItem.cpp <br>
